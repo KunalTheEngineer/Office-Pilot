@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Tax_Consultant_25</RootNamespace>
+    <AssemblyName>Tax Consultant 25</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PreferNativeArm64>true</PreferNativeArm64>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MetroFramework">
+      <HintPath>..\LIBRARIES\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="clsProperties.cs" />
+    <Compile Include="Data Layer\clsConnection.cs" />
+    <Compile Include="Data Layer\cls_AccountingDL.cs" />
+    <Compile Include="Data Layer\cls_AllInOne.cs" />
+    <Compile Include="Data Layer\cls_BillDL.cs" />
+    <Compile Include="Data Layer\cls_BusinessDL.cs" />
+    <Compile Include="Data Layer\cls_ClientsDL.cs" />
+    <Compile Include="Data Layer\cls_ClientUserPassDL.cs" />
+    <Compile Include="Data Layer\cls_EmployeeDL.cs" />
+    <Compile Include="Data Layer\cls_EnquiryDL.cs" />
+    <Compile Include="Data Layer\cls_FeedbackDL.cs" />
+    <Compile Include="Data Layer\cls_GSTClients.cs" />
+    <Compile Include="Data Layer\cls_GstDL.cs" />
+    <Compile Include="Data Layer\cls_IncomeTaxDL.cs" />
+    <Compile Include="Data Layer\cls_LoginDL.cs" />
+    <Compile Include="Data Layer\cls_PanDL.cs" />
+    <Compile Include="Data Layer\cls_PtecDL.cs" />
+    <Compile Include="Data Layer\cls_Query.cs" />
+    <Compile Include="Data Layer\cls_ReportsDL.cs" />
+    <Compile Include="Data Layer\cls_ShopActDL.cs" />
+    <Compile Include="Data Layer\cls_TdsDL.cs" />
+    <Compile Include="Data Layer\cls_UdyamDL.cs" />
+    <Compile Include="Data Layer\cls_WorkTypeDL.cs" />
+    <Compile Include="Data Layer\FormDataInfoEventArgs.cs" />
+    <Compile Include="DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\CommonUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\CommonUC.Designer.cs">
+      <DependentUpon>CommonUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ucAccounting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ucAccounting.Designer.cs">
+      <DependentUpon>ucAccounting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ucAddEmployee.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ucAddEmployee.Designer.cs">
+      <DependentUpon>ucAddEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ucAllInOne.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ucAllInOne.Designer.cs">
+      <DependentUpon>ucAllInOne.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ucAllOne.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ucAllOne.Designer.cs">
+      <DependentUpon>ucAllOne.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ucEmployee.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ucEmployee.Designer.cs">
+      <DependentUpon>ucEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ucEnquiry.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ucEnquiry.Designer.cs">
+      <DependentUpon>ucEnquiry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ucGST.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ucGST.Designer.cs">
+      <DependentUpon>ucGST.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ucPAN.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ucPAN.Designer.cs">
+      <DependentUpon>ucPAN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ucPtecPtrc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ucPtecPtrc.Designer.cs">
+      <DependentUpon>ucPtecPtrc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ucReports.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ucReports.Designer.cs">
+      <DependentUpon>ucReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ucShopAct.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ucShopAct.Designer.cs">
+      <DependentUpon>ucShopAct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ucShowEmployeeWork.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ucShowEmployeeWork.Designer.cs">
+      <DependentUpon>ucShowEmployeeWork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ucShowGSTClients.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ucShowGSTClients.Designer.cs">
+      <DependentUpon>ucShowGSTClients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ucShowReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ucShowReport.Designer.cs">
+      <DependentUpon>ucShowReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ucTDS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ucTDS.Designer.cs">
+      <DependentUpon>ucTDS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ucUdyam.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\ucUdyam.Designer.cs">
+      <DependentUpon>ucUdyam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\upAddClients.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frames\upAddClients.Designer.cs">
+      <DependentUpon>upAddClients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Bill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Bill.Designer.cs">
+      <DependentUpon>frm_Bill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Feedback.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Feedback.Designer.cs">
+      <DependentUpon>frm_Feedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Login.Designer.cs">
+      <DependentUpon>frm_Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Narration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Narration.Designer.cs">
+      <DependentUpon>frm_Narration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Query.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Query.Designer.cs">
+      <DependentUpon>frm_Query.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="Bills\Invoice.rdlc" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\CommonUC.resx">
+      <DependentUpon>CommonUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ucAccounting.resx">
+      <DependentUpon>ucAccounting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ucAddEmployee.resx">
+      <DependentUpon>ucAddEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ucAllInOne.resx">
+      <DependentUpon>ucAllInOne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ucAllOne.resx">
+      <DependentUpon>ucAllOne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ucEmployee.resx">
+      <DependentUpon>ucEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ucEnquiry.resx">
+      <DependentUpon>ucEnquiry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ucGST.resx">
+      <DependentUpon>ucGST.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ucPAN.resx">
+      <DependentUpon>ucPAN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ucPtecPtrc.resx">
+      <DependentUpon>ucPtecPtrc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ucReports.resx">
+      <DependentUpon>ucReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ucShopAct.resx">
+      <DependentUpon>ucShopAct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ucShowEmployeeWork.resx">
+      <DependentUpon>ucShowEmployeeWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ucShowGSTClients.resx">
+      <DependentUpon>ucShowGSTClients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ucShowReport.resx">
+      <DependentUpon>ucShowReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ucTDS.resx">
+      <DependentUpon>ucTDS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\ucUdyam.resx">
+      <DependentUpon>ucUdyam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frames\upAddClients.resx">
+      <DependentUpon>upAddClients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Bill.resx">
+      <DependentUpon>frm_Bill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Feedback.resx">
+      <DependentUpon>frm_Feedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Login.resx">
+      <DependentUpon>frm_Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Narration.resx">
+      <DependentUpon>frm_Narration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Query.resx">
+      <DependentUpon>frm_Query.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Reports\rptAccounting.rdlc" />
+    <EmbeddedResource Include="Reports\rptAllInOne.rdlc" />
+    <EmbeddedResource Include="Reports\rptClients.rdlc" />
+    <EmbeddedResource Include="Reports\rptEmployee.rdlc" />
+    <EmbeddedResource Include="Reports\rptGST.rdlc" />
+    <EmbeddedResource Include="Reports\rptIncomeTax.rdlc" />
+    <EmbeddedResource Include="Reports\rptInvoices.rdlc" />
+    <EmbeddedResource Include="Reports\rptPanTan.rdlc" />
+    <EmbeddedResource Include="Reports\rptPtecPtrc.rdlc" />
+    <EmbeddedResource Include="Reports\rptShopAct.rdlc" />
+    <EmbeddedResource Include="Reports\rptTDS.rdlc" />
+    <EmbeddedResource Include="Reports\rptUdyam.rdlc" />
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Image\add.png" />
+    <Content Include="Image\icons8-add-48.png" />
+    <Content Include="Image\icons8-close-30.png" />
+    <Content Include="Image\icons8-delete-30.png" />
+    <Content Include="Image\icons8-delete-60.png" />
+    <Content Include="Image\icons8-save-30.png" />
+    <Content Include="Image\icons8-save-48.png" />
+    <Content Include="Image\icons8-update-30.png" />
+    <Content Include="Image\ic_accounting.png" />
+    <Content Include="Image\ic_all_in_one %281%29.png" />
+    <Content Include="Image\ic_assigned_to.png" />
+    <Content Include="Image\ic_client_registration.png" />
+    <Content Include="Image\ic_employee.png" />
+    <Content Include="Image\ic_enquiry.png" />
+    <Content Include="Image\ic_gst.png" />
+    <Content Include="Image\ic_income_tax.png" />
+    <Content Include="Image\ic_PAN.png" />
+    <Content Include="Image\ic_PTEC.png" />
+    <Content Include="Image\ic_reports.png" />
+    <Content Include="Image\ic_shopact.png" />
+    <Content Include="Image\ic_tds.png" />
+    <Content Include="Image\ic_udyam.png" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

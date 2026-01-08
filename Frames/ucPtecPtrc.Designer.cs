@@ -1,0 +1,603 @@
+﻿namespace Tax_Consultant_25.Frames
+{
+    partial class ucPtecPtrc
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.pnlPtrec = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.txtPtecNo = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.lblDynamic1 = new System.Windows.Forms.Label();
+            this.txtYear = new System.Windows.Forms.TextBox();
+            this.dtpDueDate = new System.Windows.Forms.DateTimePicker();
+            this.label21 = new System.Windows.Forms.Label();
+            this.cmbAllocatedTo = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtWorkType = new System.Windows.Forms.TextBox();
+            this.txtClientName = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.dtpInputDate = new System.Windows.Forms.DateTimePicker();
+            this.label17 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.cmbFeesStatus = new System.Windows.Forms.ComboBox();
+            this.lblFessStatus = new System.Windows.Forms.Label();
+            this.lblFeesAMT = new System.Windows.Forms.Label();
+            this.txtFessAmt = new System.Windows.Forms.TextBox();
+            this.cmbWorkStatus = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtUname = new System.Windows.Forms.TextBox();
+            this.txtPass = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.USERNAME = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.dgvPTEC = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WorkType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnQuery = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel2.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPTEC)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // pnlPtrec
+            // 
+            this.pnlPtrec.Location = new System.Drawing.Point(4, 4);
+            this.pnlPtrec.Name = "pnlPtrec";
+            this.pnlPtrec.Size = new System.Drawing.Size(1212, 241);
+            this.pnlPtrec.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.txtPtecNo);
+            this.panel2.Controls.Add(this.label24);
+            this.panel2.Controls.Add(this.lblDynamic1);
+            this.panel2.Controls.Add(this.txtYear);
+            this.panel2.Controls.Add(this.dtpDueDate);
+            this.panel2.Controls.Add(this.label21);
+            this.panel2.Controls.Add(this.cmbAllocatedTo);
+            this.panel2.Controls.Add(this.label20);
+            this.panel2.Controls.Add(this.label19);
+            this.panel2.Controls.Add(this.txtWorkType);
+            this.panel2.Controls.Add(this.txtClientName);
+            this.panel2.Controls.Add(this.label18);
+            this.panel2.Controls.Add(this.dtpInputDate);
+            this.panel2.Controls.Add(this.label17);
+            this.panel2.Location = new System.Drawing.Point(4, 249);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1211, 70);
+            this.panel2.TabIndex = 1;
+            // 
+            // txtPtecNo
+            // 
+            this.txtPtecNo.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPtecNo.Location = new System.Drawing.Point(1026, 31);
+            this.txtPtecNo.Name = "txtPtecNo";
+            this.txtPtecNo.Size = new System.Drawing.Size(180, 28);
+            this.txtPtecNo.TabIndex = 6;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(1054, 5);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(136, 20);
+            this.label24.TabIndex = 51;
+            this.label24.Text = "PTEC/PTRC NO";
+            // 
+            // lblDynamic1
+            // 
+            this.lblDynamic1.AutoSize = true;
+            this.lblDynamic1.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDynamic1.Location = new System.Drawing.Point(909, 5);
+            this.lblDynamic1.Name = "lblDynamic1";
+            this.lblDynamic1.Size = new System.Drawing.Size(54, 20);
+            this.lblDynamic1.TabIndex = 46;
+            this.lblDynamic1.Text = "YEAR";
+            // 
+            // txtYear
+            // 
+            this.txtYear.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtYear.Location = new System.Drawing.Point(877, 31);
+            this.txtYear.Name = "txtYear";
+            this.txtYear.Size = new System.Drawing.Size(130, 28);
+            this.txtYear.TabIndex = 5;
+            // 
+            // dtpDueDate
+            // 
+            this.dtpDueDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpDueDate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDueDate.Location = new System.Drawing.Point(714, 33);
+            this.dtpDueDate.Name = "dtpDueDate";
+            this.dtpDueDate.Size = new System.Drawing.Size(148, 26);
+            this.dtpDueDate.TabIndex = 4;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(739, 5);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(96, 20);
+            this.label21.TabIndex = 43;
+            this.label21.Text = "DUE DATE";
+            // 
+            // cmbAllocatedTo
+            // 
+            this.cmbAllocatedTo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAllocatedTo.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbAllocatedTo.FormattingEnabled = true;
+            this.cmbAllocatedTo.Location = new System.Drawing.Point(510, 31);
+            this.cmbAllocatedTo.Name = "cmbAllocatedTo";
+            this.cmbAllocatedTo.Size = new System.Drawing.Size(176, 28);
+            this.cmbAllocatedTo.TabIndex = 3;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(538, 5);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(138, 20);
+            this.label20.TabIndex = 41;
+            this.label20.Text = "ALLOCATED TO";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(358, 5);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(110, 20);
+            this.label19.TabIndex = 40;
+            this.label19.Text = "WORK TYPE";
+            // 
+            // txtWorkType
+            // 
+            this.txtWorkType.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWorkType.Location = new System.Drawing.Point(339, 31);
+            this.txtWorkType.Name = "txtWorkType";
+            this.txtWorkType.Size = new System.Drawing.Size(148, 28);
+            this.txtWorkType.TabIndex = 2;
+            // 
+            // txtClientName
+            // 
+            this.txtClientName.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClientName.Location = new System.Drawing.Point(166, 31);
+            this.txtClientName.Name = "txtClientName";
+            this.txtClientName.ReadOnly = true;
+            this.txtClientName.Size = new System.Drawing.Size(154, 28);
+            this.txtClientName.TabIndex = 1;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(215, 5);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(59, 20);
+            this.label18.TabIndex = 38;
+            this.label18.Text = "NAME";
+            // 
+            // dtpInputDate
+            // 
+            this.dtpInputDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpInputDate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpInputDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpInputDate.Location = new System.Drawing.Point(3, 33);
+            this.dtpInputDate.Name = "dtpInputDate";
+            this.dtpInputDate.Size = new System.Drawing.Size(147, 26);
+            this.dtpInputDate.TabIndex = 0;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(25, 5);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(113, 20);
+            this.label17.TabIndex = 36;
+            this.label17.Text = "INPUT DATE";
+            // 
+            // panel5
+            // 
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.cmbFeesStatus);
+            this.panel5.Controls.Add(this.lblFessStatus);
+            this.panel5.Controls.Add(this.lblFeesAMT);
+            this.panel5.Controls.Add(this.txtFessAmt);
+            this.panel5.Controls.Add(this.cmbWorkStatus);
+            this.panel5.Controls.Add(this.label1);
+            this.panel5.Controls.Add(this.txtUname);
+            this.panel5.Controls.Add(this.txtPass);
+            this.panel5.Controls.Add(this.label31);
+            this.panel5.Controls.Add(this.USERNAME);
+            this.panel5.Location = new System.Drawing.Point(4, 324);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1211, 70);
+            this.panel5.TabIndex = 2;
+            // 
+            // cmbFeesStatus
+            // 
+            this.cmbFeesStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFeesStatus.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFeesStatus.FormattingEnabled = true;
+            this.cmbFeesStatus.Items.AddRange(new object[] {
+            "UNPAID",
+            "PAID"});
+            this.cmbFeesStatus.Location = new System.Drawing.Point(724, 34);
+            this.cmbFeesStatus.Name = "cmbFeesStatus";
+            this.cmbFeesStatus.Size = new System.Drawing.Size(157, 28);
+            this.cmbFeesStatus.TabIndex = 3;
+            // 
+            // lblFessStatus
+            // 
+            this.lblFessStatus.AutoSize = true;
+            this.lblFessStatus.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFessStatus.Location = new System.Drawing.Point(743, 5);
+            this.lblFessStatus.Name = "lblFessStatus";
+            this.lblFessStatus.Size = new System.Drawing.Size(125, 20);
+            this.lblFessStatus.TabIndex = 56;
+            this.lblFessStatus.Text = "FEES STATUS";
+            // 
+            // lblFeesAMT
+            // 
+            this.lblFeesAMT.AutoSize = true;
+            this.lblFeesAMT.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFeesAMT.Location = new System.Drawing.Point(586, 5);
+            this.lblFeesAMT.Name = "lblFeesAMT";
+            this.lblFeesAMT.Size = new System.Drawing.Size(99, 20);
+            this.lblFeesAMT.TabIndex = 54;
+            this.lblFeesAMT.Text = "FEES AMT.";
+            // 
+            // txtFessAmt
+            // 
+            this.txtFessAmt.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFessAmt.Location = new System.Drawing.Point(560, 34);
+            this.txtFessAmt.Name = "txtFessAmt";
+            this.txtFessAmt.Size = new System.Drawing.Size(148, 28);
+            this.txtFessAmt.TabIndex = 2;
+            // 
+            // cmbWorkStatus
+            // 
+            this.cmbWorkStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbWorkStatus.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbWorkStatus.FormattingEnabled = true;
+            this.cmbWorkStatus.Items.AddRange(new object[] {
+            "PENDING",
+            "DONE"});
+            this.cmbWorkStatus.Location = new System.Drawing.Point(897, 34);
+            this.cmbWorkStatus.Name = "cmbWorkStatus";
+            this.cmbWorkStatus.Size = new System.Drawing.Size(138, 28);
+            this.cmbWorkStatus.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(923, 5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 20);
+            this.label1.TabIndex = 49;
+            this.label1.Text = "W STATUS";
+            // 
+            // txtUname
+            // 
+            this.txtUname.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUname.Location = new System.Drawing.Point(173, 34);
+            this.txtUname.Name = "txtUname";
+            this.txtUname.Size = new System.Drawing.Size(186, 28);
+            this.txtUname.TabIndex = 0;
+            // 
+            // txtPass
+            // 
+            this.txtPass.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPass.Location = new System.Drawing.Point(376, 34);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.Size = new System.Drawing.Size(169, 28);
+            this.txtPass.TabIndex = 1;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(403, 5);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(110, 20);
+            this.label31.TabIndex = 38;
+            this.label31.Text = "PASSWORD";
+            // 
+            // USERNAME
+            // 
+            this.USERNAME.AutoSize = true;
+            this.USERNAME.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.USERNAME.Location = new System.Drawing.Point(209, 5);
+            this.USERNAME.Name = "USERNAME";
+            this.USERNAME.Size = new System.Drawing.Size(106, 20);
+            this.USERNAME.TabIndex = 36;
+            this.USERNAME.Text = "USERNAME";
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.btnClose);
+            this.panel3.Controls.Add(this.btnUpdate);
+            this.panel3.Controls.Add(this.btnSave);
+            this.panel3.Location = new System.Drawing.Point(4, 399);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1211, 47);
+            this.panel3.TabIndex = 3;
+            // 
+            // btnClose
+            // 
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClose.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(686, 6);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(94, 31);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.Text = "CLOSE";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnUpdate.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Location = new System.Drawing.Point(565, 6);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(94, 31);
+            this.btnUpdate.TabIndex = 1;
+            this.btnUpdate.Text = "UPDATE";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSave.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(444, 6);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(94, 31);
+            this.btnSave.TabIndex = 0;
+            this.btnSave.Text = "SAVE";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // dgvPTEC
+            // 
+            this.dgvPTEC.AllowUserToAddRows = false;
+            this.dgvPTEC.AllowUserToDeleteRows = false;
+            this.dgvPTEC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvPTEC.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPTEC.BackgroundColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPTEC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvPTEC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPTEC.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.ClientName,
+            this.WorkType,
+            this.EmployeeName,
+            this.Column6,
+            this.btnQuery,
+            this.btnReply,
+            this.Column9,
+            this.Column7});
+            this.dgvPTEC.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvPTEC.Location = new System.Drawing.Point(4, 452);
+            this.dgvPTEC.Name = "dgvPTEC";
+            this.dgvPTEC.RowHeadersVisible = false;
+            this.dgvPTEC.RowHeadersWidth = 51;
+            this.dgvPTEC.RowTemplate.Height = 24;
+            this.dgvPTEC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPTEC.Size = new System.Drawing.Size(1212, 281);
+            this.dgvPTEC.TabIndex = 4;
+            this.dgvPTEC.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPTEC_CellClick);
+            this.dgvPTEC.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvPTEC_CellFormatting);
+            this.dgvPTEC.SelectionChanged += new System.EventHandler(this.dgvPTEC_SelectionChanged);
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "serial";
+            this.Column1.FillWeight = 43.00868F;
+            this.Column1.HeaderText = "SR.";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "p_InputDate";
+            this.Column2.FillWeight = 104.6672F;
+            this.Column2.HeaderText = "In. Date";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            // 
+            // ClientName
+            // 
+            this.ClientName.DataPropertyName = "clientName";
+            this.ClientName.FillWeight = 135.4978F;
+            this.ClientName.HeaderText = "Name";
+            this.ClientName.MinimumWidth = 6;
+            this.ClientName.Name = "ClientName";
+            // 
+            // WorkType
+            // 
+            this.WorkType.DataPropertyName = "p_WorkType";
+            this.WorkType.FillWeight = 95.15669F;
+            this.WorkType.HeaderText = "W Type";
+            this.WorkType.MinimumWidth = 6;
+            this.WorkType.Name = "WorkType";
+            // 
+            // EmployeeName
+            // 
+            this.EmployeeName.DataPropertyName = "p_AllocatedTo";
+            this.EmployeeName.FillWeight = 187.1658F;
+            this.EmployeeName.HeaderText = "Allocated To";
+            this.EmployeeName.MinimumWidth = 6;
+            this.EmployeeName.Name = "EmployeeName";
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "p_DueDate";
+            this.Column6.FillWeight = 94.13483F;
+            this.Column6.HeaderText = "D Date";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            // 
+            // btnQuery
+            // 
+            this.btnQuery.FillWeight = 73.07347F;
+            this.btnQuery.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnQuery.HeaderText = "Query";
+            this.btnQuery.MinimumWidth = 6;
+            this.btnQuery.Name = "btnQuery";
+            this.btnQuery.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnQuery.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.btnQuery.Text = "QUERY";
+            this.btnQuery.UseColumnTextForButtonValue = true;
+            // 
+            // btnReply
+            // 
+            this.btnReply.FillWeight = 71.14763F;
+            this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReply.HeaderText = "Reply";
+            this.btnReply.MinimumWidth = 6;
+            this.btnReply.Name = "btnReply";
+            this.btnReply.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnReply.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.btnReply.Text = "REPLY";
+            this.btnReply.UseColumnTextForButtonValue = true;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "p_Status";
+            this.Column9.FillWeight = 87.40306F;
+            this.Column9.HeaderText = "Work St";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "p_FeeStatus";
+            this.Column7.HeaderText = "Fees St";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            // 
+            // ucPtecPtrc
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dgvPTEC);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pnlPtrec);
+            this.Name = "ucPtecPtrc";
+            this.Size = new System.Drawing.Size(1232, 736);
+            this.Load += new System.EventHandler(this.ucPtecPtrc_Load);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPTEC)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Panel pnlPtrec;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label lblDynamic1;
+        private System.Windows.Forms.TextBox txtYear;
+        private System.Windows.Forms.DateTimePicker dtpDueDate;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ComboBox cmbAllocatedTo;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txtWorkType;
+        private System.Windows.Forms.TextBox txtClientName;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.DateTimePicker dtpInputDate;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.ComboBox cmbFeesStatus;
+        private System.Windows.Forms.Label lblFessStatus;
+        private System.Windows.Forms.Label lblFeesAMT;
+        private System.Windows.Forms.TextBox txtFessAmt;
+        private System.Windows.Forms.ComboBox cmbWorkStatus;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtUname;
+        private System.Windows.Forms.TextBox txtPass;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label USERNAME;
+        private System.Windows.Forms.TextBox txtPtecNo;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.DataGridView dgvPTEC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WorkType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewButtonColumn btnQuery;
+        private System.Windows.Forms.DataGridViewButtonColumn btnReply;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+    }
+}
