@@ -127,30 +127,5 @@ namespace Tax_Consultant_25.Data_Layer
             return objDs;
         }
 
-        internal DataSet showRecurringClientsData()
-        {
-            try
-            {
-                objDs = new DataSet();
-
-                objCon = new clsConnection();
-                objCon.openConnection();
-                objCmd = new SqlCommand(); ;
-                objCmd.Connection = objCon.con;
-                objCmd.CommandType = CommandType.StoredProcedure;
-                objCmd.CommandText = "usp_GST";
-                objCmd.Parameters.AddWithValue("@intMode", 4);
-                objDa = new SqlDataAdapter(objCmd);
-                objDa.Fill(objDs);
-                objCon.con.Close();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "DL_SHOPACT_DATA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
-            return objDs;
-        }
     }
 }

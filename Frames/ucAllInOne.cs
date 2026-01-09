@@ -51,35 +51,64 @@ namespace Tax_Consultant_25.Frames
 
         #endregion
 
+        #region USER DEFINED EVENTS
+
+        private void cmbWorkStatus_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0)
+                return;
+
+            Color[] bgColors =
+            {
+                ColorTranslator.FromHtml("#D6DCE4"), // Not Started
+                ColorTranslator.FromHtml("#F4B084"), // Waiting for Documents
+                ColorTranslator.FromHtml("#A9D08E"), // Document Received
+                ColorTranslator.FromHtml("#00B0F0"), // Return Prepared
+                ColorTranslator.FromHtml("#FF0000"), // Cancelled
+                ColorTranslator.FromHtml("#FFC000"), // Nill
+                ColorTranslator.FromHtml("#FFC000"), // Complit
+                ColorTranslator.FromHtml("#FFFF00"), // Filed
+                ColorTranslator.FromHtml("#FCE4D6")  // Other
+            };
+
+            Color backColor = bgColors[e.Index];
+
+            // This removes the blue highlight effect
+            using (Brush backgroundBrush = new SolidBrush(backColor))
+            {
+                e.Graphics.FillRectangle(backgroundBrush, e.Bounds);
+            }
+
+            using (Brush textBrush = new SolidBrush(Color.Black))
+            {
+                e.Graphics.DrawString(
+                    cmbWorkStatus.Items[e.Index].ToString(),
+                    e.Font,
+                    textBrush,
+                    e.Bounds
+                );
+            }
+
+            e.DrawFocusRectangle();
+        }
+
+        #endregion
+
         private void ucAllInOne_Load(object sender, EventArgs e)
         {
-            common = new CommonUC();
-            pnlMainForm.Controls.Clear();
-            common.service = "INCOME TAX";
-            pnlMainForm.Controls.Add(common);
-
-            common.FormDataInfo += CommonUC_FormDataInfo;
-            serviceName = common.service;
 
             BindEmployee();
             show();
 
+            cmbRecurringTask.SelectedIndex = 0;
             cmbFeesStatus.SelectedIndex = 0;
             cmbWorkStatus.SelectedIndex = 0;
-            //cmbQueryEmp.SelectedIndex = 0;
-            //cmbQuerySol.SelectedIndex = 0;
-        }
+            cmbPeriodicity.SelectedIndex = 0;
+            cmbAllocatedTo.SelectedIndex = 0;
 
-        private void CommonUC_FormDataInfo(object sender, FormDataInfoEventArgs e)
-        {
-            if(e.Username != string.Empty && e.Password != string.Empty)
-            {
-                present = 1;
-            }
-
-            txtClientName.Text = e.clientName;
-            txtUname.Text = e.Username;
-            txtPass.Text = e.Password;
+            // USER DEFINED EVENTS
+            cmbWorkStatus.DrawMode = DrawMode.OwnerDrawFixed;
+            cmbWorkStatus.DrawItem += cmbWorkStatus_DrawItem;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -92,7 +121,7 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                if (txtWorkType.Text == string.Empty)
+                if (txtTaskName.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Work Type", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -110,17 +139,7 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                if (txtUname.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter UserName", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtPass.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Password", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                
 
                 if (txtFessAmt.Text == string.Empty)
                 {
@@ -136,7 +155,7 @@ namespace Tax_Consultant_25.Frames
                 objPro.incomeInputDate = dtpInputDate.Value;
                 objPro.clientName = txtClientName.Text;
                 objPro.incomeService = common.service;
-                objPro.incomeWorkType = txtWorkType.Text;
+                objPro.incomeWorkType = txtTaskName.Text;
                 objPro.incomeAllocatedEmpName = cmbAllocatedTo.Text;
                 objPro.incomeDueDate = dtpDueDate.Value;
                 objPro.incomeTypeOfReturn = txtReturn.Text;
@@ -145,9 +164,7 @@ namespace Tax_Consultant_25.Frames
                 objPro.incomeFeeStatus = cmbFeesStatus.Text;
                 objPro.incomeStatus = cmbWorkStatus.Text;
 
-                objPro.username = txtUname.Text;
-                objPro.password = txtPass.Text;
-                objPro.workService = common.service;
+               
 
                 flag = incomeTaxDL.saveData(objPro);
 
@@ -194,7 +211,7 @@ namespace Tax_Consultant_25.Frames
                 {
                     dtpInputDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[3].Value.ToString();
                     txtClientName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[4].Value.ToString();
-                    txtWorkType.Text = dgvAllInOne.Rows[objPro.rowID].Cells[5].Value.ToString();
+                    txtTaskName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[5].Value.ToString();
                     cmbAllocatedTo.Text = dgvAllInOne.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
                     dtpDueDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[7].Value.ToString();
                     cmbWorkStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
@@ -210,7 +227,7 @@ namespace Tax_Consultant_25.Frames
                     objPro.incomeId = tempIncomeId;
 
                     tempEmployeeName = cmbAllocatedTo.Text;
-                    tempWorkType = txtWorkType.Text;
+                    tempWorkType = txtTaskName.Text;
                     tempClientName = txtClientName.Text;
 
                     bus = new cls_BusinessDL();
@@ -269,7 +286,7 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                if (txtWorkType.Text == string.Empty)
+                if (txtTaskName.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Work Type", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -287,17 +304,7 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                if (txtUname.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter UserName", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtPass.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Password", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                
 
                 if (txtFessAmt.Text == string.Empty)
                 {
@@ -309,7 +316,7 @@ namespace Tax_Consultant_25.Frames
 
                 objPro.incomeInputDate = dtpInputDate.Value;
                 objPro.clientName = txtClientName.Text;
-                objPro.incomeWorkType = txtWorkType.Text;
+                objPro.incomeWorkType = txtTaskName.Text;
                 objPro.incomeAllocatedEmpName = cmbAllocatedTo.Text;
                 objPro.incomeDueDate = dtpDueDate.Value;
                 objPro.incomeTypeOfReturn = txtReturn.Text;
@@ -321,9 +328,7 @@ namespace Tax_Consultant_25.Frames
 
                 objPro.clientID = tempClientId;
                 objPro.workService = common.service;
-                objPro.username = txtUname.Text;
-                objPro.password = txtPass.Text;
-
+           
                 incomeTaxDL = new cls_IncomeTaxDL();
                 flag = incomeTaxDL.updateData(objPro);
 
@@ -346,7 +351,7 @@ namespace Tax_Consultant_25.Frames
                             narr.clientName = txtClientName.Text;
                             narr.service = common.service;
                             narr.amount = txtFessAmt.Text;
-                            narr.workType = txtWorkType.Text;
+                            narr.workType = txtTaskName.Text;
                             narr.businessName = businessName;
                             narr.clientAddress = clientAddress;
 
@@ -379,40 +384,40 @@ namespace Tax_Consultant_25.Frames
 
         private void ShowQuery()
         {
-            query = new cls_Query();
-            ds1 = new DataSet();
+            //query = new cls_Query();
+            //ds1 = new DataSet();
 
-            ds1 = query.QueryRaisedByEmp();
+            //ds1 = query.QueryRaisedByEmp();
 
-            foreach (DataGridViewRow row in dgvAllInOne.Rows)
-            {
-                if (row.IsNewRow)
-                    continue;
+            //foreach (DataGridViewRow row in dgvAllInOne.Rows)
+            //{
+            //    if (row.IsNewRow)
+            //        continue;
 
-                string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
-                string service = "INCOME TAX";
-                string workType = row.Cells["WorkType"].Value?.ToString();
+            //    string employee = row.Cells["EmployeeName"].Value?.ToString();
+            //    string client = row.Cells["ClientName"].Value?.ToString();
+            //    string service = "INCOME TAX";
+            //    string workType = row.Cells["WorkType"].Value?.ToString();
 
-                var hasQuery = ds1.Tables[0].AsEnumerable().FirstOrDefault(r =>
-                   r.Field<string>("EmployeeName") == employee &&
-                   r.Field<string>("clientName") == client &&
-                   r.Field<string>("service") == service &&
-                    r.Field<string>("workType") == workType
-                 //&&   
-                 //!string.IsNullOrEmpty(r.Field<string>("queryByEmp"))
-                 );
+            //    var hasQuery = ds1.Tables[0].AsEnumerable().FirstOrDefault(r =>
+            //       r.Field<string>("EmployeeName") == employee &&
+            //       r.Field<string>("clientName") == client &&
+            //       r.Field<string>("service") == service &&
+            //        r.Field<string>("workType") == workType
+            //     //&&   
+            //     //!string.IsNullOrEmpty(r.Field<string>("queryByEmp"))
+            //     );
 
 
-                if (hasQuery != null && hasQuery.Field<int>("HasQuery") == 1)
-                {
-                    row.DefaultCellStyle.BackColor = Color.Red;
-                }
-                else
-                {
-                    row.DefaultCellStyle.BackColor = DefaultBackColor;
-                }
-            }
+            //    if (hasQuery != null && hasQuery.Field<int>("HasQuery") == 1)
+            //    {
+            //        row.DefaultCellStyle.BackColor = Color.Red;
+            //    }
+            //    else
+            //    {
+            //        row.DefaultCellStyle.BackColor = DefaultBackColor;
+            //    }
+            //}
         }
 
         private void Clear()
@@ -422,13 +427,12 @@ namespace Tax_Consultant_25.Frames
 
             dtpInputDate.Text = DateTime.Now.ToString();
             txtClientName.Clear();
-            txtWorkType.Clear();
+            txtTaskName.Clear();
             cmbAllocatedTo.SelectedIndex = 0;
             dtpDueDate.Text = DateTime.Now.ToString();
             txtReturn.Clear();
             txtYear.Clear();
-            txtUname.Clear();
-            txtPass.Clear();
+
             txtFessAmt.Clear();
             cmbFeesStatus.SelectedIndex = 0;
             cmbWorkStatus.SelectedIndex = 0;
@@ -436,6 +440,21 @@ namespace Tax_Consultant_25.Frames
             btnSave.Enabled = true;
 
             present = 0;
+        }
+
+        private void lblFeesAMT_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void show()
@@ -473,8 +492,7 @@ namespace Tax_Consultant_25.Frames
 
             if (ds.Tables[0].Rows.Count > 0)
             {
-                txtUname.Text = ds.Tables[0].Rows[0]["clientUsername"].ToString();
-                txtPass.Text = ds.Tables[0].Rows[0]["clientPassword"].ToString();
+               
             }
         }
 

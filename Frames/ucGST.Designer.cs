@@ -305,7 +305,7 @@
             "Complete",
             "Filed",
             "Other"});
-            this.cmbWorkStatus.Location = new System.Drawing.Point(1017, 109);
+            this.cmbWorkStatus.Location = new System.Drawing.Point(1004, 109);
             this.cmbWorkStatus.Name = "cmbWorkStatus";
             this.cmbWorkStatus.Size = new System.Drawing.Size(214, 29);
             this.cmbWorkStatus.TabIndex = 4;
@@ -355,11 +355,11 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(1082, 85);
+            this.label24.Location = new System.Drawing.Point(1080, 85);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(92, 21);
+            this.label24.Size = new System.Drawing.Size(71, 21);
             this.label24.TabIndex = 49;
-            this.label24.Text = "W STATUS";
+            this.label24.Text = "STATUS";
             // 
             // panel3
             // 
@@ -423,7 +423,8 @@
             // 
             this.dgvGST.AllowUserToAddRows = false;
             this.dgvGST.AllowUserToDeleteRows = false;
-            this.dgvGST.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvGST.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvGST.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvGST.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;

@@ -129,23 +129,6 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
-        private void showRecurringClients()
-        {
-            ds = new DataSet();
-            gstDL = new cls_GstDL();
-
-            ds = gstDL.showRecurringClientsData();
-
-            if (ds.Tables[0].Rows.Count <= 0)
-            {
-
-            }
-            else
-            {
-                dgvGST.DataSource = ds.Tables[0];
-            }
-        }
-
         private void BindSearch()
         {
             try
@@ -328,8 +311,6 @@ namespace Tax_Consultant_25.Frames
 
             show();
 
-         //   showRecurringClients();
-
             // USER DEFINED EVENTS
             cmbWorkStatus.DrawMode = DrawMode.OwnerDrawFixed;
             cmbWorkStatus.DrawItem += cmbWorkStatus_DrawItem;
@@ -473,7 +454,6 @@ namespace Tax_Consultant_25.Frames
 
                     Clear();
                     show();
-                 //   showRecurringClients();
                 }
             }
             catch (Exception ex)
