@@ -187,6 +187,11 @@ namespace Tax_Consultant_25.Frames
             //}
         }
 
+        private void show()
+        {
+
+        }
+
         #endregion
 
         #region USER DEFINED EVENTS
