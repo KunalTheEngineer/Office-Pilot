@@ -189,7 +189,14 @@ namespace Tax_Consultant_25.Frames
 
         private void show()
         {
+            try
+            {
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
 
         #endregion
