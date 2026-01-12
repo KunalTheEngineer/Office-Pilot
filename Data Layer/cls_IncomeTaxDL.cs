@@ -41,8 +41,11 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Parameters.AddWithValue("@clientId", objPro.clientID);
                 objCmd.Parameters.AddWithValue("@clientName", objPro.clientName);
                 objCmd.Parameters.AddWithValue("@i_Service", objPro.incomeService);
-                objCmd.Parameters.AddWithValue("@i_WorkType", objPro.incomeTaskName);
+                objCmd.Parameters.AddWithValue("@i_TaskName", objPro.incomeTaskName);
+                objCmd.Parameters.AddWithValue("@i_TradeName", objPro.incomeTradeName);
                 objCmd.Parameters.AddWithValue("@i_InputDate", objPro.incomeInputDate);
+                objCmd.Parameters.AddWithValue("@i_RecurringTask", objPro.incomeRecurringTask);
+                objCmd.Parameters.AddWithValue("@i_Periodicity", objPro.incomePeriodicity);
                 objCmd.Parameters.AddWithValue("@i_AllocatedEmpName", objPro.incomeAllocatedEmpName);
                 objCmd.Parameters.AddWithValue("@i_DueDate", objPro.incomeDueDate);
                 objCmd.Parameters.AddWithValue("@i_TypeOfReturn", objPro.incomeTypeOfReturn);
@@ -50,6 +53,7 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Parameters.AddWithValue("@i_Fees", objPro.incomeFees);
                 objCmd.Parameters.AddWithValue("@i_FeeStatus", objPro.incomeFeeStatus);
                 objCmd.Parameters.AddWithValue("@i_Status", objPro.incomeStatus);
+                objCmd.Parameters.AddWithValue("@i_Description", objPro.incomeDescription);
 
                 flag = objCmd.ExecuteNonQuery();
                 objCon.con.Close();
@@ -108,7 +112,7 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Connection = objCon.con;
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.CommandText = "usp_IncomeTax";
-                objCmd.Parameters.AddWithValue("@intMode", 4);
+                objCmd.Parameters.AddWithValue("@intMode", 3);
                 objDa = new SqlDataAdapter(objCmd);
                 objDa.Fill(objDs);
                 objCon.con.Close();

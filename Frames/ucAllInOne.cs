@@ -99,7 +99,7 @@ namespace Tax_Consultant_25.Frames
 
             BindEmployee();
             BindSearch();
-          //  show();
+            show();
 
             cmbRecurringTask.SelectedIndex = 0;
             cmbFeesStatus.SelectedIndex = 0;
@@ -110,88 +110,6 @@ namespace Tax_Consultant_25.Frames
             // USER DEFINED EVENTS
             cmbWorkStatus.DrawMode = DrawMode.OwnerDrawFixed;
             cmbWorkStatus.DrawItem += cmbWorkStatus_DrawItem;
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if(txtClientName.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Client Name", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtTaskName.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Work Type", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtReturn.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Type Of Return", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtYear.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Year", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtFessAmt.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Fees Amount", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                objPro = new clsProperties();
-
-                clId = common.clientId;
-
-                objPro.clientID = clId;
-                objPro.incomeInputDate = dtpInputDate.Value;
-                objPro.clientName = txtClientName.Text;
-                objPro.incomeService = common.service;
-                objPro.incomeTaskName = txtTaskName.Text;
-                objPro.incomeTradeName = txtTradeName.Text;
-                objPro.incomeAllocatedEmpName = cmbAllocatedTo.Text;
-                objPro.incomeDueDate = dtpDueDate.Value;
-                objPro.incomeRecurringTask = cmbRecurringTask.Text; 
-                objPro.incomePeriodicity = cmbPeriodicity.Text;
-                objPro.incomeTypeOfReturn = txtReturn.Text;
-                objPro.incomeYear = txtYear.Text;
-                objPro.incomeFees = Convert.ToInt32(txtFessAmt.Text);
-                objPro.incomeFeeStatus = cmbFeesStatus.Text;
-                objPro.incomeStatus = cmbWorkStatus.Text;
-                objPro.incomeDescription = txtDescription.Text;
-
-               
-
-                flag = incomeTaxDL.saveData(objPro);
-
-                if (flag == 1)
-                {
-                    if(present == 0)
-                    {
-                        user = new cls_ClientUserPassDL();
-
-                        user.saveClientUserNamePassword(objPro);
-                    }
-
-                    //MessageBox.Show("Record Saved...");
-                    Clear();
-                    show();
-                    common.ClearControls();
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "UC_ALLINONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -212,65 +130,49 @@ namespace Tax_Consultant_25.Frames
 
                 if (dgvAllInOne.Rows.Count > 0)
                 {
-                    dtpInputDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[3].Value.ToString();
-                    txtClientName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[4].Value.ToString();
-                    txtTaskName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[5].Value.ToString();
-                    cmbAllocatedTo.Text = dgvAllInOne.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
+                    dtpInputDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[2].Value.ToString();
+                    txtClientName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[3].Value.ToString();
+                    txtTaskName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[4].Value.ToString();
+                    txtReturn.Text = dgvAllInOne.Rows[objPro.rowID].Cells[5].Value.ToString();
+                    txtYear.Text = dgvAllInOne.Rows[objPro.rowID].Cells[6].Value.ToString();
                     dtpDueDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[7].Value.ToString();
-                    cmbWorkStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
-                    cmbFeesStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
-                    txtReturn.Text = dgvAllInOne.Rows[objPro.rowID].Cells[10].Value.ToString();
-                    txtYear.Text = dgvAllInOne.Rows[objPro.rowID].Cells[11].Value.ToString();
-                    txtFessAmt.Text = dgvAllInOne.Rows[objPro.rowID].Cells[12].Value.ToString();
-                    tempClientId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[13].Value.ToString());
-                    tempIncomeId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[14].Value.ToString());
-
-                    objPro.clientID = tempClientId;
-                    objPro.workService = common.service;
-                    objPro.incomeId = tempIncomeId;
-
-                    tempEmployeeName = cmbAllocatedTo.Text;
-                    tempWorkType = txtTaskName.Text;
-                    tempClientName = txtClientName.Text;
-
-                    bus = new cls_BusinessDL();
-                    ds = new DataSet();
-
-                    ds = bus.getBusinessName(tempClientName, tempClientId);
-
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        businessName = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
-                        clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
-                    }
-
-                    showClientUsernamePasswordOnDGVClick();
+                    cmbAllocatedTo.Text = dgvAllInOne.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
+                    cmbWorkStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
+                    cmbFeesStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[10].Value.ToString().Trim();
+                    txtDescription.Text = dgvAllInOne.Rows[objPro.rowID].Cells[11].Value.ToString().Trim();
+                    txtTradeName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[12].Value.ToString().Trim();
+                    cmbRecurringTask.Text = dgvAllInOne.Rows[objPro.rowID].Cells[13].Value.ToString().Trim();
+                    cmbPeriodicity.Text = dgvAllInOne.Rows[objPro.rowID].Cells[14].Value.ToString().Trim();
+                    txtFessAmt.Text = dgvAllInOne.Rows[objPro.rowID].Cells[15].Value.ToString();
+                    tempIncomeId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[16].Value.ToString());
+                    tempClientId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[17].Value.ToString());
+                    
                 }
 
 
-                if (e.ColumnIndex == dgvAllInOne.Columns["btnQuery"].Index)
-                {
-                    frm_Query query = new frm_Query(tempEmployeeName);
+                //if (e.ColumnIndex == dgvAllInOne.Columns["btnQuery"].Index)
+                //{
+                //    frm_Query query = new frm_Query(tempEmployeeName);
 
-                    query.employeeName = tempEmployeeName;
-                    query.serviceName = serviceName;
-                    query.clientName = tempClientName;
-                    query.workTypeName = tempWorkType;
+                //    query.employeeName = tempEmployeeName;
+                //    query.serviceName = serviceName;
+                //    query.clientName = tempClientName;
+                //    query.workTypeName = tempWorkType;
 
-                    query.ShowDialog();
-                }
+                //    query.ShowDialog();
+                //}
 
-                if (e.ColumnIndex == dgvAllInOne.Columns["btnReply"].Index)
-                {
-                    frm_Query query = new frm_Query(tempEmployeeName);
+                //if (e.ColumnIndex == dgvAllInOne.Columns["btnReply"].Index)
+                //{
+                //    frm_Query query = new frm_Query(tempEmployeeName);
 
-                    query.employeeName = tempEmployeeName;
-                    query.serviceName = serviceName;
-                    query.clientName = tempClientName;
-                    query.workTypeName = tempWorkType;
+                //    query.employeeName = tempEmployeeName;
+                //    query.serviceName = serviceName;
+                //    query.clientName = tempClientName;
+                //    query.workTypeName = tempWorkType;
 
-                    query.ShowDialog();
-                }
+                //    query.ShowDialog();
+                //}
 
             }
             catch (Exception ex)
@@ -469,24 +371,22 @@ namespace Tax_Consultant_25.Frames
 
         private void Clear()
         {
-
-            //MAIN FORM
-
             dtpInputDate.Text = DateTime.Now.ToString();
             txtClientName.Clear();
+            txtTradeName.Clear();
             txtTaskName.Clear();
-            cmbAllocatedTo.SelectedIndex = 0;
-            dtpDueDate.Text = DateTime.Now.ToString();
             txtReturn.Clear();
             txtYear.Clear();
-
+            dtpDueDate.Text = DateTime.Now.ToString();
+            cmbAllocatedTo.SelectedIndex = 0;
+            cmbRecurringTask.SelectedIndex = 0;
+            cmbPeriodicity.SelectedIndex = 0;
             txtFessAmt.Clear();
             cmbFeesStatus.SelectedIndex = 0;
             cmbWorkStatus.SelectedIndex = 0;
+            txtDescription.Clear();
 
             btnSave.Enabled = true;
-
-            present = 0;
         }
 
         private void SearchClient()
@@ -496,7 +396,6 @@ namespace Tax_Consultant_25.Frames
                 objPro = new clsProperties();
                 client = new cls_ClientsDL();
                 ds = new DataSet();
-
 
                 objPro.search = !string.IsNullOrWhiteSpace(txtTradeName.Text) ? txtTradeName.Text.Trim() : txtClientName.Text.Trim();
 
@@ -524,6 +423,78 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtClientName.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Client Name", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (txtTaskName.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Work Type", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (txtReturn.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Type Of Return", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (txtYear.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Year", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (txtFessAmt.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Fees Amount", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                objPro = new clsProperties();
+                incomeTaxDL = new cls_IncomeTaxDL();
+
+                objPro.clientID = tempClientId;
+                objPro.clientName = txtClientName.Text;
+                objPro.incomeService = "INCOME TAX";
+                objPro.incomeInputDate = dtpInputDate.Value;
+                objPro.incomeTaskName = txtTaskName.Text;
+                objPro.incomeTradeName = txtTradeName.Text;
+                objPro.incomeAllocatedEmpName = cmbAllocatedTo.Text;
+                objPro.incomeDueDate = dtpDueDate.Value;
+                objPro.incomeRecurringTask = cmbRecurringTask.Text;
+                objPro.incomePeriodicity = cmbPeriodicity.Text;
+                objPro.incomeTypeOfReturn = txtReturn.Text;
+                objPro.incomeYear = txtYear.Text;
+                objPro.incomeFees = Convert.ToInt32(txtFessAmt.Text);
+                objPro.incomeFeeStatus = cmbFeesStatus.Text;
+                objPro.incomeStatus = cmbWorkStatus.Text;
+                objPro.incomeDescription = txtDescription.Text;
+
+                flag = incomeTaxDL.saveData(objPro);
+
+                if (flag >= 1)
+                {
+                    
+                    Clear();
+                    show();
+                    common.ClearControls();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_ALLINONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         private void show()
         {
             try
@@ -536,8 +507,10 @@ namespace Tax_Consultant_25.Frames
                 if (ds.Tables[0].Rows.Count >= 0)
                 {
                     dgvAllInOne.DataSource = ds.Tables[0];
-                    dgvAllInOne.Columns["i_TypeOfReturn"].Visible = false;
-                    dgvAllInOne.Columns["i_Year"].Visible = false;
+
+                    dgvAllInOne.Columns["i_Periodicity"].Visible = false;
+                    dgvAllInOne.Columns["i_RecurringTask"].Visible = false;
+                    dgvAllInOne.Columns["i_TradeName"].Visible = false;
                     dgvAllInOne.Columns["i_Fees"].Visible = false;
                     dgvAllInOne.Columns["clientId"].Visible = false;
                     dgvAllInOne.Columns["incomeId"].Visible = false;

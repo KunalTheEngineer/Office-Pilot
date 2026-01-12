@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucAllInOne));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -74,7 +73,6 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnQuery = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -138,6 +136,7 @@
             this.btnSave.Text = "SAVE";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // label17
             // 
@@ -413,7 +412,6 @@
             this.txtTradeName.Name = "txtTradeName";
             this.txtTradeName.Size = new System.Drawing.Size(332, 29);
             this.txtTradeName.TabIndex = 58;
-//            this.txtTradeName.TextChanged += new System.EventHandler(this.txtTradeName_TextChanged);
             this.txtTradeName.Leave += new System.EventHandler(this.txtTradeName_Leave);
             // 
             // label2
@@ -483,14 +481,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvAllInOne.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAllInOne.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAllInOne.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAllInOne.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAllInOne.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAllInOne.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -501,7 +499,6 @@
             this.Column4,
             this.Column6,
             this.EmployeeName,
-            this.btnQuery,
             this.btnReply,
             this.Column9,
             this.Column7,
@@ -522,7 +519,7 @@
             // Column1
             // 
             this.Column1.DataPropertyName = "serial";
-            this.Column1.FillWeight = 41.71124F;
+            this.Column1.FillWeight = 39.67284F;
             this.Column1.HeaderText = "SR.";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
@@ -530,7 +527,7 @@
             // Column2
             // 
             this.Column2.DataPropertyName = "i_InputDate";
-            this.Column2.FillWeight = 73.33979F;
+            this.Column2.FillWeight = 100.4521F;
             this.Column2.HeaderText = "START DT.";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
@@ -538,29 +535,31 @@
             // ClientName
             // 
             this.ClientName.DataPropertyName = "clientName";
-            this.ClientName.FillWeight = 147.1487F;
+            this.ClientName.FillWeight = 139.9576F;
             this.ClientName.HeaderText = "CLIENT NAME";
             this.ClientName.MinimumWidth = 6;
             this.ClientName.Name = "ClientName";
             // 
             // WorkType
             // 
-            this.WorkType.DataPropertyName = "i_WorkType";
-            this.WorkType.FillWeight = 151.8701F;
+            this.WorkType.DataPropertyName = "i_TaskName";
+            this.WorkType.FillWeight = 144.4483F;
             this.WorkType.HeaderText = "TASK NAME";
             this.WorkType.MinimumWidth = 6;
             this.WorkType.Name = "WorkType";
             // 
             // Column3
             // 
-            this.Column3.FillWeight = 108.5986F;
+            this.Column3.DataPropertyName = "i_TypeOfReturn";
+            this.Column3.FillWeight = 103.2915F;
             this.Column3.HeaderText = "TY. OF RETURN";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             // 
             // Column4
             // 
-            this.Column4.FillWeight = 74.08965F;
+            this.Column4.DataPropertyName = "i_FinancialYear";
+            this.Column4.FillWeight = 70.46895F;
             this.Column4.HeaderText = "YEAR";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
@@ -568,7 +567,7 @@
             // Column6
             // 
             this.Column6.DataPropertyName = "i_DueDate";
-            this.Column6.FillWeight = 72.49984F;
+            this.Column6.FillWeight = 97.91259F;
             this.Column6.HeaderText = "DUE DT.";
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
@@ -576,32 +575,17 @@
             // EmployeeName
             // 
             this.EmployeeName.DataPropertyName = "i_AllocatedEmpName";
-            this.EmployeeName.FillWeight = 144.7385F;
+            this.EmployeeName.FillWeight = 137.6652F;
             this.EmployeeName.HeaderText = "ASSIGNED TO";
             this.EmployeeName.MinimumWidth = 6;
             this.EmployeeName.Name = "EmployeeName";
             // 
-            // btnQuery
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Goldenrod;
-            this.btnQuery.DefaultCellStyle = dataGridViewCellStyle5;
-            this.btnQuery.FillWeight = 79.35674F;
-            this.btnQuery.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnQuery.HeaderText = "QUERY";
-            this.btnQuery.MinimumWidth = 6;
-            this.btnQuery.Name = "btnQuery";
-            this.btnQuery.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.btnQuery.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.btnQuery.Text = "QUERY";
-            this.btnQuery.UseColumnTextForButtonValue = true;
-            // 
             // btnReply
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Red;
-            this.btnReply.DefaultCellStyle = dataGridViewCellStyle6;
-            this.btnReply.FillWeight = 77.26529F;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Red;
+            this.btnReply.DefaultCellStyle = dataGridViewCellStyle2;
+            this.btnReply.FillWeight = 73.48939F;
             this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReply.HeaderText = "REPLY";
             this.btnReply.MinimumWidth = 6;
@@ -614,7 +598,7 @@
             // Column9
             // 
             this.Column9.DataPropertyName = "i_Status";
-            this.Column9.FillWeight = 150.9975F;
+            this.Column9.FillWeight = 143.6183F;
             this.Column9.HeaderText = "STATUS";
             this.Column9.MinimumWidth = 6;
             this.Column9.Name = "Column9";
@@ -622,14 +606,15 @@
             // Column7
             // 
             this.Column7.DataPropertyName = "i_FeesStatus";
-            this.Column7.FillWeight = 69.78587F;
+            this.Column7.FillWeight = 66.37547F;
             this.Column7.HeaderText = "FEE ST.";
             this.Column7.MinimumWidth = 6;
             this.Column7.Name = "Column7";
             // 
             // Column5
             // 
-            this.Column5.FillWeight = 108.5986F;
+            this.Column5.DataPropertyName = "i_Description";
+            this.Column5.FillWeight = 103.2915F;
             this.Column5.HeaderText = "DESCRIPTION";
             this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
@@ -696,7 +681,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeName;
-        private System.Windows.Forms.DataGridViewButtonColumn btnQuery;
         private System.Windows.Forms.DataGridViewButtonColumn btnReply;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
