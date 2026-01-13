@@ -40,14 +40,17 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Parameters.AddWithValue("@intMode", 1);
                 objCmd.Parameters.AddWithValue("@clientId", objPro.clientID);
                 objCmd.Parameters.AddWithValue("@clientName", objPro.clientName);
-                objCmd.Parameters.AddWithValue("@a_Service", objPro.accountService);
-                objCmd.Parameters.AddWithValue("@a_WorkType", objPro.accountWorktype);
+                objCmd.Parameters.AddWithValue("@a_TradeName", objPro.accountTradeName);
+                objCmd.Parameters.AddWithValue("@a_TaskName", objPro.accountTaskName);
                 objCmd.Parameters.AddWithValue("@a_InputDate", objPro.accountInputDate);
                 objCmd.Parameters.AddWithValue("@a_AllocatedEmpName", objPro.accountAllocatedEmp);
                 objCmd.Parameters.AddWithValue("@a_DueDate", objPro.accountDueDate);
                 objCmd.Parameters.AddWithValue("@a_WorkPeriod", objPro.accountWorkPeriod);
+                objCmd.Parameters.AddWithValue("@a_RecurringTask", objPro.accountRecurringTask);
+                objCmd.Parameters.AddWithValue("@a_Periodicity", objPro.accountPeriodicity);
                 objCmd.Parameters.AddWithValue("@a_Status", objPro.accountStatus);
                 objCmd.Parameters.AddWithValue("@a_Year", objPro.accountYear);
+                objCmd.Parameters.AddWithValue("@a_Description", objPro.accountDescription);
 
                 flag = objCmd.ExecuteNonQuery();
 
@@ -65,19 +68,18 @@ namespace Tax_Consultant_25.Data_Layer
         {
             try
             {
-
                 objDs = new DataSet();
-
                 objCon = new clsConnection();
                 objCon.openConnection();
                 objCmd = new SqlCommand();
                 objCmd.Connection = objCon.con;
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.CommandText = "usp_Accounting";
-                objCmd.Parameters.AddWithValue("@intMode", 2);
+                objCmd.Parameters.AddWithValue("@intMode", 3);
                 objDa = new SqlDataAdapter(objCmd);
                 objDa.Fill(objDs);
                 objCon.con.Close();
+
             }
             catch (Exception ex)
             {
@@ -97,15 +99,21 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Connection = objCon.con;
                 objCmd.CommandText = "usp_Accounting";
                 objCmd.CommandType = CommandType.StoredProcedure;
-                objCmd.Parameters.AddWithValue("@intMode", 3);
-                objCmd.Parameters.AddWithValue("@a_WorkType", objPro.accountWorktype);
+                objCmd.Parameters.AddWithValue("@intMode", 2);
+                objCmd.Parameters.AddWithValue("@clientId", objPro.clientID);
+                objCmd.Parameters.AddWithValue("@clientName", objPro.clientName);
+                objCmd.Parameters.AddWithValue("@a_TradeName", objPro.accountTradeName);
+                objCmd.Parameters.AddWithValue("@a_TaskName", objPro.accountTaskName);
                 objCmd.Parameters.AddWithValue("@a_InputDate", objPro.accountInputDate);
                 objCmd.Parameters.AddWithValue("@a_AllocatedEmpName", objPro.accountAllocatedEmp);
                 objCmd.Parameters.AddWithValue("@a_DueDate", objPro.accountDueDate);
                 objCmd.Parameters.AddWithValue("@a_WorkPeriod", objPro.accountWorkPeriod);
+                objCmd.Parameters.AddWithValue("@a_RecurringTask", objPro.accountRecurringTask);
+                objCmd.Parameters.AddWithValue("@a_Periodicity", objPro.accountPeriodicity);
                 objCmd.Parameters.AddWithValue("@a_Status", objPro.accountStatus);
                 objCmd.Parameters.AddWithValue("@a_Year", objPro.accountYear);
-                objCmd.Parameters.AddWithValue("@accountId",objPro.accountId);
+                objCmd.Parameters.AddWithValue("@a_Description", objPro.accountDescription);
+                objCmd.Parameters.AddWithValue("@accountId", objPro.accountId);
 
                 flag = objCmd.ExecuteNonQuery();
                 objCon.con.Close();
