@@ -41,7 +41,7 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Parameters.AddWithValue("@clientId", objPro.clientID);
                 objCmd.Parameters.AddWithValue("@clientName", objPro.clientName);
                 objCmd.Parameters.AddWithValue("@p_Service", objPro.ptecService);
-                objCmd.Parameters.AddWithValue("@p_WorkType", objPro.ptecWorktype);
+           //     objCmd.Parameters.AddWithValue("@p_WorkType", objPro.ptecWorktype);
                 objCmd.Parameters.AddWithValue("@p_InputDate", objPro.ptecInputDate);
                 objCmd.Parameters.AddWithValue("@p_AllocatedTo", objPro.ptecAllocatedEmp);
                 objCmd.Parameters.AddWithValue("@p_DueDate", objPro.ptecDueDate);
@@ -73,7 +73,7 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.CommandText = "usp_Ptec";
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.Parameters.AddWithValue("@intMode", 2);
-                objCmd.Parameters.AddWithValue("@p_WorkType", objPro.ptecWorktype);
+           //     objCmd.Parameters.AddWithValue("@p_WorkType", objPro.ptecWorktype);
                 objCmd.Parameters.AddWithValue("@p_InputDate", objPro.ptecInputDate);
                 objCmd.Parameters.AddWithValue("@p_AllocatedTo", objPro.ptecAllocatedEmp);
                 objCmd.Parameters.AddWithValue("@p_DueDate", objPro.ptecDueDate);

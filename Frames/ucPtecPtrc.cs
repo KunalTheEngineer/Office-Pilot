@@ -23,7 +23,8 @@ namespace Tax_Consultant_25.Frames
             InitializeComponent();
         }
 
-        CommonUC common;
+        #region CLASS AND OBJECTS
+
         DataTable dt;
         DataSet ds, ds1;
         cls_EmployeeDL employeeDL;
@@ -32,27 +33,74 @@ namespace Tax_Consultant_25.Frames
         cls_ClientUserPassDL clientUserPassDL;
         cls_Query query;
         cls_BusinessDL bus;
+        cls_ClientsDL client;
+
+        #endregion
+
+        #region VARIABLES
 
         int clId, flag, tempPtecId, tempClientId;
         int present = 0;
-        string tempEmployeeName, tempClientName, tempWorkType, serviceName, service, businessName, clientAddress; 
+        string tempEmployeeName, tempClientName, tempWorkType, serviceName, service, businessName, clientAddress;
+
+        #endregion
+
+        #region USER DEFINED EVENTS
+
+        private void cmbWorkStatus_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0)
+                return;
+
+            Color[] bgColors =
+            {
+                ColorTranslator.FromHtml("#D6DCE4"), // Not Started
+                ColorTranslator.FromHtml("#F4B084"), // Waiting for Documents
+                ColorTranslator.FromHtml("#A9D08E"), // Document Received
+                ColorTranslator.FromHtml("#00B0F0"), // Return Prepared
+                ColorTranslator.FromHtml("#FF0000"), // Cancelled
+                ColorTranslator.FromHtml("#FFC000"), // Complete
+                ColorTranslator.FromHtml("#FFFF00"), // Filed
+            };
+
+            Color backColor = bgColors[e.Index];
+
+            // This removes the blue highlight effect
+            using (Brush backgroundBrush = new SolidBrush(backColor))
+            {
+                e.Graphics.FillRectangle(backgroundBrush, e.Bounds);
+            }
+
+            using (Brush textBrush = new SolidBrush(Color.Black))
+            {
+                e.Graphics.DrawString(
+                    cmbWorkStatus.Items[e.Index].ToString(),
+                    e.Font,
+                    textBrush,
+                    e.Bounds
+                );
+            }
+
+            e.DrawFocusRectangle();
+        }
+
+        #endregion
 
         private void ucPtecPtrc_Load(object sender, EventArgs e)
         {
-            common = new CommonUC();
-            pnlPtrec.Controls.Clear();
-            common.service = "PTEC / PTRC";
-            pnlPtrec.Controls.Add(common);
-
+            BindSearch();
             BindEmployee();
             show();
-            serviceName = common.service;
-            
-            common.FormDataInfo += CommonUC_FormDataInfo;
 
             cmbAllocatedTo.SelectedIndex = 0;
             cmbFeesStatus.SelectedIndex = 0;
             cmbWorkStatus.SelectedIndex = 0;
+            cmbRecurringTask.SelectedIndex = 0;
+            cmbPeriodicity.SelectedIndex = 0;
+
+            // USER DEFINED EVENTS
+            cmbWorkStatus.DrawMode = DrawMode.OwnerDrawFixed;
+            cmbWorkStatus.DrawItem += cmbWorkStatus_DrawItem;
         }
 
         private void BindEmployee()
@@ -73,16 +121,12 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
-        private void CommonUC_FormDataInfo(object sender, FormDataInfoEventArgs e)
+        private void txtClientName_TextChanged(object sender, EventArgs e)
         {
-            if (e.Username != string.Empty && e.Password != string.Empty)
+            if(txtClientName.Text == string.Empty)
             {
-                present = 1;
+                txtTradeName.Clear();
             }
-
-            txtClientName.Text = e.clientName;
-            txtUname.Text = e.Username;
-            txtPass.Text = e.Password;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -95,11 +139,11 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                if (txtWorkType.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Work Type", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                //if (txtWorkType.Text == string.Empty)
+                //{
+                //    MessageBox.Show("Enter Work Type", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //    return;
+                //}
 
                 if (txtYear.Text == string.Empty)
                 {
@@ -107,25 +151,8 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                //if (txtPtecNo.Text == string.Empty)
-                //{
-                //    MessageBox.Show("Enter PTEC / PTRC NUMBER", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    return;
-                //}
 
-                if (txtUname.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Username", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtPass.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Password", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtFessAmt.Text == string.Empty)
+                if (txtFees.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Fess Amount", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -133,26 +160,21 @@ namespace Tax_Consultant_25.Frames
 
                 objPro = new clsProperties();
 
-                clId = common.clientId;
 
                 objPro.ptecId = tempPtecId;
                 objPro.clientID = clId;
                 objPro.clientName = txtClientName.Text;
-                objPro.ptecService = common.service;
+            //    objPro.ptecService = common.service;
                 objPro.ptecInputDate = dtpInputDate.Value;
-                objPro.ptecWorktype = txtWorkType.Text;
+            //    objPro.ptecWorktype = txtWorkType.Text;
                 objPro.ptecAllocatedEmp = cmbAllocatedTo.Text;
                 objPro.ptecDueDate = dtpDueDate.Value;
                 objPro.ptecYear = txtYear.Text;
-                objPro.ptecNo = txtPtecNo.Text;
-                objPro.ptecFees = Convert.ToInt32(txtFessAmt.Text);
+            //    objPro.ptecNo = txtPtecNo.Text;
+             //   objPro.ptecFees = Convert.ToInt32(txtFessAmt.Text);
                 objPro.ptecFeeStatus = cmbFeesStatus.Text;
-                objPro.ptecStatus = cmbWorkStatus.Text;
+           //     objPro.ptecStatus = cmbWorkStatus.Text;
 
-                objPro.workService = objPro.ptecService;
-                objPro.clientID = tempClientId;
-                objPro.username = txtUname.Text;
-                objPro.password = txtPass.Text;
 
                 ptecDL = new cls_PtecDL();
                 flag = ptecDL.updateData(objPro);
@@ -161,31 +183,29 @@ namespace Tax_Consultant_25.Frames
                 {
                     flag = 0;
 
-                    clientUserPassDL = new cls_ClientUserPassDL();
-                    flag = clientUserPassDL.updateClientUserNamePassword(objPro);
+                    //clientUserPassDL = new cls_ClientUserPassDL();
+                    //flag = clientUserPassDL.updateClientUserNamePassword(objPro);
 
-                    if(cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "DONE")
-                    {
-                        DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "PTEC/PTRC", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    //if(cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "DONE")
+                    //{
+                    //    DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "PTEC/PTRC", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                        if (dial == DialogResult.Yes)
-                        {
-                            frm_Narration narr = new frm_Narration();
-                            narr.clientName = txtClientName.Text;
-                            narr.service = common.service;
-                            narr.amount = txtFessAmt.Text;
-                            narr.workType = txtWorkType.Text;
-                            narr.businessName = businessName;
-                            narr.clientAddress = clientAddress;
+                    //    if (dial == DialogResult.Yes)
+                    //    {
+                    //        frm_Narration narr = new frm_Narration();
+                    //        narr.clientName = txtClientName.Text;
+                    //        narr.service = common.service;
+                    //        narr.amount = txtFessAmt.Text;
+                    //        narr.workType = txtWorkType.Text;
+                    //        narr.businessName = businessName;
+                    //        narr.clientAddress = clientAddress;
 
-                            narr.Show();
-                        }
-                    }
+                    //        narr.Show();
+                    //    }
+                    //}
 
-                    //MessageBox.Show("Record Updated...");
-                    common.ClearControls();
-                    show();
-                    Clear();
+                    //show();
+                    //Clear();
                 }
 
             }
@@ -193,6 +213,22 @@ namespace Tax_Consultant_25.Frames
             {
                 MessageBox.Show(ex.Message.ToString(), "UC_PTEC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void txtClientName_Leave(object sender, EventArgs e)
+        {
+            SearchClient();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Parent.Controls.Remove(this);
+            this.Dispose();
+        }
+
+        private void txtTradeName_Leave(object sender, EventArgs e)
+        {
+            SearchClient();
         }
 
         private void dgvPTEC_SelectionChanged(object sender, EventArgs e)
@@ -203,6 +239,35 @@ namespace Tax_Consultant_25.Frames
         private void dgvPTEC_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             ShowQuery();
+
+            #region CHANGE STATUS COLORS
+
+            Dictionary<string, Color> StatusColors = new Dictionary<string, Color>()
+            {
+                { "Not Started", ColorTranslator.FromHtml("#D6DCE4") },
+                { "Waiting For Documents", ColorTranslator.FromHtml("#F4B084") },
+                { "Document Received", ColorTranslator.FromHtml("#A9D08E") },
+                { "Return Prepaired", ColorTranslator.FromHtml("#00B0F0") },
+                { "Cancelled", ColorTranslator.FromHtml("#FF0000") },
+                { "Complete", ColorTranslator.FromHtml("#FFC000") },
+                { "Filed", ColorTranslator.FromHtml("#FFFF00") }
+            };
+
+            if (dgvPTEC.Columns[e.ColumnIndex].Name == "Status")
+            {
+                if (e.Value != null)
+                {
+                    string status = e.Value.ToString();
+
+                    if (StatusColors.ContainsKey(status))
+                    {
+                        e.CellStyle.BackColor = StatusColors[status];
+                        e.CellStyle.ForeColor = Color.Black;
+                    }
+                }
+            }
+
+            #endregion
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -215,7 +280,7 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                if (txtWorkType.Text == string.Empty)
+                if (txtTaskName.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Work Type", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -233,19 +298,7 @@ namespace Tax_Consultant_25.Frames
                 //    return;
                 //}
 
-                if (txtUname.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Username", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtPass.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Password", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtFessAmt.Text == string.Empty)
+                if (txtFees.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Fess Amount", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -254,38 +307,23 @@ namespace Tax_Consultant_25.Frames
 
                 objPro = new clsProperties();
 
-                clId = common.clientId;
-
                 objPro.clientID = clId;
                 objPro.clientName = txtClientName.Text;
-                objPro.ptecService = common.service;
                 objPro.ptecInputDate = dtpInputDate.Value;
-                objPro.ptecWorktype = txtWorkType.Text;
+              //  objPro.ptecTaskname = txtWorkType.Text;
                 objPro.ptecAllocatedEmp = cmbAllocatedTo.Text;
                 objPro.ptecDueDate = dtpDueDate.Value;
                 objPro.ptecYear = txtYear.Text;
-                objPro.ptecNo = txtPtecNo.Text;
-                objPro.ptecFees = Convert.ToInt32(txtFessAmt.Text);
+              //  objPro.ptecNo = txtPtecNo.Text;
+              //  objPro.ptecFees = Convert.ToInt32(txtFessAmt.Text);
                 objPro.ptecFeeStatus = cmbFeesStatus.Text;
-                objPro.ptecStatus = cmbWorkStatus.Text;
-
-                objPro.username = txtUname.Text;
-                objPro.password = txtPass.Text;
-                objPro.workService = objPro.ptecService;
+              //  objPro.ptecStatus = cmbWorkStatus.Text;
 
                 ptecDL = new cls_PtecDL();
                 flag = ptecDL.saveData(objPro);
 
                 if(flag == 1)
                 {
-                    flag = 0;
-
-                    clientUserPassDL = new cls_ClientUserPassDL();
-                    flag = clientUserPassDL.saveClientUserNamePassword(objPro);
-
-                    //MessageBox.Show("Record Saved...");
-
-                    common.ClearControls();
                     show();
                     Clear();
                 }
@@ -295,12 +333,6 @@ namespace Tax_Consultant_25.Frames
             {
                 MessageBox.Show(ex.Message.ToString(), "UC_PTEC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Parent.Controls.Remove(this);
-            this.Dispose();
         }
 
         private void dgvPTEC_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -315,49 +347,19 @@ namespace Tax_Consultant_25.Frames
             {
                 dtpInputDate.Text = dgvPTEC.Rows[objPro.rowID].Cells[3].Value.ToString();
                 txtClientName.Text = dgvPTEC.Rows[objPro.rowID].Cells[4].Value.ToString();
-                txtWorkType.Text = dgvPTEC.Rows[objPro.rowID].Cells[5].Value.ToString();
+             //   txtWorkType.Text = dgvPTEC.Rows[objPro.rowID].Cells[5].Value.ToString();
                 cmbAllocatedTo.Text = dgvPTEC.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
                 dtpDueDate.Text = dgvPTEC.Rows[objPro.rowID].Cells[7].Value.ToString();
-                cmbWorkStatus.Text = dgvPTEC.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
+             //   cmbWorkStatus.Text = dgvPTEC.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
                 cmbFeesStatus.Text = dgvPTEC.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
                 txtYear.Text = dgvPTEC.Rows[objPro.rowID].Cells[10].Value.ToString();
-                txtFessAmt.Text = dgvPTEC.Rows[objPro.rowID].Cells[11].Value.ToString();
-                txtPtecNo.Text = dgvPTEC.Rows[objPro.rowID].Cells[12].Value.ToString();
+             //   txtFessAmt.Text = dgvPTEC.Rows[objPro.rowID].Cells[11].Value.ToString();
+             //   txtPtecNo.Text = dgvPTEC.Rows[objPro.rowID].Cells[12].Value.ToString();
                 tempPtecId = Convert.ToInt32(dgvPTEC.Rows[objPro.rowID].Cells[13].Value.ToString());
                 tempClientId = Convert.ToInt32(dgvPTEC.Rows[objPro.rowID].Cells[14].Value.ToString());
 
-                objPro.workService = common.service;
-
-                tempEmployeeName = cmbAllocatedTo.Text;
-                tempClientName = txtClientName.Text;
-                tempWorkType = txtWorkType.Text;
-                objPro.clientID = tempClientId;
-
-                bus = new cls_BusinessDL();
-                ds = new DataSet();
-
-                ds = bus.getBusinessName(tempClientName, tempClientId);
-
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    businessName = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
-                    clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
-                }
-
-                showClientUsernamePasswordOnDGVClick();
             }
 
-            if (e.ColumnIndex == dgvPTEC.Columns["btnQuery"].Index)
-            {
-                frm_Query query = new frm_Query(tempEmployeeName);
-
-                query.serviceName = serviceName;
-                query.clientName = tempClientName;
-                query.employeeName = tempEmployeeName;
-                query.workTypeName = tempWorkType;
-
-                query.ShowDialog();
-            }
 
             if (e.ColumnIndex == dgvPTEC.Columns["btnReply"].Index)
             {
@@ -396,79 +398,124 @@ namespace Tax_Consultant_25.Frames
                
         }
 
-        private void showClientUsernamePasswordOnDGVClick()
-        {
-            ds = null;
-
-            ds = new DataSet();
-            clientUserPassDL = new cls_ClientUserPassDL();
-            ds = clientUserPassDL.getClientUsernamePasword(objPro);
-
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                txtUname.Text = ds.Tables[0].Rows[0]["clientUsername"].ToString();
-                txtPass.Text = ds.Tables[0].Rows[0]["clientPassword"].ToString();
-            }
-        }
-
         private void Clear()
         {
             dtpInputDate.Text = DateTime.Now.ToString();
             txtClientName.Clear();
-            txtWorkType.Clear();
+           // txtWorkType.Clear();
             cmbAllocatedTo.SelectedIndex = 0;
             dtpDueDate.Text = DateTime.Now.ToString();
             txtYear.Clear();
-            txtPtecNo.Clear();
-            txtUname.Clear();
-            txtPass.Clear();
-            txtFessAmt.Clear();
+           // txtPtecNo.Clear();
+          //  txtUname.Clear();
+          //  txtPass.Clear();
+          //  txtFessAmt.Clear();
             cmbFeesStatus.SelectedIndex = 0;
-            cmbWorkStatus.SelectedIndex = 0;
+           // cmbWorkStatus.SelectedIndex = 0;
 
             btnSave.Enabled = true;
         }
 
         private void ShowQuery()
         {
-            query = new cls_Query();
-            ds1 = new DataSet();
+            //query = new cls_Query();
+            //ds1 = new DataSet();
 
-            ds1 = query.QueryRaisedByEmp();
+            //ds1 = query.QueryRaisedByEmp();
 
-            foreach (DataGridViewRow row in dgvPTEC.Rows)
+            //foreach (DataGridViewRow row in dgvPTEC.Rows)
+            //{
+            //    if (row.IsNewRow)
+            //        continue;
+
+            //    string employee = row.Cells["EmployeeName"].Value?.ToString();
+            //    string client = row.Cells["ClientName"].Value?.ToString();
+            //    string workType = row.Cells["WorkType"].Value?.ToString();
+            //    service = "PTEC / PTRC";
+            //    var queryRow = ds1.Tables[0].AsEnumerable().FirstOrDefault(r =>
+            //       r.Field<string>("EmployeeName") == employee &&
+            //       r.Field<string>("clientName") == client &&
+            //       r.Field<string>("service") == service &&
+            //       r.Field<string>("workType") == workType
+            //     //&&
+            //     //!string.IsNullOrEmpty(r.Field<string>("queryByEmp"))
+            //     );
+
+
+            //    bool hasQuery = false;
+
+            //    if (queryRow != null)
+            //    {
+            //        object val = queryRow["HasQuery"];
+
+            //        if (val != DBNull.Value && int.TryParse(val.ToString(), out int parsed))
+            //        {
+            //            hasQuery = parsed == 1;
+            //        }
+            //    }
+
+            //    row.DefaultCellStyle.BackColor = hasQuery ? Color.Red : DefaultBackColor;
+
+            
+        }
+
+        private void BindSearch()
+        {
+            try
             {
-                if (row.IsNewRow)
-                    continue;
+                ds = new DataSet();
+                client = new cls_ClientsDL();
+                ds = client.bindClientsData();
 
-                string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
-                string workType = row.Cells["WorkType"].Value?.ToString();
-                service = "PTEC / PTRC";
-                var queryRow = ds1.Tables[0].AsEnumerable().FirstOrDefault(r =>
-                   r.Field<string>("EmployeeName") == employee &&
-                   r.Field<string>("clientName") == client &&
-                   r.Field<string>("service") == service &&
-                   r.Field<string>("workType") == workType
-                 //&&
-                 //!string.IsNullOrEmpty(r.Field<string>("queryByEmp"))
-                 );
+                AutoCompleteStringCollection autoList = new AutoCompleteStringCollection();
 
-
-                bool hasQuery = false;
-
-                if (queryRow != null)
+                if (ds.Tables[0].Rows.Count > 0)
                 {
-                    object val = queryRow["HasQuery"];
-
-                    if (val != DBNull.Value && int.TryParse(val.ToString(), out int parsed))
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        hasQuery = parsed == 1;
+                        autoList.Add(ds.Tables[0].Rows[i]["c_Name"].ToString());
+                        autoList.Add(ds.Tables[0].Rows[i]["c_Mobile"].ToString());
+                        autoList.Add(ds.Tables[0].Rows[i]["c_BusinessName"].ToString());
                     }
+
+                    this.txtClientName.AutoCompleteCustomSource = autoList;
+                    txtClientName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    txtClientName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+                    this.txtTradeName.AutoCompleteCustomSource = autoList;
+                    txtTradeName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    txtTradeName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_ALLINONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void SearchClient()
+        {
+            try
+            {
+                objPro = new clsProperties();
+                client = new cls_ClientsDL();
+                ds = new DataSet();
+
+                objPro.search = !string.IsNullOrWhiteSpace(txtTradeName.Text) ? txtTradeName.Text.Trim() : txtClientName.Text.Trim();
+
+                ds = client.searchClientTradeName(objPro);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    txtClientName.Text = ds.Tables[0].Rows[0]["c_Name"].ToString();
+                    txtTradeName.Text = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
+                    tempClientId = Convert.ToInt32(ds.Tables[0].Rows[0]["clientId"].ToString());
                 }
 
-                row.DefaultCellStyle.BackColor = hasQuery ? Color.Red : DefaultBackColor;
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_INCOMETAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

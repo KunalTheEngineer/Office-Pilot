@@ -165,7 +165,9 @@ namespace Tax_Consultant_25
 
         public DateTime accountInputDate { get; set; }
 
-        public string accountWorktype { get; set; }
+        public string accountTaskName { get; set; }
+
+        public string accountTradeName { get; set; }
 
         public string accountAllocatedEmp { get; set; }
 
@@ -176,6 +178,12 @@ namespace Tax_Consultant_25
         public string accountStatus { get; set; }
 
         public string accountYear {  get; set; }
+
+        public string accountRecurringTask { get; set; }
+
+        public string accountPeriodicity { get; set; }
+
+        public string accountDescription { get; set; }
 
         #endregion
 
@@ -211,7 +219,9 @@ namespace Tax_Consultant_25
 
         public DateTime ptecInputDate { get; set; }
 
-        public string ptecWorktype { get; set; }
+        public string ptecTradeName { get; set; }
+
+        public string ptecTaskName{ get; set; }
 
         public string ptecAllocatedEmp { get; set; }
 
@@ -226,6 +236,12 @@ namespace Tax_Consultant_25
         public string ptecFeeStatus { get; set; }
 
         public string ptecStatus { get; set; }
+
+        public string ptecDescription { get; set; }
+
+        public string ptecPeriodicity { get; set; }
+
+        public string ptecRecurringTask { get; set; }
 
         #endregion
 
