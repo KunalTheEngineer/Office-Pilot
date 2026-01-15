@@ -40,16 +40,18 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Parameters.AddWithValue("@intMode", 1);
                 objCmd.Parameters.AddWithValue("@clientId", objPro.clientID);
                 objCmd.Parameters.AddWithValue("@clientName", objPro.clientName);
-                objCmd.Parameters.AddWithValue("@p_Service", objPro.ptecService);
-           //     objCmd.Parameters.AddWithValue("@p_WorkType", objPro.ptecWorktype);
+                objCmd.Parameters.AddWithValue("@p_TradeName", objPro.ptecTradeName);
+                objCmd.Parameters.AddWithValue("@p_TaskName", objPro.ptecTaskName);
                 objCmd.Parameters.AddWithValue("@p_InputDate", objPro.ptecInputDate);
                 objCmd.Parameters.AddWithValue("@p_AllocatedTo", objPro.ptecAllocatedEmp);
                 objCmd.Parameters.AddWithValue("@p_DueDate", objPro.ptecDueDate);
-                objCmd.Parameters.AddWithValue("@p_PtecPtrcNo", objPro.ptecNo);
+                objCmd.Parameters.AddWithValue("@p_RecurringTask", objPro.ptecRecurringTask);
+                objCmd.Parameters.AddWithValue("@p_Periodicity", objPro.ptecPeriodicity);
                 objCmd.Parameters.AddWithValue("@p_Year", objPro.ptecYear);
                 objCmd.Parameters.AddWithValue("@p_Fees", objPro.ptecFees);
                 objCmd.Parameters.AddWithValue("@p_FeeStatus", objPro.ptecFeeStatus);
                 objCmd.Parameters.AddWithValue("@p_Status", objPro.ptecStatus);
+                objCmd.Parameters.AddWithValue("@p_Description", objPro.ptecDescription);
 
                 flag = objCmd.ExecuteNonQuery();
                 objCon.con.Close();
@@ -73,15 +75,17 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.CommandText = "usp_Ptec";
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.Parameters.AddWithValue("@intMode", 2);
-           //     objCmd.Parameters.AddWithValue("@p_WorkType", objPro.ptecWorktype);
+                objCmd.Parameters.AddWithValue("@p_TaskName", objPro.ptecTaskName);
                 objCmd.Parameters.AddWithValue("@p_InputDate", objPro.ptecInputDate);
                 objCmd.Parameters.AddWithValue("@p_AllocatedTo", objPro.ptecAllocatedEmp);
                 objCmd.Parameters.AddWithValue("@p_DueDate", objPro.ptecDueDate);
-                objCmd.Parameters.AddWithValue("@p_PtecPtrcNo", objPro.ptecNo);
+                objCmd.Parameters.AddWithValue("@p_RecurringTask", objPro.ptecRecurringTask);
+                objCmd.Parameters.AddWithValue("@p_Periodicity", objPro.ptecPeriodicity);
                 objCmd.Parameters.AddWithValue("@p_Year", objPro.ptecYear);
                 objCmd.Parameters.AddWithValue("@p_Fees", objPro.ptecFees);
                 objCmd.Parameters.AddWithValue("@p_FeeStatus", objPro.ptecFeeStatus);
                 objCmd.Parameters.AddWithValue("@p_Status", objPro.ptecStatus);
+                objCmd.Parameters.AddWithValue("@p_Description", objPro.ptecDescription);
                 objCmd.Parameters.AddWithValue("@ptecId", objPro.ptecId);
 
                 flag = objCmd.ExecuteNonQuery();

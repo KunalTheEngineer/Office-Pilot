@@ -39,7 +39,7 @@ namespace Tax_Consultant_25.Frames
 
         #region VARIABLES
 
-        int clId, flag, tempPtecId, tempClientId;
+        int clientId, flag, tempPtecId, tempClientId;
         int present = 0;
         string tempEmployeeName, tempClientName, tempWorkType, serviceName, service, businessName, clientAddress;
 
@@ -103,29 +103,84 @@ namespace Tax_Consultant_25.Frames
             cmbWorkStatus.DrawItem += cmbWorkStatus_DrawItem;
         }
 
-        private void BindEmployee()
-        {
-            try
-            {
-                dt = new DataTable();
-                employeeDL = new cls_EmployeeDL();
-                dt = employeeDL.bindEmployee();
-
-                cmbAllocatedTo.DataSource = dt;
-                cmbAllocatedTo.DisplayMember = "e_Name";
-                cmbAllocatedTo.ValueMember = "empId";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "UC_PTEC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
         private void txtClientName_TextChanged(object sender, EventArgs e)
         {
             if(txtClientName.Text == string.Empty)
             {
                 txtTradeName.Clear();
+            }
+        }
+
+        private void txtClientName_Leave(object sender, EventArgs e)
+        {
+            SearchClient();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Parent.Controls.Remove(this);
+            this.Dispose();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtClientName.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Client Name", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (txtTaskName.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Work Type", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (txtYear.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Year", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (txtFees.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Fess Amount", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+
+                objPro = new clsProperties();
+
+                objPro.clientID = tempClientId;
+                objPro.ptecInputDate = dtpInputDate.Value;
+                objPro.clientName = txtClientName.Text;
+                objPro.ptecTradeName = txtTradeName.Text;
+                objPro.ptecTaskName = txtTaskName.Text;
+                objPro.ptecDueDate = dtpDueDate.Value;
+                objPro.ptecAllocatedEmp = cmbAllocatedTo.Text;
+                objPro.ptecRecurringTask = cmbRecurringTask.Text;
+                objPro.ptecPeriodicity = cmbPeriodicity.Text;
+                objPro.ptecYear = txtYear.Text;
+                objPro.ptecFees = Convert.ToInt32(txtFees.Text);
+                objPro.ptecFeeStatus = cmbFeesStatus.Text;
+                objPro.ptecStatus = cmbWorkStatus.Text;
+                objPro.ptecDescription = txtDescription.Text;
+
+                ptecDL = new cls_PtecDL();
+                flag = ptecDL.saveData(objPro);
+
+                if (flag >= 1)
+                {
+                    show();
+                    Clear();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_PTEC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -139,11 +194,6 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                //if (txtWorkType.Text == string.Empty)
-                //{
-                //    MessageBox.Show("Enter Work Type", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    return;
-                //}
 
                 if (txtYear.Text == string.Empty)
                 {
@@ -161,27 +211,29 @@ namespace Tax_Consultant_25.Frames
                 objPro = new clsProperties();
 
 
-                objPro.ptecId = tempPtecId;
-                objPro.clientID = clId;
-                objPro.clientName = txtClientName.Text;
-            //    objPro.ptecService = common.service;
+                objPro.clientID = clientId;
                 objPro.ptecInputDate = dtpInputDate.Value;
-            //    objPro.ptecWorktype = txtWorkType.Text;
-                objPro.ptecAllocatedEmp = cmbAllocatedTo.Text;
+                objPro.clientName = txtClientName.Text;
+                objPro.ptecTradeName = txtTradeName.Text;
+                objPro.ptecTaskName = txtTaskName.Text;
                 objPro.ptecDueDate = dtpDueDate.Value;
+                objPro.ptecAllocatedEmp = cmbAllocatedTo.Text;
+                objPro.ptecRecurringTask = cmbRecurringTask.Text;
+                objPro.ptecPeriodicity = cmbPeriodicity.Text;
                 objPro.ptecYear = txtYear.Text;
-            //    objPro.ptecNo = txtPtecNo.Text;
-             //   objPro.ptecFees = Convert.ToInt32(txtFessAmt.Text);
+                objPro.ptecFees = Convert.ToInt32(txtFees.Text);
                 objPro.ptecFeeStatus = cmbFeesStatus.Text;
-           //     objPro.ptecStatus = cmbWorkStatus.Text;
-
+                objPro.ptecStatus = cmbWorkStatus.Text;
+                objPro.ptecDescription = txtDescription.Text;
+                objPro.ptecId = tempPtecId;
 
                 ptecDL = new cls_PtecDL();
                 flag = ptecDL.updateData(objPro);
 
-                if (flag == 1)
+                if (flag >= 1)
                 {
-                    flag = 0;
+                    show();
+                    Clear();
 
                     //clientUserPassDL = new cls_ClientUserPassDL();
                     //flag = clientUserPassDL.updateClientUserNamePassword(objPro);
@@ -213,17 +265,6 @@ namespace Tax_Consultant_25.Frames
             {
                 MessageBox.Show(ex.Message.ToString(), "UC_PTEC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        private void txtClientName_Leave(object sender, EventArgs e)
-        {
-            SearchClient();
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Parent.Controls.Remove(this);
-            this.Dispose();
         }
 
         private void txtTradeName_Leave(object sender, EventArgs e)
@@ -270,71 +311,6 @@ namespace Tax_Consultant_25.Frames
             #endregion
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtClientName.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Client Name", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtTaskName.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Work Type", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtYear.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Year", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                //if (txtPtecNo.Text == string.Empty)
-                //{
-                //    MessageBox.Show("Enter PTEC / PTRC NUMBER", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    return;
-                //}
-
-                if (txtFees.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Fess Amount", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-
-                objPro = new clsProperties();
-
-                objPro.clientID = clId;
-                objPro.clientName = txtClientName.Text;
-                objPro.ptecInputDate = dtpInputDate.Value;
-              //  objPro.ptecTaskname = txtWorkType.Text;
-                objPro.ptecAllocatedEmp = cmbAllocatedTo.Text;
-                objPro.ptecDueDate = dtpDueDate.Value;
-                objPro.ptecYear = txtYear.Text;
-              //  objPro.ptecNo = txtPtecNo.Text;
-              //  objPro.ptecFees = Convert.ToInt32(txtFessAmt.Text);
-                objPro.ptecFeeStatus = cmbFeesStatus.Text;
-              //  objPro.ptecStatus = cmbWorkStatus.Text;
-
-                ptecDL = new cls_PtecDL();
-                flag = ptecDL.saveData(objPro);
-
-                if(flag == 1)
-                {
-                    show();
-                    Clear();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "UC_PTEC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
         private void dgvPTEC_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             btnSave.Enabled = false;
@@ -345,19 +321,22 @@ namespace Tax_Consultant_25.Frames
 
             if (dgvPTEC.Rows.Count > 0)
             {
-                dtpInputDate.Text = dgvPTEC.Rows[objPro.rowID].Cells[3].Value.ToString();
-                txtClientName.Text = dgvPTEC.Rows[objPro.rowID].Cells[4].Value.ToString();
-             //   txtWorkType.Text = dgvPTEC.Rows[objPro.rowID].Cells[5].Value.ToString();
+                dtpInputDate.Text = dgvPTEC.Rows[objPro.rowID].Cells[2].Value.ToString();
+                txtClientName.Text = dgvPTEC.Rows[objPro.rowID].Cells[3].Value.ToString();
+                txtTradeName.Text = dgvPTEC.Rows[objPro.rowID].Cells[4].Value.ToString();
+                txtTaskName.Text = dgvPTEC.Rows[objPro.rowID].Cells[5].Value.ToString();
                 cmbAllocatedTo.Text = dgvPTEC.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
                 dtpDueDate.Text = dgvPTEC.Rows[objPro.rowID].Cells[7].Value.ToString();
-             //   cmbWorkStatus.Text = dgvPTEC.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
-                cmbFeesStatus.Text = dgvPTEC.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
-                txtYear.Text = dgvPTEC.Rows[objPro.rowID].Cells[10].Value.ToString();
-             //   txtFessAmt.Text = dgvPTEC.Rows[objPro.rowID].Cells[11].Value.ToString();
-             //   txtPtecNo.Text = dgvPTEC.Rows[objPro.rowID].Cells[12].Value.ToString();
-                tempPtecId = Convert.ToInt32(dgvPTEC.Rows[objPro.rowID].Cells[13].Value.ToString());
-                tempClientId = Convert.ToInt32(dgvPTEC.Rows[objPro.rowID].Cells[14].Value.ToString());
-
+                cmbFeesStatus.Text = dgvPTEC.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
+                cmbWorkStatus.Text = dgvPTEC.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
+                 txtDescription.Text = dgvPTEC.Rows[objPro.rowID].Cells[10].Value.ToString().Trim();
+                cmbRecurringTask.Text = dgvPTEC.Rows[objPro.rowID].Cells[11].Value.ToString().Trim();
+                cmbPeriodicity.Text = dgvPTEC.Rows[objPro.rowID].Cells[12].Value.ToString().Trim();
+                txtYear.Text = dgvPTEC.Rows[objPro.rowID].Cells[13].Value.ToString().Trim();
+                txtFees.Text = dgvPTEC.Rows[objPro.rowID].Cells[14].Value.ToString();
+                clientId = Convert.ToInt32(dgvPTEC.Rows[objPro.rowID].Cells[15].Value.ToString());
+                tempPtecId = Convert.ToInt32(dgvPTEC.Rows[objPro.rowID].Cells[16].Value.ToString());
+               
             }
 
 
@@ -389,30 +368,30 @@ namespace Tax_Consultant_25.Frames
             {
                 dgvPTEC.DataSource = ds.Tables[0];
                 dgvPTEC.Columns["ptecId"].Visible = false;
-                dgvPTEC.Columns["p_Year"].Visible = false;
                 dgvPTEC.Columns["p_Fees"].Visible = false;
                 dgvPTEC.Columns["clientId"].Visible = false;
-                dgvPTEC.Columns["p_PtecPtrcNo"].Visible = false;
+                dgvPTEC.Columns["p_RecurringTask"].Visible = false;
+                dgvPTEC.Columns["p_Periodicity"].Visible = false;
             }
 
-               
+
         }
 
         private void Clear()
         {
             dtpInputDate.Text = DateTime.Now.ToString();
             txtClientName.Clear();
-           // txtWorkType.Clear();
+           txtTaskName.Clear();
             cmbAllocatedTo.SelectedIndex = 0;
             dtpDueDate.Text = DateTime.Now.ToString();
             txtYear.Clear();
-           // txtPtecNo.Clear();
-          //  txtUname.Clear();
-          //  txtPass.Clear();
-          //  txtFessAmt.Clear();
+            txtFees.Clear();
             cmbFeesStatus.SelectedIndex = 0;
-           // cmbWorkStatus.SelectedIndex = 0;
-
+            cmbWorkStatus.SelectedIndex = 0;
+            cmbPeriodicity.SelectedIndex = 0;   
+            cmbRecurringTask.SelectedIndex = 0;
+            txtTradeName.Clear();
+            
             btnSave.Enabled = true;
         }
 
@@ -516,6 +495,24 @@ namespace Tax_Consultant_25.Frames
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "UC_INCOMETAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void BindEmployee()
+        {
+            try
+            {
+                dt = new DataTable();
+                employeeDL = new cls_EmployeeDL();
+                dt = employeeDL.bindEmployee();
+
+                cmbAllocatedTo.DataSource = dt;
+                cmbAllocatedTo.DisplayMember = "e_Name";
+                cmbAllocatedTo.ValueMember = "empId";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_PTEC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
