@@ -37,10 +37,6 @@ namespace Tax_Consultant_25.Frames
 
         private void ucTDS_Load(object sender, EventArgs e)
         {
-            common = new CommonUC();
-            pnlMainForm.Controls.Clear();
-            common.service = "TDS";
-            pnlMainForm.Controls.Add(common);
 
             BindEmployee();
             show();
@@ -82,6 +78,16 @@ namespace Tax_Consultant_25.Frames
             txtClientName.Text = e.clientName;
             txtUname.Text = e.Username;
             txtPass.Text = e.Password;
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbWorkStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
 
@@ -371,22 +377,22 @@ namespace Tax_Consultant_25.Frames
 
         private void show()
         {
-            cls_TdsDL = new cls_TdsDL();
-            ds = new DataSet();
+            //cls_TdsDL = new cls_TdsDL();
+            //ds = new DataSet();
 
-            ds = cls_TdsDL.showData();
+            //ds = cls_TdsDL.showData();
 
-            if (ds.Tables[0].Rows.Count < 0)
-            {
+            //if (ds.Tables[0].Rows.Count < 0)
+            //{
 
-            }
-            else
-            {
-                dgvTDS.DataSource = ds.Tables[0];
-                dgvTDS.Columns["tdsId"].Visible = false;
-                dgvTDS.Columns["t_Year"].Visible = false;
-                dgvTDS.Columns["clientId"].Visible = false;
-            }
+            //}
+            //else
+            //{
+            //    dgvTDS.DataSource = ds.Tables[0];
+            //    dgvTDS.Columns["tdsId"].Visible = false;
+            //    dgvTDS.Columns["t_Year"].Visible = false;
+            //    dgvTDS.Columns["clientId"].Visible = false;
+            //}
 
                 
         }

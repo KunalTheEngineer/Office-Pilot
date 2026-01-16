@@ -46,7 +46,6 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Parameters.AddWithValue("@t_AllocatedTo", objPro.tdsAllocatedEmp);
                 objCmd.Parameters.AddWithValue("@t_DueDate", objPro.tdsDueDate);
                 objCmd.Parameters.AddWithValue("@t_Year", objPro.tdsYear);
-                objCmd.Parameters.AddWithValue("@t_Period", objPro.tdsPeriod);
                 objCmd.Parameters.AddWithValue("@t_Status", objPro.tdsStatus);
 
                 flag = objCmd.ExecuteNonQuery();
