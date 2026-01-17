@@ -41,7 +41,7 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Parameters.AddWithValue("@clientId", objPro.clientID);
                 objCmd.Parameters.AddWithValue("@clientName", objPro.clientName);
                 objCmd.Parameters.AddWithValue("@i_Service", objPro.incomeService);
-                objCmd.Parameters.AddWithValue("@i_WorkType", objPro.incomeWorkType);
+                objCmd.Parameters.AddWithValue("@i_WorkType", objPro.incomeTaskName);
                 objCmd.Parameters.AddWithValue("@i_InputDate", objPro.incomeInputDate);
                 objCmd.Parameters.AddWithValue("@i_AllocatedEmpName", objPro.incomeAllocatedEmpName);
                 objCmd.Parameters.AddWithValue("@i_DueDate", objPro.incomeDueDate);
@@ -74,7 +74,7 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.Parameters.AddWithValue("@intMode", 2);
                 objCmd.Parameters.AddWithValue("@incomeId", objPro.incomeId);
-                objCmd.Parameters.AddWithValue("@i_WorkType", objPro.incomeWorkType);
+                objCmd.Parameters.AddWithValue("@i_WorkType", objPro.incomeTaskName);
                 objCmd.Parameters.AddWithValue("@i_InputDate", objPro.incomeInputDate);
                 objCmd.Parameters.AddWithValue("@i_AllocatedEmpName", objPro.incomeAllocatedEmpName);
                 objCmd.Parameters.AddWithValue("@i_DueDate", objPro.incomeDueDate);

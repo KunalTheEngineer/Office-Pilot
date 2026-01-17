@@ -129,7 +129,9 @@ namespace Tax_Consultant_25
 
         public string incomeService { get; set; }
 
-        public string incomeWorkType { get; set; }
+        public string incomeTaskName { get; set; }
+
+        public string incomeTradeName { get; set; }
 
         public DateTime incomeInputDate { get; set; }
 
@@ -141,11 +143,17 @@ namespace Tax_Consultant_25
 
         public string incomeYear { get; set; }
 
+        public string incomeRecurringTask { get; set; }
+
+        public string incomePeriodicity { get; set; }
+
         public int incomeFees { get; set; }
 
         public string incomeFeeStatus { get; set; }
 
         public string incomeStatus { get; set; }
+
+        public string incomeDescription { get; set; }
 
         #endregion
 

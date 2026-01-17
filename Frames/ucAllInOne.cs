@@ -26,7 +26,7 @@ namespace Tax_Consultant_25.Frames
 
         DataSet ds, ds1;
         DataTable dt;
-        cls_ClientsDL clients;
+        cls_ClientsDL client;
         clsProperties objPro;
         cls_ClientUserPassDL user;
         cls_IncomeTaxDL incomeTaxDL;
@@ -98,7 +98,8 @@ namespace Tax_Consultant_25.Frames
         {
 
             BindEmployee();
-            show();
+            BindSearch();
+          //  show();
 
             cmbRecurringTask.SelectedIndex = 0;
             cmbFeesStatus.SelectedIndex = 0;
@@ -139,8 +140,6 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                
-
                 if (txtFessAmt.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Fees Amount", "INCOME TAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -155,14 +154,18 @@ namespace Tax_Consultant_25.Frames
                 objPro.incomeInputDate = dtpInputDate.Value;
                 objPro.clientName = txtClientName.Text;
                 objPro.incomeService = common.service;
-                objPro.incomeWorkType = txtTaskName.Text;
+                objPro.incomeTaskName = txtTaskName.Text;
+                objPro.incomeTradeName = txtTradeName.Text;
                 objPro.incomeAllocatedEmpName = cmbAllocatedTo.Text;
                 objPro.incomeDueDate = dtpDueDate.Value;
+                objPro.incomeRecurringTask = cmbRecurringTask.Text; 
+                objPro.incomePeriodicity = cmbPeriodicity.Text;
                 objPro.incomeTypeOfReturn = txtReturn.Text;
                 objPro.incomeYear = txtYear.Text;
                 objPro.incomeFees = Convert.ToInt32(txtFessAmt.Text);
                 objPro.incomeFeeStatus = cmbFeesStatus.Text;
                 objPro.incomeStatus = cmbWorkStatus.Text;
+                objPro.incomeDescription = txtDescription.Text;
 
                
 
@@ -316,7 +319,7 @@ namespace Tax_Consultant_25.Frames
 
                 objPro.incomeInputDate = dtpInputDate.Value;
                 objPro.clientName = txtClientName.Text;
-                objPro.incomeWorkType = txtTaskName.Text;
+                objPro.incomeTaskName = txtTaskName.Text;
                 objPro.incomeAllocatedEmpName = cmbAllocatedTo.Text;
                 objPro.incomeDueDate = dtpDueDate.Value;
                 objPro.incomeTypeOfReturn = txtReturn.Text;
@@ -380,7 +383,51 @@ namespace Tax_Consultant_25.Frames
             ShowQuery();
         }
 
+        private void txtTradeName_Leave(object sender, EventArgs e)
+        {
+            SearchClient();
+        }
+
+        private void txtClientName_Leave(object sender, EventArgs e)
+        {
+            SearchClient();
+        }
+
         #region FUNCTIONS
+
+        private void BindSearch()
+        {
+            try
+            {
+                ds = new DataSet();
+                client = new cls_ClientsDL();
+                ds = client.bindClientsData();
+
+                AutoCompleteStringCollection autoList = new AutoCompleteStringCollection();
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        autoList.Add(ds.Tables[0].Rows[i]["c_Name"].ToString());
+                        autoList.Add(ds.Tables[0].Rows[i]["c_Mobile"].ToString());
+                        autoList.Add(ds.Tables[0].Rows[i]["c_BusinessName"].ToString());
+                    }
+
+                    this.txtClientName.AutoCompleteCustomSource = autoList;
+                    txtClientName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    txtClientName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+                    this.txtTradeName.AutoCompleteCustomSource = autoList;
+                    txtTradeName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    txtTradeName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_ALLINONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
         private void ShowQuery()
         {
@@ -442,19 +489,39 @@ namespace Tax_Consultant_25.Frames
             present = 0;
         }
 
-        private void lblFeesAMT_Click(object sender, EventArgs e)
+        private void SearchClient()
         {
+            try
+            {
+                objPro = new clsProperties();
+                client = new cls_ClientsDL();
+                ds = new DataSet();
 
+
+                objPro.search = !string.IsNullOrWhiteSpace(txtTradeName.Text) ? txtTradeName.Text.Trim() : txtClientName.Text.Trim();
+
+                ds = client.searchClientTradeName(objPro);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    txtClientName.Text = ds.Tables[0].Rows[0]["c_Name"].ToString();
+                    txtTradeName.Text = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
+                    tempClientId = Convert.ToInt32(ds.Tables[0].Rows[0]["clientId"].ToString());
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_GST", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void txtClientName_TextChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void label18_Click(object sender, EventArgs e)
-        {
-
+            if(!string.IsNullOrWhiteSpace(txtClientName.Text))
+            {
+                txtTradeName.Clear();
+            }
         }
 
         private void show()

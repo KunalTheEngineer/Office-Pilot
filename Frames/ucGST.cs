@@ -106,29 +106,6 @@ namespace Tax_Consultant_25.Frames
             btnSave.Enabled = true;
         }
 
-        private void show()
-        {
-            ds = new DataSet();
-            gstDL = new cls_GstDL();
-
-            ds = gstDL.show();
-
-            if (ds.Tables[0].Rows.Count < 0)
-            {
-
-            }
-            else
-            {
-                dgvGST.DataSource = ds.Tables[0];
-
-                dgvGST.Columns["gstId"].Visible = false;
-                dgvGST.Columns["clientId"].Visible = false;
-                dgvGST.Columns["g_RecurringTask"].Visible = false;
-                dgvGST.Columns["g_FinancialYear"].Visible = false;
-                dgvGST.Columns["g_Periodicity"].Visible = false;
-            }
-        }
-
         private void BindSearch()
         {
             try
@@ -309,7 +286,7 @@ namespace Tax_Consultant_25.Frames
 
             ChangeMonth();
 
-            show();
+            //show();
 
             // USER DEFINED EVENTS
             cmbWorkStatus.DrawMode = DrawMode.OwnerDrawFixed;
@@ -386,7 +363,7 @@ namespace Tax_Consultant_25.Frames
             if (flag >= 1)
             {
                 Clear();
-                show();
+                //show();
                 ChangeMonth();
             }
         }
@@ -453,7 +430,7 @@ namespace Tax_Consultant_25.Frames
                     }
 
                     Clear();
-                    show();
+                    //show();
                 }
             }
             catch (Exception ex)
