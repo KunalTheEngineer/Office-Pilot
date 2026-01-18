@@ -30,29 +30,29 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucTDS));
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dgvTDS = new System.Windows.Forms.DataGridView();
+            this.txtDescription = new System.Windows.Forms.RichTextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtYear = new System.Windows.Forms.TextBox();
+            this.cmbPeriodicity = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.cmbAllocatedTo = new System.Windows.Forms.ComboBox();
             this.txtClientName = new System.Windows.Forms.TextBox();
+            this.cmbWorkStatus = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.txtTradeName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpDueDate = new System.Windows.Forms.DateTimePicker();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.cmbRecurringTask = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtTaskName = new System.Windows.Forms.TextBox();
             this.dtpInputDate = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtYear = new System.Windows.Forms.TextBox();
-            this.txtDescription = new System.Windows.Forms.RichTextBox();
-            this.cmbPeriodicity = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbWorkStatus = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.cmbRecurringTask = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.dgvTDS = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -61,12 +61,12 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WorkType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel2.SuspendLayout();
@@ -107,38 +107,60 @@
             this.panel2.Size = new System.Drawing.Size(1312, 213);
             this.panel2.TabIndex = 1;
             // 
-            // dgvTDS
+            // txtDescription
             // 
-            this.dgvTDS.AllowUserToAddRows = false;
-            this.dgvTDS.AllowUserToDeleteRows = false;
-            this.dgvTDS.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvTDS.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dgvTDS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTDS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.ClientName,
-            this.WorkType,
-            this.EmployeeName,
-            this.Column6,
-            this.Column4,
-            this.Column9,
-            this.Column3,
-            this.Column5,
-            this.btnReply});
-            this.dgvTDS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvTDS.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvTDS.Location = new System.Drawing.Point(0, 0);
-            this.dgvTDS.Name = "dgvTDS";
-            this.dgvTDS.RowHeadersVisible = false;
-            this.dgvTDS.RowHeadersWidth = 51;
-            this.dgvTDS.RowTemplate.Height = 24;
-            this.dgvTDS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTDS.Size = new System.Drawing.Size(1311, 438);
-            this.dgvTDS.TabIndex = 4;
-            this.dgvTDS.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTDS_CellClick);
-            this.dgvTDS.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvTDS_CellFormatting);
-            this.dgvTDS.SelectionChanged += new System.EventHandler(this.dgvTDS_SelectionChanged);
+            this.txtDescription.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescription.Location = new System.Drawing.Point(1011, 101);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(296, 99);
+            this.txtDescription.TabIndex = 97;
+            this.txtDescription.Text = "";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(263, 75);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(144, 21);
+            this.label9.TabIndex = 92;
+            this.label9.Text = "FINANCIAL YEAR";
+            // 
+            // txtYear
+            // 
+            this.txtYear.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtYear.Location = new System.Drawing.Point(241, 99);
+            this.txtYear.Name = "txtYear";
+            this.txtYear.Size = new System.Drawing.Size(166, 29);
+            this.txtYear.TabIndex = 91;
+            // 
+            // cmbPeriodicity
+            // 
+            this.cmbPeriodicity.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cmbPeriodicity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPeriodicity.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPeriodicity.FormattingEnabled = true;
+            this.cmbPeriodicity.Items.AddRange(new object[] {
+            "DAILY",
+            "WEEKLY",
+            "MONTHLY",
+            "QUARTERLY",
+            "HALF YEARLY",
+            "YEARLY"});
+            this.cmbPeriodicity.Location = new System.Drawing.Point(595, 99);
+            this.cmbPeriodicity.Name = "cmbPeriodicity";
+            this.cmbPeriodicity.Size = new System.Drawing.Size(161, 29);
+            this.cmbPeriodicity.TabIndex = 99;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(1120, 75);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(119, 21);
+            this.label2.TabIndex = 100;
+            this.label2.Text = "DESCRIPTION\r\n";
             // 
             // cmbAllocatedTo
             // 
@@ -158,6 +180,26 @@
             this.txtClientName.Name = "txtClientName";
             this.txtClientName.Size = new System.Drawing.Size(254, 29);
             this.txtClientName.TabIndex = 89;
+            this.txtClientName.TextChanged += new System.EventHandler(this.txtClientName_TextChanged);
+            this.txtClientName.Leave += new System.EventHandler(this.txtClientName_Leave);
+            // 
+            // cmbWorkStatus
+            // 
+            this.cmbWorkStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbWorkStatus.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbWorkStatus.FormattingEnabled = true;
+            this.cmbWorkStatus.Items.AddRange(new object[] {
+            "Not Started",
+            "Waiting For Documents",
+            "Document Received",
+            "Return Prepaired",
+            "Cancelled",
+            "Complete",
+            "Filed"});
+            this.cmbWorkStatus.Location = new System.Drawing.Point(780, 100);
+            this.cmbWorkStatus.Name = "cmbWorkStatus";
+            this.cmbWorkStatus.Size = new System.Drawing.Size(214, 28);
+            this.cmbWorkStatus.TabIndex = 93;
             // 
             // label3
             // 
@@ -179,6 +221,16 @@
             this.label4.TabIndex = 90;
             this.label4.Text = "CLIENT NAME";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(858, 75);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(71, 21);
+            this.label10.TabIndex = 95;
+            this.label10.Text = "STATUS";
+            // 
             // txtTradeName
             // 
             this.txtTradeName.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -186,6 +238,7 @@
             this.txtTradeName.Name = "txtTradeName";
             this.txtTradeName.Size = new System.Drawing.Size(326, 29);
             this.txtTradeName.TabIndex = 88;
+            this.txtTradeName.Leave += new System.EventHandler(this.txtTradeName_Leave);
             // 
             // label5
             // 
@@ -207,6 +260,26 @@
             this.dtpDueDate.Size = new System.Drawing.Size(170, 29);
             this.dtpDueDate.TabIndex = 84;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(435, 75);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(149, 21);
+            this.label12.TabIndex = 94;
+            this.label12.Text = "RECURRING TASK";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(618, 75);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(114, 21);
+            this.label11.TabIndex = 98;
+            this.label11.Text = "PERIODICITY";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -216,6 +289,20 @@
             this.label6.Size = new System.Drawing.Size(117, 21);
             this.label6.TabIndex = 87;
             this.label6.Text = "TRADE NAME";
+            // 
+            // cmbRecurringTask
+            // 
+            this.cmbRecurringTask.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cmbRecurringTask.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRecurringTask.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRecurringTask.FormattingEnabled = true;
+            this.cmbRecurringTask.Items.AddRange(new object[] {
+            "YES",
+            "NO"});
+            this.cmbRecurringTask.Location = new System.Drawing.Point(426, 99);
+            this.cmbRecurringTask.Name = "cmbRecurringTask";
+            this.cmbRecurringTask.Size = new System.Drawing.Size(158, 29);
+            this.cmbRecurringTask.TabIndex = 96;
             // 
             // label7
             // 
@@ -255,124 +342,38 @@
             this.label8.TabIndex = 80;
             this.label8.Text = "START DATE";
             // 
-            // label9
+            // dgvTDS
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(263, 75);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(144, 21);
-            this.label9.TabIndex = 92;
-            this.label9.Text = "FINANCIAL YEAR";
-            // 
-            // txtYear
-            // 
-            this.txtYear.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtYear.Location = new System.Drawing.Point(241, 99);
-            this.txtYear.Name = "txtYear";
-            this.txtYear.Size = new System.Drawing.Size(166, 29);
-            this.txtYear.TabIndex = 91;
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescription.Location = new System.Drawing.Point(1011, 101);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(296, 99);
-            this.txtDescription.TabIndex = 97;
-            this.txtDescription.Text = "";
-            // 
-            // cmbPeriodicity
-            // 
-            this.cmbPeriodicity.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.cmbPeriodicity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPeriodicity.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPeriodicity.FormattingEnabled = true;
-            this.cmbPeriodicity.Items.AddRange(new object[] {
-            "DAILY",
-            "WEEKLY",
-            "MONTHLY",
-            "QUARTERLY",
-            "HALF YEARLY",
-            "YEARLY"});
-            this.cmbPeriodicity.Location = new System.Drawing.Point(595, 99);
-            this.cmbPeriodicity.Name = "cmbPeriodicity";
-            this.cmbPeriodicity.Size = new System.Drawing.Size(161, 29);
-            this.cmbPeriodicity.TabIndex = 99;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1120, 75);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 21);
-            this.label2.TabIndex = 100;
-            this.label2.Text = "DESCRIPTION\r\n";
-            // 
-            // cmbWorkStatus
-            // 
-            this.cmbWorkStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbWorkStatus.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbWorkStatus.FormattingEnabled = true;
-            this.cmbWorkStatus.Items.AddRange(new object[] {
-            "Not Started",
-            "Waiting For Documents",
-            "Document Received",
-            "Return Prepaired",
-            "Cancelled",
-            "Complete",
-            "Filed"});
-            this.cmbWorkStatus.Location = new System.Drawing.Point(780, 100);
-            this.cmbWorkStatus.Name = "cmbWorkStatus";
-            this.cmbWorkStatus.Size = new System.Drawing.Size(214, 28);
-            this.cmbWorkStatus.TabIndex = 93;
-            this.cmbWorkStatus.SelectedIndexChanged += new System.EventHandler(this.cmbWorkStatus_SelectedIndexChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(858, 75);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(71, 21);
-            this.label10.TabIndex = 95;
-            this.label10.Text = "STATUS";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(618, 75);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(114, 21);
-            this.label11.TabIndex = 98;
-            this.label11.Text = "PERIODICITY";
-            // 
-            // cmbRecurringTask
-            // 
-            this.cmbRecurringTask.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.cmbRecurringTask.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRecurringTask.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbRecurringTask.FormattingEnabled = true;
-            this.cmbRecurringTask.Items.AddRange(new object[] {
-            "YES",
-            "NO"});
-            this.cmbRecurringTask.Location = new System.Drawing.Point(426, 99);
-            this.cmbRecurringTask.Name = "cmbRecurringTask";
-            this.cmbRecurringTask.Size = new System.Drawing.Size(158, 29);
-            this.cmbRecurringTask.TabIndex = 96;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(435, 75);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(149, 21);
-            this.label12.TabIndex = 94;
-            this.label12.Text = "RECURRING TASK";
+            this.dgvTDS.AllowUserToAddRows = false;
+            this.dgvTDS.AllowUserToDeleteRows = false;
+            this.dgvTDS.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvTDS.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dgvTDS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTDS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.ClientName,
+            this.Column9,
+            this.WorkType,
+            this.EmployeeName,
+            this.Column6,
+            this.Column4,
+            this.Status,
+            this.Column5,
+            this.btnReply});
+            this.dgvTDS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvTDS.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvTDS.Location = new System.Drawing.Point(0, 0);
+            this.dgvTDS.Name = "dgvTDS";
+            this.dgvTDS.RowHeadersVisible = false;
+            this.dgvTDS.RowHeadersWidth = 51;
+            this.dgvTDS.RowTemplate.Height = 24;
+            this.dgvTDS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTDS.Size = new System.Drawing.Size(1311, 438);
+            this.dgvTDS.TabIndex = 4;
+            this.dgvTDS.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTDS_CellClick);
+            this.dgvTDS.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvTDS_CellFormatting);
+            this.dgvTDS.SelectionChanged += new System.EventHandler(this.dgvTDS_SelectionChanged);
             // 
             // panel3
             // 
@@ -401,6 +402,7 @@
             this.btnClose.Text = "CLOSE";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnUpdate
             // 
@@ -415,6 +417,7 @@
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnSave
             // 
@@ -429,6 +432,7 @@
             this.btnSave.Text = "SAVE";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // panel1
             // 
@@ -445,7 +449,7 @@
             // Column1
             // 
             this.Column1.DataPropertyName = "serial";
-            this.Column1.FillWeight = 31.80498F;
+            this.Column1.FillWeight = 45.78154F;
             this.Column1.HeaderText = "SR.";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
@@ -453,7 +457,7 @@
             // Column2
             // 
             this.Column2.DataPropertyName = "t_InputDate";
-            this.Column2.FillWeight = 115.5843F;
+            this.Column2.FillWeight = 79.04279F;
             this.Column2.HeaderText = "START DT.";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
@@ -461,15 +465,23 @@
             // ClientName
             // 
             this.ClientName.DataPropertyName = "clientName";
-            this.ClientName.FillWeight = 149.6307F;
+            this.ClientName.FillWeight = 123.0295F;
             this.ClientName.HeaderText = "NAME";
             this.ClientName.MinimumWidth = 6;
             this.ClientName.Name = "ClientName";
             // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "t_TradeName";
+            this.Column9.FillWeight = 132.6013F;
+            this.Column9.HeaderText = "TRADE NAME";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            // 
             // WorkType
             // 
-            this.WorkType.DataPropertyName = "t_WorkType";
-            this.WorkType.FillWeight = 105.0818F;
+            this.WorkType.DataPropertyName = "t_TaskName";
+            this.WorkType.FillWeight = 105.8949F;
             this.WorkType.HeaderText = "TASK NAME";
             this.WorkType.MinimumWidth = 6;
             this.WorkType.Name = "WorkType";
@@ -477,7 +489,7 @@
             // EmployeeName
             // 
             this.EmployeeName.DataPropertyName = "t_AllocatedTo";
-            this.EmployeeName.FillWeight = 118.9867F;
+            this.EmployeeName.FillWeight = 118.9526F;
             this.EmployeeName.HeaderText = "ASSIGNED TO";
             this.EmployeeName.MinimumWidth = 6;
             this.EmployeeName.Name = "EmployeeName";
@@ -485,40 +497,38 @@
             // Column6
             // 
             this.Column6.DataPropertyName = "t_DueDate";
-            this.Column6.FillWeight = 103.9534F;
+            this.Column6.FillWeight = 77.9565F;
             this.Column6.HeaderText = "DUE DT.";
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
             // 
             // Column4
             // 
+            this.Column4.DataPropertyName = "t_Year";
+            this.Column4.FillWeight = 79.85376F;
             this.Column4.HeaderText = "FN. YEAR";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
             // 
-            // Column9
+            // Status
             // 
-            this.Column9.DataPropertyName = "t_Status";
-            this.Column9.FillWeight = 96.51945F;
-            this.Column9.HeaderText = "FEES ST.";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "STATUS";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
+            this.Status.DataPropertyName = "t_Status";
+            this.Status.FillWeight = 144.911F;
+            this.Status.HeaderText = "STATUS";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
             // 
             // Column5
             // 
+            this.Column5.DataPropertyName = "t_Description";
+            this.Column5.FillWeight = 130.3339F;
             this.Column5.HeaderText = "DESCRIPTION";
             this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
             // 
             // btnReply
             // 
-            this.btnReply.FillWeight = 78.56851F;
+            this.btnReply.FillWeight = 61.77202F;
             this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReply.HeaderText = "Reply";
             this.btnReply.MinimumWidth = 6;
@@ -581,12 +591,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn WorkType;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewButtonColumn btnReply;
     }

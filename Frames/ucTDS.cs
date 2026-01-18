@@ -21,33 +21,407 @@ namespace Tax_Consultant_25.Frames
             InitializeComponent();
         }
 
-        CommonUC common;
+        #region CLASS & OBJECTS
+
         clsProperties objPro;
         DataTable dt;
         cls_EmployeeDL employeeDL;
         cls_TdsDL cls_TdsDL;
-        cls_ClientUserPassDL clientUserPassDL;
-        DataSet ds, ds1;
-        cls_Query query;
-        cls_BusinessDL bus;
-      
-        int flag, clId, tempTdsId, tempClientId;
+        DataSet ds;
+        cls_ClientsDL client;
+
+        #endregion
+
+        #region VARIABLES
+
+        int flag, clientId, tempTdsId, tempClientId;
         string tempEmployeeName, tempClientName, tempWorkType, serviceName, service, businessName, clientAddress;
         int present = 0;
 
+        #endregion
+
+        #region USER DEFINED EVENTS
+
+        private void cmbWorkStatus_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0)
+                return;
+
+            Color[] bgColors =
+            {
+                ColorTranslator.FromHtml("#D6DCE4"), // Not Started
+                ColorTranslator.FromHtml("#F4B084"), // Waiting for Documents
+                ColorTranslator.FromHtml("#A9D08E"), // Document Received
+                ColorTranslator.FromHtml("#00B0F0"), // Return Prepared
+                ColorTranslator.FromHtml("#FF0000"), // Cancelled
+                ColorTranslator.FromHtml("#FFC000"), // Complit
+                ColorTranslator.FromHtml("#FFFF00"), // DONE
+            };
+
+            Color backColor = bgColors[e.Index];
+
+            // This removes the blue highlight effect
+            using (Brush backgroundBrush = new SolidBrush(backColor))
+            {
+                e.Graphics.FillRectangle(backgroundBrush, e.Bounds);
+            }
+
+            using (Brush textBrush = new SolidBrush(Color.Black))
+            {
+                e.Graphics.DrawString(
+                    cmbWorkStatus.Items[e.Index].ToString(),
+                    e.Font,
+                    textBrush,
+                    e.Bounds
+                );
+            }
+
+            e.DrawFocusRectangle();
+        }
+
+        #endregion
+
+        #region EVENTS
+
         private void ucTDS_Load(object sender, EventArgs e)
         {
-
+            BindSearch();
             BindEmployee();
             show();
-            serviceName = common.service;
-
-            common.FormDataInfo += CommonUC_FormDataInfo;
 
             cmbAllocatedTo.SelectedIndex = 0;
-            cmbPeriod.SelectedIndex = 0;
-            cmbFilingSt.SelectedIndex = 0;
+            cmbRecurringTask.SelectedIndex = 0;
+            cmbWorkStatus.SelectedIndex = 0;
+            cmbPeriodicity.SelectedIndex = 0;
+
+            // USER DEFINED EVENTS
+            cmbWorkStatus.DrawMode = DrawMode.OwnerDrawFixed;
+            cmbWorkStatus.DrawItem += cmbWorkStatus_DrawItem;
             
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtClientName.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Client Name", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (txtTaskName.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Work Type", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (txtYear.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Year", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                objPro = new clsProperties();
+
+                objPro.clientID = clientId;
+                objPro.clientName = txtClientName.Text;
+                objPro.tdsTradeName = txtTradeName.Text;
+                objPro.tdsTaskName = txtTaskName.Text;
+                objPro.tdsInputDate = dtpInputDate.Value;
+                objPro.tdsDueDate = dtpDueDate.Value;
+                objPro.tdsAllocatedEmp = cmbAllocatedTo.Text;
+                objPro.tdsYear = txtYear.Text;
+                objPro.tdsRecurringTask = cmbRecurringTask.Text;
+                objPro.tdsPeriodicity = cmbPeriodicity.Text;
+                objPro.tdsStatus = cmbWorkStatus.Text;
+                objPro.tdsDescription = txtDescription.Text;
+
+                cls_TdsDL = new cls_TdsDL();
+                flag = cls_TdsDL.saveData(objPro);
+
+                if (flag >= 1)
+                {
+                    Clear();
+                    show();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void txtClientName_TextChanged(object sender, EventArgs e)
+        {
+            if(txtClientName.Text == string.Empty)
+            {
+                txtTradeName.Clear();
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Parent.Controls.Remove(this);
+            this.Dispose();
+        }
+
+        private void txtClientName_Leave(object sender, EventArgs e)
+        {
+            SearchClient();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtClientName.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Client Name", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (txtTaskName.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Work Type", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (txtYear.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Year", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                objPro = new clsProperties();
+
+                objPro.clientID = tempClientId;
+                objPro.clientName = txtClientName.Text;
+                objPro.tdsTradeName = txtTradeName.Text;
+                objPro.tdsTaskName = txtTaskName.Text;
+                objPro.tdsInputDate = dtpInputDate.Value;
+                objPro.tdsDueDate = dtpDueDate.Value;
+                objPro.tdsAllocatedEmp = cmbAllocatedTo.Text;
+                objPro.tdsYear = txtYear.Text;
+                objPro.tdsRecurringTask = cmbRecurringTask.Text;
+                objPro.tdsPeriodicity = cmbPeriodicity.Text;
+                objPro.tdsStatus = cmbWorkStatus.Text;
+                objPro.tdsDescription = txtDescription.Text;
+                objPro.tdsId = tempTdsId;
+
+                cls_TdsDL = new cls_TdsDL();
+                flag = cls_TdsDL.updateData(objPro);
+
+                if (flag >= 1)
+                {
+
+
+
+                    //if (cmbFilingSt.SelectedItem != null && cmbFilingSt.SelectedItem.ToString() == "FILED")
+                    //{
+                    //    DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "TDS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    //    if (dial == DialogResult.Yes)
+                    //    {
+                    //        frm_Narration narr = new frm_Narration();
+                    //        narr.clientName = txtClientName.Text;
+                    //        narr.service = common.service;
+                    //        narr.amount = "";
+                    //        narr.workType = txtWorkType.Text;
+                    //        narr.businessName = businessName;
+                    //        narr.clientAddress = clientAddress;
+
+                    //        narr.Show();
+                    //    }
+                    //}
+
+                    Clear();
+                    show();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void txtTradeName_Leave(object sender, EventArgs e)
+        {
+            SearchClient();
+        }
+
+        private void dgvTDS_SelectionChanged(object sender, EventArgs e)
+        {
+            dgvTDS.ClearSelection();
+        }
+
+        private void dgvTDS_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            ShowQuery();
+
+            #region CHANGE STATUS COLORS
+
+            Dictionary<string, Color> StatusColors = new Dictionary<string, Color>()
+            {
+                { "Not Started", ColorTranslator.FromHtml("#D6DCE4") },
+                { "Waiting For Documents", ColorTranslator.FromHtml("#F4B084") },
+                { "Document Received", ColorTranslator.FromHtml("#A9D08E") },
+                { "Return Prepaired", ColorTranslator.FromHtml("#00B0F0") },
+                { "Cancelled", ColorTranslator.FromHtml("#FF0000") },
+                { "Complete", ColorTranslator.FromHtml("#FFC000") },
+                { "Filed", ColorTranslator.FromHtml("#FFFF00") }
+            };
+
+            if (dgvTDS.Columns[e.ColumnIndex].Name == "Status")
+            {
+                if (e.Value != null)
+                {
+                    string status = e.Value.ToString();
+
+                    if (StatusColors.ContainsKey(status))
+                    {
+                        e.CellStyle.BackColor = StatusColors[status];
+                        e.CellStyle.ForeColor = Color.Black;
+                    }
+                }
+            }
+
+            #endregion
+        }
+
+        private void dgvTDS_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                btnSave.Enabled = false;
+
+                objPro = new clsProperties();
+
+                objPro.rowID = e.RowIndex;
+                
+                if(dgvTDS.Rows.Count > 0)
+                {
+                    dtpInputDate.Text = dgvTDS.Rows[objPro.rowID].Cells[2].Value.ToString();
+                    txtClientName.Text = dgvTDS.Rows[objPro.rowID].Cells[3].Value.ToString();
+                    txtTradeName.Text = dgvTDS.Rows[objPro.rowID].Cells[4].Value.ToString();
+                    txtTaskName.Text = dgvTDS.Rows[objPro.rowID].Cells[5].Value.ToString();
+                    cmbAllocatedTo.Text = dgvTDS.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
+                    dtpDueDate.Text = dgvTDS.Rows[objPro.rowID].Cells[7].Value.ToString();
+                    txtYear.Text = dgvTDS.Rows[objPro.rowID].Cells[8].Value.ToString();
+                    cmbWorkStatus.Text = dgvTDS.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
+                    txtDescription.Text = dgvTDS.Rows[objPro.rowID].Cells[10].Value.ToString().Trim();
+                    cmbRecurringTask.Text = dgvTDS.Rows[objPro.rowID].Cells[11].Value.ToString().Trim();
+                    cmbPeriodicity.Text = dgvTDS.Rows[objPro.rowID].Cells[12].Value.ToString().Trim();
+                    tempClientId = Convert.ToInt32(dgvTDS.Rows[objPro.rowID].Cells[13].Value.ToString());
+                    tempTdsId = Convert.ToInt32(dgvTDS.Rows[objPro.rowID].Cells[14].Value.ToString());
+               
+                }
+
+
+                if (e.ColumnIndex == dgvTDS.Columns["btnReply"].Index)
+                {
+                    frm_Query query = new frm_Query(tempEmployeeName);
+
+                    query.serviceName = serviceName;
+                    query.clientName = tempClientName;
+                    query.employeeName = tempEmployeeName;
+                    query.workTypeName = tempWorkType;
+
+                    query.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        #endregion
+
+        #region FUNCTIONS
+
+        private void Clear()
+        {
+            dtpInputDate.Text = DateTime.Now.ToString();
+            txtClientName.Clear();
+            txtTaskName.Clear();
+            cmbAllocatedTo.SelectedIndex = 0;
+            dtpDueDate.Text = DateTime.Now.ToString();
+            txtYear.Clear();
+            cmbPeriodicity.SelectedIndex = 0;
+            cmbRecurringTask.SelectedIndex = 0;
+            cmbWorkStatus.SelectedIndex = 0;
+            txtTradeName.Clear();
+            txtDescription.Clear();
+
+            btnSave.Enabled = true;
+        }
+
+        private void show()
+        {
+            cls_TdsDL = new cls_TdsDL();
+            ds = new DataSet();
+
+            ds = cls_TdsDL.showData();
+
+            if (ds.Tables[0].Rows.Count < 0)
+            {
+
+            }
+            else
+            {
+                dgvTDS.DataSource = ds.Tables[0];
+                dgvTDS.Columns["tdsId"].Visible = false;
+                dgvTDS.Columns["clientId"].Visible = false;
+                dgvTDS.Columns["t_RecurringTask"].Visible = false;
+                dgvTDS.Columns["t_Periodicity"].Visible = false;
+            }
+
+        }
+
+        private void ShowQuery()
+        {
+            //query = new cls_Query();
+            //ds1 = new DataSet();
+
+            //ds1 = query.QueryRaisedByEmp();
+
+            //foreach (DataGridViewRow row in dgvTDS.Rows)
+            //{
+            //    if (row.IsNewRow)
+            //        continue;
+
+            //    string employee = row.Cells["EmployeeName"].Value?.ToString();
+            //    string client = row.Cells["ClientName"].Value?.ToString();
+            //    string workType = row.Cells["WorkType"].Value?.ToString();
+            //    service = "TDS";
+            //    var queryRow = ds1.Tables[0].AsEnumerable().FirstOrDefault(r =>
+            //       r.Field<string>("EmployeeName") == employee &&
+            //       r.Field<string>("clientName") == client &&
+            //       r.Field<string>("service") == service &&
+            //       r.Field<string>("workType") == workType
+            //     //&&
+            //     //!string.IsNullOrEmpty(r.Field<string>("queryByEmp"))
+            //     );
+
+
+            //    bool hasQuery = false;
+
+            //    if (queryRow != null)
+            //    {
+            //        object val = queryRow["HasQuery"];
+
+            //        if (val != DBNull.Value && int.TryParse(val.ToString(), out int parsed))
+            //        {
+            //            hasQuery = parsed == 1;
+            //        }
+            //    }
+
+            //    row.DefaultCellStyle.BackColor = hasQuery ? Color.Red : DefaultBackColor;
+
+            //}
         }
 
         private void BindEmployee()
@@ -68,392 +442,67 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
-        private void CommonUC_FormDataInfo(object sender, FormDataInfoEventArgs e)
-        {
-            if (e.Username != string.Empty && e.Password != string.Empty)
-            {
-                present = 1;
-            }
-
-            txtClientName.Text = e.clientName;
-            txtUname.Text = e.Username;
-            txtPass.Text = e.Password;
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbWorkStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
+        private void BindSearch()
         {
             try
             {
-                if (txtClientName.Text == string.Empty)
+                ds = new DataSet();
+                client = new cls_ClientsDL();
+                ds = client.bindClientsData();
+
+                AutoCompleteStringCollection autoList = new AutoCompleteStringCollection();
+
+                if (ds.Tables[0].Rows.Count > 0)
                 {
-                    MessageBox.Show("Enter Client Name", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtWorkType.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Work Type", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtUname.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Username", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtPass.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Password", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtYear.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Year", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                objPro = new clsProperties();
-
-                clId = common.clientId;
-
-                objPro.clientID = clId;
-                objPro.clientName = txtClientName.Text;
-                objPro.tdsService = common.service;
-                objPro.tdsInputDate = dtpInputDate.Value;
-                objPro.tdsWorktype = txtWorkType.Text;
-                objPro.tdsAllocatedEmp = cmbAllocatedTo.Text;
-                objPro.tdsDueDate = dtpDueDate.Value;
-                objPro.tdsYear = txtYear.Text;
-                objPro.tdsPeriod = cmbPeriod.Text;
-                objPro.tdsStatus = cmbFilingSt.Text;
-
-                objPro.username = txtUname.Text;
-                objPro.password = txtPass.Text; 
-                objPro.workService = common.service;
-
-                cls_TdsDL = new cls_TdsDL();
-                flag = cls_TdsDL.saveData(objPro);
-
-                if(flag == 1)
-                {
-                    flag = 0;
-
-                    if(present == 0)
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        clientUserPassDL = new cls_ClientUserPassDL();
-                        flag = clientUserPassDL.saveClientUserNamePassword(objPro);
+                        autoList.Add(ds.Tables[0].Rows[i]["c_Name"].ToString());
+                        autoList.Add(ds.Tables[0].Rows[i]["c_Mobile"].ToString());
+                        autoList.Add(ds.Tables[0].Rows[i]["c_BusinessName"].ToString());
                     }
 
-                    //MessageBox.Show("Record Saved...");
+                    this.txtClientName.AutoCompleteCustomSource = autoList;
+                    txtClientName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    txtClientName.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-                    common.ClearControls();
-                    Clear();
-                    show();
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "UC_TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void dgvTDS_SelectionChanged(object sender, EventArgs e)
-        {
-            dgvTDS.ClearSelection();
-        }
-
-        private void dgvTDS_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            ShowQuery();
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Parent.Controls.Remove(this);
-            this.Dispose();
-        }
-
-        private void Clear()
-        {
-            dtpInputDate.Text = DateTime.Now.ToString();
-            txtClientName.Clear();
-            txtWorkType.Clear();
-            cmbAllocatedTo.SelectedIndex = 0;   
-            dtpDueDate.Text = DateTime.Now.ToString();
-            txtYear.Clear();
-            txtUname.Clear();
-            txtPass.Clear();
-            cmbPeriod.SelectedIndex = 0;
-            cmbFilingSt.SelectedIndex = 0;
-
-            btnSave.Enabled = true;
-        }
-
-        private void dgvTDS_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                btnSave.Enabled = false;
-
-                objPro = new clsProperties();
-
-                objPro.rowID = e.RowIndex;
-                
-                if(dgvTDS.Rows.Count > 0)
-                {
-                    dtpInputDate.Text = dgvTDS.Rows[objPro.rowID].Cells[3].Value.ToString();
-                    txtClientName.Text = dgvTDS.Rows[objPro.rowID].Cells[4].Value.ToString();
-                    txtWorkType.Text = dgvTDS.Rows[objPro.rowID].Cells[5].Value.ToString();
-                    cmbAllocatedTo.Text = dgvTDS.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
-                    dtpDueDate.Text = dgvTDS.Rows[objPro.rowID].Cells[7].Value.ToString();
-                    cmbPeriod.Text = dgvTDS.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
-                    cmbFilingSt.Text = dgvTDS.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
-                    txtYear.Text = dgvTDS.Rows[objPro.rowID].Cells[10].Value.ToString();
-                    tempTdsId = Convert.ToInt32(dgvTDS.Rows[objPro.rowID].Cells[11].Value.ToString());
-                    tempClientId = Convert.ToInt32(dgvTDS.Rows[objPro.rowID].Cells[12].Value.ToString());
-
-                    objPro.workService = common.service;
-
-                    tempEmployeeName = cmbAllocatedTo.Text;
-                    tempClientName = txtClientName.Text;
-                    tempWorkType = txtWorkType.Text;
-                    objPro.clientID = tempClientId;
-
-                    bus = new cls_BusinessDL();
-                    ds = new DataSet();
-
-                    ds = bus.getBusinessName(tempClientName, tempClientId);
-
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        businessName = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
-                        clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
-                    }
-
-
-                    showClientUsernamePasswordOnDGVClick();
-                }
-
-                if (e.ColumnIndex == dgvTDS.Columns["btnQuery"].Index)
-                {
-                    frm_Query query = new frm_Query(tempEmployeeName);
-
-                    query.serviceName = serviceName;
-                    query.clientName = tempClientName;
-                    query.employeeName = tempEmployeeName;
-                    query.workTypeName = tempWorkType;
-
-                    query.ShowDialog();
-                }
-
-                if (e.ColumnIndex == dgvTDS.Columns["btnReply"].Index)
-                {
-                    frm_Query query = new frm_Query(tempEmployeeName);
-
-                    query.serviceName = serviceName;
-                    query.clientName = tempClientName;
-                    query.employeeName = tempEmployeeName;
-                    query.workTypeName = tempWorkType;
-
-                    query.ShowDialog();
+                    this.txtTradeName.AutoCompleteCustomSource = autoList;
+                    txtTradeName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    txtTradeName.AutoCompleteSource = AutoCompleteSource.CustomSource;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString(), "UC_TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message.ToString(), "UC_ALLINONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void SearchClient()
         {
             try
             {
-                if (txtClientName.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Client Name", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtWorkType.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Work Type", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtUname.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Username", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtPass.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Password", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtYear.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Year", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
                 objPro = new clsProperties();
+                client = new cls_ClientsDL();
+                ds = new DataSet();
 
-                clId = common.clientId;
+                objPro.search = !string.IsNullOrWhiteSpace(txtTradeName.Text) ? txtTradeName.Text.Trim() : txtClientName.Text.Trim();
 
-                objPro.clientID = clId;
-                objPro.tdsId = tempTdsId;
-                objPro.clientName = txtClientName.Text;
-                objPro.tdsService = common.service;
-                objPro.tdsInputDate = dtpInputDate.Value;
-                objPro.tdsWorktype = txtWorkType.Text;
-                objPro.tdsAllocatedEmp = cmbAllocatedTo.Text;
-                objPro.tdsDueDate = dtpDueDate.Value;
-                objPro.tdsYear = txtYear.Text;
-                objPro.tdsPeriod = cmbPeriod.Text;
-                objPro.tdsStatus = cmbFilingSt.Text;
+                ds = client.searchClientTradeName(objPro);
 
-                objPro.clientID = tempClientId;
-                objPro.username = txtUname.Text;
-                objPro.password = txtPass.Text;
-                objPro.workService = common.service;
-
-                cls_TdsDL = new cls_TdsDL();
-                flag = cls_TdsDL.updateData(objPro);
-
-                if (flag == 1)
+                if (ds.Tables[0].Rows.Count > 0)
                 {
-                    flag = 0;
-
-                    clientUserPassDL = new cls_ClientUserPassDL();
-                    flag = clientUserPassDL.updateClientUserNamePassword(objPro);
-
-                    if (cmbFilingSt.SelectedItem != null && cmbFilingSt.SelectedItem.ToString() == "FILED")
-                    {
-                        DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "TDS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                        if (dial == DialogResult.Yes)
-                        {
-                            frm_Narration narr = new frm_Narration();
-                            narr.clientName = txtClientName.Text;
-                            narr.service = common.service;
-                            narr.amount = "";
-                            narr.workType = txtWorkType.Text;
-                            narr.businessName = businessName;
-                            narr.clientAddress = clientAddress;
-
-                            narr.Show();
-                        }
-                    }
-
-                    //MessageBox.Show("Record Updated...");
-
-                    common.ClearControls();
-                    Clear();
-                    show();
+                    txtClientName.Text = ds.Tables[0].Rows[0]["c_Name"].ToString();
+                    txtTradeName.Text = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
+                    clientId = Convert.ToInt32(ds.Tables[0].Rows[0]["clientId"].ToString());
                 }
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString(), "UC_TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message.ToString(), "UC_INCOMETAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private void show()
-        {
-            //cls_TdsDL = new cls_TdsDL();
-            //ds = new DataSet();
-
-            //ds = cls_TdsDL.showData();
-
-            //if (ds.Tables[0].Rows.Count < 0)
-            //{
-
-            //}
-            //else
-            //{
-            //    dgvTDS.DataSource = ds.Tables[0];
-            //    dgvTDS.Columns["tdsId"].Visible = false;
-            //    dgvTDS.Columns["t_Year"].Visible = false;
-            //    dgvTDS.Columns["clientId"].Visible = false;
-            //}
-
-                
-        }
-
-        private void showClientUsernamePasswordOnDGVClick()
-        {
-            ds = null;
-
-            ds = new DataSet();
-            clientUserPassDL = new cls_ClientUserPassDL();
-            ds = clientUserPassDL.getClientUsernamePasword(objPro);
-
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                txtUname.Text = ds.Tables[0].Rows[0]["clientUsername"].ToString();
-                txtPass.Text = ds.Tables[0].Rows[0]["clientPassword"].ToString();
-            }
-        }
-
-        private void ShowQuery()
-        {
-            query = new cls_Query();
-            ds1 = new DataSet();
-
-            ds1 = query.QueryRaisedByEmp();
-
-            foreach (DataGridViewRow row in dgvTDS.Rows)
-            {
-                if (row.IsNewRow)
-                    continue;
-
-                string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
-                string workType = row.Cells["WorkType"].Value?.ToString();
-                service = "TDS";
-                var queryRow = ds1.Tables[0].AsEnumerable().FirstOrDefault(r =>
-                   r.Field<string>("EmployeeName") == employee &&
-                   r.Field<string>("clientName") == client &&
-                   r.Field<string>("service") == service &&
-                   r.Field<string>("workType") == workType
-                 //&&
-                 //!string.IsNullOrEmpty(r.Field<string>("queryByEmp"))
-                 );
-
-
-                bool hasQuery = false;
-
-                if (queryRow != null)
-                {
-                    object val = queryRow["HasQuery"];
-
-                    if (val != DBNull.Value && int.TryParse(val.ToString(), out int parsed))
-                    {
-                        hasQuery = parsed == 1;
-                    }
-                }
-
-                row.DefaultCellStyle.BackColor = hasQuery ? Color.Red : DefaultBackColor;
-
-            }
-        }
+        #endregion
 
     }
 }

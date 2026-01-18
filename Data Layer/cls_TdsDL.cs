@@ -40,13 +40,16 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Parameters.AddWithValue("@intMode", 1);
                 objCmd.Parameters.AddWithValue("@clientId", objPro.clientID);
                 objCmd.Parameters.AddWithValue("@clientName", objPro.clientName);
-                objCmd.Parameters.AddWithValue("@t_Service", objPro.tdsService);
+                objCmd.Parameters.AddWithValue("@t_TradeName", objPro.tdsTradeName);
                 objCmd.Parameters.AddWithValue("@t_InputDate ", objPro.tdsInputDate);
-                objCmd.Parameters.AddWithValue("@t_WorkType", objPro.tdsWorktype);
+                objCmd.Parameters.AddWithValue("@t_TaskName", objPro.tdsTaskName);
                 objCmd.Parameters.AddWithValue("@t_AllocatedTo", objPro.tdsAllocatedEmp);
                 objCmd.Parameters.AddWithValue("@t_DueDate", objPro.tdsDueDate);
                 objCmd.Parameters.AddWithValue("@t_Year", objPro.tdsYear);
+                objCmd.Parameters.AddWithValue("@t_RecurringTask", objPro.tdsRecurringTask);
+                objCmd.Parameters.AddWithValue("@t_Periodicity", objPro.tdsPeriodicity);
                 objCmd.Parameters.AddWithValue("@t_Status", objPro.tdsStatus);
+                objCmd.Parameters.AddWithValue("@t_Description", objPro.tdsDescription);
 
                 flag = objCmd.ExecuteNonQuery();
                 objCon.con.Close();
@@ -71,15 +74,16 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.CommandText = "usp_TDS";
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.Parameters.AddWithValue("@intMode", 2);
-                objCmd.Parameters.AddWithValue("@t_Service", objPro.tdsService);
                 objCmd.Parameters.AddWithValue("@t_InputDate ", objPro.tdsInputDate);
-                objCmd.Parameters.AddWithValue("@t_WorkType", objPro.tdsWorktype);
+                objCmd.Parameters.AddWithValue("@t_TaskName", objPro.tdsTaskName);
                 objCmd.Parameters.AddWithValue("@t_AllocatedTo", objPro.tdsAllocatedEmp);
                 objCmd.Parameters.AddWithValue("@t_DueDate", objPro.tdsDueDate);
                 objCmd.Parameters.AddWithValue("@t_Year", objPro.tdsYear);
-                objCmd.Parameters.AddWithValue("@t_Period", objPro.tdsPeriod);
+                objCmd.Parameters.AddWithValue("@t_RecurringTask", objPro.tdsRecurringTask);
+                objCmd.Parameters.AddWithValue("@t_Periodicity", objPro.tdsPeriodicity);
                 objCmd.Parameters.AddWithValue("@t_Status", objPro.tdsStatus);
-                objCmd.Parameters.AddWithValue("@tdsId",objPro.tdsId);
+                objCmd.Parameters.AddWithValue("@t_Description", objPro.tdsDescription);
+                objCmd.Parameters.AddWithValue("@tdsId", objPro.tdsId);
 
                 flag = objCmd.ExecuteNonQuery();
                 objCon.con.Close();
