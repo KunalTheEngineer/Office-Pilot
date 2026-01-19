@@ -28,355 +28,446 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.pnlMainForm = new System.Windows.Forms.Panel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucAllOne));
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtNo = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.lblDynamic1 = new System.Windows.Forms.Label();
-            this.txtYear = new System.Windows.Forms.TextBox();
-            this.dtpDueDate = new System.Windows.Forms.DateTimePicker();
-            this.label21 = new System.Windows.Forms.Label();
-            this.cmbAllocatedTo = new System.Windows.Forms.ComboBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.txtWorkType = new System.Windows.Forms.TextBox();
+            this.dgvAllOne = new System.Windows.Forms.DataGridView();
             this.txtClientName = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.txtTradeName = new System.Windows.Forms.TextBox();
+            this.lblYear = new System.Windows.Forms.Label();
+            this.txtReturn = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtYear = new System.Windows.Forms.TextBox();
+            this.lblDynamic1 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtTaskName = new System.Windows.Forms.TextBox();
             this.dtpInputDate = new System.Windows.Forms.DateTimePicker();
             this.label17 = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.cmbFeesStatus = new System.Windows.Forms.ComboBox();
-            this.lblFessStatus = new System.Windows.Forms.Label();
-            this.lblFeesAMT = new System.Windows.Forms.Label();
-            this.txtFessAmt = new System.Windows.Forms.TextBox();
+            this.cmbPeriodicity = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.cmbWorkStatus = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.lblFeesAMT = new System.Windows.Forms.Label();
+            this.cmbRecurringTask = new System.Windows.Forms.ComboBox();
+            this.lblFessStatus = new System.Windows.Forms.Label();
+            this.cmbFeesStatus = new System.Windows.Forms.ComboBox();
+            this.txtFessAmt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtUname = new System.Windows.Forms.TextBox();
-            this.txtPass = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.USERNAME = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.dtpDueDate = new System.Windows.Forms.DateTimePicker();
+            this.cmbAllocatedTo = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.RichTextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.dgvAllOne = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WorkType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnQuery = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllOne)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pnlMainForm
-            // 
-            this.pnlMainForm.Location = new System.Drawing.Point(3, 3);
-            this.pnlMainForm.Name = "pnlMainForm";
-            this.pnlMainForm.Size = new System.Drawing.Size(1212, 241);
-            this.pnlMainForm.TabIndex = 0;
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.txtNo);
+            this.panel2.Controls.Add(this.txtDescription);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.cmbPeriodicity);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.cmbWorkStatus);
             this.panel2.Controls.Add(this.label24);
-            this.panel2.Controls.Add(this.lblDynamic1);
-            this.panel2.Controls.Add(this.txtYear);
-            this.panel2.Controls.Add(this.dtpDueDate);
+            this.panel2.Controls.Add(this.lblFeesAMT);
+            this.panel2.Controls.Add(this.cmbRecurringTask);
+            this.panel2.Controls.Add(this.lblFessStatus);
+            this.panel2.Controls.Add(this.cmbFeesStatus);
+            this.panel2.Controls.Add(this.txtFessAmt);
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label21);
+            this.panel2.Controls.Add(this.dtpDueDate);
             this.panel2.Controls.Add(this.cmbAllocatedTo);
             this.panel2.Controls.Add(this.label20);
-            this.panel2.Controls.Add(this.label19);
-            this.panel2.Controls.Add(this.txtWorkType);
             this.panel2.Controls.Add(this.txtClientName);
             this.panel2.Controls.Add(this.label18);
+            this.panel2.Controls.Add(this.txtTradeName);
+            this.panel2.Controls.Add(this.lblYear);
+            this.panel2.Controls.Add(this.txtReturn);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.txtYear);
+            this.panel2.Controls.Add(this.lblDynamic1);
+            this.panel2.Controls.Add(this.label19);
+            this.panel2.Controls.Add(this.txtTaskName);
             this.panel2.Controls.Add(this.dtpInputDate);
             this.panel2.Controls.Add(this.label17);
-            this.panel2.Location = new System.Drawing.Point(3, 250);
+            this.panel2.Location = new System.Drawing.Point(4, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1211, 70);
+            this.panel2.Size = new System.Drawing.Size(1310, 242);
             this.panel2.TabIndex = 1;
             // 
-            // txtNo
+            // dgvAllOne
             // 
-            this.txtNo.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNo.Location = new System.Drawing.Point(1026, 31);
-            this.txtNo.Name = "txtNo";
-            this.txtNo.Size = new System.Drawing.Size(180, 28);
-            this.txtNo.TabIndex = 6;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(1089, 5);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(76, 20);
-            this.label24.TabIndex = 51;
-            this.label24.Text = "ANY NO";
-            // 
-            // lblDynamic1
-            // 
-            this.lblDynamic1.AutoSize = true;
-            this.lblDynamic1.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDynamic1.Location = new System.Drawing.Point(909, 5);
-            this.lblDynamic1.Name = "lblDynamic1";
-            this.lblDynamic1.Size = new System.Drawing.Size(54, 20);
-            this.lblDynamic1.TabIndex = 46;
-            this.lblDynamic1.Text = "YEAR";
-            // 
-            // txtYear
-            // 
-            this.txtYear.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtYear.Location = new System.Drawing.Point(877, 31);
-            this.txtYear.Name = "txtYear";
-            this.txtYear.Size = new System.Drawing.Size(130, 28);
-            this.txtYear.TabIndex = 5;
-            // 
-            // dtpDueDate
-            // 
-            this.dtpDueDate.CustomFormat = "dd/MM/yyyy";
-            this.dtpDueDate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDueDate.Location = new System.Drawing.Point(714, 33);
-            this.dtpDueDate.Name = "dtpDueDate";
-            this.dtpDueDate.Size = new System.Drawing.Size(148, 26);
-            this.dtpDueDate.TabIndex = 4;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(739, 5);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(96, 20);
-            this.label21.TabIndex = 43;
-            this.label21.Text = "DUE DATE";
-            // 
-            // cmbAllocatedTo
-            // 
-            this.cmbAllocatedTo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbAllocatedTo.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbAllocatedTo.FormattingEnabled = true;
-            this.cmbAllocatedTo.Location = new System.Drawing.Point(510, 31);
-            this.cmbAllocatedTo.Name = "cmbAllocatedTo";
-            this.cmbAllocatedTo.Size = new System.Drawing.Size(176, 28);
-            this.cmbAllocatedTo.TabIndex = 3;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(538, 5);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(138, 20);
-            this.label20.TabIndex = 41;
-            this.label20.Text = "ALLOCATED TO";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(358, 5);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(110, 20);
-            this.label19.TabIndex = 40;
-            this.label19.Text = "WORK TYPE";
-            // 
-            // txtWorkType
-            // 
-            this.txtWorkType.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWorkType.Location = new System.Drawing.Point(339, 31);
-            this.txtWorkType.Name = "txtWorkType";
-            this.txtWorkType.Size = new System.Drawing.Size(148, 28);
-            this.txtWorkType.TabIndex = 2;
+            this.dgvAllOne.AllowUserToAddRows = false;
+            this.dgvAllOne.AllowUserToDeleteRows = false;
+            this.dgvAllOne.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAllOne.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dgvAllOne.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAllOne.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.ClientName,
+            this.Column3,
+            this.WorkType,
+            this.EmployeeName,
+            this.Column6,
+            this.btnReply,
+            this.Column7,
+            this.Column9,
+            this.Column4});
+            this.dgvAllOne.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvAllOne.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvAllOne.Location = new System.Drawing.Point(0, 0);
+            this.dgvAllOne.Name = "dgvAllOne";
+            this.dgvAllOne.RowHeadersVisible = false;
+            this.dgvAllOne.RowHeadersWidth = 51;
+            this.dgvAllOne.RowTemplate.Height = 24;
+            this.dgvAllOne.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAllOne.Size = new System.Drawing.Size(1305, 404);
+            this.dgvAllOne.TabIndex = 4;
+            this.dgvAllOne.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllOne_CellClick);
+            this.dgvAllOne.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAllOne_CellFormatting);
+            this.dgvAllOne.SelectionChanged += new System.EventHandler(this.dgvAllOne_SelectionChanged);
             // 
             // txtClientName
             // 
-            this.txtClientName.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClientName.Location = new System.Drawing.Point(166, 31);
+            this.txtClientName.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClientName.Location = new System.Drawing.Point(153, 35);
             this.txtClientName.Name = "txtClientName";
-            this.txtClientName.ReadOnly = true;
-            this.txtClientName.Size = new System.Drawing.Size(154, 28);
-            this.txtClientName.TabIndex = 1;
+            this.txtClientName.Size = new System.Drawing.Size(252, 29);
+            this.txtClientName.TabIndex = 71;
+            this.txtClientName.TextChanged += new System.EventHandler(this.txtClientName_TextChanged);
+            this.txtClientName.Leave += new System.EventHandler(this.txtClientName_Leave);
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(215, 5);
+            this.label18.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(200, 11);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(59, 20);
-            this.label18.TabIndex = 38;
-            this.label18.Text = "NAME";
+            this.label18.Size = new System.Drawing.Size(121, 21);
+            this.label18.TabIndex = 72;
+            this.label18.Text = "CLIENT NAME";
+            // 
+            // txtTradeName
+            // 
+            this.txtTradeName.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTradeName.Location = new System.Drawing.Point(411, 35);
+            this.txtTradeName.Name = "txtTradeName";
+            this.txtTradeName.Size = new System.Drawing.Size(332, 29);
+            this.txtTradeName.TabIndex = 70;
+            this.txtTradeName.Leave += new System.EventHandler(this.txtTradeName_Leave);
+            // 
+            // lblYear
+            // 
+            this.lblYear.AutoSize = true;
+            this.lblYear.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYear.Location = new System.Drawing.Point(1158, 11);
+            this.lblYear.Name = "lblYear";
+            this.lblYear.Size = new System.Drawing.Size(144, 21);
+            this.lblYear.TabIndex = 68;
+            this.lblYear.Text = "FINANCIAL YEAR";
+            // 
+            // txtReturn
+            // 
+            this.txtReturn.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReturn.Location = new System.Drawing.Point(958, 35);
+            this.txtReturn.Name = "txtReturn";
+            this.txtReturn.Size = new System.Drawing.Size(189, 29);
+            this.txtReturn.TabIndex = 63;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(507, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(117, 21);
+            this.label2.TabIndex = 69;
+            this.label2.Text = "TRADE NAME";
+            // 
+            // txtYear
+            // 
+            this.txtYear.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtYear.Location = new System.Drawing.Point(1153, 35);
+            this.txtYear.Name = "txtYear";
+            this.txtYear.Size = new System.Drawing.Size(147, 29);
+            this.txtYear.TabIndex = 64;
+            // 
+            // lblDynamic1
+            // 
+            this.lblDynamic1.AutoSize = true;
+            this.lblDynamic1.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDynamic1.Location = new System.Drawing.Point(976, 11);
+            this.lblDynamic1.Name = "lblDynamic1";
+            this.lblDynamic1.Size = new System.Drawing.Size(148, 21);
+            this.lblDynamic1.TabIndex = 67;
+            this.lblDynamic1.Text = "TYPE OF RETURN";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(791, 11);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(103, 21);
+            this.label19.TabIndex = 66;
+            this.label19.Text = "TASK NAME";
+            // 
+            // txtTaskName
+            // 
+            this.txtTaskName.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTaskName.Location = new System.Drawing.Point(749, 35);
+            this.txtTaskName.Name = "txtTaskName";
+            this.txtTaskName.Size = new System.Drawing.Size(202, 29);
+            this.txtTaskName.TabIndex = 62;
             // 
             // dtpInputDate
             // 
             this.dtpInputDate.CustomFormat = "dd/MM/yyyy";
-            this.dtpInputDate.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpInputDate.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpInputDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpInputDate.Location = new System.Drawing.Point(3, 33);
+            this.dtpInputDate.Location = new System.Drawing.Point(3, 35);
             this.dtpInputDate.Name = "dtpInputDate";
-            this.dtpInputDate.Size = new System.Drawing.Size(147, 26);
-            this.dtpInputDate.TabIndex = 0;
+            this.dtpInputDate.Size = new System.Drawing.Size(144, 29);
+            this.dtpInputDate.TabIndex = 61;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(25, 5);
+            this.label17.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(16, 11);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(113, 20);
-            this.label17.TabIndex = 36;
-            this.label17.Text = "INPUT DATE";
+            this.label17.Size = new System.Drawing.Size(107, 21);
+            this.label17.TabIndex = 65;
+            this.label17.Text = "START DATE";
             // 
-            // panel5
+            // cmbPeriodicity
             // 
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.cmbFeesStatus);
-            this.panel5.Controls.Add(this.lblFessStatus);
-            this.panel5.Controls.Add(this.lblFeesAMT);
-            this.panel5.Controls.Add(this.txtFessAmt);
-            this.panel5.Controls.Add(this.cmbWorkStatus);
-            this.panel5.Controls.Add(this.label1);
-            this.panel5.Controls.Add(this.txtUname);
-            this.panel5.Controls.Add(this.txtPass);
-            this.panel5.Controls.Add(this.label31);
-            this.panel5.Controls.Add(this.USERNAME);
-            this.panel5.Location = new System.Drawing.Point(3, 326);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1211, 70);
-            this.panel5.TabIndex = 2;
+            this.cmbPeriodicity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPeriodicity.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPeriodicity.FormattingEnabled = true;
+            this.cmbPeriodicity.Items.AddRange(new object[] {
+            "DAILY",
+            "WEEKLY",
+            "MONTHLY",
+            "QUARTERLY",
+            "HALF YEARLY",
+            "YEARLY"});
+            this.cmbPeriodicity.Location = new System.Drawing.Point(574, 105);
+            this.cmbPeriodicity.Name = "cmbPeriodicity";
+            this.cmbPeriodicity.Size = new System.Drawing.Size(172, 29);
+            this.cmbPeriodicity.TabIndex = 86;
             // 
-            // cmbFeesStatus
+            // label3
             // 
-            this.cmbFeesStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFeesStatus.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbFeesStatus.FormattingEnabled = true;
-            this.cmbFeesStatus.Items.AddRange(new object[] {
-            "UNPAID",
-            "PAID"});
-            this.cmbFeesStatus.Location = new System.Drawing.Point(724, 34);
-            this.cmbFeesStatus.Name = "cmbFeesStatus";
-            this.cmbFeesStatus.Size = new System.Drawing.Size(157, 28);
-            this.cmbFeesStatus.TabIndex = 3;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(609, 77);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(114, 21);
+            this.label3.TabIndex = 85;
+            this.label3.Text = "PERIODICITY";
             // 
-            // lblFessStatus
+            // cmbWorkStatus
             // 
-            this.lblFessStatus.AutoSize = true;
-            this.lblFessStatus.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFessStatus.Location = new System.Drawing.Point(743, 5);
-            this.lblFessStatus.Name = "lblFessStatus";
-            this.lblFessStatus.Size = new System.Drawing.Size(125, 20);
-            this.lblFessStatus.TabIndex = 56;
-            this.lblFessStatus.Text = "FEES STATUS";
+            this.cmbWorkStatus.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cmbWorkStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbWorkStatus.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbWorkStatus.FormattingEnabled = true;
+            this.cmbWorkStatus.Items.AddRange(new object[] {
+            "Not Started",
+            "Waiting For Documents",
+            "Document Received",
+            "Return Prepaired",
+            "Cancelled",
+            "Complete",
+            "Done"});
+            this.cmbWorkStatus.Location = new System.Drawing.Point(1066, 105);
+            this.cmbWorkStatus.Name = "cmbWorkStatus";
+            this.cmbWorkStatus.Size = new System.Drawing.Size(234, 28);
+            this.cmbWorkStatus.TabIndex = 76;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(1165, 77);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(71, 21);
+            this.label24.TabIndex = 80;
+            this.label24.Text = "STATUS";
             // 
             // lblFeesAMT
             // 
             this.lblFeesAMT.AutoSize = true;
-            this.lblFeesAMT.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFeesAMT.Location = new System.Drawing.Point(586, 5);
+            this.lblFeesAMT.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFeesAMT.Location = new System.Drawing.Point(783, 77);
             this.lblFeesAMT.Name = "lblFeesAMT";
-            this.lblFeesAMT.Size = new System.Drawing.Size(99, 20);
-            this.lblFeesAMT.TabIndex = 54;
+            this.lblFeesAMT.Size = new System.Drawing.Size(92, 21);
+            this.lblFeesAMT.TabIndex = 81;
             this.lblFeesAMT.Text = "FEES AMT.";
+            // 
+            // cmbRecurringTask
+            // 
+            this.cmbRecurringTask.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRecurringTask.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRecurringTask.FormattingEnabled = true;
+            this.cmbRecurringTask.Items.AddRange(new object[] {
+            "YES",
+            "NO"});
+            this.cmbRecurringTask.Location = new System.Drawing.Point(411, 105);
+            this.cmbRecurringTask.Name = "cmbRecurringTask";
+            this.cmbRecurringTask.Size = new System.Drawing.Size(154, 29);
+            this.cmbRecurringTask.TabIndex = 84;
+            // 
+            // lblFessStatus
+            // 
+            this.lblFessStatus.AutoSize = true;
+            this.lblFessStatus.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFessStatus.Location = new System.Drawing.Point(924, 77);
+            this.lblFessStatus.Name = "lblFessStatus";
+            this.lblFessStatus.Size = new System.Drawing.Size(114, 21);
+            this.lblFessStatus.TabIndex = 82;
+            this.lblFessStatus.Text = "FEES STATUS";
+            // 
+            // cmbFeesStatus
+            // 
+            this.cmbFeesStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFeesStatus.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFeesStatus.FormattingEnabled = true;
+            this.cmbFeesStatus.Items.AddRange(new object[] {
+            "PENDING",
+            "PAID"});
+            this.cmbFeesStatus.Location = new System.Drawing.Point(909, 105);
+            this.cmbFeesStatus.Name = "cmbFeesStatus";
+            this.cmbFeesStatus.Size = new System.Drawing.Size(140, 29);
+            this.cmbFeesStatus.TabIndex = 74;
             // 
             // txtFessAmt
             // 
-            this.txtFessAmt.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFessAmt.Location = new System.Drawing.Point(560, 34);
+            this.txtFessAmt.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFessAmt.Location = new System.Drawing.Point(754, 105);
             this.txtFessAmt.Name = "txtFessAmt";
-            this.txtFessAmt.Size = new System.Drawing.Size(148, 28);
-            this.txtFessAmt.TabIndex = 2;
-            // 
-            // cmbWorkStatus
-            // 
-            this.cmbWorkStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbWorkStatus.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbWorkStatus.FormattingEnabled = true;
-            this.cmbWorkStatus.Items.AddRange(new object[] {
-            "PENDING",
-            "DONE"});
-            this.cmbWorkStatus.Location = new System.Drawing.Point(897, 34);
-            this.cmbWorkStatus.Name = "cmbWorkStatus";
-            this.cmbWorkStatus.Size = new System.Drawing.Size(138, 28);
-            this.cmbWorkStatus.TabIndex = 4;
+            this.txtFessAmt.Size = new System.Drawing.Size(145, 29);
+            this.txtFessAmt.TabIndex = 73;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(923, 5);
+            this.label1.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(415, 77);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 20);
-            this.label1.TabIndex = 49;
-            this.label1.Text = "W STATUS";
+            this.label1.Size = new System.Drawing.Size(149, 21);
+            this.label1.TabIndex = 83;
+            this.label1.Text = "RECURRING TASK";
             // 
-            // txtUname
+            // label21
             // 
-            this.txtUname.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUname.Location = new System.Drawing.Point(173, 34);
-            this.txtUname.Name = "txtUname";
-            this.txtUname.Size = new System.Drawing.Size(186, 28);
-            this.txtUname.TabIndex = 0;
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(16, 77);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(90, 21);
+            this.label21.TabIndex = 79;
+            this.label21.Text = "DUE DATE";
             // 
-            // txtPass
+            // dtpDueDate
             // 
-            this.txtPass.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPass.Location = new System.Drawing.Point(376, 34);
-            this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(169, 28);
-            this.txtPass.TabIndex = 1;
+            this.dtpDueDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpDueDate.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDueDate.Location = new System.Drawing.Point(3, 105);
+            this.dtpDueDate.Name = "dtpDueDate";
+            this.dtpDueDate.Size = new System.Drawing.Size(144, 29);
+            this.dtpDueDate.TabIndex = 77;
             // 
-            // label31
+            // cmbAllocatedTo
             // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(403, 5);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(110, 20);
-            this.label31.TabIndex = 38;
-            this.label31.Text = "PASSWORD";
+            this.cmbAllocatedTo.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cmbAllocatedTo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAllocatedTo.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbAllocatedTo.FormattingEnabled = true;
+            this.cmbAllocatedTo.Location = new System.Drawing.Point(153, 105);
+            this.cmbAllocatedTo.Name = "cmbAllocatedTo";
+            this.cmbAllocatedTo.Size = new System.Drawing.Size(252, 29);
+            this.cmbAllocatedTo.TabIndex = 75;
             // 
-            // USERNAME
+            // label20
             // 
-            this.USERNAME.AutoSize = true;
-            this.USERNAME.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.USERNAME.Location = new System.Drawing.Point(209, 5);
-            this.USERNAME.Name = "USERNAME";
-            this.USERNAME.Size = new System.Drawing.Size(106, 20);
-            this.USERNAME.TabIndex = 36;
-            this.USERNAME.Text = "USERNAME";
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(204, 77);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(117, 21);
+            this.label20.TabIndex = 78;
+            this.label20.Text = "ASSIGNED TO";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescription.Location = new System.Drawing.Point(146, 143);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(305, 91);
+            this.txtDescription.TabIndex = 87;
+            this.txtDescription.Text = "";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(16, 146);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(124, 21);
+            this.label4.TabIndex = 88;
+            this.label4.Text = "DESCRIPTION:";
             // 
             // panel3
             // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.btnClose);
             this.panel3.Controls.Add(this.btnUpdate);
             this.panel3.Controls.Add(this.btnSave);
-            this.panel3.Location = new System.Drawing.Point(3, 402);
+            this.panel3.Location = new System.Drawing.Point(4, 251);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1211, 47);
-            this.panel3.TabIndex = 3;
+            this.panel3.Size = new System.Drawing.Size(1309, 51);
+            this.panel3.TabIndex = 5;
             // 
             // btnClose
             // 
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClose.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(686, 6);
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(634, 5);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(94, 31);
-            this.btnClose.TabIndex = 2;
+            this.btnClose.Size = new System.Drawing.Size(94, 37);
+            this.btnClose.TabIndex = 7;
             this.btnClose.Text = "CLOSE";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -384,72 +475,46 @@
             // 
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUpdate.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(565, 6);
+            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
+            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUpdate.Location = new System.Drawing.Point(520, 5);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(94, 31);
-            this.btnUpdate.TabIndex = 1;
+            this.btnUpdate.Size = new System.Drawing.Size(108, 37);
+            this.btnUpdate.TabIndex = 7;
             this.btnUpdate.Text = "UPDATE";
+            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnSave
             // 
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSave.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(444, 6);
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(420, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(94, 31);
-            this.btnSave.TabIndex = 0;
+            this.btnSave.Size = new System.Drawing.Size(94, 37);
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "SAVE";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // dgvAllOne
+            // panel1
             // 
-            this.dgvAllOne.AllowUserToAddRows = false;
-            this.dgvAllOne.AllowUserToDeleteRows = false;
-            this.dgvAllOne.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvAllOne.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvAllOne.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAllOne.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvAllOne.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAllOne.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.ClientName,
-            this.WorkType,
-            this.EmployeeName,
-            this.Column6,
-            this.btnQuery,
-            this.btnReply,
-            this.Column9,
-            this.Column7});
-            this.dgvAllOne.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvAllOne.Location = new System.Drawing.Point(3, 455);
-            this.dgvAllOne.Name = "dgvAllOne";
-            this.dgvAllOne.RowHeadersVisible = false;
-            this.dgvAllOne.RowHeadersWidth = 51;
-            this.dgvAllOne.RowTemplate.Height = 24;
-            this.dgvAllOne.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAllOne.Size = new System.Drawing.Size(1212, 331);
-            this.dgvAllOne.TabIndex = 4;
-            this.dgvAllOne.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllOne_CellClick);
-            this.dgvAllOne.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAllOne_CellFormatting);
-            this.dgvAllOne.SelectionChanged += new System.EventHandler(this.dgvAllOne_SelectionChanged);
+            this.panel1.Controls.Add(this.dgvAllOne);
+            this.panel1.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel1.Location = new System.Drawing.Point(8, 309);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1305, 404);
+            this.panel1.TabIndex = 6;
             // 
             // Column1
             // 
             this.Column1.DataPropertyName = "serial";
-            this.Column1.FillWeight = 43.00868F;
+            this.Column1.FillWeight = 42.32486F;
             this.Column1.HeaderText = "SR.";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
@@ -457,58 +522,53 @@
             // Column2
             // 
             this.Column2.DataPropertyName = "a_InputDate";
-            this.Column2.FillWeight = 104.6672F;
-            this.Column2.HeaderText = "In. Date";
+            this.Column2.FillWeight = 81.93116F;
+            this.Column2.HeaderText = "START DT.";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
             // 
             // ClientName
             // 
             this.ClientName.DataPropertyName = "clientName";
-            this.ClientName.FillWeight = 135.4978F;
-            this.ClientName.HeaderText = "Name";
+            this.ClientName.FillWeight = 133.635F;
+            this.ClientName.HeaderText = "NAME";
             this.ClientName.MinimumWidth = 6;
             this.ClientName.Name = "ClientName";
+            // 
+            // Column3
+            // 
+            this.Column3.FillWeight = 135.4174F;
+            this.Column3.HeaderText = "TRADE NAME";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
             // 
             // WorkType
             // 
             this.WorkType.DataPropertyName = "a_WorkType";
-            this.WorkType.FillWeight = 95.15669F;
-            this.WorkType.HeaderText = "W Type";
+            this.WorkType.FillWeight = 138.1019F;
+            this.WorkType.HeaderText = "TASK NAME";
             this.WorkType.MinimumWidth = 6;
             this.WorkType.Name = "WorkType";
             // 
             // EmployeeName
             // 
             this.EmployeeName.DataPropertyName = "a_AllocatedTo";
-            this.EmployeeName.FillWeight = 187.1658F;
-            this.EmployeeName.HeaderText = "Allocated To";
+            this.EmployeeName.FillWeight = 113.8567F;
+            this.EmployeeName.HeaderText = "ASSIGNED TO";
             this.EmployeeName.MinimumWidth = 6;
             this.EmployeeName.Name = "EmployeeName";
             // 
             // Column6
             // 
             this.Column6.DataPropertyName = "a_DueDate";
-            this.Column6.FillWeight = 94.13483F;
-            this.Column6.HeaderText = "D Date";
+            this.Column6.FillWeight = 73.44388F;
+            this.Column6.HeaderText = "DUE DT.";
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
             // 
-            // btnQuery
-            // 
-            this.btnQuery.FillWeight = 73.07347F;
-            this.btnQuery.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnQuery.HeaderText = "Query";
-            this.btnQuery.MinimumWidth = 6;
-            this.btnQuery.Name = "btnQuery";
-            this.btnQuery.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.btnQuery.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.btnQuery.Text = "QUERY";
-            this.btnQuery.UseColumnTextForButtonValue = true;
-            // 
             // btnReply
             // 
-            this.btnReply.FillWeight = 71.14763F;
+            this.btnReply.FillWeight = 84.48994F;
             this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReply.HeaderText = "Reply";
             this.btnReply.MinimumWidth = 6;
@@ -518,86 +578,95 @@
             this.btnReply.Text = "REPLY";
             this.btnReply.UseColumnTextForButtonValue = true;
             // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "a_Status";
-            this.Column9.FillWeight = 87.40306F;
-            this.Column9.HeaderText = "Work St";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            // 
             // Column7
             // 
             this.Column7.DataPropertyName = "a_FeeStatus";
-            this.Column7.HeaderText = "Fees St";
+            this.Column7.FillWeight = 76.6363F;
+            this.Column7.HeaderText = "FEES ST.";
             this.Column7.MinimumWidth = 6;
             this.Column7.Name = "Column7";
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "a_Status";
+            this.Column9.FillWeight = 119.5916F;
+            this.Column9.HeaderText = "STATUS";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            // 
+            // Column4
+            // 
+            this.Column4.FillWeight = 118.753F;
+            this.Column4.HeaderText = "DESCRIPTION";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
             // 
             // ucAllOne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dgvAllOne);
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.pnlMainForm);
             this.Name = "ucAllOne";
-            this.Size = new System.Drawing.Size(1222, 789);
+            this.Size = new System.Drawing.Size(1320, 716);
             this.Load += new System.EventHandler(this.ucAllOne_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllOne)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel pnlMainForm;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txtNo;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label lblDynamic1;
-        private System.Windows.Forms.TextBox txtYear;
-        private System.Windows.Forms.DateTimePicker dtpDueDate;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.ComboBox cmbAllocatedTo;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox txtWorkType;
+        private System.Windows.Forms.DataGridView dgvAllOne;
         private System.Windows.Forms.TextBox txtClientName;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txtTradeName;
+        private System.Windows.Forms.Label lblYear;
+        private System.Windows.Forms.TextBox txtReturn;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtYear;
+        private System.Windows.Forms.Label lblDynamic1;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txtTaskName;
         private System.Windows.Forms.DateTimePicker dtpInputDate;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.ComboBox cmbFeesStatus;
-        private System.Windows.Forms.Label lblFessStatus;
-        private System.Windows.Forms.Label lblFeesAMT;
-        private System.Windows.Forms.TextBox txtFessAmt;
+        private System.Windows.Forms.ComboBox cmbPeriodicity;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbWorkStatus;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label lblFeesAMT;
+        private System.Windows.Forms.ComboBox cmbRecurringTask;
+        private System.Windows.Forms.Label lblFessStatus;
+        private System.Windows.Forms.ComboBox cmbFeesStatus;
+        private System.Windows.Forms.TextBox txtFessAmt;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtUname;
-        private System.Windows.Forms.TextBox txtPass;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label USERNAME;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.DateTimePicker dtpDueDate;
+        private System.Windows.Forms.ComboBox cmbAllocatedTo;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.RichTextBox txtDescription;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.DataGridView dgvAllOne;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn WorkType;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewButtonColumn btnQuery;
         private System.Windows.Forms.DataGridViewButtonColumn btnReply;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }

@@ -47,7 +47,6 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Parameters.AddWithValue("@a_AllocatedTo", objPro.allOneAllocatedEmp);
                 objCmd.Parameters.AddWithValue("@a_DueDate", objPro.allOneDueDate);
                 objCmd.Parameters.AddWithValue("@a_Year", objPro.allOneYear);
-                objCmd.Parameters.AddWithValue("@a_Number", objPro.allOneNumber);
                 objCmd.Parameters.AddWithValue("@a_Fees", objPro.allOneFee);
                 objCmd.Parameters.AddWithValue("@a_FeeStatus", objPro.allOneFeeStatus);
                 objCmd.Parameters.AddWithValue("@a_Status", objPro.allOneStatus);
