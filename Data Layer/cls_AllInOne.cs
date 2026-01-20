@@ -41,15 +41,19 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Parameters.AddWithValue("@intMode", 1);
                 objCmd.Parameters.AddWithValue("@clientId", objPro.clientID);
                 objCmd.Parameters.AddWithValue("@clientName", objPro.clientName);
-                objCmd.Parameters.AddWithValue("@a_Service", objPro.allOneService);
+                objCmd.Parameters.AddWithValue("@a_TradeName", objPro.allOneTradeName);
                 objCmd.Parameters.AddWithValue("@a_InputDate", objPro.allOneInputDate);
-                objCmd.Parameters.AddWithValue("@a_WorkType", objPro.allOneWorktype);
+                objCmd.Parameters.AddWithValue("@a_TaskName", objPro.allOneTaskName);
                 objCmd.Parameters.AddWithValue("@a_AllocatedTo", objPro.allOneAllocatedEmp);
                 objCmd.Parameters.AddWithValue("@a_DueDate", objPro.allOneDueDate);
                 objCmd.Parameters.AddWithValue("@a_Year", objPro.allOneYear);
                 objCmd.Parameters.AddWithValue("@a_Fees", objPro.allOneFee);
                 objCmd.Parameters.AddWithValue("@a_FeeStatus", objPro.allOneFeeStatus);
                 objCmd.Parameters.AddWithValue("@a_Status", objPro.allOneStatus);
+                objCmd.Parameters.AddWithValue("@a_Description", objPro.allOneDescription);
+                objCmd.Parameters.AddWithValue("@a_RecurringTask", objPro.allOneRecurringTask);
+                objCmd.Parameters.AddWithValue("@a_Periodicity", objPro.allOnePeriodicity);
+                objCmd.Parameters.AddWithValue("@a_TypeOfReturn", objPro.allOneTypeOfReturn);
 
                 flag = objCmd.ExecuteNonQuery();
                 objCon.con.Close();
@@ -74,16 +78,19 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.CommandText = "usp_AllOne";
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.Parameters.AddWithValue("@intMode", 2);
+                objCmd.Parameters.AddWithValue("@allOneId", objPro.allOneId);
                 objCmd.Parameters.AddWithValue("@a_InputDate", objPro.allOneInputDate);
-                objCmd.Parameters.AddWithValue("@a_WorkType", objPro.allOneWorktype);
+                objCmd.Parameters.AddWithValue("@a_TaskName", objPro.allOneTaskName);
                 objCmd.Parameters.AddWithValue("@a_AllocatedTo", objPro.allOneAllocatedEmp);
                 objCmd.Parameters.AddWithValue("@a_DueDate", objPro.allOneDueDate);
                 objCmd.Parameters.AddWithValue("@a_Year", objPro.allOneYear);
-                objCmd.Parameters.AddWithValue("@a_Number", objPro.allOneNumber);
                 objCmd.Parameters.AddWithValue("@a_Fees", objPro.allOneFee);
                 objCmd.Parameters.AddWithValue("@a_FeeStatus", objPro.allOneFeeStatus);
                 objCmd.Parameters.AddWithValue("@a_Status", objPro.allOneStatus);
-                objCmd.Parameters.AddWithValue("@allOneId", objPro.allOneId);
+                objCmd.Parameters.AddWithValue("@a_Description", objPro.allOneDescription);
+                objCmd.Parameters.AddWithValue("@a_RecurringTask", objPro.allOneRecurringTask);
+                objCmd.Parameters.AddWithValue("@a_Periodicity", objPro.allOnePeriodicity);
+                objCmd.Parameters.AddWithValue("@a_TypeOfReturn", objPro.allOneTypeOfReturn);
 
                 flag = objCmd.ExecuteNonQuery();
                 objCon.con.Close();
