@@ -27,60 +27,6 @@ namespace Tax_Consultant_25.Frames
         int flag = 0;
         int enqId = 0;
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Parent.Controls.Remove(this);
-            this.Dispose();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                if(txtName.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Client Name", "ENQUIRY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if(txtService.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Service", "ENQUIRY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                //if(txtMobile.Text == string.Empty)
-                //{
-                //    MessageBox.Show("Enter Client Mobile Number", "ENQUIRY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    return;
-                //}
-
-                objPro = new clsProperties();
-
-                objPro.enquiryName = txtName.Text;
-                objPro.enquiryService = txtService.Text;
-                objPro.enquiryMobile = txtMobile.Text;
-                objPro.enquiryEmail = txtEmailId.Text;
-                objPro.enquiryDate = dtpTime.Value;
-
-                enquiryDL = new cls_EnquiryDL();
-                flag = enquiryDL.saveData(objPro);
-
-                if(flag == 1)
-                {
-                    //MessageBox.Show("Record Saved...");
-                    showData();
-                    Clear();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "UC_ENQUIRY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
         private void showData()
         {
             enquiryDL = new cls_EnquiryDL();
@@ -146,6 +92,79 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtService_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (txtName.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Client Name", "ENQUIRY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (txtService.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Service", "ENQUIRY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                objPro = new clsProperties();
+
+                objPro.enquiryName = txtName.Text;
+                objPro.enquiryService = txtService.Text;
+                objPro.enquiryMobile = txtMobile.Text;
+                objPro.enquiryEmail = txtEmailId.Text;
+                objPro.enquiryDate = dtpTime.Value;
+
+                enquiryDL = new cls_EnquiryDL();
+                flag = enquiryDL.saveData(objPro);
+
+                if (flag == 1)
+                {
+                    showData();
+                    Clear();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_ENQUIRY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -162,12 +181,6 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                //if (txtMobile.Text == string.Empty)
-                //{
-                //    MessageBox.Show("Enter Client Mobile Number", "ENQUIRY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    return;
-                //}
-
                 objPro = new clsProperties();
 
                 objPro.enquiryName = txtName.Text;
@@ -182,7 +195,6 @@ namespace Tax_Consultant_25.Frames
 
                 if (flag == 1)
                 {
-                    //MessageBox.Show("Record Updated...");
                     showData();
                     Clear();
                 }
@@ -194,5 +206,10 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Parent.Controls.Remove(this);
+            this.Dispose();
+        }
     }
 }
