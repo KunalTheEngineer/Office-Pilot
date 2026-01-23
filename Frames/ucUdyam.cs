@@ -32,182 +32,58 @@ namespace Tax_Consultant_25.Frames
         clsProperties objPro;
         cls_Query query;
         cls_BusinessDL bus;
+        cls_ClientsDL client;
+       
 
         #endregion
 
         #region VARIABLES
 
-        int flag, clID, tempUdyamId, tempClientId;
+        int flag, clientId, tempUdyamId, tempClientId;
         string tempEmployeeName, tempClientName, tempWorkType, serviceName, service, businessName, clientAddress;
-        int present = 0;
 
         #endregion
 
-        #region FUNCTIONS
+        #region USER DEFINED EVENTS
 
-        private void ShowQuery()
+        private void cmbWorkStatus_DrawItem(object sender, DrawItemEventArgs e)
         {
-            query = new cls_Query();
-            ds1 = new DataSet();
+            if (e.Index < 0)
+                return;
 
-            ds1 = query.QueryRaisedByEmp();
-
-            foreach (DataGridViewRow row in dgvUdyam.Rows)
+            Color[] bgColors =
             {
-                if (row.IsNewRow)
-                    continue;
+                ColorTranslator.FromHtml("#D6DCE4"), // Not Started
+                ColorTranslator.FromHtml("#F4B084"), // Waiting for Documents
+                ColorTranslator.FromHtml("#A9D08E"), // Document Received
+                ColorTranslator.FromHtml("#00B0F0"), // Return Prepared
+                ColorTranslator.FromHtml("#FF0000"), // Cancelled
+                ColorTranslator.FromHtml("#FFC000"), // Complit
+                ColorTranslator.FromHtml("#FFFF00"), // Filed
+            };
 
-                string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
-                string workType = row.Cells["WorkType"].Value?.ToString();
-                service = "UDYAM";
-                var queryRow = ds1.Tables[0].AsEnumerable().FirstOrDefault(r =>
-                   r.Field<string>("EmployeeName") == employee &&
-                   r.Field<string>("clientName") == client &&
-                   r.Field<string>("service") == service &&
-                   r.Field<string>("workType") == workType
-                 //&&
-                 //!string.IsNullOrEmpty(r.Field<string>("queryByEmp"))
-                 );
+            Color backColor = bgColors[e.Index];
 
-
-                bool hasQuery = false;
-
-                if (queryRow != null)
-                {
-                    object val = queryRow["HasQuery"];
-
-                    if (val != DBNull.Value && int.TryParse(val.ToString(), out int parsed))
-                    {
-                        hasQuery = parsed == 1;
-                    }
-                }
-
-                row.DefaultCellStyle.BackColor = hasQuery ? Color.Red : DefaultBackColor;
-
-            }
-        }
-
-        private void show()
-        {
-            clsUdyamDL = new cls_UdyamDL();
-            ds = new DataSet();
-
-            ds = clsUdyamDL.showData();
-
-            if (ds.Tables[0].Rows.Count < 0)
+            // This removes the blue highlight effect
+            using (Brush backgroundBrush = new SolidBrush(backColor))
             {
-
-            }
-            else
-            {
-                dgvUdyam.DataSource = ds.Tables[0];
-                dgvUdyam.Columns["udyamId"].Visible = false;
-                dgvUdyam.Columns["u_Fees"].Visible = false;
-                dgvUdyam.Columns["clientId"].Visible = false;
+                e.Graphics.FillRectangle(backgroundBrush, e.Bounds);
             }
 
-                
-        }
-
-        private void Clear()
-        {
-            dtpInputDate.Text = DateTime.Now.ToString();
-            txtClientName.Clear();
-            txtWorkType.Clear();
-            dtpDueDate.Text = DateTime.Now.ToString();
-            txtUname.Clear();
-            txtPass.Clear();
-            txtFessAmt.Clear();
-
-            cmbFeesStatus.SelectedIndex = 0;
-            cmbWorkStatus.SelectedIndex = 0;
-            cmbAllocatedTo.SelectedIndex = 0;
-
-            btnSave.Enabled = true;
-        }
-
-        private void showClientUsernamePasswordOnDGVClick()
-        {
-            ds = null;
-                
-            ds = new DataSet();
-            clientUserPassDL = new cls_ClientUserPassDL();
-            ds = clientUserPassDL.getClientUsernamePasword(objPro);
-
-            if (ds.Tables[0].Rows.Count > 0)
+            using (Brush textBrush = new SolidBrush(Color.Black))
             {
-                txtUname.Text = ds.Tables[0].Rows[0]["clientUsername"].ToString();
-                txtPass.Text = ds.Tables[0].Rows[0]["clientPassword"].ToString();
+                e.Graphics.DrawString(
+                    cmbWorkStatus.Items[e.Index].ToString(),
+                    e.Font,
+                    textBrush,
+                    e.Bounds
+                );
             }
-        }
 
-        private void BindEmployee()
-        {
-            try
-            {
-                dt = new DataTable();
-                employeeDL = new cls_EmployeeDL();
-                dt = employeeDL.bindEmployee();
-
-                cmbAllocatedTo.DataSource = dt;
-                cmbAllocatedTo.DisplayMember = "e_Name";
-                cmbAllocatedTo.ValueMember = "empId";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "UC_PTEC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            e.DrawFocusRectangle();
         }
 
         #endregion
-
-        private void dgvUdyam_SelectionChanged(object sender, EventArgs e)
-        {
-            dgvUdyam.ClearSelection();
-        }
-
-        private void ucUdyam_Load(object sender, EventArgs e)
-        {
-            common = new CommonUC();
-            pnlMainForm.Controls.Clear();
-            common.service = "UDYAM";
-            pnlMainForm.Controls.Add(common);
-
-            BindEmployee();
-            show();
-            serviceName = common.service;
-
-            common.FormDataInfo += CommonUC_FormDataInfo;
-
-            cmbAllocatedTo.SelectedIndex = 0;
-            cmbFeesStatus.SelectedIndex = 0;
-            cmbWorkStatus.SelectedIndex = 0;
-        }
-
-        private void CommonUC_FormDataInfo(object sender, FormDataInfoEventArgs e)
-        {
-            if (e.Username != string.Empty && e.Password != string.Empty)
-            {
-                present = 1;
-            }
-
-            txtClientName.Text = e.clientName;
-            txtUname.Text = e.Username;
-            txtPass.Text = e.Password;
-
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Parent.Controls.Remove(this);
-            this.Dispose();
-        }
-
-        private void dgvUdyam_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            ShowQuery();
-        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -219,25 +95,13 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                if (txtWorkType.Text == string.Empty)
+                if (txtTaskName.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Work Type", "UDYAM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                //if (txtUname.Text == string.Empty)
-                //{
-                //    MessageBox.Show("Enter Udyam Number", "UDYAM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    return;
-                //}
-
-                //if (txtPass.Text == string.Empty)
-                //{
-                //    MessageBox.Show("Enter Mobile Number", "UDYAM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    return;
-                //}
-
-                if (txtFessAmt.Text == string.Empty)
+                if (txtFees.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Fees Amount", "UDYAM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -245,39 +109,23 @@ namespace Tax_Consultant_25.Frames
 
                 objPro = new clsProperties();
 
-                clID = common.clientId;
-
-                objPro.clientID = clID;
+                objPro.clientID = tempClientId;
                 objPro.clientName = txtClientName.Text;
-                objPro.udyamService = common.service;
+                objPro.udyamTradeName = txtTradeName.Text;
                 objPro.udyamInputDate = dtpInputDate.Value;
-                objPro.udyamWorktype = txtWorkType.Text;
+                objPro.udyamTaskName = txtTaskName.Text;
                 objPro.udyamAllocatedEmp = cmbAllocatedTo.Text;
                 objPro.udyamDueDate = dtpDueDate.Value;
-                objPro.udyamFees = Convert.ToInt32(txtFessAmt.Text);
+                objPro.udyamFees = Convert.ToInt32(txtFees.Text);
                 objPro.udyamFeeStatus = cmbFeesStatus.Text;
                 objPro.udyamStatus = cmbWorkStatus.Text;
-
-                objPro.username = txtUname.Text;
-                objPro.password = txtPass.Text;
-                objPro.workService = objPro.udyamService;
+                objPro.udyamDescription = txtDescription.Text;
 
                 clsUdyamDL = new cls_UdyamDL();
                 flag = clsUdyamDL.saveData(objPro);
 
-                if(flag == 1)
+                if (flag == 1)
                 {
-                    flag = 0;
-
-                    if (present == 0)
-                    {
-                        clientUserPassDL = new cls_ClientUserPassDL();
-                        flag = clientUserPassDL.saveClientUserNamePassword(objPro);
-                    }
-
-                    //MessageBox.Show("Record Saved...");
-
-                    common.ClearControls();
                     Clear();
                     show();
                 }
@@ -298,25 +146,13 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                if (txtWorkType.Text == string.Empty)
+                if (txtTaskName.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Work Type", "UDYAM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                //if (txtUname.Text == string.Empty)
-                //{
-                //    MessageBox.Show("Enter Udyam Number", "UDYAM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    return;
-                //}
-
-                //if (txtPass.Text == string.Empty)
-                //{
-                //    MessageBox.Show("Enter Mobile Number", "UDYAM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    return;
-                //}
-
-                if (txtFessAmt.Text == string.Empty)
+                if (txtFees.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Fees Amount", "UDYAM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -324,54 +160,43 @@ namespace Tax_Consultant_25.Frames
 
                 objPro = new clsProperties();
 
-                clID = common.clientId;
-
                 objPro.udyamId = tempUdyamId;
-                objPro.udyamService = common.service;
+                objPro.clientID = clientId;
+                objPro.clientName = txtClientName.Text;
+                objPro.udyamTradeName = txtTradeName.Text;
                 objPro.udyamInputDate = dtpInputDate.Value;
-                objPro.udyamWorktype = txtWorkType.Text;
+                objPro.udyamTaskName = txtTaskName.Text;
                 objPro.udyamAllocatedEmp = cmbAllocatedTo.Text;
                 objPro.udyamDueDate = dtpDueDate.Value;
-                objPro.udyamFees = Convert.ToInt32(txtFessAmt.Text);
+                objPro.udyamFees = Convert.ToInt32(txtFees.Text);
                 objPro.udyamFeeStatus = cmbFeesStatus.Text;
                 objPro.udyamStatus = cmbWorkStatus.Text;
-
-                objPro.clientID = tempClientId;
-                objPro.username = txtUname.Text;
-                objPro.password = txtPass.Text;
-                objPro.workService = objPro.udyamService;
+                objPro.udyamDescription = txtDescription.Text;
 
                 clsUdyamDL = new cls_UdyamDL();
                 flag = clsUdyamDL.updateData(objPro);
 
                 if (flag == 1)
                 {
-                    flag = 0;
 
-                    clientUserPassDL = new cls_ClientUserPassDL();
-                    flag = clientUserPassDL.updateClientUserNamePassword(objPro);
+                    //if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "Done")
+                    //{
+                    //    DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "UDYAM", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "DONE")
-                    {
-                        DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "UDYAM", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    //    if (dial == DialogResult.Yes)
+                    //    {
+                    //        frm_Narration narr = new frm_Narration();
+                    //        narr.clientName = txtClientName.Text;
+                    //        narr.service = common.service;
+                    //        narr.amount = txtFessAmt.Text;
+                    //        narr.workType = txtWorkType.Text;
+                    //        narr.businessName = businessName;
+                    //        narr.clientAddress = clientAddress;
 
-                        if (dial == DialogResult.Yes)
-                        {
-                            frm_Narration narr = new frm_Narration();
-                            narr.clientName = txtClientName.Text;
-                            narr.service = common.service;
-                            narr.amount = txtFessAmt.Text;
-                            narr.workType = txtWorkType.Text;
-                            narr.businessName = businessName;
-                            narr.clientAddress = clientAddress;
+                    //        narr.Show();
+                    //    }
+                    //}
 
-                            narr.Show();
-                        }
-                    }
-
-                    //MessageBox.Show("Record Updated...");
-
-                    common.ClearControls();
                     Clear();
                     show();
                 }
@@ -380,6 +205,59 @@ namespace Tax_Consultant_25.Frames
             {
                 MessageBox.Show(ex.Message.ToString(), "UC_UDYAM", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void dgvUdyam_SelectionChanged(object sender, EventArgs e)
+        {
+            dgvUdyam.ClearSelection();
+        }
+
+        private void ucUdyam_Load(object sender, EventArgs e)
+        {
+            BindSearch();
+            BindEmployee();
+            show();
+
+            cmbAllocatedTo.SelectedIndex = 0;
+            cmbFeesStatus.SelectedIndex = 0;
+            cmbWorkStatus.SelectedIndex = 0;
+
+            // USER DEFINED EVENTS
+            cmbWorkStatus.DrawMode = DrawMode.OwnerDrawFixed;
+            cmbWorkStatus.DrawItem += cmbWorkStatus_DrawItem;
+        }
+
+        private void dgvUdyam_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            ShowQuery();
+            #region CHANGE STATUS COLORS
+
+            Dictionary<string, Color> StatusColors = new Dictionary<string, Color>()
+            {
+                { "Not Started", ColorTranslator.FromHtml("#D6DCE4") },
+                { "Waiting For Documents", ColorTranslator.FromHtml("#F4B084") },
+                { "Document Received", ColorTranslator.FromHtml("#A9D08E") },
+                { "Return Prepaired", ColorTranslator.FromHtml("#00B0F0") },
+                { "Cancelled", ColorTranslator.FromHtml("#FF0000") },
+                { "Complete", ColorTranslator.FromHtml("#FFC000") },
+                { "Done", ColorTranslator.FromHtml("#FFFF00") }
+            };
+
+            if (dgvUdyam.Columns[e.ColumnIndex].Name == "Status")
+            {
+                if (e.Value != null)
+                {
+                    string status = e.Value.ToString();
+
+                    if (StatusColors.ContainsKey(status))
+                    {
+                        e.CellStyle.BackColor = StatusColors[status];
+                        e.CellStyle.ForeColor = Color.Black;
+                    }
+                }
+            }
+
+            #endregion
         }
 
         private void dgvUdyam_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -448,6 +326,30 @@ namespace Tax_Consultant_25.Frames
 
                 query.ShowDialog();
             }
+        }
+
+        private void txtClientName_TextChanged(object sender, EventArgs e)
+        {
+            if (txtClientName.Text == string.Empty)
+            {
+                txtTradeName.Clear();
+            }
+        }
+
+        private void txtClientName_Leave(object sender, EventArgs e)
+        {
+            SearchClient();
+        }
+
+        private void txtTradeName_Leave(object sender, EventArgs e)
+        {
+            SearchClient();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Parent.Controls.Remove(this);
+            this.Dispose();
         }
 
     }

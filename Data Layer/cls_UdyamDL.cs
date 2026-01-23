@@ -41,7 +41,7 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Parameters.AddWithValue("@clientId", objPro.clientID);
                 objCmd.Parameters.AddWithValue("@clientName", objPro.clientName);
                 objCmd.Parameters.AddWithValue("@u_Service", objPro.udyamService);
-                objCmd.Parameters.AddWithValue("@u_WorkType", objPro.udyamWorktype);
+                objCmd.Parameters.AddWithValue("@u_WorkType", objPro.udyamTaskName);
                 objCmd.Parameters.AddWithValue("@u_InputDate", objPro.udyamInputDate);
                 objCmd.Parameters.AddWithValue("@u_AllocatedTo", objPro.udyamAllocatedEmp);
                 objCmd.Parameters.AddWithValue("@u_DueDate", objPro.udyamDueDate);
@@ -75,7 +75,7 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Parameters.AddWithValue("@clientId", objPro.clientID);
                 objCmd.Parameters.AddWithValue("@clientName", objPro.clientName);
                 objCmd.Parameters.AddWithValue("@u_Service", objPro.udyamService);
-                objCmd.Parameters.AddWithValue("@u_WorkType", objPro.udyamWorktype);
+                objCmd.Parameters.AddWithValue("@u_WorkType", objPro.udyamTaskName);
                 objCmd.Parameters.AddWithValue("@u_InputDate", objPro.udyamInputDate);
                 objCmd.Parameters.AddWithValue("@u_AllocatedTo", objPro.udyamAllocatedEmp);
                 objCmd.Parameters.AddWithValue("@u_DueDate", objPro.udyamDueDate);
