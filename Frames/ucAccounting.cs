@@ -44,26 +44,16 @@ namespace Tax_Consultant_25.Frames
 
         private void ucAccounting_Load(object sender, EventArgs e)
         {
-            common = new CommonUC();
-            pnlAccounting.Controls.Clear();
-            common.service = "ACCOUNTING";
-            pnlAccounting.Controls.Add(common);
 
-            common.FormDataInfo += CommonUC_FormDataInfo;
-            serviceName = common.service;
 
+           
             BindEmployee();
             show();
 
             cmbAllocatedTo.SelectedIndex = 0;
-            cmbWorkStatus.SelectedIndex = 0;
-
+            
         }
 
-        private void CommonUC_FormDataInfo(object sender, FormDataInfoEventArgs e)
-        {
-            txtClientName.Text = e.clientName;
-        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -75,11 +65,11 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                if (txtWorkType.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Work Type", "ACCOUNTING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                //if (txtWorkType.Text == string.Empty)
+                //{
+                //    MessageBox.Show("Enter Work Type", "ACCOUNTING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //    return;
+                //}
 
                 if (txtWorkPeriod.Text == string.Empty)
                 {
@@ -95,12 +85,12 @@ namespace Tax_Consultant_25.Frames
                 objPro.clientName = txtClientName.Text;
                 objPro.accountService = common.service;
                 objPro.accountInputDate = dtpInputDate.Value;
-                objPro.accountWorktype = txtWorkType.Text;
+          //      objPro.accountWorktype = txtWorkType.Text;
                 objPro.accountAllocatedEmp = cmbAllocatedTo.Text;
                 objPro.accountDueDate = dtpDueDate.Value;
                 objPro.accountWorkPeriod = txtWorkPeriod.Text;
-                objPro.accountStatus = cmbWorkStatus.Text;
-                objPro.accountYear = txtYear.Text;
+            //    objPro.accountStatus = cmbWorkStatus.Text;
+           //     objPro.accountYear = txtYear.Text;
 
                 accountingDL = new cls_AccountingDL();
                 flag = accountingDL.saveData(objPro);
@@ -128,11 +118,11 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                if (txtWorkType.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Work Type", "ACCOUNTING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                //if (txtWorkType.Text == string.Empty)
+                //{
+                //    MessageBox.Show("Enter Work Type", "ACCOUNTING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //    return;
+                //}
 
                 if (txtWorkPeriod.Text == string.Empty)
                 {
@@ -144,12 +134,12 @@ namespace Tax_Consultant_25.Frames
 
                 objPro.accountId = tempAccId;
                 objPro.accountInputDate = dtpInputDate.Value;
-                objPro.accountWorktype = txtWorkType.Text;
+              //  objPro.accountWorktype = txtWorkType.Text;
                 objPro.accountAllocatedEmp = cmbAllocatedTo.Text;
                 objPro.accountDueDate = dtpDueDate.Value;
                 objPro.accountWorkPeriod = txtWorkPeriod.Text;
-                objPro.accountStatus = cmbWorkStatus.Text;
-                objPro.accountYear = txtYear.Text;
+            //    objPro.accountStatus = cmbWorkStatus.Text;
+           //     objPro.accountYear = txtYear.Text;
 
                 accountingDL = new cls_AccountingDL();
                 flag = accountingDL.updateData(objPro);
@@ -157,23 +147,23 @@ namespace Tax_Consultant_25.Frames
                 if (flag == 1)
                 {
 
-                    if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "DONE")
-                    {
-                        DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "ACCOUNTING", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    //if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "DONE")
+                    //{
+                    //    DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "ACCOUNTING", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                        if (dial == DialogResult.Yes)
-                        {
-                            frm_Narration narr = new frm_Narration();
-                            narr.clientName = txtClientName.Text;
-                            narr.service = common.service;
-                            narr.amount = "";
-                            narr.workType = txtWorkType.Text;
-                            narr.businessName = businessName;
-                            narr.clientAddress = clientAddress;
+                    //    if (dial == DialogResult.Yes)
+                    //    {
+                    //        frm_Narration narr = new frm_Narration();
+                    //        narr.clientName = txtClientName.Text;
+                    //        narr.service = common.service;
+                    //        narr.amount = "";
+                    //        narr.workType = txtWorkType.Text;
+                    //        narr.businessName = businessName;
+                    //        narr.clientAddress = clientAddress;
 
-                            narr.Show();
-                        }
-                    }
+                    //        narr.Show();
+                    //    }
+                    //}
 
                     //MessageBox.Show("Record Updated...");
                     show();
@@ -202,6 +192,11 @@ namespace Tax_Consultant_25.Frames
 
         }
 
+        private void cmbRecurringTask_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void dgvAllInOne_SelectionChanged(object sender, EventArgs e)
         {
             dgvAllInOne.ClearSelection();
@@ -219,18 +214,18 @@ namespace Tax_Consultant_25.Frames
             {
                 dtpInputDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[3].Value.ToString();
                 txtClientName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[4].Value.ToString();
-                txtWorkType.Text = dgvAllInOne.Rows[objPro.rowID].Cells[5].Value.ToString();
+             //   txtWorkType.Text = dgvAllInOne.Rows[objPro.rowID].Cells[5].Value.ToString();
                 cmbAllocatedTo.Text = dgvAllInOne.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
                 dtpDueDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[7].Value.ToString();
                 txtWorkPeriod.Text = dgvAllInOne.Rows[objPro.rowID].Cells[8].Value.ToString();
-                cmbWorkStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
+           //     cmbWorkStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
                 tempAccId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[10].Value.ToString());
-                txtYear.Text = dgvAllInOne.Rows[objPro.rowID].Cells[11].Value.ToString();
+            //    txtYear.Text = dgvAllInOne.Rows[objPro.rowID].Cells[11].Value.ToString();
                 tempClientId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[12].Value.ToString());
 
                 tempEmployeeName = cmbAllocatedTo.Text;
                 tempClientName = txtClientName.Text;
-                tempWorkType = txtWorkType.Text;
+          //      tempWorkType = txtWorkType.Text;
 
                 bus = new cls_BusinessDL();
                 ds = new DataSet();
@@ -324,12 +319,12 @@ namespace Tax_Consultant_25.Frames
         {
             dtpInputDate.Text = DateTime.Now.ToString();
             txtClientName.Clear();
-            txtWorkType.Clear();
+        //    txtWorkType.Clear();
             cmbAllocatedTo.SelectedIndex = 0;
             dtpDueDate.Text = DateTime.Now.ToString();
             txtWorkPeriod.Clear();
-            cmbWorkStatus.SelectedIndex = 0;
-            txtYear.Clear();
+         //   cmbWorkStatus.SelectedIndex = 0;
+         //   txtYear.Clear();
 
             btnSave.Enabled = true;
 

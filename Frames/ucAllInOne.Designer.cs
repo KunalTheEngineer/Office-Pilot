@@ -74,7 +74,7 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
@@ -108,6 +108,7 @@
             this.btnClose.Text = "CLOSE";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnUpdate
             // 
@@ -122,6 +123,7 @@
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnSave
             // 
@@ -238,10 +240,8 @@
             "Document Received",
             "Return Prepaired",
             "Cancelled",
-            "Nill",
             "Complete",
-            "Filed",
-            "Other"});
+            "Filed"});
             this.cmbWorkStatus.Location = new System.Drawing.Point(1075, 108);
             this.cmbWorkStatus.Name = "cmbWorkStatus";
             this.cmbWorkStatus.Size = new System.Drawing.Size(234, 28);
@@ -500,7 +500,7 @@
             this.Column6,
             this.EmployeeName,
             this.btnReply,
-            this.Column9,
+            this.Status,
             this.Column7,
             this.Column5});
             this.dgvAllInOne.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -595,13 +595,13 @@
             this.btnReply.Text = "REPLY";
             this.btnReply.UseColumnTextForButtonValue = true;
             // 
-            // Column9
+            // Status
             // 
-            this.Column9.DataPropertyName = "i_Status";
-            this.Column9.FillWeight = 143.6183F;
-            this.Column9.HeaderText = "STATUS";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
+            this.Status.DataPropertyName = "i_Status";
+            this.Status.FillWeight = 143.6183F;
+            this.Status.HeaderText = "STATUS";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
             // 
             // Column7
             // 
@@ -682,7 +682,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeName;
         private System.Windows.Forms.DataGridViewButtonColumn btnReply;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }

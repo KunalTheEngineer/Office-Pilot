@@ -33,7 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtFinancialYear = new System.Windows.Forms.TextBox();
             this.cmbTaskName = new System.Windows.Forms.ComboBox();
@@ -69,7 +68,6 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnQuery = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -158,9 +156,9 @@
             this.txtTradeName.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTradeName.Location = new System.Drawing.Point(454, 30);
             this.txtTradeName.Name = "txtTradeName";
-            this.txtTradeName.ReadOnly = true;
             this.txtTradeName.Size = new System.Drawing.Size(332, 29);
             this.txtTradeName.TabIndex = 50;
+            this.txtTradeName.Leave += new System.EventHandler(this.txtTradeName_Leave);
             // 
             // cmbPeriodicity
             // 
@@ -268,6 +266,7 @@
             this.txtClientName.Name = "txtClientName";
             this.txtClientName.Size = new System.Drawing.Size(252, 29);
             this.txtClientName.TabIndex = 1;
+            this.txtClientName.TextChanged += new System.EventHandler(this.txtClientName_TextChanged);
             this.txtClientName.Leave += new System.EventHandler(this.txtClientName_Leave);
             // 
             // lblYear
@@ -445,7 +444,6 @@
             this.Column6,
             this.Column3,
             this.Column4,
-            this.btnQuery,
             this.btnReply,
             this.Status,
             this.ClientName});
@@ -522,26 +520,11 @@
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
             // 
-            // btnQuery
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Goldenrod;
-            this.btnQuery.DefaultCellStyle = dataGridViewCellStyle4;
-            this.btnQuery.FillWeight = 66.74464F;
-            this.btnQuery.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnQuery.HeaderText = "Query";
-            this.btnQuery.MinimumWidth = 6;
-            this.btnQuery.Name = "btnQuery";
-            this.btnQuery.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.btnQuery.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.btnQuery.Text = "QUERY";
-            this.btnQuery.UseColumnTextForButtonValue = true;
-            // 
             // btnReply
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Red;
-            this.btnReply.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Red;
+            this.btnReply.DefaultCellStyle = dataGridViewCellStyle4;
             this.btnReply.FillWeight = 64.9856F;
             this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReply.HeaderText = "Reply";
@@ -623,7 +606,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewButtonColumn btnQuery;
         private System.Windows.Forms.DataGridViewButtonColumn btnReply;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;

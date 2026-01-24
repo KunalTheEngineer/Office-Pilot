@@ -77,9 +77,14 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.CommandText = "usp_IncomeTax";
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.Parameters.AddWithValue("@intMode", 2);
-                objCmd.Parameters.AddWithValue("@incomeId", objPro.incomeId);
-                objCmd.Parameters.AddWithValue("@i_WorkType", objPro.incomeTaskName);
+                objCmd.Parameters.AddWithValue("@clientId", objPro.clientID);
+                objCmd.Parameters.AddWithValue("@clientName", objPro.clientName);
+                objCmd.Parameters.AddWithValue("@i_Service", objPro.incomeService);
+                objCmd.Parameters.AddWithValue("@i_TaskName", objPro.incomeTaskName);
+                objCmd.Parameters.AddWithValue("@i_TradeName", objPro.incomeTradeName);
                 objCmd.Parameters.AddWithValue("@i_InputDate", objPro.incomeInputDate);
+                objCmd.Parameters.AddWithValue("@i_RecurringTask", objPro.incomeRecurringTask);
+                objCmd.Parameters.AddWithValue("@i_Periodicity", objPro.incomePeriodicity);
                 objCmd.Parameters.AddWithValue("@i_AllocatedEmpName", objPro.incomeAllocatedEmpName);
                 objCmd.Parameters.AddWithValue("@i_DueDate", objPro.incomeDueDate);
                 objCmd.Parameters.AddWithValue("@i_TypeOfReturn", objPro.incomeTypeOfReturn);
@@ -87,6 +92,8 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Parameters.AddWithValue("@i_Fees", objPro.incomeFees);
                 objCmd.Parameters.AddWithValue("@i_FeeStatus", objPro.incomeFeeStatus);
                 objCmd.Parameters.AddWithValue("@i_Status", objPro.incomeStatus);
+                objCmd.Parameters.AddWithValue("@i_Description", objPro.incomeDescription);
+                objCmd.Parameters.AddWithValue("@incomeId", objPro.incomeId);
 
                 flag = objCmd.ExecuteNonQuery();
                 objCon.con.Close();

@@ -214,6 +214,32 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
+        private void SearchClient()
+        {
+            try
+            {
+                objPro = new clsProperties();
+                client = new cls_ClientsDL();
+                ds = new DataSet();
+
+                objPro.search = !string.IsNullOrWhiteSpace(txtTradeName.Text) ? txtTradeName.Text.Trim() : txtClientName.Text.Trim();
+
+                ds = client.searchClientTradeName(objPro);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    txtClientName.Text = ds.Tables[0].Rows[0]["c_Name"].ToString();
+                    txtTradeName.Text = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
+                    tempClientId = Convert.ToInt32(ds.Tables[0].Rows[0]["clientId"].ToString());
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_GST", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         #endregion
 
         #region USER DEFINED EVENTS
@@ -299,6 +325,8 @@ namespace Tax_Consultant_25.Frames
 
         #endregion
 
+        #region EVENTS
+
         private void ucGST_Load(object sender, EventArgs e)
         {
             BindEmployee();
@@ -323,6 +351,19 @@ namespace Tax_Consultant_25.Frames
             cmbTaskName.DrawItem += cmbTaskName_DrawItem;
         }
 
+        private void txtClientName_TextChanged(object sender, EventArgs e)
+        {
+            if (txtClientName.Text == string.Empty)
+            {
+                txtTradeName.Clear();
+            }
+        }
+
+        private void txtTradeName_Leave(object sender, EventArgs e)
+        {
+            SearchClient();  
+        }
+
         private void dtpInputDate_ValueChanged(object sender, EventArgs e)
         {
             ChangeMonth();
@@ -330,28 +371,7 @@ namespace Tax_Consultant_25.Frames
 
         private void txtClientName_Leave(object sender, EventArgs e)
         {
-            try
-            {
-                objPro = new clsProperties();
-                client = new cls_ClientsDL();
-                ds = new DataSet();
-
-                objPro.search = txtClientName.Text;
-
-                ds = client.searchClientTradeName(objPro);
-
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    txtClientName.Text = ds.Tables[0].Rows[0]["c_Name"].ToString();
-                    txtTradeName.Text = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
-                    tempClientId = Convert.ToInt32(ds.Tables[0].Rows[0]["clientId"].ToString());
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "UC_GST", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            SearchClient();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -563,19 +583,19 @@ namespace Tax_Consultant_25.Frames
 
                 if (dgvGST.Rows.Count > 0)
                 {
-                    txtTradeName.Text = dgvGST.Rows[objPro.rowID].Cells[3].Value.ToString().Trim();
-                    cmbTaskName.Text = dgvGST.Rows[objPro.rowID].Cells[4].Value.ToString().Trim();
-                    txtPeriod.Text = dgvGST.Rows[objPro.rowID].Cells[5].Value.ToString().Trim();
-                    dtpInputDate.Text = dgvGST.Rows[objPro.rowID].Cells[6].Value.ToString();
-                    dtpDueDate.Text = dgvGST.Rows[objPro.rowID].Cells[7].Value.ToString();
-                    cmbAllocatedTo.Text = dgvGST.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
-                    cmbRecurringTask.Text = dgvGST.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
-                    cmbPeriodicity.Text = dgvGST.Rows[objPro.rowID].Cells[10].Value.ToString().Trim();
-                    txtFinancialYear.Text = dgvGST.Rows[objPro.rowID].Cells[11].Value.ToString().Trim();
-                    txtClientName.Text = dgvGST.Rows[objPro.rowID].Cells[12].Value.ToString().Trim();
-                    cmbWorkStatus.Text = dgvGST.Rows[objPro.rowID].Cells[13].Value.ToString().Trim();
-                    tempGSTId = Convert.ToInt32(dgvGST.Rows[objPro.rowID].Cells[14].Value.ToString());
-                    clientId = Convert.ToInt32(dgvGST.Rows[objPro.rowID].Cells[15].Value.ToString());
+                    txtTradeName.Text = dgvGST.Rows[objPro.rowID].Cells[2].Value.ToString();
+                    cmbTaskName.Text = dgvGST.Rows[objPro.rowID].Cells[3].Value.ToString().Trim();
+                    txtPeriod.Text = dgvGST.Rows[objPro.rowID].Cells[4].Value.ToString().Trim();
+                    dtpInputDate.Text = dgvGST.Rows[objPro.rowID].Cells[5].Value.ToString();
+                    dtpDueDate.Text = dgvGST.Rows[objPro.rowID].Cells[6].Value.ToString();
+                    cmbAllocatedTo.Text = dgvGST.Rows[objPro.rowID].Cells[7].Value.ToString().Trim();
+                    cmbRecurringTask.Text = dgvGST.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
+                    cmbPeriodicity.Text = dgvGST.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
+                    txtFinancialYear.Text = dgvGST.Rows[objPro.rowID].Cells[10].Value.ToString().Trim();
+                    txtClientName.Text = dgvGST.Rows[objPro.rowID].Cells[11].Value.ToString().Trim();
+                    cmbWorkStatus.Text = dgvGST.Rows[objPro.rowID].Cells[12].Value.ToString().Trim();
+                    tempGSTId = Convert.ToInt32(dgvGST.Rows[objPro.rowID].Cells[13].Value.ToString());
+                    clientId = Convert.ToInt32(dgvGST.Rows[objPro.rowID].Cells[14].Value.ToString());
 
                     //objPro.workService = common.service;
                     //objPro.clientID = tempClientId;
@@ -595,17 +615,7 @@ namespace Tax_Consultant_25.Frames
 
                     //showClientUsernamePasswordOnDGVClick();
 
-                    if (e.ColumnIndex == dgvGST.Columns["btnQuery"].Index)
-                    {
-                        frm_Query query = new frm_Query(tempEmployeeName);
-
-                        query.serviceName = serviceName;
-                        query.clientName = tempClientName;
-                        query.employeeName = tempEmployeeName;
-                        //   query.workTypeName = tempWorkType;
-
-                        query.ShowDialog();
-                    }
+                    
 
                     if (e.ColumnIndex == dgvGST.Columns["btnReply"].Index)
                     {
@@ -625,6 +635,8 @@ namespace Tax_Consultant_25.Frames
                 MessageBox.Show(ex.Message.ToString(), "UC_GST", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        #endregion
 
     }
 
