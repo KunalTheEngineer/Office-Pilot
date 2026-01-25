@@ -85,6 +85,121 @@ namespace Tax_Consultant_25.Frames
 
         #endregion
 
+        private void BindSearch()
+        {
+            try
+            {
+                ds = new DataSet();
+                client = new cls_ClientsDL();
+                ds = client.bindClientsData();
+
+                AutoCompleteStringCollection autoList = new AutoCompleteStringCollection();
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        autoList.Add(ds.Tables[0].Rows[i]["c_Name"].ToString());
+                        autoList.Add(ds.Tables[0].Rows[i]["c_Mobile"].ToString());
+                        autoList.Add(ds.Tables[0].Rows[i]["c_BusinessName"].ToString());
+                    }
+
+                    this.txtClientName.AutoCompleteCustomSource = autoList;
+                    txtClientName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    txtClientName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+                    this.txtTradeName.AutoCompleteCustomSource = autoList;
+                    txtTradeName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    txtTradeName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_ALLINONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void BindEmployee()
+        {
+            try
+            {
+                dt = new DataTable();
+                employeeDL = new cls_EmployeeDL();
+                dt = employeeDL.bindEmployee();
+
+                cmbAllocatedTo.DataSource = dt;
+                cmbAllocatedTo.DisplayMember = "e_Name";
+                cmbAllocatedTo.ValueMember = "empId";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_PTEC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void SearchClient()
+        {
+            try
+            {
+                objPro = new clsProperties();
+                client = new cls_ClientsDL();
+                ds = new DataSet();
+
+                objPro.search = !string.IsNullOrWhiteSpace(txtTradeName.Text) ? txtTradeName.Text.Trim() : txtClientName.Text.Trim();
+
+                ds = client.searchClientTradeName(objPro);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    txtClientName.Text = ds.Tables[0].Rows[0]["c_Name"].ToString();
+                    txtTradeName.Text = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
+                    tempClientId = Convert.ToInt32(ds.Tables[0].Rows[0]["clientId"].ToString());
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_INCOMETAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void Clear()
+        {
+            dtpInputDate.Text = DateTime.Now.ToString();
+            txtClientName.Clear();
+            cmbAllocatedTo.SelectedIndex = 0;
+            dtpDueDate.Text = DateTime.Now.ToString();
+            txtFees.Clear();
+            cmbFeesStatus.SelectedIndex = 0;
+            cmbWorkStatus.SelectedIndex = 0;
+            txtTaskName.Clear();
+            txtTradeName.Clear();
+            txtDescription.Clear();
+
+            btnSave.Enabled = true;
+        }
+
+        private void show()
+        {
+            ds = new DataSet();
+            clsUdyamDL = new cls_UdyamDL();
+
+            ds = clsUdyamDL.showData();
+
+            if (ds.Tables[0].Rows.Count < 0)
+            {
+
+            }
+            else
+            {
+                dgvUdyam.DataSource = ds.Tables[0];
+
+                dgvUdyam.Columns["clientId"].Visible = false;
+                dgvUdyam.Columns["udyamId"].Visible = false;
+                dgvUdyam.Columns["u_Fees"].Visible = false;
+            }
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -229,7 +344,7 @@ namespace Tax_Consultant_25.Frames
 
         private void dgvUdyam_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            ShowQuery();
+          //  ShowQuery();
             #region CHANGE STATUS COLORS
 
             Dictionary<string, Color> StatusColors = new Dictionary<string, Color>()
@@ -270,49 +385,36 @@ namespace Tax_Consultant_25.Frames
 
             if (dgvUdyam.Rows.Count > 0)
             {
-                dtpInputDate.Text = dgvUdyam.Rows[objPro.rowID].Cells[3].Value.ToString();
-                txtClientName.Text = dgvUdyam.Rows[objPro.rowID].Cells[4].Value.ToString();
-                txtWorkType.Text = dgvUdyam.Rows[objPro.rowID].Cells[5].Value.ToString();
+                dtpInputDate.Text = dgvUdyam.Rows[objPro.rowID].Cells[2].Value.ToString();
+                txtClientName.Text = dgvUdyam.Rows[objPro.rowID].Cells[3].Value.ToString();
+                txtTradeName.Text = dgvUdyam.Rows[objPro.rowID].Cells[4].Value.ToString();
+                txtTaskName.Text = dgvUdyam.Rows[objPro.rowID].Cells[5].Value.ToString();
                 cmbAllocatedTo.Text = dgvUdyam.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
                 dtpDueDate.Text = dgvUdyam.Rows[objPro.rowID].Cells[7].Value.ToString();
                 cmbWorkStatus.Text = dgvUdyam.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
                 cmbFeesStatus.Text = dgvUdyam.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
-                txtFessAmt.Text = dgvUdyam.Rows[objPro.rowID].Cells[10].Value.ToString();
-                tempUdyamId = Convert.ToInt32(dgvUdyam.Rows[objPro.rowID].Cells[11].Value.ToString());
-                tempClientId = Convert.ToInt32(dgvUdyam.Rows[objPro.rowID].Cells[12].Value.ToString());
+                txtDescription.Text = dgvUdyam.Rows[objPro.rowID].Cells[10].Value.ToString();
+                txtFees.Text = dgvUdyam.Rows[objPro.rowID].Cells[11].Value.ToString();
+                tempUdyamId = Convert.ToInt32(dgvUdyam.Rows[objPro.rowID].Cells[12].Value.ToString());
+                clientId = Convert.ToInt32(dgvUdyam.Rows[objPro.rowID].Cells[13].Value.ToString());
 
-                objPro.workService = common.service;
+                //objPro.workService = common.service;
 
-                tempEmployeeName = cmbAllocatedTo.Text;
-                tempClientName = txtClientName.Text;
-                tempWorkType = txtWorkType.Text;
-                objPro.clientID = tempClientId;
+                //tempEmployeeName = cmbAllocatedTo.Text;
+                //tempClientName = txtClientName.Text;
+                //tempWorkType = txtWorkType.Text;
+                //objPro.clientID = tempClientId;
 
                 bus = new cls_BusinessDL();
-                ds = new DataSet();
+                //ds = new DataSet();
 
-                ds = bus.getBusinessName(tempClientName, tempClientId);
+                //ds = bus.getBusinessName(tempClientName, tempClientId);
 
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    businessName = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
-                    clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
-                }
-
-
-                showClientUsernamePasswordOnDGVClick();
-            }
-
-            if (e.ColumnIndex == dgvUdyam.Columns["btnQuery"].Index)
-            {
-                frm_Query query = new frm_Query(tempEmployeeName);
-
-                query.serviceName = serviceName;
-                query.clientName = tempClientName;
-                query.employeeName = tempEmployeeName;
-                query.workTypeName = tempWorkType;
-
-                query.ShowDialog();
+                //if (ds.Tables[0].Rows.Count > 0)
+                //{
+                //    businessName = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
+                //    clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
+                //}
             }
 
             if (e.ColumnIndex == dgvUdyam.Columns["btnReply"].Index)

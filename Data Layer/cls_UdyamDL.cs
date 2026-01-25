@@ -40,15 +40,15 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Parameters.AddWithValue("@intMode", 1);
                 objCmd.Parameters.AddWithValue("@clientId", objPro.clientID);
                 objCmd.Parameters.AddWithValue("@clientName", objPro.clientName);
-                objCmd.Parameters.AddWithValue("@u_Service", objPro.udyamService);
-                objCmd.Parameters.AddWithValue("@u_WorkType", objPro.udyamTaskName);
+                objCmd.Parameters.AddWithValue("@u_TradeName", objPro.udyamTradeName);
+                objCmd.Parameters.AddWithValue("@u_TaskName", objPro.udyamTaskName);
                 objCmd.Parameters.AddWithValue("@u_InputDate", objPro.udyamInputDate);
                 objCmd.Parameters.AddWithValue("@u_AllocatedTo", objPro.udyamAllocatedEmp);
                 objCmd.Parameters.AddWithValue("@u_DueDate", objPro.udyamDueDate);
                 objCmd.Parameters.AddWithValue("@u_Fees", objPro.udyamFees);
                 objCmd.Parameters.AddWithValue("@u_FeeStatus", objPro.udyamFeeStatus);
                 objCmd.Parameters.AddWithValue("@u_Status", objPro.udyamStatus);
-                
+                objCmd.Parameters.AddWithValue("@u_Description", objPro.udyamDescription);
 
                 flag = objCmd.ExecuteNonQuery();
                 objCon.con.Close();
@@ -72,16 +72,14 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.CommandText = "usp_Udyam";
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.Parameters.AddWithValue("@intMode", 2);
-                objCmd.Parameters.AddWithValue("@clientId", objPro.clientID);
-                objCmd.Parameters.AddWithValue("@clientName", objPro.clientName);
-                objCmd.Parameters.AddWithValue("@u_Service", objPro.udyamService);
-                objCmd.Parameters.AddWithValue("@u_WorkType", objPro.udyamTaskName);
+                objCmd.Parameters.AddWithValue("@u_TaskName", objPro.udyamTaskName);
                 objCmd.Parameters.AddWithValue("@u_InputDate", objPro.udyamInputDate);
                 objCmd.Parameters.AddWithValue("@u_AllocatedTo", objPro.udyamAllocatedEmp);
                 objCmd.Parameters.AddWithValue("@u_DueDate", objPro.udyamDueDate);
                 objCmd.Parameters.AddWithValue("@u_Fees", objPro.udyamFees);
                 objCmd.Parameters.AddWithValue("@u_FeeStatus", objPro.udyamFeeStatus);
                 objCmd.Parameters.AddWithValue("@u_Status", objPro.udyamStatus);
+                objCmd.Parameters.AddWithValue("@u_Description", objPro.udyamDescription);
                 objCmd.Parameters.AddWithValue("@udyamId", objPro.udyamId);
 
                 flag = objCmd.ExecuteNonQuery();
