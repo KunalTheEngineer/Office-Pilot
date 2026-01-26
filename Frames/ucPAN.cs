@@ -35,16 +35,9 @@ namespace Tax_Consultant_25.Frames
 
         private void ucPAN_Load(object sender, EventArgs e)
         {
-            common = new CommonUC();
-            pnlAccounting.Controls.Clear();
-            common.service = "PAN / TAN";
-            pnlAccounting.Controls.Add(common);
-
-            common.FormDataInfo += CommonUC_FormDataInfo;
 
             BindEmployee();
             show();
-            serviceName = common.service;
 
             cmbAllocatedTo.SelectedIndex = 0;
             cmbFeesStatus.SelectedIndex = 0;
@@ -70,6 +63,22 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Parent.Controls.Remove(this);
+            this.Dispose();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dgvAllInOne_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -80,19 +89,15 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                if (txtWorkType.Text == string.Empty)
+                if (txtTaskName.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Work Type", "PAN TAN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                //if (txtPANNo.Text == string.Empty)
-                //{
-                //    MessageBox.Show("Enter PAN / TAN No", "PAN TAN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    return;
-                //}
+                
 
-                if (txtFessAmt.Text == string.Empty)
+                if (txtFees.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Fees Amount", "PAN TAN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -146,10 +151,6 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
-        private void CommonUC_FormDataInfo(object sender, FormDataInfoEventArgs e)
-        {
-            txtClientName.Text = e.clientName;
-        }
 
         private void dgvAllInOne_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -159,59 +160,59 @@ namespace Tax_Consultant_25.Frames
 
             objPro.rowID = e.RowIndex;
 
-            if (dgvAllInOne.Rows.Count > 0)
-            {
-                dtpInputDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[3].Value.ToString();
-                txtClientName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[4].Value.ToString();
-                txtWorkType.Text = dgvAllInOne.Rows[objPro.rowID].Cells[5].Value.ToString();
-                cmbAllocatedTo.Text = dgvAllInOne.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
-                dtpDueDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[7].Value.ToString();
-                cmbFeesStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
-                cmbWorkStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
-                panId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[10].Value.ToString());
-                txtPANNo.Text = dgvAllInOne.Rows[objPro.rowID].Cells[11].Value.ToString();
-                txtFessAmt.Text = dgvAllInOne.Rows[objPro.rowID].Cells[12].Value.ToString();
-                tempClientId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[13].Value.ToString());
+            //if (dgvAllInOne.Rows.Count > 0)
+            //{
+            //    dtpInputDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[3].Value.ToString();
+            //    txtClientName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[4].Value.ToString();
+            //    txtWorkType.Text = dgvAllInOne.Rows[objPro.rowID].Cells[5].Value.ToString();
+            //    cmbAllocatedTo.Text = dgvAllInOne.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
+            //    dtpDueDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[7].Value.ToString();
+            //    cmbFeesStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
+            //    cmbWorkStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
+            //    panId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[10].Value.ToString());
+            //    txtPANNo.Text = dgvAllInOne.Rows[objPro.rowID].Cells[11].Value.ToString();
+            //    txtFessAmt.Text = dgvAllInOne.Rows[objPro.rowID].Cells[12].Value.ToString();
+            //    tempClientId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[13].Value.ToString());
 
-                tempEmployeeName = cmbAllocatedTo.Text;
-                tempClientName = txtClientName.Text;
-                tempWorkType = txtWorkType.Text;
+            //    tempEmployeeName = cmbAllocatedTo.Text;
+            //    tempClientName = txtClientName.Text;
+            //    tempWorkType = txtWorkType.Text;
 
-                bus = new cls_BusinessDL();
-                ds = new DataSet();
+            //    bus = new cls_BusinessDL();
+            //    ds = new DataSet();
 
-                ds = bus.getBusinessName(tempClientName, tempClientId);
+            //    ds = bus.getBusinessName(tempClientName, tempClientId);
 
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    businessName = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
-                    clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
-                }
-            }
+            //    if (ds.Tables[0].Rows.Count > 0)
+            //    {
+            //        businessName = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
+            //        clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
+            //    }
+            //}
 
-            if (e.ColumnIndex == dgvAllInOne.Columns["btnQuery"].Index)
-            {
-                frm_Query query = new frm_Query(tempEmployeeName);
+            //if (e.ColumnIndex == dgvAllInOne.Columns["btnQuery"].Index)
+            //{
+            //    frm_Query query = new frm_Query(tempEmployeeName);
 
-                query.serviceName = serviceName;
-                query.clientName = tempClientName;
-                query.employeeName = tempEmployeeName;
-                query.workTypeName = tempWorkType;
+            //    query.serviceName = serviceName;
+            //    query.clientName = tempClientName;
+            //    query.employeeName = tempEmployeeName;
+            //    query.workTypeName = tempWorkType;
 
-                query.ShowDialog();
-            }
+            //    query.ShowDialog();
+            //}
 
-            if (e.ColumnIndex == dgvAllInOne.Columns["btnReply"].Index)
-            {
-                frm_Query query = new frm_Query(tempEmployeeName);
+            //if (e.ColumnIndex == dgvAllInOne.Columns["btnReply"].Index)
+            //{
+            //    frm_Query query = new frm_Query(tempEmployeeName);
 
-                query.serviceName = serviceName;
-                query.clientName = tempClientName;
-                query.employeeName = tempEmployeeName;
-                query.workTypeName = tempWorkType;
+            //    query.serviceName = serviceName;
+            //    query.clientName = tempClientName;
+            //    query.employeeName = tempEmployeeName;
+            //    query.workTypeName = tempWorkType;
 
-                query.ShowDialog();
-            }
+            //    query.ShowDialog();
+            //}
         }
 
         private void dgvAllInOne_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -224,12 +225,6 @@ namespace Tax_Consultant_25.Frames
             dgvAllInOne.ClearSelection();
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Parent.Controls.Remove(this);
-            this.Dispose();
-        }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -240,19 +235,13 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                if (txtWorkType.Text == string.Empty)
+                if (txtTaskName.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Work Type", "PAN TAN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                //if (txtPANNo.Text == string.Empty)
-                //{
-                //    MessageBox.Show("Enter PAN / TAN No", "PAN TAN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    return;
-                //}
-
-                if (txtFessAmt.Text == string.Empty)
+                if (txtFees.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Fees Amount", "PAN TAN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -262,24 +251,23 @@ namespace Tax_Consultant_25.Frames
 
                 clId = common.clientId;
 
-                objPro.clientID = clId;
+                objPro.clientID = tempClientId;
                 objPro.clientName = txtClientName.Text;
-                objPro.panService = common.service;
+                objPro.panTradeName = txtTradeName.Text;
                 objPro.panInputDate = dtpInputDate.Value;
-                objPro.panWorkType = txtWorkType.Text;
+                objPro.panTaskName = txtTaskName.Text;
                 objPro.panAllocatedEmp = cmbAllocatedTo.Text;
                 objPro.panDueDate = dtpDueDate.Value;
-                objPro.panTanNo = txtPANNo.Text;
-                objPro.panFees = Convert.ToInt32(txtFessAmt.Text);
+                objPro.panFees = Convert.ToInt32(txtFees.Text);
                 objPro.panFeeStatus = cmbFeesStatus.Text;
                 objPro.panStatus = cmbWorkStatus.Text;
+                objPro.panDescription = txtDescription.Text;
 
                 panDL = new cls_PanDL();
                 flag = panDL.saveData(objPro);
 
                 if (flag == 1)
                 {
-                    //MessageBox.Show("Record Saved...");
                     show();
                     Clear();
                 }
