@@ -65,7 +65,7 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllInOne)).BeginInit();
             this.panel2.SuspendLayout();
@@ -90,7 +90,7 @@
             this.Column6,
             this.btnReply,
             this.Column7,
-            this.Column9,
+            this.Status,
             this.Column3});
             this.dgvAllInOne.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAllInOne.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -252,6 +252,8 @@
             this.txtClientName.Name = "txtClientName";
             this.txtClientName.Size = new System.Drawing.Size(254, 29);
             this.txtClientName.TabIndex = 81;
+            this.txtClientName.TextChanged += new System.EventHandler(this.txtClientName_TextChanged);
+            this.txtClientName.Leave += new System.EventHandler(this.txtClientName_Leave);
             // 
             // label2
             // 
@@ -270,6 +272,7 @@
             this.txtTradeName.Name = "txtTradeName";
             this.txtTradeName.Size = new System.Drawing.Size(323, 29);
             this.txtTradeName.TabIndex = 80;
+            this.txtTradeName.Leave += new System.EventHandler(this.txtTradeName_Leave);
             // 
             // label3
             // 
@@ -392,6 +395,7 @@
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnSave
             // 
@@ -406,11 +410,12 @@
             this.btnSave.Text = "SAVE";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // Column1
             // 
             this.Column1.DataPropertyName = "serial";
-            this.Column1.FillWeight = 40.90737F;
+            this.Column1.FillWeight = 41.4093F;
             this.Column1.HeaderText = "SR.";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
@@ -418,7 +423,7 @@
             // Column2
             // 
             this.Column2.DataPropertyName = "p_InputDate";
-            this.Column2.FillWeight = 79.23662F;
+            this.Column2.FillWeight = 80.20885F;
             this.Column2.HeaderText = "START DT.";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
@@ -426,7 +431,7 @@
             // ClientName
             // 
             this.ClientName.DataPropertyName = "clientName";
-            this.ClientName.FillWeight = 129.3634F;
+            this.ClientName.FillWeight = 130.9507F;
             this.ClientName.HeaderText = "NAME";
             this.ClientName.MinimumWidth = 6;
             this.ClientName.Name = "ClientName";
@@ -434,15 +439,15 @@
             // Column4
             // 
             this.Column4.DataPropertyName = "p_TradeName";
-            this.Column4.FillWeight = 131.3471F;
+            this.Column4.FillWeight = 132.9587F;
             this.Column4.HeaderText = "TRADE NAME";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
             // 
             // WorkType
             // 
-            this.WorkType.DataPropertyName = "p_WorkType";
-            this.WorkType.FillWeight = 134.0759F;
+            this.WorkType.DataPropertyName = "p_TaskName";
+            this.WorkType.FillWeight = 135.721F;
             this.WorkType.HeaderText = "TASK NAME";
             this.WorkType.MinimumWidth = 6;
             this.WorkType.Name = "WorkType";
@@ -450,7 +455,7 @@
             // EmployeeName
             // 
             this.EmployeeName.DataPropertyName = "p_AllocatedTo";
-            this.EmployeeName.FillWeight = 124.5601F;
+            this.EmployeeName.FillWeight = 126.0884F;
             this.EmployeeName.HeaderText = "ASSIGNED TO";
             this.EmployeeName.MinimumWidth = 6;
             this.EmployeeName.Name = "EmployeeName";
@@ -458,14 +463,14 @@
             // Column6
             // 
             this.Column6.DataPropertyName = "p_DueDate";
-            this.Column6.FillWeight = 72.49653F;
+            this.Column6.FillWeight = 73.38605F;
             this.Column6.HeaderText = "DUE DT.";
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
             // 
             // btnReply
             // 
-            this.btnReply.FillWeight = 71.90174F;
+            this.btnReply.FillWeight = 72.78397F;
             this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReply.HeaderText = "REPLY";
             this.btnReply.MinimumWidth = 6;
@@ -478,23 +483,23 @@
             // Column7
             // 
             this.Column7.DataPropertyName = "p_FeeStatus";
-            this.Column7.FillWeight = 80.63391F;
+            this.Column7.FillWeight = 81.62328F;
             this.Column7.HeaderText = "FEES ST.";
             this.Column7.MinimumWidth = 6;
             this.Column7.Name = "Column7";
             // 
-            // Column9
+            // Status
             // 
-            this.Column9.DataPropertyName = "p_Status";
-            this.Column9.FillWeight = 117.0446F;
-            this.Column9.HeaderText = "STATUS";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
+            this.Status.DataPropertyName = "p_Status";
+            this.Status.FillWeight = 118.4807F;
+            this.Status.HeaderText = "STATUS";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
             // 
             // Column3
             // 
             this.Column3.DataPropertyName = "p_Description";
-            this.Column3.FillWeight = 144.5253F;
+            this.Column3.FillWeight = 132.4815F;
             this.Column3.HeaderText = "DESCRIPTION";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
@@ -556,7 +561,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewButtonColumn btnReply;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
