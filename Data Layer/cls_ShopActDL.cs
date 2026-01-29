@@ -41,12 +41,14 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Parameters.AddWithValue("@clientId", objPro.clientID);
                 objCmd.Parameters.AddWithValue("@clientName", objPro.clientName);
                 objCmd.Parameters.AddWithValue("@s_InputDate", objPro.shopActInputDate);
-                objCmd.Parameters.AddWithValue("@s_WorkType", objPro.shopActWorktype);
+                objCmd.Parameters.AddWithValue("@s_TradeName", objPro.shopActTradeName);
                 objCmd.Parameters.AddWithValue("@s_AllocatedTo", objPro.shopActAllocatedEmp);
+                objCmd.Parameters.AddWithValue("@s_TaskName", objPro.shopActTaskName);
                 objCmd.Parameters.AddWithValue("@s_DueDate", objPro.shopActDueDate);
                 objCmd.Parameters.AddWithValue("@s_Fees", objPro.shopActFees);
                 objCmd.Parameters.AddWithValue("@s_FeeStatus", objPro.shopActFeeStatus);
                 objCmd.Parameters.AddWithValue("@s_Status", objPro.shopActStatus);
+                objCmd.Parameters.AddWithValue("@s_Description", objPro.shopActDescription);
 
                 flag = objCmd.ExecuteNonQuery();
                 objCon.con.Close();
@@ -70,14 +72,14 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.CommandText = "usp_ShopAct";
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.Parameters.AddWithValue("@intMode", 2);
-                objCmd.Parameters.AddWithValue("@s_Service", objPro.shopActService);
                 objCmd.Parameters.AddWithValue("@s_InputDate", objPro.shopActInputDate);
-                objCmd.Parameters.AddWithValue("@s_WorkType", objPro.shopActWorktype);
                 objCmd.Parameters.AddWithValue("@s_AllocatedTo", objPro.shopActAllocatedEmp);
+                objCmd.Parameters.AddWithValue("@s_TaskName", objPro.shopActTaskName);
                 objCmd.Parameters.AddWithValue("@s_DueDate", objPro.shopActDueDate);
                 objCmd.Parameters.AddWithValue("@s_Fees", objPro.shopActFees);
                 objCmd.Parameters.AddWithValue("@s_FeeStatus", objPro.shopActFeeStatus);
                 objCmd.Parameters.AddWithValue("@s_Status", objPro.shopActStatus);
+                objCmd.Parameters.AddWithValue("@s_Description", objPro.shopActDescription);
                 objCmd.Parameters.AddWithValue("@shopActId", objPro.shopActId);
 
                 flag = objCmd.ExecuteNonQuery();

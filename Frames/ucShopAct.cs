@@ -21,72 +21,84 @@ namespace Tax_Consultant_25.Frames
             InitializeComponent();
         }
 
-        CommonUC common;
+        #region CLASS & OBJECTS
+
         DataTable dt;
-        DataSet ds, ds1;
+        DataSet ds;
         cls_EmployeeDL employeeDL;
         cls_ClientUserPassDL clientUserPassDL;
         cls_ShopActDL shopActDL;
         clsProperties objPro;
         cls_Query query;
         cls_BusinessDL bus;
+        cls_ClientsDL client;
 
-        int clId, flag, tempShopActId, tempClientId;
+        #endregion
+
+        #region VARIBALES
+
+        int clientId, flag, tempShopActId, tempClientId;
         int present = 0;
         string tempEmployeeName, tempClientName, tempWorkType, serviceName, service, businessName, clientAddress;
 
+        #endregion
+
+        #region USER DEFINED EVENTS
+
+        private void cmbWorkStatus_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0)
+                return;
+
+            Color[] bgColors =
+            {
+                ColorTranslator.FromHtml("#D6DCE4"), // Not Started
+                ColorTranslator.FromHtml("#F4B084"), // Waiting for Documents
+                ColorTranslator.FromHtml("#A9D08E"), // Document Received
+                ColorTranslator.FromHtml("#00B0F0"), // Return Prepared
+                ColorTranslator.FromHtml("#FF0000"), // Cancelled
+                ColorTranslator.FromHtml("#FFC000"), // Complit
+                ColorTranslator.FromHtml("#FFFF00"), // Filed
+            };
+
+            Color backColor = bgColors[e.Index];
+
+            // This removes the blue highlight effect
+            using (Brush backgroundBrush = new SolidBrush(backColor))
+            {
+                e.Graphics.FillRectangle(backgroundBrush, e.Bounds);
+            }
+
+            using (Brush textBrush = new SolidBrush(Color.Black))
+            {
+                e.Graphics.DrawString(
+                    cmbWorkStatus.Items[e.Index].ToString(),
+                    e.Font,
+                    textBrush,
+                    e.Bounds
+                );
+            }
+
+            e.DrawFocusRectangle();
+        }
+
+        #endregion
+
+        #region EVENTS
+
         private void ucShopAct_Load(object sender, EventArgs e)
         {
-            common = new CommonUC();
-            //pnlMainForm.Controls.Clear();
-            common.service = "SHOPACT";
-            //pnlMainForm.Controls.Add(common);
-
+            BindSearch();
             BindEmployee();
             show();
-            serviceName = common.service;
-
-            common.FormDataInfo += CommonUC_FormDataInfo;
 
             cmbAllocatedTo.SelectedIndex = 0;
             cmbFeesStatus.SelectedIndex = 0;
             cmbWorkStatus.SelectedIndex = 0;
-        }
 
-        private void BindEmployee()
-        {
-            try
-            {
-                dt = new DataTable();
-                employeeDL = new cls_EmployeeDL();
-                dt = employeeDL.bindEmployee();
-
-                cmbAllocatedTo.DataSource = dt;
-                cmbAllocatedTo.DisplayMember = "e_Name";
-                cmbAllocatedTo.ValueMember = "empId";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "UC_PTEC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void CommonUC_FormDataInfo(object sender, FormDataInfoEventArgs e)
-        {
-            if (e.Username != string.Empty && e.Password != string.Empty)
-            {
-                present = 1;
-            }
-
-            txtClientName.Text = e.clientName;
-            txtUname.Text = e.Username;
-            txtPass.Text = e.Password;
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Parent.Controls.Remove(this);
-            this.Dispose();
+            // USER DEFINED EVENTS
+            cmbWorkStatus.DrawMode = DrawMode.OwnerDrawFixed;
+            cmbWorkStatus.DrawItem += cmbWorkStatus_DrawItem;
         }
 
         private void dgvShopAct_SelectionChanged(object sender, EventArgs e)
@@ -94,24 +106,93 @@ namespace Tax_Consultant_25.Frames
             dgvShopAct.ClearSelection();
         }
 
-        private void dgvShopAct_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
-            ShowQuery();
+            try
+            {
+                if (txtClientName.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Client Name", "SHOPACT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (txtTaskName.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Work Type", "SHOPACT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (txtFees.Text == string.Empty)
+                {
+                    MessageBox.Show("Enter Fess Amount", "SHOPACT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                objPro = new clsProperties();
+
+                objPro.shopActId = tempShopActId;
+                objPro.clientID = tempClientId;
+                objPro.clientName = txtClientName.Text;
+                objPro.shopActTradeName = txtTradeName.Text;
+                objPro.shopActInputDate = dtpInputDate.Value;
+                objPro.shopActTaskName = txtTaskName.Text;
+                objPro.shopActAllocatedEmp = cmbAllocatedTo.Text;
+                objPro.shopActDueDate = dtpDueDate.Value;
+                objPro.shopActFees = Convert.ToInt32(txtFees.Text);
+                objPro.shopActFeeStatus = cmbFeesStatus.Text;
+                objPro.shopActStatus = cmbWorkStatus.Text;
+                objPro.shopActDescription = txtDescription.Text;
+
+                shopActDL = new cls_ShopActDL();
+                flag = shopActDL.updateData(objPro);
+
+                if (flag == 1)
+                {
+                    
+                    //if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "Done")
+                    //{
+                    //    DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "SHOPACT", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    //    if (dial == DialogResult.Yes)
+                    //    {
+                    //        frm_Narration narr = new frm_Narration();
+                    //        narr.clientName = txtClientName.Text;
+                    //        narr.service = common.service;
+                    //        narr.amount = txtFessAmt.Text;
+                    //        narr.workType = txtWorkType.Text;
+                    //        narr.businessName = businessName;
+                    //        narr.clientAddress = clientAddress;
+
+                    //        narr.Show();
+                    //    }
+                    //}
+
+                    Clear();
+                    show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_SHOPACT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
-        private void showClientUsernamePasswordOnDGVClick()
+        private void txtClientName_TextChanged(object sender, EventArgs e)
         {
-            ds = null;
-
-            ds = new DataSet();
-            clientUserPassDL = new cls_ClientUserPassDL();
-            ds = clientUserPassDL.getClientUsernamePasword(objPro);
-
-            if (ds.Tables[0].Rows.Count > 0)
+            if(txtClientName.Text == string.Empty)
             {
-                txtUname.Text = ds.Tables[0].Rows[0]["clientUsername"].ToString();
-                txtPass.Text = ds.Tables[0].Rows[0]["clientPassword"].ToString();
+                txtTradeName.Clear();
             }
+        }
+
+        private void txtClientName_Leave(object sender, EventArgs e)
+        {
+            SearchClient();
+        }
+
+        private void txtTradeName_Leave(object sender, EventArgs e)
+        {
+            SearchClient();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -124,25 +205,13 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                if (txtWorkType.Text == string.Empty)
+                if (txtTaskName.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Work Type", "SHOPACT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (txtUname.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Username", "SHOPACT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtPass.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Password", "SHOPACT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtFessAmt.Text == string.Empty)
+                if (txtFees.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Fess Amount", "SHOPACT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -150,39 +219,23 @@ namespace Tax_Consultant_25.Frames
 
                 objPro = new clsProperties();
 
-                clId = common.clientId;
-
-                objPro.clientID = clId;
+                objPro.clientID = tempClientId;
                 objPro.clientName = txtClientName.Text;
-                objPro.shopActService = common.service;
+                objPro.shopActTradeName = txtTradeName.Text;
                 objPro.shopActInputDate = dtpInputDate.Value;
-                objPro.shopActWorktype = txtWorkType.Text;
+                objPro.shopActTaskName = txtTaskName.Text;
                 objPro.shopActAllocatedEmp = cmbAllocatedTo.Text;
                 objPro.shopActDueDate = dtpDueDate.Value;
-                objPro.shopActFees = Convert.ToInt32(txtFessAmt.Text);
+                objPro.shopActFees = Convert.ToInt32(txtFees.Text);
                 objPro.shopActFeeStatus = cmbFeesStatus.Text;
                 objPro.shopActStatus = cmbWorkStatus.Text;
-
-                objPro.username = txtUname.Text;
-                objPro.password = txtPass.Text;
-                objPro.workService = objPro.shopActService;
+                objPro.shopActDescription = txtDescription.Text;
 
                 shopActDL = new cls_ShopActDL();
                 flag = shopActDL.saveData(objPro);
 
-                if(flag == 1)
+                if (flag == 1)
                 {
-                    flag = 0;
-
-                    if (present == 0)
-                    {
-                        clientUserPassDL = new cls_ClientUserPassDL();
-                        flag = clientUserPassDL.saveClientUserNamePassword(objPro);
-                    }
-
-                    //MessageBox.Show("Record Saved...");
-
-                    common.ClearControls();
                     show();
                     Clear();
                 }
@@ -191,6 +244,45 @@ namespace Tax_Consultant_25.Frames
             {
                 MessageBox.Show(ex.Message.ToString(), "UC_SHOPACT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void dgvShopAct_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            ShowQuery();
+            #region CHANGE STATUS COLORS
+
+            Dictionary<string, Color> StatusColors = new Dictionary<string, Color>()
+            {
+                { "Not Started", ColorTranslator.FromHtml("#D6DCE4") },
+                { "Waiting For Documents", ColorTranslator.FromHtml("#F4B084") },
+                { "Document Received", ColorTranslator.FromHtml("#A9D08E") },
+                { "Return Prepaired", ColorTranslator.FromHtml("#00B0F0") },
+                { "Cancelled", ColorTranslator.FromHtml("#FF0000") },
+                { "Complete", ColorTranslator.FromHtml("#FFC000") },
+                { "Done", ColorTranslator.FromHtml("#FFFF00") }
+            };
+
+            if (dgvShopAct.Columns[e.ColumnIndex].Name == "Status")
+            {
+                if (e.Value != null)
+                {
+                    string status = e.Value.ToString();
+
+                    if (StatusColors.ContainsKey(status))
+                    {
+                        e.CellStyle.BackColor = StatusColors[status];
+                        e.CellStyle.ForeColor = Color.Black;
+                    }
+                }
+            }
+
+            #endregion
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Parent.Controls.Remove(this);
+            this.Dispose();
         }
 
         private void dgvShopAct_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -203,50 +295,21 @@ namespace Tax_Consultant_25.Frames
 
                 objPro.rowID = e.RowIndex;
 
-                if(dgvShopAct.Rows.Count >= 0)
+                if (dgvShopAct.Rows.Count >= 0)
                 {
-                    dtpInputDate.Text = dgvShopAct.Rows[objPro.rowID].Cells[3].Value.ToString();
-                    txtClientName.Text = dgvShopAct.Rows[objPro.rowID].Cells[4].Value.ToString();
-                    txtWorkType.Text = dgvShopAct.Rows[objPro.rowID].Cells[5].Value.ToString();
+                    dtpInputDate.Text = dgvShopAct.Rows[objPro.rowID].Cells[2].Value.ToString();
+                    txtClientName.Text = dgvShopAct.Rows[objPro.rowID].Cells[3].Value.ToString();
+                    txtTradeName.Text = dgvShopAct.Rows[objPro.rowID].Cells[4].Value.ToString();
+                    txtTaskName.Text = dgvShopAct.Rows[objPro.rowID].Cells[5].Value.ToString();
                     cmbAllocatedTo.Text = dgvShopAct.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
                     dtpDueDate.Text = dgvShopAct.Rows[objPro.rowID].Cells[7].Value.ToString();
-                    txtFessAmt.Text = dgvShopAct.Rows[objPro.rowID].Cells[10].Value.ToString();
-                    cmbFeesStatus.Text = dgvShopAct.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
                     cmbWorkStatus.Text = dgvShopAct.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
-                    tempShopActId = Convert.ToInt32(dgvShopAct.Rows[objPro.rowID].Cells[11].Value.ToString());
-                    tempClientId = Convert.ToInt32(dgvShopAct.Rows[objPro.rowID].Cells[12].Value.ToString());
+                    cmbFeesStatus.Text = dgvShopAct.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
+                    txtDescription.Text = dgvShopAct.Rows[objPro.rowID].Cells[10].Value.ToString().Trim();
+                    txtFees.Text = dgvShopAct.Rows[objPro.rowID].Cells[11].Value.ToString();
+                    tempShopActId = Convert.ToInt32(dgvShopAct.Rows[objPro.rowID].Cells[12].Value.ToString());
+                    clientId = Convert.ToInt32(dgvShopAct.Rows[objPro.rowID].Cells[13].Value.ToString());
 
-                    objPro.workService = common.service;
-
-                    tempEmployeeName = cmbAllocatedTo.Text;
-                    tempClientName = txtClientName.Text;
-                    tempWorkType = txtWorkType.Text;
-                    objPro.clientID = tempClientId;
-
-                    bus = new cls_BusinessDL();
-                    ds = new DataSet();
-
-                    ds = bus.getBusinessName(tempClientName, tempClientId);
-
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        businessName = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
-                        clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
-                    }
-
-                    showClientUsernamePasswordOnDGVClick();
-                }
-
-                if (e.ColumnIndex == dgvShopAct.Columns["btnQuery"].Index)
-                {
-                    frm_Query query = new frm_Query(tempEmployeeName);
-
-                    query.serviceName = serviceName;
-                    query.clientName = tempClientName;
-                    query.employeeName = tempEmployeeName;
-                    query.workTypeName = tempWorkType;
-
-                    query.ShowDialog();
                 }
 
                 if (e.ColumnIndex == dgvShopAct.Columns["btnReply"].Index)
@@ -267,110 +330,22 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtClientName.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Client Name", "SHOPACT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+        #endregion
 
-                if (txtWorkType.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Work Type", "SHOPACT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtUname.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Username", "SHOPACT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtPass.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Password", "SHOPACT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (txtFessAmt.Text == string.Empty)
-                {
-                    MessageBox.Show("Enter Fess Amount", "SHOPACT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                objPro = new clsProperties();
-                clId = common.clientId;
-
-                objPro.shopActId = tempShopActId;
-                objPro.shopActService = common.service;
-                objPro.shopActInputDate = dtpInputDate.Value;
-                objPro.shopActWorktype = txtWorkType.Text;
-                objPro.shopActAllocatedEmp = cmbAllocatedTo.Text;
-                objPro.shopActDueDate = dtpDueDate.Value;
-                objPro.shopActFees = Convert.ToInt32(txtFessAmt.Text);
-                objPro.shopActFeeStatus = cmbFeesStatus.Text;
-                objPro.shopActStatus = cmbWorkStatus.Text;
-
-                objPro.clientID = tempClientId;
-                objPro.workService = common.service;
-                objPro.username = txtUname.Text;
-                objPro.password = txtPass.Text;
-
-                shopActDL = new cls_ShopActDL();
-                flag = shopActDL.updateData(objPro);
-
-                if(flag == 1)
-                {
-                    flag = 0;
-
-                    clientUserPassDL = new cls_ClientUserPassDL();
-                    flag = clientUserPassDL.updateClientUserNamePassword(objPro);
-
-                    if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "DONE")
-                    {
-                        DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "SHOPACT", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                        if (dial == DialogResult.Yes)
-                        {
-                            frm_Narration narr = new frm_Narration();
-                            narr.clientName = txtClientName.Text;
-                            narr.service = common.service;
-                            narr.amount = txtFessAmt.Text;
-                            narr.workType = txtWorkType.Text;
-                            narr.businessName = businessName;
-                            narr.clientAddress = clientAddress;
-
-                            narr.Show();
-                        }
-                    }
-
-                    //MessageBox.Show("Record Updated...");
-                    common.ClearControls();
-                    Clear();
-                    show();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "UC_SHOPACT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+        #region FUNCTIONS
 
         private void Clear()
         {
             dtpInputDate.Text = DateTime.Now.ToString();
             txtClientName.Clear();
-            txtWorkType.Clear();
+            txtTaskName.Clear();
             cmbAllocatedTo.SelectedIndex = 0;
             dtpDueDate.Text = DateTime.Now.ToString();
-            txtUname.Clear();
-            txtPass.Clear();
-            txtFessAmt.Clear();
+            txtFees.Clear();
             cmbFeesStatus.SelectedIndex = 0;
             cmbWorkStatus.SelectedIndex = 0;
+            txtDescription.Clear();
+            txtTradeName.Clear();
 
             btnSave.Enabled = true;
         }
@@ -400,46 +375,126 @@ namespace Tax_Consultant_25.Frames
 
         private void ShowQuery()
         {
-            query = new cls_Query();
-            ds1 = new DataSet();
+            //query = new cls_Query();
+            //ds1 = new DataSet();
 
-            ds1 = query.QueryRaisedByEmp();
+            //ds1 = query.QueryRaisedByEmp();
 
-            foreach (DataGridViewRow row in dgvShopAct.Rows)
+            //foreach (DataGridViewRow row in dgvShopAct.Rows)
+            //{
+            //    if (row.IsNewRow)
+            //        continue;
+
+            //    string employee = row.Cells["EmployeeName"].Value?.ToString();
+            //    string client = row.Cells["ClientName"].Value?.ToString();
+            //    string workType = row.Cells["WorkType"].Value?.ToString();
+            //    service = "SHOPACT";
+            //    var queryRow = ds1.Tables[0].AsEnumerable().FirstOrDefault(r =>
+            //       r.Field<string>("EmployeeName") == employee &&
+            //       r.Field<string>("clientName") == client &&
+            //       r.Field<string>("service") == service &&
+            //       r.Field<string>("workType") == workType
+            //     //&&
+            //     //!string.IsNullOrEmpty(r.Field<string>("queryByEmp"))
+            //     );
+
+
+            //    bool hasQuery = false;
+
+            //    if (queryRow != null)
+            //    {
+            //        object val = queryRow["HasQuery"];
+
+            //        if (val != DBNull.Value && int.TryParse(val.ToString(), out int parsed))
+            //        {
+            //            hasQuery = parsed == 1;
+            //        }
+            //    }
+
+            //    row.DefaultCellStyle.BackColor = hasQuery ? Color.Red : DefaultBackColor;
+
+          //  }
+        }
+
+        private void BindSearch()
+        {
+            try
             {
-                if (row.IsNewRow)
-                    continue;
+                ds = new DataSet();
+                client = new cls_ClientsDL();
+                ds = client.bindClientsData();
 
-                string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
-                string workType = row.Cells["WorkType"].Value?.ToString();
-                service = "SHOPACT";
-                var queryRow = ds1.Tables[0].AsEnumerable().FirstOrDefault(r =>
-                   r.Field<string>("EmployeeName") == employee &&
-                   r.Field<string>("clientName") == client &&
-                   r.Field<string>("service") == service &&
-                   r.Field<string>("workType") == workType
-                 //&&
-                 //!string.IsNullOrEmpty(r.Field<string>("queryByEmp"))
-                 );
+                AutoCompleteStringCollection autoList = new AutoCompleteStringCollection();
 
-
-                bool hasQuery = false;
-
-                if (queryRow != null)
+                if (ds.Tables[0].Rows.Count > 0)
                 {
-                    object val = queryRow["HasQuery"];
-
-                    if (val != DBNull.Value && int.TryParse(val.ToString(), out int parsed))
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        hasQuery = parsed == 1;
+                        autoList.Add(ds.Tables[0].Rows[i]["c_Name"].ToString());
+                        autoList.Add(ds.Tables[0].Rows[i]["c_Mobile"].ToString());
+                        autoList.Add(ds.Tables[0].Rows[i]["c_BusinessName"].ToString());
                     }
+
+                    this.txtClientName.AutoCompleteCustomSource = autoList;
+                    txtClientName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    txtClientName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+                    this.txtTradeName.AutoCompleteCustomSource = autoList;
+                    txtTradeName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    txtTradeName.AutoCompleteSource = AutoCompleteSource.CustomSource;
                 }
-
-                row.DefaultCellStyle.BackColor = hasQuery ? Color.Red : DefaultBackColor;
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_ALLINONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void SearchClient()
+        {
+            try
+            {
+                objPro = new clsProperties();
+                client = new cls_ClientsDL();
+                ds = new DataSet();
+
+                objPro.search = !string.IsNullOrWhiteSpace(txtTradeName.Text) ? txtTradeName.Text.Trim() : txtClientName.Text.Trim();
+
+                ds = client.searchClientTradeName(objPro);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    txtClientName.Text = ds.Tables[0].Rows[0]["c_Name"].ToString();
+                    txtTradeName.Text = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
+                    tempClientId = Convert.ToInt32(ds.Tables[0].Rows[0]["clientId"].ToString());
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_INCOMETAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void BindEmployee()
+        {
+            try
+            {
+                dt = new DataTable();
+                employeeDL = new cls_EmployeeDL();
+                dt = employeeDL.bindEmployee();
+
+                cmbAllocatedTo.DataSource = dt;
+                cmbAllocatedTo.DisplayMember = "e_Name";
+                cmbAllocatedTo.ValueMember = "empId";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_PTEC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        #endregion
 
     }
 }

@@ -30,16 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucShopAct));
             this.dgvShopAct = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WorkType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnQuery = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cmbAllocatedTo = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -66,6 +56,17 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WorkType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvShopAct)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -76,133 +77,35 @@
             // 
             this.dgvShopAct.AllowUserToAddRows = false;
             this.dgvShopAct.AllowUserToDeleteRows = false;
-            this.dgvShopAct.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvShopAct.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvShopAct.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvShopAct.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvShopAct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvShopAct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.ClientName,
+            this.Column4,
             this.WorkType,
             this.EmployeeName,
             this.Column6,
-            this.btnQuery,
             this.btnReply,
-            this.Column9,
-            this.Column7});
+            this.Column7,
+            this.Status,
+            this.Column3});
+            this.dgvShopAct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvShopAct.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvShopAct.Location = new System.Drawing.Point(201, 191);
+            this.dgvShopAct.Location = new System.Drawing.Point(0, 0);
             this.dgvShopAct.Name = "dgvShopAct";
             this.dgvShopAct.ReadOnly = true;
             this.dgvShopAct.RowHeadersVisible = false;
             this.dgvShopAct.RowHeadersWidth = 51;
             this.dgvShopAct.RowTemplate.Height = 24;
             this.dgvShopAct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvShopAct.Size = new System.Drawing.Size(890, 81);
+            this.dgvShopAct.Size = new System.Drawing.Size(1309, 510);
             this.dgvShopAct.TabIndex = 4;
             this.dgvShopAct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvShopAct_CellClick);
             this.dgvShopAct.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvShopAct_CellFormatting);
             this.dgvShopAct.SelectionChanged += new System.EventHandler(this.dgvShopAct_SelectionChanged);
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "serial";
-            this.Column1.FillWeight = 43.00868F;
-            this.Column1.HeaderText = "SR.";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "s_InputDate";
-            this.Column2.FillWeight = 104.6672F;
-            this.Column2.HeaderText = "In. Date";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // ClientName
-            // 
-            this.ClientName.DataPropertyName = "clientName";
-            this.ClientName.FillWeight = 135.4978F;
-            this.ClientName.HeaderText = "Name";
-            this.ClientName.MinimumWidth = 6;
-            this.ClientName.Name = "ClientName";
-            this.ClientName.ReadOnly = true;
-            // 
-            // WorkType
-            // 
-            this.WorkType.DataPropertyName = "s_WorkType";
-            this.WorkType.FillWeight = 95.15669F;
-            this.WorkType.HeaderText = "W Type";
-            this.WorkType.MinimumWidth = 6;
-            this.WorkType.Name = "WorkType";
-            this.WorkType.ReadOnly = true;
-            // 
-            // EmployeeName
-            // 
-            this.EmployeeName.DataPropertyName = "s_AllocatedTo";
-            this.EmployeeName.FillWeight = 187.1658F;
-            this.EmployeeName.HeaderText = "Allocated To";
-            this.EmployeeName.MinimumWidth = 6;
-            this.EmployeeName.Name = "EmployeeName";
-            this.EmployeeName.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "s_DueDate";
-            this.Column6.FillWeight = 94.13483F;
-            this.Column6.HeaderText = "D Date";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // btnQuery
-            // 
-            this.btnQuery.FillWeight = 73.07347F;
-            this.btnQuery.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnQuery.HeaderText = "Query";
-            this.btnQuery.MinimumWidth = 6;
-            this.btnQuery.Name = "btnQuery";
-            this.btnQuery.ReadOnly = true;
-            this.btnQuery.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.btnQuery.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.btnQuery.Text = "QUERY";
-            this.btnQuery.UseColumnTextForButtonValue = true;
-            // 
-            // btnReply
-            // 
-            this.btnReply.FillWeight = 71.14763F;
-            this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnReply.HeaderText = "Reply";
-            this.btnReply.MinimumWidth = 6;
-            this.btnReply.Name = "btnReply";
-            this.btnReply.ReadOnly = true;
-            this.btnReply.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.btnReply.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.btnReply.Text = "REPLY";
-            this.btnReply.UseColumnTextForButtonValue = true;
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "s_Status";
-            this.Column9.FillWeight = 87.40306F;
-            this.Column9.HeaderText = "Work St";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "s_FeeStatus";
-            this.Column7.HeaderText = "Fees St";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
             // 
             // panel2
             // 
@@ -349,6 +252,8 @@
             this.txtClientName.Name = "txtClientName";
             this.txtClientName.Size = new System.Drawing.Size(254, 29);
             this.txtClientName.TabIndex = 81;
+            this.txtClientName.TextChanged += new System.EventHandler(this.txtClientName_TextChanged);
+            this.txtClientName.Leave += new System.EventHandler(this.txtClientName_Leave);
             // 
             // label2
             // 
@@ -367,6 +272,7 @@
             this.txtTradeName.Name = "txtTradeName";
             this.txtTradeName.Size = new System.Drawing.Size(323, 29);
             this.txtTradeName.TabIndex = 80;
+            this.txtTradeName.Leave += new System.EventHandler(this.txtTradeName_Leave);
             // 
             // label3
             // 
@@ -462,6 +368,7 @@
             this.btnClose.Text = "CLOSE";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnUpdate
             // 
@@ -476,6 +383,7 @@
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnSave
             // 
@@ -490,6 +398,7 @@
             this.btnSave.Text = "SAVE";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // panel1
             // 
@@ -502,6 +411,109 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1309, 510);
             this.panel1.TabIndex = 8;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "serial";
+            this.Column1.FillWeight = 57.4458F;
+            this.Column1.HeaderText = "SR.";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "s_InputDate";
+            this.Column2.FillWeight = 78.98015F;
+            this.Column2.HeaderText = "START DT.";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // ClientName
+            // 
+            this.ClientName.DataPropertyName = "clientName";
+            this.ClientName.FillWeight = 126.4416F;
+            this.ClientName.HeaderText = "NAME";
+            this.ClientName.MinimumWidth = 6;
+            this.ClientName.Name = "ClientName";
+            this.ClientName.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "s_TradeName";
+            this.Column4.FillWeight = 125.4269F;
+            this.Column4.HeaderText = "TRADE NAME";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // WorkType
+            // 
+            this.WorkType.DataPropertyName = "s_TaskName";
+            this.WorkType.FillWeight = 119.6216F;
+            this.WorkType.HeaderText = "TASK NAME";
+            this.WorkType.MinimumWidth = 6;
+            this.WorkType.Name = "WorkType";
+            this.WorkType.ReadOnly = true;
+            // 
+            // EmployeeName
+            // 
+            this.EmployeeName.DataPropertyName = "s_AllocatedTo";
+            this.EmployeeName.FillWeight = 121.5366F;
+            this.EmployeeName.HeaderText = "ASSIGNED TO";
+            this.EmployeeName.MinimumWidth = 6;
+            this.EmployeeName.Name = "EmployeeName";
+            this.EmployeeName.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "s_DueDate";
+            this.Column6.FillWeight = 71.547F;
+            this.Column6.HeaderText = "DUE DT.";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // btnReply
+            // 
+            this.btnReply.FillWeight = 81.2904F;
+            this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReply.HeaderText = "REPLY";
+            this.btnReply.MinimumWidth = 6;
+            this.btnReply.Name = "btnReply";
+            this.btnReply.ReadOnly = true;
+            this.btnReply.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnReply.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.btnReply.Text = "REPLY";
+            this.btnReply.UseColumnTextForButtonValue = true;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "s_FeeStatus";
+            this.Column7.FillWeight = 77.131F;
+            this.Column7.HeaderText = "FEES ST.";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "s_Status";
+            this.Status.FillWeight = 116.9623F;
+            this.Status.HeaderText = "STATUS";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "s_Description";
+            this.Column3.FillWeight = 123.5184F;
+            this.Column3.HeaderText = "DESCRIPTION";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
             // ucShopAct
             // 
@@ -525,16 +537,6 @@
 
         #endregion
         private System.Windows.Forms.DataGridView dgvShopAct;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn WorkType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewButtonColumn btnQuery;
-        private System.Windows.Forms.DataGridViewButtonColumn btnReply;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ComboBox cmbAllocatedTo;
         private System.Windows.Forms.Label label20;
@@ -561,5 +563,16 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WorkType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewButtonColumn btnReply;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
