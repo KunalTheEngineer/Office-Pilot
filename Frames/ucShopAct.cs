@@ -38,9 +38,9 @@ namespace Tax_Consultant_25.Frames
         private void ucShopAct_Load(object sender, EventArgs e)
         {
             common = new CommonUC();
-            pnlMainForm.Controls.Clear();
+            //pnlMainForm.Controls.Clear();
             common.service = "SHOPACT";
-            pnlMainForm.Controls.Add(common);
+            //pnlMainForm.Controls.Add(common);
 
             BindEmployee();
             show();

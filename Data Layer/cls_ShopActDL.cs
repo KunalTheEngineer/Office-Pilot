@@ -40,7 +40,6 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Parameters.AddWithValue("@intMode", 1);
                 objCmd.Parameters.AddWithValue("@clientId", objPro.clientID);
                 objCmd.Parameters.AddWithValue("@clientName", objPro.clientName);
-                objCmd.Parameters.AddWithValue("@s_Service", objPro.shopActService);
                 objCmd.Parameters.AddWithValue("@s_InputDate", objPro.shopActInputDate);
                 objCmd.Parameters.AddWithValue("@s_WorkType", objPro.shopActWorktype);
                 objCmd.Parameters.AddWithValue("@s_AllocatedTo", objPro.shopActAllocatedEmp);
