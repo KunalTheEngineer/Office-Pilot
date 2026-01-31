@@ -193,21 +193,23 @@ namespace Tax_Consultant_25
 
         public string panService { get; set; }
 
+        public string panTradeName { get; set; }
+
         public DateTime panInputDate { get; set; }
 
-        public string panWorkType { get; set; }
+        public string panTaskName { get; set; }
 
         public string panAllocatedEmp { get; set; }
 
         public DateTime panDueDate { get; set; }
-
-        public string panTanNo { get; set; }
 
         public int panFees { get; set; }
 
         public string panFeeStatus { get; set; }
 
         public string panStatus { get; set; }
+
+        public string panDescription { get; set; }
 
         #endregion
 
@@ -253,7 +255,9 @@ namespace Tax_Consultant_25
 
         public DateTime shopActInputDate { get; set; }
 
-        public string shopActWorktype { get; set; }
+        public string shopActTradeName { get; set; }
+
+        public string shopActTaskName { get; set; }
 
         public string shopActAllocatedEmp { get; set; }
 
@@ -265,6 +269,8 @@ namespace Tax_Consultant_25
 
         public string shopActStatus { get; set; }
 
+        public string shopActDescription { get; set; }
+
         #endregion
 
         #region UDYAM
@@ -273,9 +279,11 @@ namespace Tax_Consultant_25
 
         public string udyamService { get; set; }
 
+        public string udyamTradeName { get; set; }  
+
         public DateTime udyamInputDate { get; set; }
 
-        public string udyamWorktype { get; set; }
+        public string udyamTaskName { get; set; }
 
         public string udyamAllocatedEmp { get; set; }
 
@@ -286,6 +294,8 @@ namespace Tax_Consultant_25
         public string udyamFeeStatus { get; set; }
 
         public string udyamStatus { get; set; }
+
+        public string udyamDescription { get; set; }
 
         #endregion
 
@@ -307,7 +317,9 @@ namespace Tax_Consultant_25
 
         public DateTime tdsInputDate { get; set; }
 
-        public string tdsWorktype { get; set; }
+        public string tdsTradeName { get; set; }
+
+        public string tdsTaskName { get; set; }
 
         public string tdsAllocatedEmp { get; set; }
 
@@ -315,9 +327,13 @@ namespace Tax_Consultant_25
 
         public string tdsYear { get; set; }
 
-        public string tdsPeriod { get; set; }
+        public string tdsRecurringTask { get; set; }
+
+        public string tdsPeriodicity { get; set; }
 
         public string tdsStatus { get; set; }
+
+        public string tdsDescription { get; set; }
 
         #endregion
 
@@ -329,15 +345,21 @@ namespace Tax_Consultant_25
 
         public DateTime allOneInputDate { get; set; }
 
-        public string allOneWorktype { get; set; }
+        public string allOneTradeName { get; set; }
+
+        public string allOneTaskName { get; set; }
 
         public string allOneAllocatedEmp { get; set; }
 
+        public string allOneTypeOfReturn { get; set; }
+
         public DateTime allOneDueDate { get; set; }
 
-        public string allOneYear { get; set; }
+        public string allOneRecurringTask { get; set; }
 
-        public string allOneNumber { get; set; }
+        public string allOnePeriodicity { get; set; }
+
+        public string allOneYear { get; set; }
 
         public int allOneFee { get; set; }
 
@@ -345,6 +367,7 @@ namespace Tax_Consultant_25
 
         public string allOneStatus { get; set; }
 
+        public string allOneDescription { get; set; }
 
         #endregion
 
