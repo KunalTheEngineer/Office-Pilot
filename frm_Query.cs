@@ -101,37 +101,37 @@ namespace Tax_Consultant_25
 
         private void show()
         {
-            try
-            {
-                objPro = new clsProperties();
-                query = new cls_Query();
+            //try
+            //{
+            //    objPro = new clsProperties();
+            //    query = new cls_Query();
 
-                if(role == "User")
-                {
-                    ds = query.QueryByEmp(lblEmpName.Text, serviceName, clientName);
+            //    if(role == "User")
+            //    {
+            //        ds = query.QueryByEmp(lblEmpName.Text, serviceName, clientName);
 
-                }
-                else
-                {
-                    ds = query.QueryByEmp(employeeName, serviceName, clientName);
-                }
+            //    }
+            //    else
+            //    {
+            //        ds = query.QueryByEmp(employeeName, serviceName, clientName);
+            //    }
 
-                if (ds != null)
-                {
-                    dgvQuery.DataSource = ds.Tables[0];
-                    dgvQuery.Columns["queryEmpId"].Visible = false;
-                    dgvQuery.Columns["queryEmpName"].Visible = false;
+            //    if (ds != null)
+            //    {
+            //        dgvQuery.DataSource = ds.Tables[0];
+            //        dgvQuery.Columns["queryEmpId"].Visible = false;
+            //        dgvQuery.Columns["queryEmpName"].Visible = false;
 
-                }
-                else
-                {
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "FRM_QUERY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            //    }
+            //    else
+            //    {
+            //        return;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message.ToString(), "FRM_QUERY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}
         }
 
         private void btnUpdateEmp_Click(object sender, EventArgs e)
