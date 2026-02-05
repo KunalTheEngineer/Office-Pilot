@@ -275,7 +275,7 @@
             // 
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(14, 45);
+            this.lblDate.Location = new System.Drawing.Point(14, 43);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(66, 20);
             this.lblDate.TabIndex = 3;
@@ -301,7 +301,7 @@
             this.groupBox1.Controls.Add(this.pctTDS);
             this.groupBox1.Controls.Add(this.pctPTEC);
             this.groupBox1.Controls.Add(this.pctPAN);
-            this.groupBox1.Location = new System.Drawing.Point(9, 71);
+            this.groupBox1.Location = new System.Drawing.Point(11, 65);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(183, 754);
             this.groupBox1.TabIndex = 4;

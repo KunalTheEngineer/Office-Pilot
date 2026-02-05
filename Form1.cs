@@ -33,8 +33,8 @@ namespace Tax_Consultant_25
 
             if(role == "User")
             {
-              groupBox1.Visible = false;
-                pnlMainForm.Dock = DockStyle.Fill;
+            //  groupBox1.Visible = false;
+             //   pnlMainForm.Dock = DockStyle.Fill;
                 pnlMainForm.Controls.Clear();
                 ucShowEmployeeWork uc = new ucShowEmployeeWork();
                 uc.Dock = DockStyle.Fill;
