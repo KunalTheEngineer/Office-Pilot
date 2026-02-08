@@ -599,6 +599,11 @@ namespace Tax_Consultant_25.Frames
 
             ReflowTextboxes();
         }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
 
