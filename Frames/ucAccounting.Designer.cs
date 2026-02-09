@@ -63,9 +63,9 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -79,8 +79,7 @@
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.txtDescription);
             this.panel2.Controls.Add(this.cmbPeriodicity);
@@ -108,8 +107,9 @@
             this.panel2.Controls.Add(this.lblDynamic1);
             this.panel2.Location = new System.Drawing.Point(4, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1301, 209);
+            this.panel2.Size = new System.Drawing.Size(1306, 209);
             this.panel2.TabIndex = 1;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // txtDescription
             // 
@@ -345,6 +345,7 @@
             this.label17.Size = new System.Drawing.Size(107, 21);
             this.label17.TabIndex = 38;
             this.label17.Text = "START DATE";
+            this.label17.Click += new System.EventHandler(this.label17_Click);
             // 
             // txtWorkPeriod
             // 
@@ -368,6 +369,8 @@
             // 
             this.dgvAllInOne.AllowUserToAddRows = false;
             this.dgvAllInOne.AllowUserToDeleteRows = false;
+            this.dgvAllInOne.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvAllInOne.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAllInOne.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvAllInOne.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -379,10 +382,9 @@
             this.Column3,
             this.Column6,
             this.EmployeeName,
-            this.btnReply,
             this.Status,
-            this.Column4});
-            this.dgvAllInOne.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Column4,
+            this.btnReply});
             this.dgvAllInOne.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvAllInOne.Location = new System.Drawing.Point(0, 0);
             this.dgvAllInOne.Name = "dgvAllInOne";
@@ -390,7 +392,7 @@
             this.dgvAllInOne.RowHeadersWidth = 51;
             this.dgvAllInOne.RowTemplate.Height = 24;
             this.dgvAllInOne.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAllInOne.Size = new System.Drawing.Size(1302, 442);
+            this.dgvAllInOne.Size = new System.Drawing.Size(1307, 449);
             this.dgvAllInOne.TabIndex = 4;
             this.dgvAllInOne.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllInOne_CellClick);
             this.dgvAllInOne.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAllInOne_CellFormatting);
@@ -452,21 +454,6 @@
             this.EmployeeName.MinimumWidth = 6;
             this.EmployeeName.Name = "EmployeeName";
             // 
-            // btnReply
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Crimson;
-            this.btnReply.DefaultCellStyle = dataGridViewCellStyle1;
-            this.btnReply.FillWeight = 54.44823F;
-            this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnReply.HeaderText = "REPLY";
-            this.btnReply.MinimumWidth = 6;
-            this.btnReply.Name = "btnReply";
-            this.btnReply.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.btnReply.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.btnReply.Text = "REPLY";
-            this.btnReply.UseColumnTextForButtonValue = true;
-            // 
             // Status
             // 
             this.Status.DataPropertyName = "a_Status";
@@ -483,17 +470,31 @@
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
             // 
+            // btnReply
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Crimson;
+            this.btnReply.DefaultCellStyle = dataGridViewCellStyle1;
+            this.btnReply.FillWeight = 54.44823F;
+            this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReply.HeaderText = "REPLY";
+            this.btnReply.MinimumWidth = 6;
+            this.btnReply.Name = "btnReply";
+            this.btnReply.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnReply.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.btnReply.Text = "REPLY";
+            this.btnReply.UseColumnTextForButtonValue = true;
+            // 
             // panel3
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.btnClose);
             this.panel3.Controls.Add(this.btnUpdate);
             this.panel3.Controls.Add(this.btnSave);
             this.panel3.Location = new System.Drawing.Point(4, 218);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1302, 46);
+            this.panel3.Size = new System.Drawing.Size(1307, 46);
             this.panel3.TabIndex = 5;
             // 
             // btnClose
@@ -502,14 +503,14 @@
             this.btnClose.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(634, 5);
+            this.btnClose.Location = new System.Drawing.Point(634, 4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(94, 37);
-            this.btnClose.TabIndex = 7;
+            this.btnClose.Size = new System.Drawing.Size(103, 37);
+            this.btnClose.TabIndex = 8;
             this.btnClose.Text = "CLOSE";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click_1);
             // 
             // btnUpdate
             // 
@@ -543,14 +544,13 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.dgvAllInOne);
             this.panel1.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(4, 271);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1302, 442);
+            this.panel1.Size = new System.Drawing.Size(1307, 449);
             this.panel1.TabIndex = 6;
             // 
             // ucAccounting
@@ -562,7 +562,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Name = "ucAccounting";
-            this.Size = new System.Drawing.Size(1320, 716);
+            this.Size = new System.Drawing.Size(1325, 723);
             this.Load += new System.EventHandler(this.ucAccounting_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -601,7 +601,6 @@
         private System.Windows.Forms.RichTextBox txtDescription;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel panel1;
@@ -612,8 +611,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeName;
-        private System.Windows.Forms.DataGridViewButtonColumn btnReply;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewButtonColumn btnReply;
+        private System.Windows.Forms.Button btnClose;
     }
 }

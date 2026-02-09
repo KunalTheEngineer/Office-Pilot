@@ -64,7 +64,7 @@ namespace Tax_Consultant_25.Data_Layer
             return flag;
         }
 
-        internal DataSet ShowData()
+        internal DataSet ShowData(string ROLE, string EMPLOYEENAME)
         {
             try
             {
@@ -76,6 +76,9 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.CommandText = "usp_Accounting";
                 objCmd.Parameters.AddWithValue("@intMode", 3);
+                objCmd.Parameters.AddWithValue("@a_Service", "ACCOUNTING");
+                objCmd.Parameters.AddWithValue("@a_AllocatedEmpName", EMPLOYEENAME);
+                objCmd.Parameters.AddWithValue("@Role", ROLE);
                 objDa = new SqlDataAdapter(objCmd);
                 objDa.Fill(objDs);
                 objCon.con.Close();

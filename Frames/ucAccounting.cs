@@ -31,6 +31,10 @@ namespace Tax_Consultant_25.Frames
         int clientId, flag, tempAccId, tempClientId;
         string service, businessName, clientAddress;
 
+        public string ROLE { get; set; }
+
+        public string EMPLOYEENAME { get; set; }
+
         #endregion
 
         #region Class and Objects
@@ -89,6 +93,9 @@ namespace Tax_Consultant_25.Frames
 
         private void ucAccounting_Load(object sender, EventArgs e)
         {
+
+            ApplyEmployeePermissions();
+
             BindEmployee();
             BindSearch();
 
@@ -198,12 +205,6 @@ namespace Tax_Consultant_25.Frames
         private void txtTradeName_Leave(object sender, EventArgs e)
         {
             SearchClient();
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Parent.Controls.Remove(this);
-            this.Dispose();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -333,6 +334,12 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
+        private void btnClose_Click_1(object sender, EventArgs e)
+        {
+            this.Parent.Controls.Remove(this);
+            this.Dispose();
+        }
+
         #endregion
 
         #region FUNCTIONS
@@ -369,6 +376,16 @@ namespace Tax_Consultant_25.Frames
             {
                 MessageBox.Show(ex.Message.ToString(), "UC_ALLINONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void SearchClient()
@@ -475,11 +492,16 @@ namespace Tax_Consultant_25.Frames
                 ds = new DataSet();
                 accountingDL = new cls_AccountingDL();
 
-                ds = accountingDL.ShowData();
+                ds = accountingDL.ShowData(ROLE, EMPLOYEENAME);
 
                 if (ds.Tables[0].Rows.Count >= 0)
                 {
                     dgvAllInOne.DataSource = ds.Tables[0];
+
+                    if(ROLE == "User")
+                    {
+                        dgvAllInOne.Columns["EMPLOYEENAME"].Visible = false;
+                    }
 
                     dgvAllInOne.Columns["accountId"].Visible = false;
                     dgvAllInOne.Columns["clientId"].Visible = false;
@@ -510,6 +532,27 @@ namespace Tax_Consultant_25.Frames
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "UC_ALLINONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void ApplyEmployeePermissions()
+        {
+            if(ROLE == "User")
+            {
+                dtpInputDate.Enabled = false;
+                dtpDueDate.Enabled = false;
+                cmbAllocatedTo.Enabled = false;
+                cmbRecurringTask.Enabled = false;
+                cmbPeriodicity.Enabled = false;
+
+                txtClientName.ReadOnly = true;
+                txtTradeName.ReadOnly = true;
+                txtTaskName.ReadOnly = true;
+                txtWorkPeriod.ReadOnly = true;
+                txtYear.ReadOnly = true;
+                txtDescription.ReadOnly = true;
+
+                cmbWorkStatus.Items.Remove("Done");
             }
         }
 
