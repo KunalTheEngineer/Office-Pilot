@@ -30,11 +30,10 @@ namespace Tax_Consultant_25
             lblTime.Text = "Time : " + DateTime.Now.ToString("hh:mm:ss tt");
             lblDate.Text = "Date : " + DateTime.Now.ToString("dd'/'MM'/'yyyy");
             
+            // ALL EMPLOYEE AND ADMIN ENABLE / DISABLE BUTTONS/TXTBOXES FROM HERE
 
             if(role == "User")
             {
-            //  groupBox1.Visible = false;
-             //   pnlMainForm.Dock = DockStyle.Fill;
                 pnlMainForm.Controls.Clear();
                 ucShowEmployeeWork uc = new ucShowEmployeeWork();
                 uc.Dock = DockStyle.Fill;
@@ -91,6 +90,8 @@ namespace Tax_Consultant_25
             pnlMainForm.Controls.Clear();
             ucAccounting acc = new ucAccounting();
             acc.Dock = DockStyle.Fill;
+            acc.ROLE = role;
+            acc.EMPLOYEENAME = empName;
             pnlMainForm.Controls.Add(acc);
         }
 
