@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Services.Description;
@@ -30,6 +31,7 @@ namespace Tax_Consultant_25.Data_Layer
 
         clsProperties objPro;
 
+        // EMPLOYEE SAVES QUERY 
         internal int saveQueryByEmp(clsProperties objPro)
         {
             try
@@ -38,15 +40,26 @@ namespace Tax_Consultant_25.Data_Layer
                 objPro.objCon.openConnection();
                 objPro.objCmd = new SqlCommand();
                 objPro.objCmd.Connection = objPro.objCon.con;
-                objPro.objCmd.CommandText = "usp_QueryByEmp";
+                objPro.objCmd.CommandText = "usp_Chat";
                 objPro.objCmd.CommandType = CommandType.StoredProcedure;
                 objPro.objCmd.Parameters.AddWithValue("@intMode", 1);
-                objPro.objCmd.Parameters.AddWithValue("@queryEmpName", objPro.workAllocatedEmpName);
-                objPro.objCmd.Parameters.AddWithValue("@queryServiceName", objPro.workService);
-                objPro.objCmd.Parameters.AddWithValue("@queryClientName", objPro.clientName);
-                objPro.objCmd.Parameters.AddWithValue("@queryByEmp", objPro.workQueryByEmp);
-                objPro.objCmd.Parameters.AddWithValue("@querySolution", objPro.workQuerySolution);
-                objPro.objCmd.Parameters.AddWithValue("@workType", objPro.workTypeName);
+                objPro.objCmd.Parameters.AddWithValue("@workId", objPro.workID);
+                objPro.objCmd.Parameters.AddWithValue("@q_EmpName", objPro.workAllocatedEmpName);
+                objPro.objCmd.Parameters.AddWithValue("@q_Service", objPro.workService);
+                objPro.objCmd.Parameters.AddWithValue("@q_ClientName", objPro.clientName);
+
+                if(objPro.workRole == "User")
+                {
+                    objPro.objCmd.Parameters.AddWithValue("@q_QueryText", objPro.workQueryByEmp);
+                    objPro.objCmd.Parameters.AddWithValue("@q_HasQuery", 1);
+                }
+                else
+                {
+                    objPro.objCmd.Parameters.AddWithValue("@q_ReplyText", objPro.workQuerySolution);
+                    objPro.objCmd.Parameters.AddWithValue("@q_IsClosed", 1);
+                }
+
+                objPro.objCmd.Parameters.AddWithValue("@q_TaskName", objPro.workTaskName);
 
                 objPro.flag = objPro.objCmd.ExecuteNonQuery();
                 objPro.objCon.con.Close();
@@ -59,6 +72,7 @@ namespace Tax_Consultant_25.Data_Layer
             return objPro.flag;
         }
 
+        // ADMIN REPLIES BACK TO QUERY
         internal int updateQuerybyEmp(clsProperties objPro)
         {
             try
@@ -67,13 +81,23 @@ namespace Tax_Consultant_25.Data_Layer
                 objPro.objCon.openConnection();
                 objPro.objCmd = new SqlCommand();
                 objPro.objCmd.Connection = objPro.objCon.con;
-                objPro.objCmd.CommandText = "usp_QueryByEmp";
+                objPro.objCmd.CommandText = "usp_Chat";
                 objPro.objCmd.CommandType = CommandType.StoredProcedure;
-                objPro.objCmd.Parameters.AddWithValue("@intMode", 2);
-                objPro.objCmd.Parameters.AddWithValue("@queryEmpId",objPro.workQueryByEmpId);
-                objPro.objCmd.Parameters.AddWithValue("@querySolution", objPro.workQuerySolution);
-                objPro.objCmd.Parameters.AddWithValue("@queryByEmp", objPro.workQueryByEmp);
+                objPro.objCmd.Parameters.AddWithValue("@intMode", 4);
+                objPro.objCmd.Parameters.AddWithValue("@queryId",objPro.workQueryId);
+                objPro.objCmd.Parameters.AddWithValue("@q_QueryText", objPro.workQueryByEmp);
+                objPro.objCmd.Parameters.AddWithValue("@q_ReplyText", objPro.workQuerySolution);
 
+                if (objPro.workRole == "User")
+                {    
+                    objPro.objCmd.Parameters.AddWithValue("@q_HasQuery", 1);
+                }
+                else
+                {    
+                    objPro.objCmd.Parameters.AddWithValue("@q_IsClosed", 1);
+                }
+
+                    
                 objPro.flag = objPro.objCmd.ExecuteNonQuery();
                 objPro.objCon.con.Close();
             }
@@ -85,7 +109,8 @@ namespace Tax_Consultant_25.Data_Layer
             return objPro.flag;
         }
 
-        internal DataSet QueryByEmp(string empName, string service, string client)
+        // SHOW ROW RED COLOR  IF QUERY HAS BEEN RAISED
+        internal DataSet QueryRaisedByEmp(string service)
         {
             try
             {
@@ -96,14 +121,13 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd = new SqlCommand();
                 objCmd.Connection = objCon.con;
                 objCmd.CommandType = CommandType.StoredProcedure;
-                objCmd.CommandText = "usp_QueryByEmp";
-                objCmd.Parameters.AddWithValue("@intMode", 5);
-                objCmd.Parameters.AddWithValue("@queryEmpName", empName);
-                objCmd.Parameters.AddWithValue("@queryServiceName", service);
-                objCmd.Parameters.AddWithValue("@queryClientName", client );
+                objCmd.CommandText = "usp_Chat";
+                objCmd.Parameters.AddWithValue("@intMode", 2);
+                objCmd.Parameters.AddWithValue("@q_Service", service);
                 objDa = new SqlDataAdapter(objCmd);
                 objDa.Fill(objDs);
                 objCon.con.Close();
+
             }
             catch (Exception ex)
             {
@@ -113,7 +137,8 @@ namespace Tax_Consultant_25.Data_Layer
             return objDs;
         }
 
-        internal DataSet QuerySolutionByAdmin(string empName)
+        // SHOW QUERY OF EMPLOYEE TO ADMIN
+        internal DataSet SHOWEMPQUERY(string empName, string service, string client, string taskName, int workId)
         {
             try
             {
@@ -124,9 +149,44 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd = new SqlCommand();
                 objCmd.Connection = objCon.con;
                 objCmd.CommandType = CommandType.StoredProcedure;
-                objCmd.CommandText = "usp_QueryByEmp";
+                objCmd.CommandText = "usp_Chat";
                 objCmd.Parameters.AddWithValue("@intMode", 3);
-                objCmd.Parameters.AddWithValue("@queryEmpName", empName);
+                objCmd.Parameters.AddWithValue("@q_EmpName", empName);
+                objCmd.Parameters.AddWithValue("@q_Service", service);
+                objCmd.Parameters.AddWithValue("@q_ClientName", client );
+                objCmd.Parameters.AddWithValue("@q_TaskName", taskName);
+                objCmd.Parameters.AddWithValue("@workId", workId);
+                objDa = new SqlDataAdapter(objCmd);
+                objDa.Fill(objDs);
+                objCon.con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "DL_QUERY_DATA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            return objDs;
+        }
+
+        // SHOW EMPLOYEE QUERY THAT HAS BEEN RIASED
+        internal DataSet SHOWADMINREPLY(string empName, string service, string client, string taskName, int workId)
+        {
+            try
+            {
+                objDs = new DataSet();
+
+                objCon = new clsConnection();
+                objCon.openConnection();
+                objCmd = new SqlCommand();
+                objCmd.Connection = objCon.con;
+                objCmd.CommandType = CommandType.StoredProcedure;
+                objCmd.CommandText = "usp_Chat";
+                objCmd.Parameters.AddWithValue("@intMode", 5);
+                objCmd.Parameters.AddWithValue("@q_EmpName", empName);
+                objCmd.Parameters.AddWithValue("@q_Service", service);
+                objCmd.Parameters.AddWithValue("@q_ClientName", client);
+                objCmd.Parameters.AddWithValue("@q_TaskName", taskName);
+                objCmd.Parameters.AddWithValue("@workId", workId);
                 objDa = new SqlDataAdapter(objCmd);
                 objDa.Fill(objDs);
                 objCon.con.Close();
@@ -140,7 +200,8 @@ namespace Tax_Consultant_25.Data_Layer
             return objDs;
         }
 
-        internal DataSet QueryRaisedByEmp()
+        // SHOW ROW GREEN COLOR IF REPLY HAS BEEN MADE
+        internal DataSet showReplyByAdmin(string service)
         {
             try
             {
@@ -151,34 +212,9 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd = new SqlCommand();
                 objCmd.Connection = objCon.con;
                 objCmd.CommandType = CommandType.StoredProcedure;
-                objCmd.CommandText = "usp_QueryByEmp";
-                objCmd.Parameters.AddWithValue("@intMode", 4);
-                objDa = new SqlDataAdapter(objCmd);
-                objDa.Fill(objDs);
-                objCon.con.Close();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "DL_QUERY_DATA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
-            return objDs;
-        }
-
-        internal DataSet FinishedGSTClients()
-        {
-            try
-            {
-                objDs = new DataSet();
-
-                objCon = new clsConnection();
-                objCon.openConnection();
-                objCmd = new SqlCommand();
-                objCmd.Connection = objCon.con;
-                objCmd.CommandType = CommandType.StoredProcedure;
-                objCmd.CommandText = "usp_QueryByEmp";
+                objCmd.CommandText = "usp_Chat";
                 objCmd.Parameters.AddWithValue("@intMode", 6);
+                objCmd.Parameters.AddWithValue("@q_Service", service);
                 objDa = new SqlDataAdapter(objCmd);
                 objDa.Fill(objDs);
                 objCon.con.Close();
@@ -190,6 +226,31 @@ namespace Tax_Consultant_25.Data_Layer
             }
 
             return objDs;
+        }
+
+        // DELETE CHAT
+        internal int deleteChat(int id)
+        {
+            try
+            {
+                objCon = new clsConnection();
+                objCon.openConnection();
+                objCmd = new SqlCommand();
+                objCmd.Connection = objCon.con;
+                objCmd.CommandText = "usp_Chat";
+                objCmd.CommandType = CommandType.StoredProcedure;
+                objCmd.Parameters.AddWithValue("@intMode", 7);
+                objCmd.Parameters.AddWithValue("@queryId", id);
+
+                flag = objCmd.ExecuteNonQuery();
+                objCon.con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "DL_QUERY_DATA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            return flag;
         }
     }
 }

@@ -30,7 +30,11 @@ namespace Tax_Consultant_25
         int flag = 0;
         DataSet ds;
 
+        #region VARIABLES
+
         public string empName { get; set; }
+
+        public string taskName { get; set; }
 
         public string serviceName { get; set; }
 
@@ -42,11 +46,19 @@ namespace Tax_Consultant_25
 
         public string employeeName { get; set; }
 
+        public int workId { get; set; }
+
+        int queryID, tempWorkId;
+        string tempService, tempTaskName, tempCLientName, tempEmpName;
+
+        #endregion
+
         private void frm_Query_Load(object sender, EventArgs e)
         {
+
             show();
 
-            if(role == "User")
+            if (role == "User")
             {
                 txtQueryByEmp.Enabled = true;
                 txtReply.Enabled = false;
@@ -55,104 +67,43 @@ namespace Tax_Consultant_25
             {
                 txtReply.Enabled = true;
                 txtQueryByEmp.Enabled = false;
+
+                lblEmpName.Visible = true;
+                lblEmpName.Text = employeeName;
             }
 
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnSaveEmp_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                objPro = new clsProperties();
-
-                objPro.workAllocatedEmpName = lblEmpName.Text;
-                objPro.workTypeName = workTypeName;
-                objPro.workService = serviceName;
-                objPro.workQueryByEmp = txtQueryByEmp.Text;
-                objPro.workQuerySolution = txtReply.Text;
-                objPro.clientName = clientName;
-
-                query = new cls_Query();
-
-                flag = query.saveQueryByEmp(objPro);
-
-                if (flag == 1)
-                {
-                    MessageBox.Show("Query Saved...");
-                    Clear();
-                    show();
-                    txtQueryByEmp.Focus();
-                }
-                else
-                {
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "FRM_QUERY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
 
         private void show()
         {
-            //try
-            //{
-            //    objPro = new clsProperties();
-            //    query = new cls_Query();
-
-            //    if(role == "User")
-            //    {
-            //        ds = query.QueryByEmp(lblEmpName.Text, serviceName, clientName);
-
-            //    }
-            //    else
-            //    {
-            //        ds = query.QueryByEmp(employeeName, serviceName, clientName);
-            //    }
-
-            //    if (ds != null)
-            //    {
-            //        dgvQuery.DataSource = ds.Tables[0];
-            //        dgvQuery.Columns["queryEmpId"].Visible = false;
-            //        dgvQuery.Columns["queryEmpName"].Visible = false;
-
-            //    }
-            //    else
-            //    {
-            //        return;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message.ToString(), "FRM_QUERY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}
-        }
-
-        private void btnUpdateEmp_Click(object sender, EventArgs e)
-        {
             try
             {
-                objPro = new clsProperties();
-
-                objPro.workQueryByEmp = txtQueryByEmp.Text;
-                objPro.workQuerySolution = txtReply.Text;
-                objPro.workQueryByEmpId = Convert.ToInt32(lblQueryByEmpId.Text);
-
+                //objPro = new clsProperties();
                 query = new cls_Query();
-                flag = query.updateQuerybyEmp(objPro);
+                ds = new DataSet();
 
-                if (flag == 1)
+                if (role == "Admin" && ds != null)
                 {
-                    MessageBox.Show("Query Updated...");
-                    Clear();
-                    txtReply.Clear();
-                    show();
+                    ds = query.SHOWEMPQUERY(employeeName, serviceName, clientName, taskName, workId);
+                }
+                else
+                {
+                    ds = query.SHOWADMINREPLY(employeeName, serviceName, clientName, taskName, workId);
+                }
+
+
+                if (ds != null)
+                {
+                    dgvQuery.DataSource = ds.Tables[0];
+
+                    dgvQuery.Columns["q_EmpName"].Visible = false;
+                    dgvQuery.Columns["workId"].Visible = false;
+                    dgvQuery.Columns["queryId"].Visible = false;
+                    dgvQuery.Columns["repliedDate"].Visible = false;
+                    dgvQuery.Columns["hasQuery"].Visible = false;
+                    dgvQuery.Columns["isClosed"].Visible = false;
+                    dgvQuery.Columns["isActive"].Visible = false;
+                    dgvQuery.Columns["createdDate"].Visible = false;
                 }
                 else
                 {
@@ -173,15 +124,35 @@ namespace Tax_Consultant_25
 
                 objPro.rowID = e.RowIndex;
 
-                btnSaveEmp.Enabled = false;
+                btnSave.Enabled = false;
 
                 if (dgvQuery.Rows.Count > 0)
                 {
-                    txtQueryByEmp.Text = dgvQuery.Rows[objPro.rowID].Cells[6].Value.ToString();
-                    lblQueryByEmpId.Text = dgvQuery.Rows[objPro.rowID].Cells[0].Value.ToString();
-                    txtReply.Text = dgvQuery.Rows[objPro.rowID].Cells[4].Value.ToString();
 
+                    queryID = Convert.ToInt32(dgvQuery.Rows[objPro.rowID].Cells[1].Value.ToString());
+                    tempWorkId = Convert.ToInt32(dgvQuery.Rows[objPro.rowID].Cells[2].Value.ToString());
+                    tempService = dgvQuery.Rows[objPro.rowID].Cells[3].Value.ToString();
+                    tempTaskName = dgvQuery.Rows[objPro.rowID].Cells[4].Value.ToString();
+                    tempCLientName = dgvQuery.Rows[objPro.rowID].Cells[5].Value.ToString();
+                    tempEmpName = dgvQuery.Rows[objPro.rowID].Cells[6].Value.ToString();
+                    txtQueryByEmp.Text = dgvQuery.Rows[objPro.rowID].Cells[7].Value.ToString();
+                    txtReply.Text = dgvQuery.Rows[objPro.rowID].Cells[8].Value.ToString();
                 }
+
+                if(e.ColumnIndex == dgvQuery.Columns["btClose"].Index)
+                {
+                    if (e.RowIndex < 0)
+                        return;
+
+                    query = new cls_Query();
+                    int fg = query.deleteChat(queryID);
+
+                    if(fg == 1)
+                    {
+                        show();
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -194,12 +165,89 @@ namespace Tax_Consultant_25
             txtQueryByEmp.Clear();
             txtReply.Clear();
 
-            btnSaveEmp.Enabled = true;
+            btnSave.Enabled = true;
         }
 
         private void dgvQuery_SelectionChanged(object sender, EventArgs e)
         {
             dgvQuery.ClearSelection();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                objPro = new clsProperties();
+
+                objPro.workRole = role;
+                objPro.workQueryId = queryID;
+                objPro.workQuerySolution = txtReply.Text;
+                objPro.workQueryByEmp = txtQueryByEmp.Text;
+
+                query = new cls_Query();
+                flag = query.updateQuerybyEmp(objPro);
+
+                if (flag == 1)
+                {
+                    Clear();
+                    show();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "FRM_QUERY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                objPro = new clsProperties();
+                query = new cls_Query();
+
+                objPro.workAllocatedEmpName = employeeName;
+                objPro.workTaskName = taskName;
+                objPro.workService = serviceName;
+                objPro.workQueryByEmp = txtQueryByEmp.Text;
+                objPro.workQuerySolution = txtReply.Text;
+                objPro.clientName = clientName;
+                objPro.workID = workId;
+                objPro.workRole = role;
+
+                flag = query.saveQueryByEmp(objPro);
+
+                if (flag == 1)
+                {
+                    Clear();
+                    show();
+                }
+                else
+                {
+                    return;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "FRM_QUERY", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dgvQuery_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvQuery.Columns["Column2"].DisplayIndex = 1;
+            dgvQuery.Columns["Column3"].DisplayIndex = 2;
+            dgvQuery.Columns["btClose"].DisplayIndex = dgvQuery.Columns.Count - 1;
         }
     }
 }
