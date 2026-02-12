@@ -7,12 +7,32 @@
       "RelativeMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|solutionrelative:frames\\ucgst.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|E:\\Desktop Softwares\\Tax Consultant 25\\frames\\ucgst.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|solutionrelative:frames\\ucgst.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|e:\\desktop softwares\\tax consultant 25\\frames\\upaddclients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|solutionrelative:frames\\upaddclients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|e:\\desktop softwares\\tax consultant 25\\frames\\upaddclients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|solutionrelative:frames\\upaddclients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|E:\\Desktop Softwares\\Tax Consultant 25\\data layer\\cls_gstdl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|solutionrelative:data layer\\cls_gstdl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|E:\\Desktop Softwares\\Tax Consultant 25\\frames\\ucgst.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|solutionrelative:frames\\ucgst.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|e:\\desktop softwares\\tax consultant 25\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|e:\\desktop softwares\\tax consultant 25\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|e:\\desktop softwares\\tax consultant 25\\frames\\ucaccounting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B7600AF-08BA-4D04-A96E-C4EBBAEFACA9}|Tax Consultant 25.csproj|solutionrelative:frames\\ucaccounting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,13 +54,76 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "upAddClients.cs",
+              "DocumentMoniker": "E:\\Desktop Softwares\\Tax Consultant 25\\Frames\\upAddClients.cs",
+              "RelativeDocumentMoniker": "Frames\\upAddClients.cs",
+              "ToolTip": "E:\\Desktop Softwares\\Tax Consultant 25\\Frames\\upAddClients.cs",
+              "RelativeToolTip": "Frames\\upAddClients.cs",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAswMQAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-08T09:22:43.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "upAddClients.cs [Design]",
+              "DocumentMoniker": "E:\\Desktop Softwares\\Tax Consultant 25\\Frames\\upAddClients.cs",
+              "RelativeDocumentMoniker": "Frames\\upAddClients.cs",
+              "ToolTip": "E:\\Desktop Softwares\\Tax Consultant 25\\Frames\\upAddClients.cs [Design]",
+              "RelativeToolTip": "Frames\\upAddClients.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-08T09:22:41.89Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "E:\\Desktop Softwares\\Tax Consultant 25\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "E:\\Desktop Softwares\\Tax Consultant 25\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAmwE4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T06:58:19.782Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "E:\\Desktop Softwares\\Tax Consultant 25\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "E:\\Desktop Softwares\\Tax Consultant 25\\Form1.cs [Design]",
+              "RelativeToolTip": "Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-08T06:58:17.586Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ucAccounting.cs",
+              "DocumentMoniker": "E:\\Desktop Softwares\\Tax Consultant 25\\Frames\\ucAccounting.cs",
+              "RelativeDocumentMoniker": "Frames\\ucAccounting.cs",
+              "ToolTip": "E:\\Desktop Softwares\\Tax Consultant 25\\Frames\\ucAccounting.cs",
+              "RelativeToolTip": "Frames\\ucAccounting.cs",
+              "ViewState": "AgIAAIwAAAAAAAAAAAAgwA0BAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-08T06:50:00.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "cls_GstDL.cs",
               "DocumentMoniker": "E:\\Desktop Softwares\\Tax Consultant 25\\Data Layer\\cls_GstDL.cs",
               "RelativeDocumentMoniker": "Data Layer\\cls_GstDL.cs",
               "ToolTip": "E:\\Desktop Softwares\\Tax Consultant 25\\Data Layer\\cls_GstDL.cs",
               "RelativeToolTip": "Data Layer\\cls_GstDL.cs",
-              "ViewState": "AgIAAIAAAAAAAAAAAAAswJAAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAA4wJwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-07T11:20:07.045Z",
               "EditorCaption": ""
@@ -53,14 +136,14 @@
               "RelativeDocumentMoniker": "Frames\\ucGST.cs",
               "ToolTip": "E:\\Desktop Softwares\\Tax Consultant 25\\Frames\\ucGST.cs",
               "RelativeToolTip": "Frames\\ucGST.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAA3wLAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFQBAAAAAAAAAAAAADcCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-07T05:10:34.78Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "ucGST.cs [Design]",
               "DocumentMoniker": "E:\\Desktop Softwares\\Tax Consultant 25\\Frames\\ucGST.cs",
               "RelativeDocumentMoniker": "Frames\\ucGST.cs",

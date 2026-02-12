@@ -271,53 +271,53 @@ namespace Tax_Consultant_25.Frames
 
         private void ShowQuery()
         {
-            query = new cls_Query();
-            ds1 = new DataSet();
+            //query = new cls_Query();
+            //ds1 = new DataSet();
 
-            ds1 = query.QueryRaisedByEmp();
+            //ds1 = query.QueryRaisedByEmp();
 
-            foreach (DataGridViewRow row in dgvAllInOne.Rows)
-            {
-                if (row.IsNewRow)
-                    continue;
+            //foreach (DataGridViewRow row in dgvAllInOne.Rows)
+            //{
+            //    if (row.IsNewRow)
+            //        continue;
 
-                string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
-                string worktype = row.Cells["WorkType"].Value.ToString();
+            //    string employee = row.Cells["EmployeeName"].Value?.ToString();
+            //    string client = row.Cells["ClientName"].Value?.ToString();
+            //    string worktype = row.Cells["WorkType"].Value.ToString();
 
-                service = "ACCOUNTING";
-                var queryRow = ds1.Tables[0].AsEnumerable().FirstOrDefault(r =>
-                   r.Field<string>("EmployeeName") == employee &&
-                   r.Field<string>("clientName") == client &&
-                   r.Field<string>("service") == service &&
-                   r.Field<string>("workType") == worktype
-                 //&&
-                 //!string.IsNullOrEmpty(r.Field<string>("queryByEmp"))
-                 );
+            //    service = "ACCOUNTING";
+            //    var queryRow = ds1.Tables[0].AsEnumerable().FirstOrDefault(r =>
+            //       r.Field<string>("EmployeeName") == employee &&
+            //       r.Field<string>("clientName") == client &&
+            //       r.Field<string>("service") == service &&
+            //       r.Field<string>("workType") == worktype
+            //     //&&
+            //     //!string.IsNullOrEmpty(r.Field<string>("queryByEmp"))
+            //     );
 
 
-                bool hasQuery = false;
+            //    bool hasQuery = false;
 
-                if (queryRow != null)
-                {
-                    object val = queryRow["HasQuery"];
+            //    if (queryRow != null)
+            //    {
+            //        object val = queryRow["HasQuery"];
 
-                    if (val != DBNull.Value && int.TryParse(val.ToString(), out int parsed))
-                    {
-                        hasQuery = parsed == 1;
-                    }
-                }
+            //        if (val != DBNull.Value && int.TryParse(val.ToString(), out int parsed))
+            //        {
+            //            hasQuery = parsed == 1;
+            //        }
+            //    }
 
-                // row.DefaultCellStyle.BackColor = hasQuery ? Color.OrangeRed : DefaultBackColor;
-                row.Cells["btnQuery"].Style.BackColor = hasQuery ? Color.Crimson : DefaultBackColor;
-               // row.Cells["btnQuery"].Style.ForeColor = Color.White;
-                //if(hasQuery)
-                //{
-                //    DataGridViewCell buttonCell = row.Cells["btnQuery"];
-                //    buttonCell.Style.BackColor = Color.Red;
-                //    buttonCell.Style.ForeColor = Color.Black;
-                //}
-            }
+            //    // row.DefaultCellStyle.BackColor = hasQuery ? Color.OrangeRed : DefaultBackColor;
+            //    row.Cells["btnQuery"].Style.BackColor = hasQuery ? Color.Crimson : DefaultBackColor;
+            //   // row.Cells["btnQuery"].Style.ForeColor = Color.White;
+            //    //if(hasQuery)
+            //    //{
+            //    //    DataGridViewCell buttonCell = row.Cells["btnQuery"];
+            //    //    buttonCell.Style.BackColor = Color.Red;
+            //    //    buttonCell.Style.ForeColor = Color.Black;
+            //    //}
+            //}
         }
 
         private void Clear()

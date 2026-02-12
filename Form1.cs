@@ -73,9 +73,9 @@ namespace Tax_Consultant_25
         private void pctGST_Click(object sender, EventArgs e)
         {
             pnlMainForm.Controls.Clear();
-            ucShowGSTClients ucAllInOne = new ucShowGSTClients();
-            ucAllInOne.Dock = DockStyle.Fill;
-            pnlMainForm.Controls.Add(ucAllInOne);
+            ucGST ucGST = new ucGST();
+            ucGST.Dock = DockStyle.Fill;
+            pnlMainForm.Controls.Add(ucGST);
         }
 
         private void pctIncomeTax_Click(object sender, EventArgs e)

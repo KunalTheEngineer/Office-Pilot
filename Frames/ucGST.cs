@@ -328,7 +328,7 @@ namespace Tax_Consultant_25.Frames
 
             show();
 
-            showRecurringClients();
+         //   showRecurringClients();
 
             // USER DEFINED EVENTS
             cmbWorkStatus.DrawMode = DrawMode.OwnerDrawFixed;
@@ -473,7 +473,7 @@ namespace Tax_Consultant_25.Frames
 
                     Clear();
                     show();
-                    showRecurringClients();
+                 //   showRecurringClients();
                 }
             }
             catch (Exception ex)
@@ -566,7 +566,6 @@ namespace Tax_Consultant_25.Frames
             this.Dispose();
         }
 
-        // CHANGES REMAINING
         private void dgvGST_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try

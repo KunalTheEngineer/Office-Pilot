@@ -194,6 +194,7 @@ namespace Tax_Consultant_25.Frames
 
                     clear();
                     show();
+                    BindSearch();
                     return;
                 }
 
