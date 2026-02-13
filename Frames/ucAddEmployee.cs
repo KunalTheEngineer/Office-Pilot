@@ -61,7 +61,66 @@ namespace Tax_Consultant_25.Frames
             txtEmpName.Focus();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+  
+
+        private void dgvEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+
+                btnSave.Enabled = false;
+                objPro = new clsProperties();
+
+                objPro.rowID = e.RowIndex;
+
+                if (dgvEmployee.Rows.Count > 0)
+                {
+                    objPro.empId = Convert.ToInt32(dgvEmployee.Rows[objPro.rowID].Cells[0].Value.ToString());
+                    txtEmpName.Text =  dgvEmployee.Rows[objPro.rowID].Cells[2].Value.ToString();
+                    txtEmpMobile.Text =  dgvEmployee.Rows[objPro.rowID].Cells[3].Value.ToString();
+                    txtUsername.Text =  dgvEmployee.Rows[objPro.rowID].Cells[4].Value.ToString();
+                    txtPassword.Text =  dgvEmployee.Rows[objPro.rowID].Cells[5].Value.ToString();
+                    cmbRole.Text = dgvEmployee.Rows[objPro.rowID].Cells[6].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_EMPLOYEE_DATA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            employee = new cls_EmployeeDL();
+
+            flag = employee.deleteEmployeeData(objPro);
+
+            if (flag == 1)
+            {
+                //MessageBox.Show("Record Deleted.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                clear();
+                show();
+                return;
+            }
+        }
+
+        private void dgvEmployee_SelectionChanged(object sender, EventArgs e)
+        {
+            dgvEmployee.ClearSelection();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -89,7 +148,7 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                if(cmbRole.SelectedIndex == 0)
+                if (cmbRole.SelectedIndex == 0)
                 {
                     MessageBox.Show("Select Employee Role", "ROLE CREATION", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -104,11 +163,11 @@ namespace Tax_Consultant_25.Frames
                 objPro.empRole = cmbRole.Text;
 
                 employee = new cls_EmployeeDL();
-               flag = employee.saveEmployeeData(objPro);
-                if (flag==1)
+                flag = employee.saveEmployeeData(objPro);
+
+                if (flag == 1)
                 {
-                    //MessageBox.Show("Record Saved.","",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                    clear();  
+                    clear();
                     show();
                     return;
                 }
@@ -166,8 +225,7 @@ namespace Tax_Consultant_25.Frames
 
                 if (flag == 1)
                 {
-                    //MessageBox.Show("Record Updated.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    clear();  
+                    clear();
                     show();
                     return;
                 }
@@ -178,68 +236,10 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
-        private void dgvEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-
-                btnSave.Enabled = false;
-                objPro = new clsProperties();
-
-                objPro.rowID = e.RowIndex;
-
-                if (dgvEmployee.Rows.Count > 0)
-                {
-                    objPro.empId = Convert.ToInt32(dgvEmployee.Rows[objPro.rowID].Cells[0].Value.ToString());
-                    txtEmpName.Text =  dgvEmployee.Rows[objPro.rowID].Cells[2].Value.ToString();
-                    txtEmpMobile.Text =  dgvEmployee.Rows[objPro.rowID].Cells[3].Value.ToString();
-                    txtUsername.Text =  dgvEmployee.Rows[objPro.rowID].Cells[4].Value.ToString();
-                    txtPassword.Text =  dgvEmployee.Rows[objPro.rowID].Cells[5].Value.ToString();
-                    cmbRole.Text = dgvEmployee.Rows[objPro.rowID].Cells[6].Value.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "UC_EMPLOYEE_DATA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            employee = new cls_EmployeeDL();
-
-            flag = employee.deleteEmployeeData(objPro);
-
-            if (flag == 1)
-            {
-                //MessageBox.Show("Record Deleted.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                clear();
-                show();
-                return;
-            }
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             this.Parent.Controls.Remove(this);
             this.Dispose();
-        }
-
-
-        private void dgvEmployee_SelectionChanged(object sender, EventArgs e)
-        {
-            dgvEmployee.ClearSelection();
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
