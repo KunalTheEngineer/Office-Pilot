@@ -63,6 +63,8 @@ namespace Tax_Consultant_25
 
         #region WORK MASTER
 
+        public string workRole { get; set; }
+        public int workQueryId { get; set; }
         public int workID { get; set; }
 
         public string workAllocatedEmpName { get; set; }
@@ -74,6 +76,8 @@ namespace Tax_Consultant_25
         public string workQuerySolution { get; set; }
 
         public int workQueryByEmpId { get; set; }
+
+        public string workTaskName { get; set; }
 
         #endregion
 
