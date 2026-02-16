@@ -85,6 +85,8 @@ namespace Tax_Consultant_25.Frames
 
         #endregion
 
+        #region FUNCTIONS
+
         private void BindSearch()
         {
             try
@@ -198,6 +200,18 @@ namespace Tax_Consultant_25.Frames
                 dgvUdyam.Columns["udyamId"].Visible = false;
                 dgvUdyam.Columns["u_Fees"].Visible = false;
             }
+        }
+
+        #endregion
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
