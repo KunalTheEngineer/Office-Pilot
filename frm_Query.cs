@@ -150,6 +150,8 @@ namespace Tax_Consultant_25
                     if(fg == 1)
                     {
                         show();
+                        txtQueryByEmp.Clear();
+                        txtReply.Clear();
                     }
                 }
 
