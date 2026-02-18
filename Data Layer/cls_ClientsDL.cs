@@ -262,6 +262,33 @@ namespace Tax_Consultant_25.Data_Layer
             return objDs;
         }
 
+        internal DataSet getClientAddress(int CLIENTID, string CLIENTNAME)
+        {
+            objDs = new DataSet();
+
+            try
+            {
+                objCon = new clsConnection();
+                objCon.openConnection();
+                objCmd = new SqlCommand();
+                objCmd.Connection = objCon.con;
+                objCmd.CommandType = CommandType.StoredProcedure;
+                objCmd.CommandText = "usp_Clients";
+                objCmd.Parameters.AddWithValue("@intMode", 12);
+                objCmd.Parameters.AddWithValue("@search", CLIENTNAME);
+                objCmd.Parameters.AddWithValue("@clientId", CLIENTID);
+                objDa = new SqlDataAdapter(objCmd);
+                objDa.Fill(objDs);
+                objCon.con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "DL_CLIENTS_DATA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            return objDs;
+        }
+
         #endregion
 
     }
