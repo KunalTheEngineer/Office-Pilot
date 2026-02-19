@@ -25,10 +25,14 @@ namespace Tax_Consultant_25
             lblEmpName.Text = empName;
         }
 
+        #region CLASS & OBJECTS
+
         clsProperties objPro;
         cls_Query query;
         int flag = 0;
         DataSet ds;
+
+        #endregion
 
         #region VARIABLES
 
@@ -52,6 +56,8 @@ namespace Tax_Consultant_25
         string tempService, tempTaskName, tempCLientName, tempEmpName;
 
         #endregion
+
+        #region EVENTS
 
         private void frm_Query_Load(object sender, EventArgs e)
         {
@@ -251,5 +257,7 @@ namespace Tax_Consultant_25
             dgvQuery.Columns["Column3"].DisplayIndex = 2;
             dgvQuery.Columns["btClose"].DisplayIndex = dgvQuery.Columns.Count - 1;
         }
+
+        #endregion
     }
 }
