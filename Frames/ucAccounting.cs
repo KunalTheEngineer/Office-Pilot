@@ -26,7 +26,7 @@ namespace Tax_Consultant_25.Frames
 
         string tempEmployeeName;
         string serviceName;
-        string tempClientName;
+        string tempClientName, CLIENTNAME;
         string tempWorkType;
         int clientId, flag, tempAccId, tempClientId;
         string service, businessName, clientAddress;
@@ -94,7 +94,6 @@ namespace Tax_Consultant_25.Frames
 
         private void ucAccounting_Load(object sender, EventArgs e)
         {
-
             ApplyEmployeePermissions();
 
             BindEmployee();
@@ -212,6 +211,10 @@ namespace Tax_Consultant_25.Frames
                 tempAccId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[14].Value.ToString());
                 tempClientId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[15].Value.ToString());
                 tempClientName = dgvAllInOne.Rows[objPro.rowID].Cells[7].Value.ToString().Trim();
+
+                CLIENTNAME = dgvAllInOne.Rows[objPro.rowID].Cells[3].Value.ToString();
+
+                GetClientAddress();
 
             }
 
@@ -332,23 +335,23 @@ namespace Tax_Consultant_25.Frames
                 if (flag >= 1)
                 {
 
-                    //if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "DONE")
-                    //{
-                    //    DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "ACCOUNTING", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "Done")
+                    {
+                        DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "ACCOUNTING", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    //    if (dial == DialogResult.Yes)
-                    //    {
-                    //        frm_Narration narr = new frm_Narration();
-                    //        narr.clientName = txtClientName.Text;
-                    //        narr.service = common.service;
-                    //        narr.amount = "";
-                    //        narr.workType = txtWorkType.Text;
-                    //        narr.businessName = businessName;
-                    //        narr.clientAddress = clientAddress;
+                        if (dial == DialogResult.Yes)
+                        {
+                            frm_Narration narr = new frm_Narration();
+                            narr.clientName = txtClientName.Text;
+                            narr.service = "ACCOUNTING";
+                            narr.amount = "";
+                            narr.workType = txtTaskName.Text;
+                            narr.businessName = businessName;
+                            narr.clientAddress = clientAddress;
 
-                    //        narr.Show();
-                    //    }
-                    //}
+                            narr.Show();
+                        }
+                    }
 
                     //MessageBox.Show("Record Updated...");
                     show();
@@ -394,9 +397,7 @@ namespace Tax_Consultant_25.Frames
                     row.Cells["btnReply"].Value = "REPLY";
                     dgvAllInOne.Columns["btnReply"].HeaderText = "REPLY";
                 }
-            }
-
-            
+            } 
         }
 
         #endregion
@@ -437,16 +438,6 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
-        private void label17_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void SearchClient()
         {
             try
@@ -464,6 +455,8 @@ namespace Tax_Consultant_25.Frames
                     txtClientName.Text = ds.Tables[0].Rows[0]["c_Name"].ToString();
                     txtTradeName.Text = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
                     clientId = Convert.ToInt32(ds.Tables[0].Rows[0]["clientId"].ToString());
+                   // businessName = txtTradeName.Text;
+                   // clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
                 }
 
             }
@@ -579,7 +572,6 @@ namespace Tax_Consultant_25.Frames
                     if(ROLE == "User")
                     {
                         dgvAllInOne.Columns["EMPLOYEENAME"].Visible = false;
-
                     }
 
                     dgvAllInOne.Columns["accountId"].Visible = false;
@@ -636,6 +628,31 @@ namespace Tax_Consultant_25.Frames
                 btnSave.Enabled = false;
 
                 
+            }
+        }
+
+        private void GetClientAddress()
+        {
+            try
+            {
+                objPro = new clsProperties();
+                client = new cls_ClientsDL();
+                ds = new DataSet();
+
+                objPro.search = !string.IsNullOrWhiteSpace(txtTradeName.Text) ? txtTradeName.Text.Trim() : txtClientName.Text.Trim();
+
+                ds = client.getClientAddress(tempClientId, CLIENTNAME);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    businessName = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
+                    clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_INCOMETAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
