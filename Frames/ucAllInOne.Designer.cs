@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucAllInOne));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -77,23 +76,24 @@
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllInOne)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.btnClose);
             this.panel3.Controls.Add(this.btnUpdate);
             this.panel3.Controls.Add(this.btnSave);
-            this.panel3.Location = new System.Drawing.Point(6, 251);
+            this.panel3.Location = new System.Drawing.Point(3, 251);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1259, 46);
-            this.panel3.TabIndex = 3;
+            this.panel3.Size = new System.Drawing.Size(1314, 46);
+            this.panel3.TabIndex = 1;
             // 
             // btnClose
             // 
@@ -104,7 +104,7 @@
             this.btnClose.Location = new System.Drawing.Point(634, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(94, 37);
-            this.btnClose.TabIndex = 7;
+            this.btnClose.TabIndex = 2;
             this.btnClose.Text = "CLOSE";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -119,7 +119,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(520, 5);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(108, 37);
-            this.btnUpdate.TabIndex = 7;
+            this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -134,7 +134,7 @@
             this.btnSave.Location = new System.Drawing.Point(420, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(94, 37);
-            this.btnSave.TabIndex = 7;
+            this.btnSave.TabIndex = 0;
             this.btnSave.Text = "SAVE";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -166,7 +166,7 @@
             this.txtTaskName.Location = new System.Drawing.Point(758, 29);
             this.txtTaskName.Name = "txtTaskName";
             this.txtTaskName.Size = new System.Drawing.Size(202, 29);
-            this.txtTaskName.TabIndex = 2;
+            this.txtTaskName.TabIndex = 3;
             // 
             // label19
             // 
@@ -197,7 +197,7 @@
             this.cmbAllocatedTo.Location = new System.Drawing.Point(162, 108);
             this.cmbAllocatedTo.Name = "cmbAllocatedTo";
             this.cmbAllocatedTo.Size = new System.Drawing.Size(252, 29);
-            this.cmbAllocatedTo.TabIndex = 3;
+            this.cmbAllocatedTo.TabIndex = 7;
             // 
             // label21
             // 
@@ -217,7 +217,7 @@
             this.dtpDueDate.Location = new System.Drawing.Point(12, 108);
             this.dtpDueDate.Name = "dtpDueDate";
             this.dtpDueDate.Size = new System.Drawing.Size(144, 29);
-            this.dtpDueDate.TabIndex = 4;
+            this.dtpDueDate.TabIndex = 6;
             // 
             // label24
             // 
@@ -231,8 +231,9 @@
             // 
             // cmbWorkStatus
             // 
+            this.cmbWorkStatus.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.cmbWorkStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbWorkStatus.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbWorkStatus.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbWorkStatus.FormattingEnabled = true;
             this.cmbWorkStatus.Items.AddRange(new object[] {
             "Not Started",
@@ -245,12 +246,11 @@
             this.cmbWorkStatus.Location = new System.Drawing.Point(1075, 108);
             this.cmbWorkStatus.Name = "cmbWorkStatus";
             this.cmbWorkStatus.Size = new System.Drawing.Size(234, 28);
-            this.cmbWorkStatus.TabIndex = 4;
+            this.cmbWorkStatus.TabIndex = 12;
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.txtDescription);
             this.panel2.Controls.Add(this.label4);
@@ -280,10 +280,10 @@
             this.panel2.Controls.Add(this.txtTaskName);
             this.panel2.Controls.Add(this.dtpInputDate);
             this.panel2.Controls.Add(this.label17);
-            this.panel2.Location = new System.Drawing.Point(6, 3);
+            this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1259, 243);
-            this.panel2.TabIndex = 1;
+            this.panel2.Size = new System.Drawing.Size(1314, 243);
+            this.panel2.TabIndex = 0;
             // 
             // txtDescription
             // 
@@ -291,7 +291,7 @@
             this.txtDescription.Location = new System.Drawing.Point(126, 155);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(259, 74);
-            this.txtDescription.TabIndex = 66;
+            this.txtDescription.TabIndex = 13;
             this.txtDescription.Text = "";
             // 
             // label4
@@ -319,7 +319,7 @@
             this.cmbPeriodicity.Location = new System.Drawing.Point(580, 108);
             this.cmbPeriodicity.Name = "cmbPeriodicity";
             this.cmbPeriodicity.Size = new System.Drawing.Size(172, 29);
-            this.cmbPeriodicity.TabIndex = 65;
+            this.cmbPeriodicity.TabIndex = 9;
             // 
             // label3
             // 
@@ -337,7 +337,7 @@
             this.txtClientName.Location = new System.Drawing.Point(162, 29);
             this.txtClientName.Name = "txtClientName";
             this.txtClientName.Size = new System.Drawing.Size(252, 29);
-            this.txtClientName.TabIndex = 59;
+            this.txtClientName.TabIndex = 1;
             this.txtClientName.TextChanged += new System.EventHandler(this.txtClientName_TextChanged);
             this.txtClientName.Leave += new System.EventHandler(this.txtClientName_Leave);
             // 
@@ -362,7 +362,7 @@
             this.cmbRecurringTask.Location = new System.Drawing.Point(420, 108);
             this.cmbRecurringTask.Name = "cmbRecurringTask";
             this.cmbRecurringTask.Size = new System.Drawing.Size(154, 29);
-            this.cmbRecurringTask.TabIndex = 63;
+            this.cmbRecurringTask.TabIndex = 8;
             // 
             // lblFessStatus
             // 
@@ -385,7 +385,7 @@
             this.cmbFeesStatus.Location = new System.Drawing.Point(909, 108);
             this.cmbFeesStatus.Name = "cmbFeesStatus";
             this.cmbFeesStatus.Size = new System.Drawing.Size(140, 29);
-            this.cmbFeesStatus.TabIndex = 3;
+            this.cmbFeesStatus.TabIndex = 11;
             // 
             // txtFessAmt
             // 
@@ -393,7 +393,7 @@
             this.txtFessAmt.Location = new System.Drawing.Point(758, 108);
             this.txtFessAmt.Name = "txtFessAmt";
             this.txtFessAmt.Size = new System.Drawing.Size(145, 29);
-            this.txtFessAmt.TabIndex = 2;
+            this.txtFessAmt.TabIndex = 10;
             // 
             // label18
             // 
@@ -411,7 +411,7 @@
             this.txtTradeName.Location = new System.Drawing.Point(420, 29);
             this.txtTradeName.Name = "txtTradeName";
             this.txtTradeName.Size = new System.Drawing.Size(332, 29);
-            this.txtTradeName.TabIndex = 58;
+            this.txtTradeName.TabIndex = 2;
             this.txtTradeName.Leave += new System.EventHandler(this.txtTradeName_Leave);
             // 
             // label2
@@ -440,7 +440,7 @@
             this.txtReturn.Location = new System.Drawing.Point(967, 29);
             this.txtReturn.Name = "txtReturn";
             this.txtReturn.Size = new System.Drawing.Size(189, 29);
-            this.txtReturn.TabIndex = 5;
+            this.txtReturn.TabIndex = 4;
             // 
             // label1
             // 
@@ -458,7 +458,7 @@
             this.txtYear.Location = new System.Drawing.Point(1162, 29);
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(147, 29);
-            this.txtYear.TabIndex = 6;
+            this.txtYear.TabIndex = 5;
             // 
             // lblDynamic1
             // 
@@ -476,19 +476,10 @@
             this.dgvAllInOne.AllowUserToDeleteRows = false;
             this.dgvAllInOne.AllowUserToResizeColumns = false;
             this.dgvAllInOne.AllowUserToResizeRows = false;
-            this.dgvAllInOne.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvAllInOne.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvAllInOne.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAllInOne.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAllInOne.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAllInOne.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAllInOne.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -504,16 +495,17 @@
             this.Column7,
             this.Column5});
             this.dgvAllInOne.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvAllInOne.Location = new System.Drawing.Point(6, 303);
+            this.dgvAllInOne.Location = new System.Drawing.Point(0, 0);
             this.dgvAllInOne.Name = "dgvAllInOne";
             this.dgvAllInOne.RowHeadersVisible = false;
             this.dgvAllInOne.RowHeadersWidth = 51;
             this.dgvAllInOne.RowTemplate.Height = 24;
             this.dgvAllInOne.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAllInOne.Size = new System.Drawing.Size(1259, 482);
+            this.dgvAllInOne.Size = new System.Drawing.Size(1314, 410);
             this.dgvAllInOne.TabIndex = 4;
             this.dgvAllInOne.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllInOne_CellClick);
             this.dgvAllInOne.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAllInOne_CellFormatting);
+            this.dgvAllInOne.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvAllInOne_DataBindingComplete);
             this.dgvAllInOne.SelectionChanged += new System.EventHandler(this.dgvAllInOne_SelectionChanged);
             // 
             // Column1
@@ -582,9 +574,9 @@
             // 
             // btnReply
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Red;
-            this.btnReply.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Red;
+            this.btnReply.DefaultCellStyle = dataGridViewCellStyle1;
             this.btnReply.FillWeight = 73.48939F;
             this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReply.HeaderText = "REPLY";
@@ -593,7 +585,6 @@
             this.btnReply.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.btnReply.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.btnReply.Text = "REPLY";
-            this.btnReply.UseColumnTextForButtonValue = true;
             // 
             // Status
             // 
@@ -619,21 +610,34 @@
             this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.dgvAllInOne);
+            this.panel1.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel1.Location = new System.Drawing.Point(3, 303);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1314, 410);
+            this.panel1.TabIndex = 5;
+            // 
             // ucAllInOne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Controls.Add(this.dgvAllInOne);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Name = "ucAllInOne";
-            this.Size = new System.Drawing.Size(1268, 791);
+            this.Size = new System.Drawing.Size(1320, 716);
             this.Load += new System.EventHandler(this.ucAllInOne_Load);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllInOne)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -673,6 +677,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.RichTextBox txtDescription;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
