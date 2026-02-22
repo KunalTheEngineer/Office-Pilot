@@ -59,11 +59,6 @@
             this.dtpInputDate = new System.Windows.Forms.DateTimePicker();
             this.label17 = new System.Windows.Forms.Label();
             this.dgvAllOne = new System.Windows.Forms.DataGridView();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,6 +70,11 @@
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllOne)).BeginInit();
             this.panel3.SuspendLayout();
@@ -83,6 +83,7 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.txtDescription);
             this.panel2.Controls.Add(this.label4);
@@ -115,7 +116,7 @@
             this.panel2.Location = new System.Drawing.Point(4, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1310, 242);
-            this.panel2.TabIndex = 1;
+            this.panel2.TabIndex = 0;
             // 
             // txtDescription
             // 
@@ -123,7 +124,7 @@
             this.txtDescription.Location = new System.Drawing.Point(146, 143);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(305, 91);
-            this.txtDescription.TabIndex = 87;
+            this.txtDescription.TabIndex = 13;
             this.txtDescription.Text = "";
             // 
             // label4
@@ -151,7 +152,7 @@
             this.cmbPeriodicity.Location = new System.Drawing.Point(574, 105);
             this.cmbPeriodicity.Name = "cmbPeriodicity";
             this.cmbPeriodicity.Size = new System.Drawing.Size(172, 29);
-            this.cmbPeriodicity.TabIndex = 86;
+            this.cmbPeriodicity.TabIndex = 9;
             // 
             // label3
             // 
@@ -180,7 +181,7 @@
             this.cmbWorkStatus.Location = new System.Drawing.Point(1066, 105);
             this.cmbWorkStatus.Name = "cmbWorkStatus";
             this.cmbWorkStatus.Size = new System.Drawing.Size(234, 28);
-            this.cmbWorkStatus.TabIndex = 76;
+            this.cmbWorkStatus.TabIndex = 12;
             // 
             // label24
             // 
@@ -196,7 +197,7 @@
             // 
             this.lblFeesAMT.AutoSize = true;
             this.lblFeesAMT.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFeesAMT.Location = new System.Drawing.Point(783, 77);
+            this.lblFeesAMT.Location = new System.Drawing.Point(778, 77);
             this.lblFeesAMT.Name = "lblFeesAMT";
             this.lblFeesAMT.Size = new System.Drawing.Size(92, 21);
             this.lblFeesAMT.TabIndex = 81;
@@ -213,7 +214,7 @@
             this.cmbRecurringTask.Location = new System.Drawing.Point(411, 105);
             this.cmbRecurringTask.Name = "cmbRecurringTask";
             this.cmbRecurringTask.Size = new System.Drawing.Size(154, 29);
-            this.cmbRecurringTask.TabIndex = 84;
+            this.cmbRecurringTask.TabIndex = 8;
             // 
             // lblFessStatus
             // 
@@ -236,7 +237,7 @@
             this.cmbFeesStatus.Location = new System.Drawing.Point(909, 105);
             this.cmbFeesStatus.Name = "cmbFeesStatus";
             this.cmbFeesStatus.Size = new System.Drawing.Size(140, 29);
-            this.cmbFeesStatus.TabIndex = 74;
+            this.cmbFeesStatus.TabIndex = 11;
             // 
             // txtFessAmt
             // 
@@ -244,7 +245,7 @@
             this.txtFessAmt.Location = new System.Drawing.Point(754, 105);
             this.txtFessAmt.Name = "txtFessAmt";
             this.txtFessAmt.Size = new System.Drawing.Size(145, 29);
-            this.txtFessAmt.TabIndex = 73;
+            this.txtFessAmt.TabIndex = 10;
             // 
             // label1
             // 
@@ -274,7 +275,7 @@
             this.dtpDueDate.Location = new System.Drawing.Point(3, 105);
             this.dtpDueDate.Name = "dtpDueDate";
             this.dtpDueDate.Size = new System.Drawing.Size(144, 29);
-            this.dtpDueDate.TabIndex = 77;
+            this.dtpDueDate.TabIndex = 6;
             // 
             // cmbAllocatedTo
             // 
@@ -285,7 +286,7 @@
             this.cmbAllocatedTo.Location = new System.Drawing.Point(153, 105);
             this.cmbAllocatedTo.Name = "cmbAllocatedTo";
             this.cmbAllocatedTo.Size = new System.Drawing.Size(252, 29);
-            this.cmbAllocatedTo.TabIndex = 75;
+            this.cmbAllocatedTo.TabIndex = 7;
             // 
             // label20
             // 
@@ -303,7 +304,7 @@
             this.txtClientName.Location = new System.Drawing.Point(153, 35);
             this.txtClientName.Name = "txtClientName";
             this.txtClientName.Size = new System.Drawing.Size(252, 29);
-            this.txtClientName.TabIndex = 71;
+            this.txtClientName.TabIndex = 1;
             this.txtClientName.TextChanged += new System.EventHandler(this.txtClientName_TextChanged);
             this.txtClientName.Leave += new System.EventHandler(this.txtClientName_Leave);
             // 
@@ -323,7 +324,7 @@
             this.txtTradeName.Location = new System.Drawing.Point(411, 35);
             this.txtTradeName.Name = "txtTradeName";
             this.txtTradeName.Size = new System.Drawing.Size(332, 29);
-            this.txtTradeName.TabIndex = 70;
+            this.txtTradeName.TabIndex = 2;
             this.txtTradeName.Leave += new System.EventHandler(this.txtTradeName_Leave);
             // 
             // lblYear
@@ -342,7 +343,7 @@
             this.txtReturn.Location = new System.Drawing.Point(958, 35);
             this.txtReturn.Name = "txtReturn";
             this.txtReturn.Size = new System.Drawing.Size(189, 29);
-            this.txtReturn.TabIndex = 63;
+            this.txtReturn.TabIndex = 4;
             // 
             // label2
             // 
@@ -360,7 +361,7 @@
             this.txtYear.Location = new System.Drawing.Point(1153, 35);
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(147, 29);
-            this.txtYear.TabIndex = 64;
+            this.txtYear.TabIndex = 5;
             // 
             // lblDynamic1
             // 
@@ -388,7 +389,7 @@
             this.txtTaskName.Location = new System.Drawing.Point(749, 35);
             this.txtTaskName.Name = "txtTaskName";
             this.txtTaskName.Size = new System.Drawing.Size(202, 29);
-            this.txtTaskName.TabIndex = 62;
+            this.txtTaskName.TabIndex = 3;
             // 
             // dtpInputDate
             // 
@@ -398,7 +399,7 @@
             this.dtpInputDate.Location = new System.Drawing.Point(3, 35);
             this.dtpInputDate.Name = "dtpInputDate";
             this.dtpInputDate.Size = new System.Drawing.Size(144, 29);
-            this.dtpInputDate.TabIndex = 61;
+            this.dtpInputDate.TabIndex = 0;
             // 
             // label17
             // 
@@ -414,6 +415,7 @@
             // 
             this.dgvAllOne.AllowUserToAddRows = false;
             this.dgvAllOne.AllowUserToDeleteRows = false;
+            this.dgvAllOne.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvAllOne.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAllOne.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvAllOne.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -429,7 +431,6 @@
             this.Status,
             this.Column4,
             this.btnReply});
-            this.dgvAllOne.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAllOne.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvAllOne.Location = new System.Drawing.Point(0, 0);
             this.dgvAllOne.Name = "dgvAllOne";
@@ -441,77 +442,8 @@
             this.dgvAllOne.TabIndex = 4;
             this.dgvAllOne.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllOne_CellClick);
             this.dgvAllOne.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAllOne_CellFormatting);
+            this.dgvAllOne.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvAllOne_DataBindingComplete);
             this.dgvAllOne.SelectionChanged += new System.EventHandler(this.dgvAllOne_SelectionChanged);
-            // 
-            // panel3
-            // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.btnClose);
-            this.panel3.Controls.Add(this.btnUpdate);
-            this.panel3.Controls.Add(this.btnSave);
-            this.panel3.Location = new System.Drawing.Point(4, 251);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1309, 51);
-            this.panel3.TabIndex = 5;
-            // 
-            // btnClose
-            // 
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnClose.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(634, 5);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(94, 37);
-            this.btnClose.TabIndex = 7;
-            this.btnClose.Text = "CLOSE";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnUpdate.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
-            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(520, 5);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(108, 37);
-            this.btnUpdate.TabIndex = 7;
-            this.btnUpdate.Text = "UPDATE";
-            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSave.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(420, 4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(94, 37);
-            this.btnSave.TabIndex = 7;
-            this.btnSave.Text = "SAVE";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.dgvAllOne);
-            this.panel1.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(8, 309);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1305, 404);
-            this.panel1.TabIndex = 6;
             // 
             // Column1
             // 
@@ -603,7 +535,74 @@
             this.btnReply.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.btnReply.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.btnReply.Text = "REPLY";
-            this.btnReply.UseColumnTextForButtonValue = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.btnClose);
+            this.panel3.Controls.Add(this.btnUpdate);
+            this.panel3.Controls.Add(this.btnSave);
+            this.panel3.Location = new System.Drawing.Point(4, 251);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1309, 51);
+            this.panel3.TabIndex = 1;
+            // 
+            // btnClose
+            // 
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClose.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(634, 5);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(94, 37);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.Text = "CLOSE";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnUpdate.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
+            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUpdate.Location = new System.Drawing.Point(520, 5);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(108, 37);
+            this.btnUpdate.TabIndex = 1;
+            this.btnUpdate.Text = "UPDATE";
+            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSave.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(420, 4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(94, 37);
+            this.btnSave.TabIndex = 0;
+            this.btnSave.Text = "SAVE";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.dgvAllOne);
+            this.panel1.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel1.Location = new System.Drawing.Point(8, 309);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1305, 404);
+            this.panel1.TabIndex = 6;
             // 
             // ucAllOne
             // 

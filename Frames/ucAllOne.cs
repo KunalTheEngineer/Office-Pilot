@@ -21,21 +21,26 @@ namespace Tax_Consultant_25.Frames
             InitializeComponent();
         }
 
-        #region VARIBALES
+        #region CLASS & OBJECTS
 
         DataTable dt;
         cls_EmployeeDL employeeDL;
         clsProperties objPro;
-        DataSet ds;
+        DataSet ds, ds1, ds2;
         cls_AllInOne clsAllOne;
         cls_ClientsDL client;
+        cls_Query query;
 
         #endregion
 
         #region VARIABLES
 
         int clientId, flag, tempAllOneId, tempClientId;
-        string tempEmployeeName, tempClientName, tempWorkType, serviceName, businessName, clientAddress;
+        string tempEmployeeName, tempClientName, tempWorkType, serviceName, businessName, clientAddress, CLIENTNAME;
+
+        public string ROLE { get; set; }
+
+        public string EMPLOYEENAME { get; set; }
 
         #endregion
 
@@ -84,6 +89,8 @@ namespace Tax_Consultant_25.Frames
 
         private void ucAllOne_Load(object sender, EventArgs e)
         {
+            ApplyEmployeePermissions();
+
             BindSearch();
             BindEmployee();
             show();
@@ -120,7 +127,14 @@ namespace Tax_Consultant_25.Frames
 
         private void dgvAllOne_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            ShowQuery();
+            if (ROLE == "Admin")
+            {
+                ShowQuery();
+            }
+            else
+            {
+                ShowReply();
+            }
 
             #region CHANGE STATUS COLORS
 
@@ -150,6 +164,20 @@ namespace Tax_Consultant_25.Frames
             }
 
             #endregion
+
+            if (dgvAllOne.Columns[e.ColumnIndex].Name == "btnReply")
+            {
+                string text = dgvAllOne.Rows[e.RowIndex].Cells["btnReply"].Value?.ToString();
+
+                if (text == "QUERY")
+                {
+                    e.CellStyle.ForeColor = Color.Blue;
+                }
+                else
+                {
+                    e.CellStyle.ForeColor = Color.Red;
+                }
+            }
         }
 
         private void txtTradeName_Leave(object sender, EventArgs e)
@@ -159,12 +187,10 @@ namespace Tax_Consultant_25.Frames
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-
             try
             {
                 objPro = new clsProperties();
 
-               
                 objPro.clientID = clientId;
                 objPro.allOneId = tempAllOneId;
                 objPro.clientName = txtClientName.Text ?? string.Empty;
@@ -187,24 +213,24 @@ namespace Tax_Consultant_25.Frames
 
                 if (flag >= 1)
                 {
-                    
-                    //if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "Done")
-                    //{
-                    //    DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "ALL IN ONE", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    //    if (dial == DialogResult.Yes)
-                    //    {
-                    //        frm_Narration narr = new frm_Narration();
-                    //        narr.clientName = txtClientName.Text;
-                    //        narr.service = common.service;
-                    //        narr.amount = txtFessAmt.Text;
-                    //        narr.workType = txtWorkType.Text;
-                    //        narr.businessName = businessName;
-                    //        narr.clientAddress = clientAddress;
+                    if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "Done")
+                    {
+                        DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "ALL IN ONE", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    //        narr.Show();
-                    //    }
-                    //}
+                        if (dial == DialogResult.Yes)
+                        {
+                            frm_Narration narr = new frm_Narration();
+                            narr.clientName = txtClientName.Text;
+                            narr.service = "ALL ONE";
+                            narr.amount = txtFessAmt.Text;
+                            narr.workType = txtTaskName.Text;
+                            narr.businessName = businessName;
+                            narr.clientAddress = clientAddress;
+
+                            narr.Show();
+                        }
+                    }
 
                     show();
                     Clear();
@@ -255,6 +281,36 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
+        private void dgvAllOne_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (ROLE == "User")
+            {
+                foreach (DataGridViewRow row in dgvAllOne.Rows)
+                {
+                    if (row.IsNewRow)
+                    {
+                        continue;
+                    }
+
+                    row.Cells["btnReply"].Value = "QUERY";
+                    dgvAllOne.Columns["btnReply"].HeaderText = "QUERY";
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dgvAllOne.Rows)
+                {
+                    if (row.IsNewRow)
+                    {
+                        continue;
+                    }
+
+                    row.Cells["btnReply"].Value = "REPLY";
+                    dgvAllOne.Columns["btnReply"].HeaderText = "REPLY";
+                }
+            }
+        }
+
         private void dgvAllOne_SelectionChanged(object sender, EventArgs e)
         {
             dgvAllOne.ClearSelection();
@@ -286,6 +342,11 @@ namespace Tax_Consultant_25.Frames
                 cmbPeriodicity.Text = dgvAllOne.Rows[objPro.rowID].Cells[15].Value.ToString().Trim();
                 clientId = Convert.ToInt32(dgvAllOne.Rows[objPro.rowID].Cells[16].Value.ToString());
                 tempAllOneId = Convert.ToInt32(dgvAllOne.Rows[objPro.rowID].Cells[17].Value.ToString());
+                tempEmployeeName = dgvAllOne.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
+                CLIENTNAME = dgvAllOne.Rows[objPro.rowID].Cells[3].Value.ToString();
+                
+
+                GetClientAddress();
 
             }
 
@@ -293,11 +354,12 @@ namespace Tax_Consultant_25.Frames
             {
                 frm_Query query = new frm_Query(tempEmployeeName);
 
-                query.serviceName = serviceName;
-                query.clientName = tempClientName;
+                query.workId = tempAllOneId;
+                query.role = ROLE;
                 query.employeeName = tempEmployeeName;
-                query.workTypeName = tempWorkType;
-
+                query.serviceName = "ALL ONE";
+                query.clientName = txtClientName.Text;
+                query.taskName = txtTaskName.Text;
                 query.ShowDialog();
             }
         }
@@ -308,44 +370,69 @@ namespace Tax_Consultant_25.Frames
 
         private void ShowQuery()
         {
-            //query = new cls_Query();
-            //ds1 = new DataSet();
+            query = new cls_Query();
+            ds1 = new DataSet();
 
-            //ds1 = query.QueryRaisedByEmp();
+            ds1 = query.QueryRaisedByEmp("ALL ONE");
 
-            //foreach (DataGridViewRow row in dgvAllOne.Rows)
-            //{
-            //    if (row.IsNewRow)
-            //        continue;
+            foreach (DataGridViewRow row in dgvAllOne.Rows)
+            {
+                if (row.IsNewRow)
+                {
+                    continue;
+                }
 
-            //    string employee = row.Cells["EmployeeName"].Value?.ToString();
-            //    string client = row.Cells["ClientName"].Value?.ToString();
+                string employee = row.Cells["EmployeeName"].Value?.ToString();
+                string client = row.Cells["ClientName"].Value?.ToString();
+                string worktype = row.Cells["WorkType"].Value.ToString();
+                string service = "ALL ONE";
 
-            //    service = "ALL IN ONE";
-            //    var queryRow = ds1.Tables[0].AsEnumerable().FirstOrDefault(r =>
-            //       r.Field<string>("EmployeeName") == employee &&
-            //       r.Field<string>("clientName") == client &&
-            //       r.Field<string>("service") == service
-            //     //&&
-            //     //!string.IsNullOrEmpty(r.Field<string>("queryByEmp"))
-            //     );
+                bool hasQuery = ds1.Tables[0].AsEnumerable().Any(r =>
+                   r.Field<string>("q_EmpName") == employee &&
+                   r.Field<string>("q_ClientName") == client &&
+                   r.Field<string>("q_Service") == service &&
+                   r.Field<string>("q_TaskName") == worktype &&
+                   r.Field<bool>("hasQuery") == true &&
+                   r.Field<bool>("isActive") == true
+                 );
 
+                row.DefaultCellStyle.BackColor = hasQuery ? Color.LightCoral : dgvAllOne.DefaultCellStyle.BackColor;
 
-            //    bool hasQuery = false;
+            }
 
-            //    if (queryRow != null)
-            //    {
-            //        object val = queryRow["HasQuery"];
+        }
 
-            //        if (val != DBNull.Value && int.TryParse(val.ToString(), out int parsed))
-            //        {
-            //            hasQuery = parsed == 1;
-            //        }
-            //    }
+        private void ShowReply()
+        {
+            query = new cls_Query();
+            ds2 = new DataSet();
 
-            //    row.DefaultCellStyle.BackColor = hasQuery ? Color.Red : DefaultBackColor;
+            ds2 = query.showReplyByAdmin("ALL ONE");
 
-            //}
+            foreach (DataGridViewRow row in dgvAllOne.Rows)
+            {
+                if (row.IsNewRow)
+                {
+                    continue;
+                }
+
+                string employee = row.Cells["EmployeeName"].Value?.ToString();
+                string client = row.Cells["ClientName"].Value?.ToString();
+                string worktype = row.Cells["WorkType"].Value.ToString();
+                string service = "ALL ONE";
+
+                bool hasReply = ds2.Tables[0].AsEnumerable().Any(r =>
+                   r.Field<string>("q_EmpName") == employee &&
+                   r.Field<string>("q_ClientName") == client &&
+                   r.Field<string>("q_Service") == service &&
+                   r.Field<string>("q_TaskName") == worktype &&
+                   r.Field<bool>("isClosed") == true &&
+                   r.Field<bool>("isActive") == true
+                 );
+
+                row.DefaultCellStyle.BackColor = hasReply ? Color.LightGreen : dgvAllOne.DefaultCellStyle.BackColor;
+
+            }
         }
 
         private void show()
@@ -353,7 +440,7 @@ namespace Tax_Consultant_25.Frames
             ds = new DataSet();
             clsAllOne = new cls_AllInOne();
 
-            ds = clsAllOne.showData();
+            ds = clsAllOne.showData(ROLE, EMPLOYEENAME);
 
             if (ds.Tables[0].Rows.Count < 0)
             {
@@ -362,6 +449,12 @@ namespace Tax_Consultant_25.Frames
             else
             {
                 dgvAllOne.DataSource = ds.Tables[0];
+
+                if (ROLE == "User")
+                {
+                    dgvAllOne.Columns["EMPLOYEENAME"].Visible = false;
+
+                }
 
                 dgvAllOne.Columns["clientId"].Visible = false;
                 dgvAllOne.Columns["allOneId"].Visible = false;
@@ -467,7 +560,62 @@ namespace Tax_Consultant_25.Frames
             cmbPeriodicity.SelectedIndex = 0;
             txtDescription.Clear();
 
-            btnSave.Enabled = true;
+            if (ROLE == "Admin")
+            {
+                btnSave.Enabled = true;
+            }
+        }
+
+        private void ApplyEmployeePermissions()
+        {
+            if (ROLE == "User")
+            {
+                dtpInputDate.Enabled = false;
+                dtpDueDate.Enabled = false;
+                cmbAllocatedTo.Enabled = false;
+                cmbRecurringTask.Enabled = false;
+                cmbPeriodicity.Enabled = false;
+                cmbFeesStatus.Enabled = false;
+
+                txtClientName.ReadOnly = true;
+                txtTradeName.ReadOnly = true;
+                txtTaskName.ReadOnly = true;
+                txtFessAmt.ReadOnly = true;
+                txtYear.ReadOnly = true;
+                txtDescription.ReadOnly = true;
+                txtReturn.ReadOnly = true;
+
+                cmbWorkStatus.Items.Remove("Done");
+
+                btnSave.Enabled = false;
+
+
+            }
+        }
+
+        private void GetClientAddress()
+        {
+            try
+            {
+                objPro = new clsProperties();
+                client = new cls_ClientsDL();
+                ds = new DataSet();
+
+                objPro.search = !string.IsNullOrWhiteSpace(txtTradeName.Text) ? txtTradeName.Text.Trim() : txtClientName.Text.Trim();
+
+                ds = client.getClientAddress(clientId, CLIENTNAME);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    businessName = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
+                    clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_INCOMETAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         #endregion
