@@ -24,11 +24,12 @@ namespace Tax_Consultant_25.Frames
             InitializeComponent();
         }
 
+        #region CLASS & OBJECTS
+
         public event EventHandler OnCloseFill;
 
-        private CommonUC common;
         DataTable dt;
-        DataSet ds, ds1;
+        DataSet ds, ds1, ds2;
         cls_EmployeeDL employeeDL;
         clsProperties objPro;
         cls_GstDL gstDL;
@@ -37,12 +38,18 @@ namespace Tax_Consultant_25.Frames
         cls_BusinessDL bus;
         cls_ClientsDL client;
 
+        #endregion
+
+        #region VARIABLES
+
         string serviceName;
         string prevMonthName;
-        string tempEmployeeName, tempClientName, tempClientType, tempReturn;
-        string service, businessName, clientAddress;
+        string tempEmployeeName, tempClientName, tempClientType, tempReturn, tempTaskName;
+        string service, businessName, clientAddress, CLIENTNAME;
 
         int flag, tempGSTId, tempClientId;
+
+        #endregion
 
         #region PUBLIC VARIABLES
 
@@ -67,6 +74,10 @@ namespace Tax_Consultant_25.Frames
         public string Month { get; set; }
 
         public int clientFilled { get; set; }
+
+        public string ROLE { get; set; }
+
+        public string EMPLOYEENAME { get; set; }
 
         #endregion
 
@@ -103,7 +114,10 @@ namespace Tax_Consultant_25.Frames
             txtPeriod.Clear();
             txtFinancialYear.Clear();
 
-            btnSave.Enabled = true;
+            if (ROLE == "Admin")
+            {
+                btnSave.Enabled = true;
+            }
         }
 
         private void BindSearch()
@@ -144,47 +158,69 @@ namespace Tax_Consultant_25.Frames
 
         private void ShowQuery()
         {
-            //query = new cls_Query();
-            //ds1 = new DataSet();
+            query = new cls_Query();
+            ds1 = new DataSet();
 
-            //ds1 = query.QueryRaisedByEmp();
+            ds1 = query.QueryRaisedByEmp("GST");
 
-            //foreach (DataGridViewRow row in dgvGST.Rows)
-            //{
-            //    if (row.IsNewRow)
-            //        continue;
+            foreach (DataGridViewRow row in dgvGST.Rows)
+            {
+                if (row.IsNewRow)
+                {
+                    continue;
+                }
 
-            //    string employee = row.Cells["EmployeeName"].Value?.ToString();
-            //    string client = row.Cells["ClientName"].Value?.ToString();
+                string employee = row.Cells["EmployeeName"].Value?.ToString();
+                string client = row.Cells["ClientName"].Value?.ToString();
+                string worktype = row.Cells["WorkType"].Value.ToString();
+                string service = "GST";
 
-            //    service = "GST";
-            //    var queryRow = ds1.Tables[0].AsEnumerable().FirstOrDefault(r =>
-            //       r.Field<string>("EmployeeName") == employee &&
-            //       r.Field<string>("clientName") == client &&
-            //       r.Field<string>("service") == service
-            //     //&&
-            //     //!string.IsNullOrEmpty(r.Field<string>("queryByEmp"))
-            //     );
+                bool hasQuery = ds1.Tables[0].AsEnumerable().Any(r =>
+                   r.Field<string>("q_EmpName") == employee &&
+                   r.Field<string>("q_ClientName") == client &&
+                   r.Field<string>("q_Service") == service &&
+                   r.Field<string>("q_TaskName") == worktype &&
+                   r.Field<bool>("hasQuery") == true &&
+                   r.Field<bool>("isActive") == true
+                 );
 
+                row.DefaultCellStyle.BackColor = hasQuery ? Color.LightCoral : dgvGST.DefaultCellStyle.BackColor;
 
-            //    bool hasQuery = false;
+            }
 
-            //    if (queryRow != null)
-            //    {
-            //        object val = queryRow["HasQuery"];
+        }
 
-            //        if (val != DBNull.Value && int.TryParse(val.ToString(), out int parsed))
-            //        {
-            //            hasQuery = parsed == 1;
-            //        }
-            //    }
+        private void ShowReply()
+        {
+            query = new cls_Query();
+            ds2 = new DataSet();
 
-            //    row.DefaultCellStyle.BackColor = hasQuery ? Color.Red : DefaultBackColor;
+            ds2 = query.showReplyByAdmin("GST");
 
-            //    //DataGridViewCell buttonCell = row.Cells["btnReply"];
-            //    //buttonCell.Style.BackColor = Color.LightGreen;
-            //    //buttonCell.Style.ForeColor = Color.Black;
-            //}
+            foreach (DataGridViewRow row in dgvGST.Rows)
+            {
+                if (row.IsNewRow)
+                {
+                    continue;
+                }
+
+                string employee = row.Cells["EmployeeName"].Value?.ToString();
+                string client = row.Cells["ClientName"].Value?.ToString();
+                string worktype = row.Cells["WorkType"].Value.ToString();
+                string service = "GST";
+
+                bool hasReply = ds2.Tables[0].AsEnumerable().Any(r =>
+                   r.Field<string>("q_EmpName") == employee &&
+                   r.Field<string>("q_ClientName") == client &&
+                   r.Field<string>("q_Service") == service &&
+                   r.Field<string>("q_TaskName") == worktype &&
+                   r.Field<bool>("isClosed") == true &&
+                   r.Field<bool>("isActive") == true
+                 );
+
+                row.DefaultCellStyle.BackColor = hasReply ? Color.LightGreen : dgvGST.DefaultCellStyle.BackColor;
+
+            }
         }
 
         private void show()
@@ -194,11 +230,17 @@ namespace Tax_Consultant_25.Frames
                 gstDL = new cls_GstDL();
                 ds = new DataSet();
 
-                ds = gstDL.show();
+                ds = gstDL.show(ROLE, EMPLOYEENAME);
 
                 if (ds.Tables[0].Rows.Count >= 0)
                 {
                     dgvGST.DataSource = ds.Tables[0];
+
+                    if (ROLE == "User")
+                    {
+                        dgvGST.Columns["EMPLOYEENAME"].Visible = false;
+
+                    }
 
                     dgvGST.Columns["gstId"].Visible = false;
                     dgvGST.Columns["clientId"].Visible = false;
@@ -237,6 +279,56 @@ namespace Tax_Consultant_25.Frames
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "UC_GST", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void ApplyEmployeePermissions()
+        {
+            if (ROLE == "User")
+            {
+                dtpInputDate.Enabled = false;
+                dtpDueDate.Enabled = false;
+                cmbAllocatedTo.Enabled = false;
+                cmbRecurringTask.Enabled = false;
+                cmbPeriodicity.Enabled = false;
+                cmbTaskName.Enabled = false;
+
+                txtClientName.ReadOnly = true;
+                txtTradeName.ReadOnly = true;
+                txtFinancialYear.ReadOnly = true;
+
+                cmbWorkStatus.Items.Remove("Filed");
+
+                if (ROLE == "Admin")
+                {
+                    btnSave.Enabled = true;
+                }
+
+            }
+        }
+
+        private void GetClientAddress()
+        {
+            try
+            {
+                objPro = new clsProperties();
+                client = new cls_ClientsDL();
+                ds = new DataSet();
+
+                objPro.search = !string.IsNullOrWhiteSpace(txtTradeName.Text) ? txtTradeName.Text.Trim() : txtClientName.Text.Trim();
+
+                ds = client.getClientAddress(clientId, CLIENTNAME);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    businessName = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
+                    clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_INCOMETAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -329,6 +421,8 @@ namespace Tax_Consultant_25.Frames
 
         private void ucGST_Load(object sender, EventArgs e)
         {
+            ApplyEmployeePermissions();
+
             BindEmployee();
 
             cmbAllocatedTo.SelectedIndex = 0;
@@ -349,6 +443,36 @@ namespace Tax_Consultant_25.Frames
 
             cmbTaskName.DrawMode = DrawMode.OwnerDrawFixed;
             cmbTaskName.DrawItem += cmbTaskName_DrawItem;
+        }
+
+        private void dgvGST_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (ROLE == "User")
+            {
+                foreach (DataGridViewRow row in dgvGST.Rows)
+                {
+                    if (row.IsNewRow)
+                    {
+                        continue;
+                    }
+
+                    row.Cells["btnReply"].Value = "QUERY";
+                    dgvGST.Columns["btnReply"].HeaderText = "QUERY";
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dgvGST.Rows)
+                {
+                    if (row.IsNewRow)
+                    {
+                        continue;
+                    }
+
+                    row.Cells["btnReply"].Value = "REPLY";
+                    dgvGST.Columns["btnReply"].HeaderText = "REPLY";
+                }
+            }
         }
 
         private void txtClientName_TextChanged(object sender, EventArgs e)
@@ -453,12 +577,8 @@ namespace Tax_Consultant_25.Frames
 
                 if (flag >= 1)
                 {
-                    flag = 0;
 
-                    cls_ClientUserPassDL = new cls_ClientUserPassDL();
-                    flag = cls_ClientUserPassDL.updateClientUserNamePassword(objPro);
-
-                    if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "FILED")
+                    if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "Filed")
                     {
                         DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "GST", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -466,9 +586,9 @@ namespace Tax_Consultant_25.Frames
                         {
                             frm_Narration narr = new frm_Narration();
                             narr.clientName = txtClientName.Text;
-                            narr.service = common.service;
+                            narr.service = "GST";
                             narr.amount = "";
-                            narr.workType = "";
+                            narr.workType = tempTaskName;
                             narr.businessName = businessName;
                             narr.clientAddress = clientAddress;
 
@@ -488,7 +608,14 @@ namespace Tax_Consultant_25.Frames
 
         private void dgvGST_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            ShowQuery();
+            if (ROLE == "Admin")
+            {
+                ShowQuery();
+            }
+            else
+            {
+                ShowReply();
+            }
 
             #region CHANGE STATUS COLORS
 
@@ -557,6 +684,20 @@ namespace Tax_Consultant_25.Frames
 
             #endregion
 
+            if (dgvGST.Columns[e.ColumnIndex].Name == "btnReply")
+            {
+                string text = dgvGST.Rows[e.RowIndex].Cells["btnReply"].Value?.ToString();
+
+                if (text == "QUERY")
+                {
+                    e.CellStyle.ForeColor = Color.Blue;
+                }
+                else
+                {
+                    e.CellStyle.ForeColor = Color.Red;
+                }
+            }
+
         }
 
         private void dgvGST_SelectionChanged(object sender, EventArgs e)
@@ -596,38 +737,25 @@ namespace Tax_Consultant_25.Frames
                     cmbWorkStatus.Text = dgvGST.Rows[objPro.rowID].Cells[12].Value.ToString().Trim();
                     tempGSTId = Convert.ToInt32(dgvGST.Rows[objPro.rowID].Cells[13].Value.ToString());
                     clientId = Convert.ToInt32(dgvGST.Rows[objPro.rowID].Cells[14].Value.ToString());
+                    tempEmployeeName = dgvGST.Rows[objPro.rowID].Cells[7].Value.ToString().Trim();
+                    tempTaskName = dgvGST.Rows[objPro.rowID].Cells[3].Value.ToString().Trim();
 
-                    //objPro.workService = common.service;
-                    //objPro.clientID = tempClientId;
-                    //tempEmployeeName = cmbAllocatedTo.Text;
-                    //tempClientName = txtClientName.Text;
+                    CLIENTNAME = dgvGST.Rows[objPro.rowID].Cells[11].Value.ToString().Trim();
 
-                    bus = new cls_BusinessDL();
-                    ds = new DataSet();
+                    GetClientAddress();
+                }
 
-                    ds = bus.getBusinessName(tempClientName, tempClientId);
+                if (e.ColumnIndex == dgvGST.Columns["btnReply"].Index)
+                {
+                    frm_Query query = new frm_Query(tempEmployeeName);
 
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        businessName = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
-                        clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
-                    }
-
-                    //showClientUsernamePasswordOnDGVClick();
-
-                    
-
-                    if (e.ColumnIndex == dgvGST.Columns["btnReply"].Index)
-                    {
-                        frm_Query query = new frm_Query(tempEmployeeName);
-
-                        query.serviceName = serviceName;
-                        query.clientName = tempClientName;
-                        query.employeeName = tempEmployeeName;
-                        //   query.workTypeName = tempWorkType;
-
-                        query.ShowDialog();
-                    }
+                    query.workId = tempGSTId;
+                    query.role = ROLE;
+                    query.employeeName = tempEmployeeName;
+                    query.serviceName = "GST";
+                    query.clientName = txtClientName.Text;
+                    query.taskName = tempTaskName;
+                    query.ShowDialog();
                 }
             }
             catch (Exception ex)

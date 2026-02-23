@@ -63,14 +63,14 @@
             this.dgvGST = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nm = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TaskName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WorkType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.EmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGST)).BeginInit();
@@ -78,8 +78,7 @@
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.txtFinancialYear);
             this.panel2.Controls.Add(this.cmbTaskName);
@@ -103,18 +102,18 @@
             this.panel2.Controls.Add(this.label17);
             this.panel2.Controls.Add(this.label20);
             this.panel2.Controls.Add(this.label24);
-            this.panel2.Location = new System.Drawing.Point(9, 4);
+            this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1211, 158);
-            this.panel2.TabIndex = 1;
+            this.panel2.Size = new System.Drawing.Size(1314, 158);
+            this.panel2.TabIndex = 0;
             // 
             // txtFinancialYear
             // 
             this.txtFinancialYear.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFinancialYear.Location = new System.Drawing.Point(830, 109);
+            this.txtFinancialYear.Location = new System.Drawing.Point(848, 109);
             this.txtFinancialYear.Name = "txtFinancialYear";
             this.txtFinancialYear.Size = new System.Drawing.Size(167, 29);
-            this.txtFinancialYear.TabIndex = 60;
+            this.txtFinancialYear.TabIndex = 9;
             // 
             // cmbTaskName
             // 
@@ -136,16 +135,16 @@
             "CMP-08",
             "ITC-04",
             "IFF"});
-            this.cmbTaskName.Location = new System.Drawing.Point(1016, 33);
+            this.cmbTaskName.Location = new System.Drawing.Point(1046, 33);
             this.cmbTaskName.Name = "cmbTaskName";
-            this.cmbTaskName.Size = new System.Drawing.Size(215, 29);
-            this.cmbTaskName.TabIndex = 55;
+            this.cmbTaskName.Size = new System.Drawing.Size(234, 29);
+            this.cmbTaskName.TabIndex = 4;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(826, 85);
+            this.label4.Location = new System.Drawing.Point(844, 85);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(163, 21);
             this.label4.TabIndex = 61;
@@ -157,7 +156,7 @@
             this.txtTradeName.Location = new System.Drawing.Point(454, 30);
             this.txtTradeName.Name = "txtTradeName";
             this.txtTradeName.Size = new System.Drawing.Size(332, 29);
-            this.txtTradeName.TabIndex = 50;
+            this.txtTradeName.TabIndex = 2;
             this.txtTradeName.Leave += new System.EventHandler(this.txtTradeName_Leave);
             // 
             // cmbPeriodicity
@@ -175,7 +174,7 @@
             this.cmbPeriodicity.Location = new System.Drawing.Point(409, 109);
             this.cmbPeriodicity.Name = "cmbPeriodicity";
             this.cmbPeriodicity.Size = new System.Drawing.Size(222, 29);
-            this.cmbPeriodicity.TabIndex = 59;
+            this.cmbPeriodicity.TabIndex = 7;
             // 
             // label1
             // 
@@ -201,7 +200,7 @@
             // 
             this.lblDynamic1.AutoSize = true;
             this.lblDynamic1.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDynamic1.Location = new System.Drawing.Point(1071, 5);
+            this.lblDynamic1.Location = new System.Drawing.Point(1115, 5);
             this.lblDynamic1.Name = "lblDynamic1";
             this.lblDynamic1.Size = new System.Drawing.Size(103, 21);
             this.lblDynamic1.TabIndex = 46;
@@ -218,32 +217,32 @@
             this.cmbRecurringTask.Location = new System.Drawing.Point(232, 109);
             this.cmbRecurringTask.Name = "cmbRecurringTask";
             this.cmbRecurringTask.Size = new System.Drawing.Size(164, 29);
-            this.cmbRecurringTask.TabIndex = 57;
+            this.cmbRecurringTask.TabIndex = 6;
             // 
             // dtpDueDate
             // 
             this.dtpDueDate.CustomFormat = "dd/MM/yyyy";
             this.dtpDueDate.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDueDate.Location = new System.Drawing.Point(817, 30);
+            this.dtpDueDate.Location = new System.Drawing.Point(835, 30);
             this.dtpDueDate.Name = "dtpDueDate";
             this.dtpDueDate.Size = new System.Drawing.Size(180, 29);
-            this.dtpDueDate.TabIndex = 2;
+            this.dtpDueDate.TabIndex = 3;
             // 
             // txtPeriod
             // 
             this.txtPeriod.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPeriod.Location = new System.Drawing.Point(637, 109);
+            this.txtPeriod.Location = new System.Drawing.Point(648, 109);
             this.txtPeriod.Name = "txtPeriod";
             this.txtPeriod.ReadOnly = true;
             this.txtPeriod.Size = new System.Drawing.Size(183, 29);
-            this.txtPeriod.TabIndex = 4;
+            this.txtPeriod.TabIndex = 8;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(826, 4);
+            this.label21.Location = new System.Drawing.Point(844, 4);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(96, 20);
             this.label21.TabIndex = 43;
@@ -257,7 +256,7 @@
             this.cmbAllocatedTo.Location = new System.Drawing.Point(16, 111);
             this.cmbAllocatedTo.Name = "cmbAllocatedTo";
             this.cmbAllocatedTo.Size = new System.Drawing.Size(202, 29);
-            this.cmbAllocatedTo.TabIndex = 3;
+            this.cmbAllocatedTo.TabIndex = 5;
             // 
             // txtClientName
             // 
@@ -273,7 +272,7 @@
             // 
             this.lblYear.AutoSize = true;
             this.lblYear.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblYear.Location = new System.Drawing.Point(690, 85);
+            this.lblYear.Location = new System.Drawing.Point(701, 85);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(71, 21);
             this.lblYear.TabIndex = 48;
@@ -304,10 +303,10 @@
             "Complete",
             "Filed",
             "Other"});
-            this.cmbWorkStatus.Location = new System.Drawing.Point(1016, 109);
+            this.cmbWorkStatus.Location = new System.Drawing.Point(1046, 109);
             this.cmbWorkStatus.Name = "cmbWorkStatus";
-            this.cmbWorkStatus.Size = new System.Drawing.Size(215, 29);
-            this.cmbWorkStatus.TabIndex = 4;
+            this.cmbWorkStatus.Size = new System.Drawing.Size(234, 29);
+            this.cmbWorkStatus.TabIndex = 10;
             // 
             // dtpInputDate
             // 
@@ -354,7 +353,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(1080, 85);
+            this.label24.Location = new System.Drawing.Point(1128, 85);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(71, 21);
             this.label24.TabIndex = 49;
@@ -362,16 +361,15 @@
             // 
             // panel3
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.btnClose);
             this.panel3.Controls.Add(this.btnUpdate);
             this.panel3.Controls.Add(this.btnSave);
-            this.panel3.Location = new System.Drawing.Point(9, 168);
+            this.panel3.Location = new System.Drawing.Point(3, 168);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1211, 47);
-            this.panel3.TabIndex = 3;
+            this.panel3.Size = new System.Drawing.Size(1314, 47);
+            this.panel3.TabIndex = 1;
             // 
             // btnClose
             // 
@@ -422,14 +420,13 @@
             // 
             this.dgvGST.AllowUserToAddRows = false;
             this.dgvGST.AllowUserToDeleteRows = false;
-            this.dgvGST.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvGST.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvGST.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvGST.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -439,25 +436,26 @@
             this.dgvGST.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Nm,
-            this.TaskName,
-            this.EmployeeName,
+            this.WorkType,
+            this.Column12,
             this.Column6,
             this.Column3,
-            this.Column4,
-            this.btnReply,
+            this.EmployeeName,
             this.Status,
-            this.ClientName});
+            this.ClientName,
+            this.btnReply});
             this.dgvGST.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvGST.Location = new System.Drawing.Point(9, 221);
+            this.dgvGST.Location = new System.Drawing.Point(3, 217);
             this.dgvGST.Name = "dgvGST";
             this.dgvGST.RowHeadersVisible = false;
             this.dgvGST.RowHeadersWidth = 51;
             this.dgvGST.RowTemplate.Height = 24;
             this.dgvGST.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvGST.Size = new System.Drawing.Size(1211, 567);
+            this.dgvGST.Size = new System.Drawing.Size(1314, 492);
             this.dgvGST.TabIndex = 4;
             this.dgvGST.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGST_CellClick);
             this.dgvGST.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvGST_CellFormatting);
+            this.dgvGST.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvGST_DataBindingComplete);
             this.dgvGST.SelectionChanged += new System.EventHandler(this.dgvGST_SelectionChanged);
             // 
             // Column1
@@ -476,31 +474,31 @@
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Nm.DefaultCellStyle = dataGridViewCellStyle3;
             this.Nm.FillWeight = 153.5922F;
-            this.Nm.HeaderText = "Trade Name";
+            this.Nm.HeaderText = "TRADE NAME";
             this.Nm.MinimumWidth = 6;
             this.Nm.Name = "Nm";
             // 
-            // TaskName
+            // WorkType
             // 
-            this.TaskName.DataPropertyName = "g_TaskName";
-            this.TaskName.FillWeight = 99.8358F;
-            this.TaskName.HeaderText = "Task Name";
-            this.TaskName.MinimumWidth = 6;
-            this.TaskName.Name = "TaskName";
+            this.WorkType.DataPropertyName = "g_TaskName";
+            this.WorkType.FillWeight = 99.8358F;
+            this.WorkType.HeaderText = "TASK NAME";
+            this.WorkType.MinimumWidth = 6;
+            this.WorkType.Name = "WorkType";
             // 
-            // EmployeeName
+            // Column12
             // 
-            this.EmployeeName.DataPropertyName = "g_Period";
-            this.EmployeeName.FillWeight = 91.31847F;
-            this.EmployeeName.HeaderText = "Period";
-            this.EmployeeName.MinimumWidth = 6;
-            this.EmployeeName.Name = "EmployeeName";
+            this.Column12.DataPropertyName = "g_Period";
+            this.Column12.FillWeight = 91.31847F;
+            this.Column12.HeaderText = "PERIOD";
+            this.Column12.MinimumWidth = 6;
+            this.Column12.Name = "Column12";
             // 
             // Column6
             // 
             this.Column6.DataPropertyName = "g_InputDate";
             this.Column6.FillWeight = 91.9576F;
-            this.Column6.HeaderText = "Start Date";
+            this.Column6.HeaderText = "START DT.";
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
             // 
@@ -508,17 +506,33 @@
             // 
             this.Column3.DataPropertyName = "g_DueDate";
             this.Column3.FillWeight = 92.03167F;
-            this.Column3.HeaderText = "Due Date";
+            this.Column3.HeaderText = "DUE DT.";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             // 
-            // Column4
+            // EmployeeName
             // 
-            this.Column4.DataPropertyName = "g_AllocatedTo";
-            this.Column4.FillWeight = 146.9727F;
-            this.Column4.HeaderText = "Assigned User";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
+            this.EmployeeName.DataPropertyName = "g_AllocatedTo";
+            this.EmployeeName.FillWeight = 146.9727F;
+            this.EmployeeName.HeaderText = "ASSIGNED TO";
+            this.EmployeeName.MinimumWidth = 6;
+            this.EmployeeName.Name = "EmployeeName";
+            // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "g_Status";
+            this.Status.FillWeight = 159.8019F;
+            this.Status.HeaderText = "STATUS";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            // 
+            // ClientName
+            // 
+            this.ClientName.DataPropertyName = "clientName";
+            this.ClientName.HeaderText = "NAME";
+            this.ClientName.MinimumWidth = 6;
+            this.ClientName.Name = "ClientName";
+            this.ClientName.Visible = false;
             // 
             // btnReply
             // 
@@ -527,29 +541,12 @@
             this.btnReply.DefaultCellStyle = dataGridViewCellStyle4;
             this.btnReply.FillWeight = 64.9856F;
             this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnReply.HeaderText = "Reply";
+            this.btnReply.HeaderText = "REPLY";
             this.btnReply.MinimumWidth = 6;
             this.btnReply.Name = "btnReply";
             this.btnReply.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.btnReply.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.btnReply.Text = "REPLY";
-            this.btnReply.UseColumnTextForButtonValue = true;
-            // 
-            // Status
-            // 
-            this.Status.DataPropertyName = "g_Status";
-            this.Status.FillWeight = 159.8019F;
-            this.Status.HeaderText = "Status";
-            this.Status.MinimumWidth = 6;
-            this.Status.Name = "Status";
-            // 
-            // ClientName
-            // 
-            this.ClientName.DataPropertyName = "clientName";
-            this.ClientName.HeaderText = "Client Name";
-            this.ClientName.MinimumWidth = 6;
-            this.ClientName.Name = "ClientName";
-            this.ClientName.Visible = false;
             // 
             // ucGST
             // 
@@ -560,7 +557,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Name = "ucGST";
-            this.Size = new System.Drawing.Size(1228, 791);
+            this.Size = new System.Drawing.Size(1320, 716);
             this.Load += new System.EventHandler(this.ucGST_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -601,13 +598,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nm;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TaskName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WorkType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewButtonColumn btnReply;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
+        private System.Windows.Forms.DataGridViewButtonColumn btnReply;
     }
 }
