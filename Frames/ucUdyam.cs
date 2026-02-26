@@ -23,9 +23,8 @@ namespace Tax_Consultant_25.Frames
 
         #region CLASS & OBJECTS
 
-        CommonUC common;
         DataTable dt;
-        DataSet ds, ds1;
+        DataSet ds, ds1, ds2;
         cls_EmployeeDL employeeDL;
         cls_ClientUserPassDL clientUserPassDL;
         cls_UdyamDL clsUdyamDL;
@@ -40,7 +39,11 @@ namespace Tax_Consultant_25.Frames
         #region VARIABLES
 
         int flag, clientId, tempUdyamId, tempClientId;
-        string tempEmployeeName, tempClientName, tempWorkType, serviceName, service, businessName, clientAddress;
+        string tempEmployeeName, tempClientName, tempWorkType, serviceName, service, businessName, clientAddress, CLIENTNAME;
+
+        public string ROLE { get; set; }
+
+        public string EMPLOYEENAME { get; set; }
 
         #endregion
 
@@ -87,6 +90,30 @@ namespace Tax_Consultant_25.Frames
 
         #region FUNCTIONS
 
+        private void GetClientAddress()
+        {
+            try
+            {
+                objPro = new clsProperties();
+                client = new cls_ClientsDL();
+                ds = new DataSet();
+
+                objPro.search = !string.IsNullOrWhiteSpace(txtTradeName.Text) ? txtTradeName.Text.Trim() : txtClientName.Text.Trim();
+
+                ds = client.getClientAddress(clientId, CLIENTNAME);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    businessName = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
+                    clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_INCOMETAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         private void BindSearch()
         {
             try
@@ -178,7 +205,10 @@ namespace Tax_Consultant_25.Frames
             txtTradeName.Clear();
             txtDescription.Clear();
 
-            btnSave.Enabled = true;
+            if (ROLE == "Admin")
+            {
+                btnSave.Enabled = true;
+            }
         }
 
         private void show()
@@ -186,7 +216,7 @@ namespace Tax_Consultant_25.Frames
             ds = new DataSet();
             clsUdyamDL = new cls_UdyamDL();
 
-            ds = clsUdyamDL.showData();
+            ds = clsUdyamDL.showData(ROLE, EMPLOYEENAME);
 
             if (ds.Tables[0].Rows.Count < 0)
             {
@@ -196,22 +226,137 @@ namespace Tax_Consultant_25.Frames
             {
                 dgvUdyam.DataSource = ds.Tables[0];
 
+                if (ROLE == "User")
+                {
+                    dgvUdyam.Columns["EMPLOYEENAME"].Visible = false;
+                }
+
                 dgvUdyam.Columns["clientId"].Visible = false;
                 dgvUdyam.Columns["udyamId"].Visible = false;
                 dgvUdyam.Columns["u_Fees"].Visible = false;
             }
         }
 
-        #endregion
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void ApplyEmployeePermissions()
         {
+            if (ROLE == "User")
+            {
+                dtpInputDate.Enabled = false;
+                dtpDueDate.Enabled = false;
+                cmbAllocatedTo.Enabled = false;
+                cmbFeesStatus.Enabled = false;
+
+                txtClientName.ReadOnly = true;
+                txtTradeName.ReadOnly = true;
+                txtTaskName.ReadOnly = true;
+                txtDescription.ReadOnly = true;
+                txtFees.ReadOnly = true;
+                
+                cmbWorkStatus.Items.Remove("Done");
+
+                btnSave.Enabled = false;
+            }
+        }
+
+        private void ShowQuery()
+        {
+            query = new cls_Query();
+            ds1 = new DataSet();
+
+            ds1 = query.QueryRaisedByEmp("UDYAM");
+
+            foreach (DataGridViewRow row in dgvUdyam.Rows)
+            {
+                if (row.IsNewRow)
+                {
+                    continue;
+                }
+
+                string employee = row.Cells["EmployeeName"].Value?.ToString();
+                string client = row.Cells["ClientName"].Value?.ToString();
+                string worktype = row.Cells["WorkType"].Value.ToString();
+                string service = "UDYAM";
+
+                bool hasQuery = ds1.Tables[0].AsEnumerable().Any(r =>
+                   r.Field<string>("q_EmpName") == employee &&
+                   r.Field<string>("q_ClientName") == client &&
+                   r.Field<string>("q_Service") == service &&
+                   r.Field<string>("q_TaskName") == worktype &&
+                   r.Field<bool>("hasQuery") == true &&
+                   r.Field<bool>("isActive") == true
+                 );
+
+                row.DefaultCellStyle.BackColor = hasQuery ? Color.LightCoral : dgvUdyam.DefaultCellStyle.BackColor;
+
+            }
 
         }
 
-        private void label20_Click(object sender, EventArgs e)
+        private void ShowReply()
         {
+            query = new cls_Query();
+            ds2 = new DataSet();
 
+            ds2 = query.showReplyByAdmin("UDYAM");
+
+            foreach (DataGridViewRow row in dgvUdyam.Rows)
+            {
+                if (row.IsNewRow)
+                {
+                    continue;
+                }
+
+                string employee = row.Cells["EmployeeName"].Value?.ToString();
+                string client = row.Cells["ClientName"].Value?.ToString();
+                string worktype = row.Cells["WorkType"].Value.ToString();
+                string service = "UDYAM";
+
+                bool hasReply = ds2.Tables[0].AsEnumerable().Any(r =>
+                   r.Field<string>("q_EmpName") == employee &&
+                   r.Field<string>("q_ClientName") == client &&
+                   r.Field<string>("q_Service") == service &&
+                   r.Field<string>("q_TaskName") == worktype &&
+                   r.Field<bool>("isClosed") == true &&
+                   r.Field<bool>("isActive") == true
+                 );
+
+                row.DefaultCellStyle.BackColor = hasReply ? Color.LightGreen : dgvUdyam.DefaultCellStyle.BackColor;
+
+            }
+        }
+
+        #endregion
+
+        #region EVENTS
+
+        private void dgvUdyam_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (ROLE == "User")
+            {
+                foreach (DataGridViewRow row in dgvUdyam.Rows)
+                {
+                    if (row.IsNewRow)
+                    {
+                        continue;
+                    }
+
+                    row.Cells["btnReply"].Value = "QUERY";
+                    dgvUdyam.Columns["btnReply"].HeaderText = "QUERY";
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dgvUdyam.Rows)
+                {
+                    if (row.IsNewRow)
+                    {
+                        continue;
+                    }
+
+                    row.Cells["btnReply"].Value = "REPLY";
+                    dgvUdyam.Columns["btnReply"].HeaderText = "REPLY";
+                }
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -253,7 +398,7 @@ namespace Tax_Consultant_25.Frames
                 clsUdyamDL = new cls_UdyamDL();
                 flag = clsUdyamDL.saveData(objPro);
 
-                if (flag == 1)
+                if (flag >= 1)
                 {
                     Clear();
                     show();
@@ -305,26 +450,26 @@ namespace Tax_Consultant_25.Frames
                 clsUdyamDL = new cls_UdyamDL();
                 flag = clsUdyamDL.updateData(objPro);
 
-                if (flag == 1)
+                if (flag >= 1)
                 {
 
-                    //if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "Done")
-                    //{
-                    //    DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "UDYAM", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "Done")
+                    {
+                        DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "UDYAM", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    //    if (dial == DialogResult.Yes)
-                    //    {
-                    //        frm_Narration narr = new frm_Narration();
-                    //        narr.clientName = txtClientName.Text;
-                    //        narr.service = common.service;
-                    //        narr.amount = txtFessAmt.Text;
-                    //        narr.workType = txtWorkType.Text;
-                    //        narr.businessName = businessName;
-                    //        narr.clientAddress = clientAddress;
+                        if (dial == DialogResult.Yes)
+                        {
+                            frm_Narration narr = new frm_Narration();
+                            narr.clientName = txtClientName.Text;
+                            narr.service = "UDYAM";
+                            narr.amount = txtFees.Text;
+                            narr.workType = txtTaskName.Text;
+                            narr.businessName = businessName;
+                            narr.clientAddress = clientAddress;
 
-                    //        narr.Show();
-                    //    }
-                    //}
+                            narr.Show();
+                        }
+                    }
 
                     Clear();
                     show();
@@ -343,6 +488,8 @@ namespace Tax_Consultant_25.Frames
 
         private void ucUdyam_Load(object sender, EventArgs e)
         {
+            ApplyEmployeePermissions();
+
             BindSearch();
             BindEmployee();
             show();
@@ -358,7 +505,15 @@ namespace Tax_Consultant_25.Frames
 
         private void dgvUdyam_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-          //  ShowQuery();
+            if (ROLE == "Admin")
+            {
+                ShowQuery();
+            }
+            else
+            {
+                ShowReply();
+            }
+
             #region CHANGE STATUS COLORS
 
             Dictionary<string, Color> StatusColors = new Dictionary<string, Color>()
@@ -387,6 +542,20 @@ namespace Tax_Consultant_25.Frames
             }
 
             #endregion
+
+            if (dgvUdyam.Columns[e.ColumnIndex].Name == "btnReply")
+            {
+                string text = dgvUdyam.Rows[e.RowIndex].Cells["btnReply"].Value?.ToString();
+
+                if (text == "QUERY")
+                {
+                    e.CellStyle.ForeColor = Color.Blue;
+                }
+                else
+                {
+                    e.CellStyle.ForeColor = Color.Red;
+                }
+            }
         }
 
         private void dgvUdyam_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -411,37 +580,25 @@ namespace Tax_Consultant_25.Frames
                 txtFees.Text = dgvUdyam.Rows[objPro.rowID].Cells[11].Value.ToString();
                 tempUdyamId = Convert.ToInt32(dgvUdyam.Rows[objPro.rowID].Cells[12].Value.ToString());
                 clientId = Convert.ToInt32(dgvUdyam.Rows[objPro.rowID].Cells[13].Value.ToString());
+                tempEmployeeName = dgvUdyam.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
 
-                //objPro.workService = common.service;
+                CLIENTNAME = dgvUdyam.Rows[objPro.rowID].Cells[3].Value.ToString();
 
-                //tempEmployeeName = cmbAllocatedTo.Text;
-                //tempClientName = txtClientName.Text;
-                //tempWorkType = txtWorkType.Text;
-                //objPro.clientID = tempClientId;
-
-                bus = new cls_BusinessDL();
-                //ds = new DataSet();
-
-                //ds = bus.getBusinessName(tempClientName, tempClientId);
-
-                //if (ds.Tables[0].Rows.Count > 0)
-                //{
-                //    businessName = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
-                //    clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
-                //}
+                GetClientAddress();
             }
 
-            if (e.ColumnIndex == dgvUdyam.Columns["btnReply"].Index)
-            {
-                frm_Query query = new frm_Query(tempEmployeeName);
+                if (e.ColumnIndex == dgvUdyam.Columns["btnReply"].Index)
+                {
+                    frm_Query query = new frm_Query(tempEmployeeName);
 
-                query.serviceName = serviceName;
-                query.clientName = tempClientName;
-                query.employeeName = tempEmployeeName;
-                query.workTypeName = tempWorkType;
-
-                query.ShowDialog();
-            }
+                    query.workId = tempUdyamId;
+                    query.role = ROLE;
+                    query.employeeName = tempEmployeeName;
+                    query.serviceName = "UDYAM";
+                    query.clientName = txtClientName.Text;
+                    query.taskName = txtTaskName.Text;
+                    query.ShowDialog();
+                }
         }
 
         private void txtClientName_TextChanged(object sender, EventArgs e)
@@ -467,6 +624,8 @@ namespace Tax_Consultant_25.Frames
             this.Parent.Controls.Remove(this);
             this.Dispose();
         }
+
+        #endregion
 
     }
 }

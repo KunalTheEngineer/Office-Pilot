@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucUdyam));
             this.panel2 = new System.Windows.Forms.Panel();
             this.cmbAllocatedTo = new System.Windows.Forms.ComboBox();
@@ -101,8 +101,7 @@
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1310, 139);
-            this.panel2.TabIndex = 1;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            this.panel2.TabIndex = 0;
             // 
             // cmbAllocatedTo
             // 
@@ -113,7 +112,7 @@
             this.cmbAllocatedTo.Location = new System.Drawing.Point(23, 89);
             this.cmbAllocatedTo.Name = "cmbAllocatedTo";
             this.cmbAllocatedTo.Size = new System.Drawing.Size(238, 29);
-            this.cmbAllocatedTo.TabIndex = 91;
+            this.cmbAllocatedTo.TabIndex = 5;
             // 
             // label20
             // 
@@ -124,7 +123,6 @@
             this.label20.Size = new System.Drawing.Size(117, 21);
             this.label20.TabIndex = 92;
             this.label20.Text = "ASSIGNED TO";
-            this.label20.Click += new System.EventHandler(this.label20_Click);
             // 
             // txtDescription
             // 
@@ -132,7 +130,7 @@
             this.txtDescription.Location = new System.Drawing.Point(948, 67);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(327, 62);
-            this.txtDescription.TabIndex = 89;
+            this.txtDescription.TabIndex = 9;
             this.txtDescription.Text = "";
             // 
             // label9
@@ -162,7 +160,7 @@
             this.cmbWorkStatus.Location = new System.Drawing.Point(582, 90);
             this.cmbWorkStatus.Name = "cmbWorkStatus";
             this.cmbWorkStatus.Size = new System.Drawing.Size(229, 28);
-            this.cmbWorkStatus.TabIndex = 85;
+            this.cmbWorkStatus.TabIndex = 8;
             // 
             // label24
             // 
@@ -205,7 +203,7 @@
             this.cmbFeesStatus.Location = new System.Drawing.Point(420, 91);
             this.cmbFeesStatus.Name = "cmbFeesStatus";
             this.cmbFeesStatus.Size = new System.Drawing.Size(150, 29);
-            this.cmbFeesStatus.TabIndex = 84;
+            this.cmbFeesStatus.TabIndex = 7;
             // 
             // txtFees
             // 
@@ -213,7 +211,7 @@
             this.txtFees.Location = new System.Drawing.Point(278, 90);
             this.txtFees.Name = "txtFees";
             this.txtFees.Size = new System.Drawing.Size(136, 29);
-            this.txtFees.TabIndex = 83;
+            this.txtFees.TabIndex = 6;
             // 
             // txtClientName
             // 
@@ -221,7 +219,7 @@
             this.txtClientName.Location = new System.Drawing.Point(201, 29);
             this.txtClientName.Name = "txtClientName";
             this.txtClientName.Size = new System.Drawing.Size(254, 29);
-            this.txtClientName.TabIndex = 81;
+            this.txtClientName.TabIndex = 1;
             this.txtClientName.TextChanged += new System.EventHandler(this.txtClientName_TextChanged);
             this.txtClientName.Leave += new System.EventHandler(this.txtClientName_Leave);
             // 
@@ -241,7 +239,7 @@
             this.txtTradeName.Location = new System.Drawing.Point(479, 29);
             this.txtTradeName.Name = "txtTradeName";
             this.txtTradeName.Size = new System.Drawing.Size(323, 29);
-            this.txtTradeName.TabIndex = 80;
+            this.txtTradeName.TabIndex = 2;
             this.txtTradeName.Leave += new System.EventHandler(this.txtTradeName_Leave);
             // 
             // label3
@@ -262,7 +260,7 @@
             this.dtpDueDate.Location = new System.Drawing.Point(1097, 29);
             this.dtpDueDate.Name = "dtpDueDate";
             this.dtpDueDate.Size = new System.Drawing.Size(178, 29);
-            this.dtpDueDate.TabIndex = 76;
+            this.dtpDueDate.TabIndex = 4;
             // 
             // label4
             // 
@@ -290,7 +288,7 @@
             this.txtTaskName.Location = new System.Drawing.Point(835, 32);
             this.txtTaskName.Name = "txtTaskName";
             this.txtTaskName.Size = new System.Drawing.Size(227, 29);
-            this.txtTaskName.TabIndex = 75;
+            this.txtTaskName.TabIndex = 3;
             // 
             // dtpInputDate
             // 
@@ -300,7 +298,7 @@
             this.dtpInputDate.Location = new System.Drawing.Point(23, 29);
             this.dtpInputDate.Name = "dtpInputDate";
             this.dtpInputDate.Size = new System.Drawing.Size(154, 29);
-            this.dtpInputDate.TabIndex = 72;
+            this.dtpInputDate.TabIndex = 0;
             // 
             // label6
             // 
@@ -316,8 +314,6 @@
             // 
             this.dgvUdyam.AllowUserToAddRows = false;
             this.dgvUdyam.AllowUserToDeleteRows = false;
-            this.dgvUdyam.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvUdyam.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvUdyam.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvUdyam.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -333,16 +329,17 @@
             this.Status,
             this.Column3,
             this.btnReply});
+            this.dgvUdyam.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvUdyam.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvUdyam.Location = new System.Drawing.Point(0, 0);
             this.dgvUdyam.Name = "dgvUdyam";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUdyam.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUdyam.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUdyam.RowHeadersVisible = false;
             this.dgvUdyam.RowHeadersWidth = 51;
             this.dgvUdyam.RowTemplate.Height = 24;
@@ -351,6 +348,7 @@
             this.dgvUdyam.TabIndex = 4;
             this.dgvUdyam.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUdyam_CellClick);
             this.dgvUdyam.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvUdyam_CellFormatting);
+            this.dgvUdyam.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvUdyam_DataBindingComplete);
             this.dgvUdyam.SelectionChanged += new System.EventHandler(this.dgvUdyam_SelectionChanged);
             // 
             // Column1
@@ -453,7 +451,7 @@
             this.panel3.Location = new System.Drawing.Point(3, 148);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1309, 51);
-            this.panel3.TabIndex = 6;
+            this.panel3.TabIndex = 1;
             // 
             // btnClose
             // 
@@ -464,7 +462,7 @@
             this.btnClose.Location = new System.Drawing.Point(634, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(94, 37);
-            this.btnClose.TabIndex = 7;
+            this.btnClose.TabIndex = 2;
             this.btnClose.Text = "CLOSE";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -479,7 +477,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(520, 5);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(108, 37);
-            this.btnUpdate.TabIndex = 7;
+            this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -494,7 +492,7 @@
             this.btnSave.Location = new System.Drawing.Point(420, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(94, 37);
-            this.btnSave.TabIndex = 7;
+            this.btnSave.TabIndex = 0;
             this.btnSave.Text = "SAVE";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
