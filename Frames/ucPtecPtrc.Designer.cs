@@ -57,11 +57,6 @@
             this.dtpInputDate = new System.Windows.Forms.DateTimePicker();
             this.label17 = new System.Windows.Forms.Label();
             this.dgvPTEC = new System.Windows.Forms.DataGridView();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,6 +69,11 @@
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPTEC)).BeginInit();
             this.panel3.SuspendLayout();
@@ -82,6 +82,7 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label8);
@@ -114,7 +115,7 @@
             this.panel2.Location = new System.Drawing.Point(4, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1313, 207);
-            this.panel2.TabIndex = 1;
+            this.panel2.TabIndex = 0;
             // 
             // label8
             // 
@@ -147,7 +148,7 @@
             this.cmbFeesStatus.Location = new System.Drawing.Point(608, 97);
             this.cmbFeesStatus.Name = "cmbFeesStatus";
             this.cmbFeesStatus.Size = new System.Drawing.Size(140, 29);
-            this.cmbFeesStatus.TabIndex = 90;
+            this.cmbFeesStatus.TabIndex = 10;
             // 
             // txtFees
             // 
@@ -155,7 +156,7 @@
             this.txtFees.Location = new System.Drawing.Point(457, 97);
             this.txtFees.Name = "txtFees";
             this.txtFees.Size = new System.Drawing.Size(145, 29);
-            this.txtFees.TabIndex = 89;
+            this.txtFees.TabIndex = 9;
             // 
             // txtDescription
             // 
@@ -163,7 +164,7 @@
             this.txtDescription.Location = new System.Drawing.Point(974, 95);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(322, 99);
-            this.txtDescription.TabIndex = 85;
+            this.txtDescription.TabIndex = 12;
             this.txtDescription.Text = "";
             // 
             // cmbPeriodicity
@@ -182,7 +183,7 @@
             this.cmbPeriodicity.Location = new System.Drawing.Point(150, 97);
             this.cmbPeriodicity.Name = "cmbPeriodicity";
             this.cmbPeriodicity.Size = new System.Drawing.Size(152, 29);
-            this.cmbPeriodicity.TabIndex = 87;
+            this.cmbPeriodicity.TabIndex = 7;
             // 
             // label5
             // 
@@ -210,7 +211,7 @@
             this.cmbWorkStatus.Location = new System.Drawing.Point(754, 97);
             this.cmbWorkStatus.Name = "cmbWorkStatus";
             this.cmbWorkStatus.Size = new System.Drawing.Size(214, 28);
-            this.cmbWorkStatus.TabIndex = 81;
+            this.cmbWorkStatus.TabIndex = 11;
             // 
             // label6
             // 
@@ -238,7 +239,7 @@
             this.txtYear.Location = new System.Drawing.Point(311, 97);
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(143, 29);
-            this.txtYear.TabIndex = 79;
+            this.txtYear.TabIndex = 8;
             // 
             // label3
             // 
@@ -262,7 +263,7 @@
             this.cmbRecurringTask.Location = new System.Drawing.Point(10, 97);
             this.cmbRecurringTask.Name = "cmbRecurringTask";
             this.cmbRecurringTask.Size = new System.Drawing.Size(134, 29);
-            this.cmbRecurringTask.TabIndex = 84;
+            this.cmbRecurringTask.TabIndex = 6;
             // 
             // label7
             // 
@@ -283,7 +284,7 @@
             this.cmbAllocatedTo.Location = new System.Drawing.Point(1090, 29);
             this.cmbAllocatedTo.Name = "cmbAllocatedTo";
             this.cmbAllocatedTo.Size = new System.Drawing.Size(206, 29);
-            this.cmbAllocatedTo.TabIndex = 66;
+            this.cmbAllocatedTo.TabIndex = 5;
             // 
             // txtClientName
             // 
@@ -291,7 +292,7 @@
             this.txtClientName.Location = new System.Drawing.Point(162, 29);
             this.txtClientName.Name = "txtClientName";
             this.txtClientName.Size = new System.Drawing.Size(254, 29);
-            this.txtClientName.TabIndex = 77;
+            this.txtClientName.TabIndex = 1;
             this.txtClientName.TextChanged += new System.EventHandler(this.txtClientName_TextChanged);
             this.txtClientName.Leave += new System.EventHandler(this.txtClientName_Leave);
             // 
@@ -321,7 +322,7 @@
             this.txtTradeName.Location = new System.Drawing.Point(422, 29);
             this.txtTradeName.Name = "txtTradeName";
             this.txtTradeName.Size = new System.Drawing.Size(302, 29);
-            this.txtTradeName.TabIndex = 76;
+            this.txtTradeName.TabIndex = 2;
             this.txtTradeName.Leave += new System.EventHandler(this.txtTradeName_Leave);
             // 
             // label21
@@ -342,7 +343,7 @@
             this.dtpDueDate.Location = new System.Drawing.Point(938, 29);
             this.dtpDueDate.Name = "dtpDueDate";
             this.dtpDueDate.Size = new System.Drawing.Size(146, 29);
-            this.dtpDueDate.TabIndex = 72;
+            this.dtpDueDate.TabIndex = 4;
             // 
             // label2
             // 
@@ -370,7 +371,7 @@
             this.txtTaskName.Location = new System.Drawing.Point(730, 29);
             this.txtTaskName.Name = "txtTaskName";
             this.txtTaskName.Size = new System.Drawing.Size(202, 29);
-            this.txtTaskName.TabIndex = 71;
+            this.txtTaskName.TabIndex = 3;
             // 
             // dtpInputDate
             // 
@@ -380,7 +381,7 @@
             this.dtpInputDate.Location = new System.Drawing.Point(10, 29);
             this.dtpInputDate.Name = "dtpInputDate";
             this.dtpInputDate.Size = new System.Drawing.Size(149, 29);
-            this.dtpInputDate.TabIndex = 52;
+            this.dtpInputDate.TabIndex = 0;
             // 
             // label17
             // 
@@ -396,6 +397,8 @@
             // 
             this.dgvPTEC.AllowUserToAddRows = false;
             this.dgvPTEC.AllowUserToDeleteRows = false;
+            this.dgvPTEC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvPTEC.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPTEC.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvPTEC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -412,7 +415,6 @@
             this.Status,
             this.Column4,
             this.btnReply});
-            this.dgvPTEC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPTEC.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvPTEC.Location = new System.Drawing.Point(0, 0);
             this.dgvPTEC.Name = "dgvPTEC";
@@ -424,78 +426,8 @@
             this.dgvPTEC.TabIndex = 4;
             this.dgvPTEC.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPTEC_CellClick);
             this.dgvPTEC.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvPTEC_CellFormatting);
+            this.dgvPTEC.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvPTEC_DataBindingComplete);
             this.dgvPTEC.SelectionChanged += new System.EventHandler(this.dgvPTEC_SelectionChanged);
-            // 
-            // panel3
-            // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.btnClose);
-            this.panel3.Controls.Add(this.btnUpdate);
-            this.panel3.Controls.Add(this.btnSave);
-            this.panel3.Location = new System.Drawing.Point(4, 216);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1313, 46);
-            this.panel3.TabIndex = 5;
-            // 
-            // btnClose
-            // 
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnClose.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(634, 5);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(94, 37);
-            this.btnClose.TabIndex = 7;
-            this.btnClose.Text = "CLOSE";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnUpdate.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
-            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(520, 5);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(108, 37);
-            this.btnUpdate.TabIndex = 7;
-            this.btnUpdate.Text = "UPDATE";
-            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSave.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(420, 4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(94, 37);
-            this.btnSave.TabIndex = 7;
-            this.btnSave.Text = "SAVE";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.dgvPTEC);
-            this.panel1.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(4, 269);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1313, 444);
-            this.panel1.TabIndex = 6;
             // 
             // Column1
             // 
@@ -595,7 +527,75 @@
             this.btnReply.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.btnReply.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.btnReply.Text = "REPLY";
-            this.btnReply.UseColumnTextForButtonValue = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.btnClose);
+            this.panel3.Controls.Add(this.btnUpdate);
+            this.panel3.Controls.Add(this.btnSave);
+            this.panel3.Location = new System.Drawing.Point(4, 216);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1313, 46);
+            this.panel3.TabIndex = 1;
+            // 
+            // btnClose
+            // 
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClose.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(634, 5);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(94, 37);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.Text = "CLOSE";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnUpdate.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
+            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUpdate.Location = new System.Drawing.Point(520, 5);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(108, 37);
+            this.btnUpdate.TabIndex = 1;
+            this.btnUpdate.Text = "UPDATE";
+            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSave.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(420, 4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(94, 37);
+            this.btnSave.TabIndex = 0;
+            this.btnSave.Text = "SAVE";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.dgvPTEC);
+            this.panel1.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel1.Location = new System.Drawing.Point(4, 269);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1313, 444);
+            this.panel1.TabIndex = 6;
             // 
             // ucPtecPtrc
             // 
