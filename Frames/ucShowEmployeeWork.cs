@@ -20,14 +20,11 @@ namespace Tax_Consultant_25.Frames
         }
 
         cls_LoginDL clsLoginDL;
-        DataSet ds, ds1;
-        cls_Query query;
+        DataSet ds;
 
-        string tempName;
+        public string EMPLOYEENAME { get; set; }
 
-        public string empName { get; set; }
-
-        public string empRole { get; set; }
+        public string ROLE { get; set; }
 
         private void ucShowEmployeeWork_Load(object sender, EventArgs e)
         {
@@ -42,49 +39,14 @@ namespace Tax_Consultant_25.Frames
 
         }
 
-        private void ShowReply()
-        {
-            query = new cls_Query();
-            ds1 = new DataSet();
-
-            ds1 = query.QuerySolutionByAdmin(empName);
-
-            foreach (DataGridViewRow row in dgvShowEmployeeWork.Rows)
-            {
-                if (row.IsNewRow)
-                    continue;
-
-                string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
-                string service = row.Cells["Service"].Value?.ToString();
-
-                bool hasReply = ds1.Tables[0].AsEnumerable().Any(r =>
-                    r.Field<string>("queryEmpName") == employee &&
-                    r.Field<string>("queryClientName") == client &&
-                    r.Field<string>("queryServiceName") == service &&
-                    !string.IsNullOrEmpty(r.Field<string>("querySolution"))
-                  );
-
-                if (hasReply)
-                {
-                    row.DefaultCellStyle.BackColor = Color.LimeGreen;
-                }
-                else
-                {
-                    row.DefaultCellStyle.BackColor = DefaultBackColor;
-                }
-
-            }
-        }
-
         private void show()
         {
             clsLoginDL = new cls_LoginDL();
             ds = new DataSet();
 
-            if (empRole == "User")
+            if (ROLE == "User")
             {
-                ds = clsLoginDL.showLoginEmployeeWork(empName);
+                ds = clsLoginDL.showLoginEmployeeWork(EMPLOYEENAME);
 
                 if (ds.Tables[0].Rows.Count < 0)
                 {
@@ -93,7 +55,10 @@ namespace Tax_Consultant_25.Frames
                 else
                 {
                     dgvShowEmployeeWork.DataSource = ds.Tables[0];
+
                     dgvShowEmployeeWork.Columns["EmployeeName"].Visible = false;
+                    dgvShowEmployeeWork.Columns["TaskId"].Visible = false;
+                    dgvShowEmployeeWork.Columns["HasQuery"].Visible = false;
                 }
             }
             else
@@ -103,89 +68,16 @@ namespace Tax_Consultant_25.Frames
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     dgvShowEmployeeWork.DataSource = ds.Tables[0];
-                    dgvShowEmployeeWork.Columns["EmployeeName"].Visible = true;
+   
+                    dgvShowEmployeeWork.Columns["TaskId"].Visible = false;
+                    dgvShowEmployeeWork.Columns["HasQuery"].Visible = false;
                 }
             }
 
         }
 
         private void dgvShowEmployeeWork_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (dgvShowEmployeeWork.Rows.Count > 0)
-                {
-
-                    if (e.ColumnIndex == dgvShowEmployeeWork.Columns["btnQuery"].Index)
-                    {
-
-                        if (empRole == "User")
-                        {
-                            frm_Query query = new frm_Query(empName);
-
-                            query.role = empRole;
-
-                            query.serviceName = dgvShowEmployeeWork.Rows[e.RowIndex].Cells[2].Value.ToString();
-                            query.workTypeName = dgvShowEmployeeWork.Rows[e.RowIndex].Cells[5].Value.ToString();
-                            query.clientName = dgvShowEmployeeWork.Rows[e.RowIndex].Cells[6].Value.ToString();
-                            
-
-                            query.ShowDialog();
-                        }
-                        else
-                        {
-                            tempName = dgvShowEmployeeWork.Rows[e.RowIndex].Cells[7].Value.ToString();
-
-                            frm_Query query = new frm_Query(tempName);
-
-                            query.role = empRole;
-
-                            query.serviceName = dgvShowEmployeeWork.Rows[e.RowIndex].Cells[2].Value.ToString();
-                            query.clientName = dgvShowEmployeeWork.Rows[e.RowIndex].Cells[6].Value.ToString();
-                            query.workTypeName = dgvShowEmployeeWork.Rows[e.RowIndex].Cells[5].Value.ToString();
-                            query.employeeName = dgvShowEmployeeWork.Rows[e.RowIndex].Cells[7].Value.ToString();
-
-                            query.ShowDialog();
-                        }
-
-                    }
-
-                    if (e.ColumnIndex == dgvShowEmployeeWork.Columns["btnReply"].Index)
-                    {
-                        if (empRole == "User")
-                        {
-                            frm_Query query = new frm_Query(empName);
-
-                            query.role = empRole;
-
-                            query.serviceName = dgvShowEmployeeWork.Rows[e.RowIndex].Cells[2].Value.ToString();
-                            query.clientName = dgvShowEmployeeWork.Rows[e.RowIndex].Cells[6].Value.ToString();
-                            query.workTypeName = dgvShowEmployeeWork.Rows[e.RowIndex].Cells[5].Value.ToString();
-
-                            query.ShowDialog();
-                        }
-                        else
-                        {
-                            tempName = dgvShowEmployeeWork.Rows[e.RowIndex].Cells[7].Value.ToString();
-
-                            frm_Query query = new frm_Query(tempName);
-
-                            query.role = empRole;
-
-                            query.serviceName = dgvShowEmployeeWork.Rows[e.RowIndex].Cells[2].Value.ToString();
-                            query.clientName = dgvShowEmployeeWork.Rows[e.RowIndex].Cells[6].Value.ToString();
-                            query.workTypeName = dgvShowEmployeeWork.Rows[e.RowIndex].Cells[5].Value.ToString();
-                            query.employeeName = dgvShowEmployeeWork.Rows[e.RowIndex].Cells[7].Value.ToString();
-
-                            query.ShowDialog();
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "UC_EMPLOYEE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+        {          
         }
         
         // used to not show selection (.i.e blue color) on first row of datagrid
@@ -197,7 +89,52 @@ namespace Tax_Consultant_25.Frames
         // used to change the background color of row dynamically
         private void dgvShowEmployeeWork_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            ShowReply();
+
+            #region CHANGE STATUS COLORS
+
+            Dictionary<string, Color> StatusColors = new Dictionary<string, Color>()
+            {
+                { "Not Started", ColorTranslator.FromHtml("#D6DCE4") },
+                { "Waiting For Documents", ColorTranslator.FromHtml("#F4B084") },
+                { "Document Received", ColorTranslator.FromHtml("#A9D08E") },
+                { "Return Prepaired", ColorTranslator.FromHtml("#00B0F0") },
+                { "Cancelled", ColorTranslator.FromHtml("#FF0000") },
+                { "Complete", ColorTranslator.FromHtml("#FFC000") }
+               // { "Done", ColorTranslator.FromHtml("#FFFF00") }
+            };
+
+            if (dgvShowEmployeeWork.Columns[e.ColumnIndex].Name == "Status")
+            {
+                if (e.Value != null)
+                {
+                    string status = e.Value.ToString();
+
+                    if (StatusColors.ContainsKey(status))
+                    {
+                        e.CellStyle.BackColor = StatusColors[status];
+                        e.CellStyle.ForeColor = Color.Black;
+                    }
+                }
+            }
+
+            #endregion
+
+            #region SHOW ROW GREEN
+
+            foreach(DataGridViewRow row in dgvShowEmployeeWork.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                string status = row.Cells["status"].Value.ToString();
+
+                if(status == "Complete")
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+                }
+            }
+
+            #endregion
         }
 
     }
