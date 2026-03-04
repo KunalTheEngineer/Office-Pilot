@@ -39,6 +39,9 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
             this.pnlAddTxt = new System.Windows.Forms.Panel();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.chkGST = new System.Windows.Forms.CheckBox();
             this.cmbGSTType = new System.Windows.Forms.ComboBox();
@@ -81,6 +84,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.pnlAddTxt.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -107,7 +111,7 @@
             this.panel2.Location = new System.Drawing.Point(3, 644);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1314, 52);
-            this.panel2.TabIndex = 1;
+            this.panel2.TabIndex = 4;
             // 
             // btnSave
             // 
@@ -227,7 +231,7 @@
             this.btnAdd.Location = new System.Drawing.Point(1068, 167);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(85, 34);
-            this.btnAdd.TabIndex = 4;
+            this.btnAdd.TabIndex = 16;
             this.btnAdd.Text = "ADD";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -240,7 +244,7 @@
             this.btnDel.Location = new System.Drawing.Point(1159, 167);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(85, 34);
-            this.btnDel.TabIndex = 5;
+            this.btnDel.TabIndex = 17;
             this.btnDel.Text = "DELETE";
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
@@ -249,10 +253,43 @@
             // 
             this.pnlAddTxt.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnlAddTxt.AutoScroll = true;
+            this.pnlAddTxt.Controls.Add(this.label21);
+            this.pnlAddTxt.Controls.Add(this.label20);
+            this.pnlAddTxt.Controls.Add(this.label19);
             this.pnlAddTxt.Location = new System.Drawing.Point(30, 197);
             this.pnlAddTxt.Name = "pnlAddTxt";
             this.pnlAddTxt.Size = new System.Drawing.Size(1010, 383);
             this.pnlAddTxt.TabIndex = 81;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(612, 11);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(100, 21);
+            this.label21.TabIndex = 84;
+            this.label21.Text = "PASSWORD";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(354, 11);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(100, 21);
+            this.label20.TabIndex = 83;
+            this.label20.Text = "USERNAME";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(109, 11);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(76, 21);
+            this.label19.TabIndex = 82;
+            this.label19.Text = "SERVICE";
             // 
             // label17
             // 
@@ -271,7 +308,7 @@
             this.chkGST.Location = new System.Drawing.Point(129, 163);
             this.chkGST.Name = "chkGST";
             this.chkGST.Size = new System.Drawing.Size(142, 25);
-            this.chkGST.TabIndex = 17;
+            this.chkGST.TabIndex = 13;
             this.chkGST.Text = "Is GST Client ?";
             this.chkGST.UseVisualStyleBackColor = true;
             this.chkGST.CheckedChanged += new System.EventHandler(this.chkGST_CheckedChanged);
@@ -287,7 +324,7 @@
             this.cmbGSTType.Location = new System.Drawing.Point(817, 162);
             this.cmbGSTType.Name = "cmbGSTType";
             this.cmbGSTType.Size = new System.Drawing.Size(219, 29);
-            this.cmbGSTType.TabIndex = 19;
+            this.cmbGSTType.TabIndex = 15;
             // 
             // label16
             // 
@@ -305,7 +342,7 @@
             this.txtGSTNo.Location = new System.Drawing.Point(467, 161);
             this.txtGSTNo.Name = "txtGSTNo";
             this.txtGSTNo.Size = new System.Drawing.Size(217, 29);
-            this.txtGSTNo.TabIndex = 18;
+            this.txtGSTNo.TabIndex = 14;
             // 
             // label15
             // 
@@ -333,7 +370,7 @@
             this.rbtnMale.Location = new System.Drawing.Point(3, 3);
             this.rbtnMale.Name = "rbtnMale";
             this.rbtnMale.Size = new System.Drawing.Size(69, 25);
-            this.rbtnMale.TabIndex = 7;
+            this.rbtnMale.TabIndex = 0;
             this.rbtnMale.TabStop = true;
             this.rbtnMale.Text = "Male";
             this.rbtnMale.UseVisualStyleBackColor = true;
@@ -345,7 +382,7 @@
             this.rbtnFemale.Location = new System.Drawing.Point(102, 3);
             this.rbtnFemale.Name = "rbtnFemale";
             this.rbtnFemale.Size = new System.Drawing.Size(87, 25);
-            this.rbtnFemale.TabIndex = 8;
+            this.rbtnFemale.TabIndex = 1;
             this.rbtnFemale.TabStop = true;
             this.rbtnFemale.Text = "Female";
             this.rbtnFemale.UseVisualStyleBackColor = true;
@@ -366,7 +403,7 @@
             this.rbtnMarried.Location = new System.Drawing.Point(5, 2);
             this.rbtnMarried.Name = "rbtnMarried";
             this.rbtnMarried.Size = new System.Drawing.Size(93, 25);
-            this.rbtnMarried.TabIndex = 9;
+            this.rbtnMarried.TabIndex = 0;
             this.rbtnMarried.TabStop = true;
             this.rbtnMarried.Text = "Married";
             this.rbtnMarried.UseVisualStyleBackColor = true;
@@ -378,7 +415,7 @@
             this.rbtnUnMarried.Location = new System.Drawing.Point(107, 2);
             this.rbtnUnMarried.Name = "rbtnUnMarried";
             this.rbtnUnMarried.Size = new System.Drawing.Size(115, 25);
-            this.rbtnUnMarried.TabIndex = 10;
+            this.rbtnUnMarried.TabIndex = 1;
             this.rbtnUnMarried.TabStop = true;
             this.rbtnUnMarried.Text = "UnMarried";
             this.rbtnUnMarried.UseVisualStyleBackColor = true;
@@ -399,7 +436,7 @@
             this.rbtnNonIndian.Location = new System.Drawing.Point(103, 4);
             this.rbtnNonIndian.Name = "rbtnNonIndian";
             this.rbtnNonIndian.Size = new System.Drawing.Size(117, 25);
-            this.rbtnNonIndian.TabIndex = 12;
+            this.rbtnNonIndian.TabIndex = 1;
             this.rbtnNonIndian.TabStop = true;
             this.rbtnNonIndian.Text = "Non Indian";
             this.rbtnNonIndian.UseVisualStyleBackColor = true;
@@ -411,7 +448,7 @@
             this.rbtnIndian.Location = new System.Drawing.Point(7, 6);
             this.rbtnIndian.Name = "rbtnIndian";
             this.rbtnIndian.Size = new System.Drawing.Size(81, 25);
-            this.rbtnIndian.TabIndex = 11;
+            this.rbtnIndian.TabIndex = 0;
             this.rbtnIndian.TabStop = true;
             this.rbtnIndian.Text = "Indian";
             this.rbtnIndian.UseVisualStyleBackColor = true;
@@ -433,7 +470,7 @@
             this.cmbStatus.Location = new System.Drawing.Point(817, 123);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(219, 29);
-            this.cmbStatus.TabIndex = 16;
+            this.cmbStatus.TabIndex = 12;
             // 
             // label14
             // 
@@ -452,7 +489,7 @@
             this.txtBusinessName.Location = new System.Drawing.Point(467, 122);
             this.txtBusinessName.Name = "txtBusinessName";
             this.txtBusinessName.Size = new System.Drawing.Size(217, 29);
-            this.txtBusinessName.TabIndex = 15;
+            this.txtBusinessName.TabIndex = 11;
             // 
             // label13
             // 
@@ -470,7 +507,7 @@
             this.txtAdharNo.Location = new System.Drawing.Point(115, 122);
             this.txtAdharNo.Name = "txtAdharNo";
             this.txtAdharNo.Size = new System.Drawing.Size(189, 29);
-            this.txtAdharNo.TabIndex = 14;
+            this.txtAdharNo.TabIndex = 10;
             // 
             // label12
             // 
@@ -609,7 +646,7 @@
             this.txtEmail.Location = new System.Drawing.Point(1113, 80);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(188, 29);
-            this.txtEmail.TabIndex = 13;
+            this.txtEmail.TabIndex = 9;
             // 
             // label11
             // 
@@ -678,6 +715,8 @@
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.pnlAddTxt.ResumeLayout(false);
+            this.pnlAddTxt.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -741,5 +780,8 @@
         private System.Windows.Forms.Panel pnlAddTxt;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDel;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label21;
     }
 }

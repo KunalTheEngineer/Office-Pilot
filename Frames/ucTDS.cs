@@ -128,6 +128,11 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
+                if(!ValidateDates())
+                {
+                    return;
+                }
+
                 objPro = new clsProperties();
 
                 objPro.clientID = clientId;
@@ -197,6 +202,11 @@ namespace Tax_Consultant_25.Frames
                 if (txtYear.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Year", "TDS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if(!ValidateDates())
+                {
                     return;
                 }
 
@@ -285,9 +295,31 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
+        private void cmbRecurringTask_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbRecurringTask.Text == "NO")
+            {
+                cmbPeriodicity.Enabled = false;
+            }
+            else
+            {
+                cmbPeriodicity.Enabled = true;
+            }
+        }
+
         private void dgvTDS_SelectionChanged(object sender, EventArgs e)
         {
             dgvTDS.ClearSelection();
+        }
+
+        private void dtpInputDate_ValueChanged(object sender, EventArgs e)
+        {
+            ValidateDates();
+        }
+
+        private void dtpDueDate_ValueChanged(object sender, EventArgs e)
+        {
+            ValidateDates();
         }
 
         private void dgvTDS_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -400,6 +432,19 @@ namespace Tax_Consultant_25.Frames
         #endregion
 
         #region FUNCTIONS
+
+        private bool ValidateDates()
+        {
+            if (dtpInputDate.Value.Date > dtpDueDate.Value.Date)
+            {
+                MessageBox.Show("START DATE CANNOT BE GREATER THAN DUE DATE !", "DATE VALIDATION", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                dtpInputDate.Focus();
+                return false;
+            }
+
+            return true;
+        }
 
         private void GetClientAddress()
         {

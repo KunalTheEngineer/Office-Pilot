@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblMonth = new System.Windows.Forms.Label();
+            this.cmbMonth = new System.Windows.Forms.ComboBox();
             this.txtIncomeYear = new System.Windows.Forms.TextBox();
             this.lblIncomeYear = new System.Windows.Forms.Label();
             this.lblService = new System.Windows.Forms.Label();
@@ -40,16 +42,13 @@
             this.btnShow = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.cmbMonth = new System.Windows.Forms.ComboBox();
-            this.lblMonth = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.lblMonth);
             this.panel1.Controls.Add(this.cmbMonth);
@@ -66,7 +65,41 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1401, 73);
-            this.panel1.TabIndex = 2;
+            this.panel1.TabIndex = 0;
+            // 
+            // lblMonth
+            // 
+            this.lblMonth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMonth.AutoSize = true;
+            this.lblMonth.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMonth.Location = new System.Drawing.Point(984, 26);
+            this.lblMonth.Name = "lblMonth";
+            this.lblMonth.Size = new System.Drawing.Size(86, 20);
+            this.lblMonth.TabIndex = 15;
+            this.lblMonth.Text = "MONTH :";
+            // 
+            // cmbMonth
+            // 
+            this.cmbMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMonth.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMonth.FormattingEnabled = true;
+            this.cmbMonth.Items.AddRange(new object[] {
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "Spetember",
+            "October",
+            "November",
+            "December"});
+            this.cmbMonth.Location = new System.Drawing.Point(879, 22);
+            this.cmbMonth.Name = "cmbMonth";
+            this.cmbMonth.Size = new System.Drawing.Size(156, 28);
+            this.cmbMonth.TabIndex = 3;
             // 
             // txtIncomeYear
             // 
@@ -114,7 +147,7 @@
             this.txtFromDate.Location = new System.Drawing.Point(702, 23);
             this.txtFromDate.Name = "txtFromDate";
             this.txtFromDate.Size = new System.Drawing.Size(202, 28);
-            this.txtFromDate.TabIndex = 9;
+            this.txtFromDate.TabIndex = 0;
             // 
             // txtupToDate
             // 
@@ -125,7 +158,7 @@
             this.txtupToDate.Location = new System.Drawing.Point(1041, 23);
             this.txtupToDate.Name = "txtupToDate";
             this.txtupToDate.Size = new System.Drawing.Size(200, 28);
-            this.txtupToDate.TabIndex = 8;
+            this.txtupToDate.TabIndex = 1;
             // 
             // lblUptoDate
             // 
@@ -156,15 +189,14 @@
             this.btnShow.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(132, 42);
-            this.btnShow.TabIndex = 0;
+            this.btnShow.TabIndex = 4;
             this.btnShow.Text = "Show";
             this.btnShow.UseVisualStyleBackColor = true;
             this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.reportViewer1);
@@ -175,46 +207,13 @@
             // 
             // reportViewer1
             // 
-            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(1399, 561);
+            this.reportViewer1.Size = new System.Drawing.Size(1400, 562);
             this.reportViewer1.TabIndex = 0;
-            // 
-            // cmbMonth
-            // 
-            this.cmbMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMonth.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbMonth.FormattingEnabled = true;
-            this.cmbMonth.Items.AddRange(new object[] {
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "Spetember",
-            "October",
-            "November",
-            "December"});
-            this.cmbMonth.Location = new System.Drawing.Point(879, 22);
-            this.cmbMonth.Name = "cmbMonth";
-            this.cmbMonth.Size = new System.Drawing.Size(156, 28);
-            this.cmbMonth.TabIndex = 14;
-            // 
-            // lblMonth
-            // 
-            this.lblMonth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblMonth.AutoSize = true;
-            this.lblMonth.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMonth.Location = new System.Drawing.Point(984, 26);
-            this.lblMonth.Name = "lblMonth";
-            this.lblMonth.Size = new System.Drawing.Size(86, 20);
-            this.lblMonth.TabIndex = 15;
-            this.lblMonth.Text = "MONTH :";
             // 
             // ucShowReport
             // 
