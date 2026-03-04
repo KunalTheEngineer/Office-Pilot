@@ -218,6 +218,7 @@
             this.cmbRecurringTask.Name = "cmbRecurringTask";
             this.cmbRecurringTask.Size = new System.Drawing.Size(164, 29);
             this.cmbRecurringTask.TabIndex = 6;
+            this.cmbRecurringTask.SelectedIndexChanged += new System.EventHandler(this.cmbRecurringTask_SelectedIndexChanged);
             // 
             // dtpDueDate
             // 
@@ -228,6 +229,7 @@
             this.dtpDueDate.Name = "dtpDueDate";
             this.dtpDueDate.Size = new System.Drawing.Size(180, 29);
             this.dtpDueDate.TabIndex = 3;
+            this.dtpDueDate.ValueChanged += new System.EventHandler(this.dtpDueDate_ValueChanged);
             // 
             // txtPeriod
             // 

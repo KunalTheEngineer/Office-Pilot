@@ -386,6 +386,7 @@
             this.dtpDueDate.Name = "dtpDueDate";
             this.dtpDueDate.Size = new System.Drawing.Size(178, 29);
             this.dtpDueDate.TabIndex = 4;
+            this.dtpDueDate.ValueChanged += new System.EventHandler(this.dtpDueDate_ValueChanged);
             // 
             // label4
             // 
@@ -424,6 +425,7 @@
             this.dtpInputDate.Name = "dtpInputDate";
             this.dtpInputDate.Size = new System.Drawing.Size(154, 29);
             this.dtpInputDate.TabIndex = 0;
+            this.dtpInputDate.ValueChanged += new System.EventHandler(this.dtpInputDate_ValueChanged);
             // 
             // label6
             // 

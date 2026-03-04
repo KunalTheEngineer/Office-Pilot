@@ -187,6 +187,11 @@ namespace Tax_Consultant_25.Frames
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            if(!ValidateDates())
+            {
+                return;
+            }
+
             try
             {
                 objPro = new clsProperties();
@@ -245,6 +250,12 @@ namespace Tax_Consultant_25.Frames
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+
+            if(!ValidateDates())
+            {
+                return;
+            }
+
             try
             {
                 objPro = new clsProperties();
@@ -311,9 +322,31 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
+        private void cmbRecurringTask_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbRecurringTask.Text == "NO")
+            {
+                cmbPeriodicity.Enabled = false;
+            }
+            else
+            {
+                cmbPeriodicity.Enabled = true;
+            }
+        }
+
         private void dgvAllOne_SelectionChanged(object sender, EventArgs e)
         {
             dgvAllOne.ClearSelection();
+        }
+
+        private void dtpInputDate_ValueChanged(object sender, EventArgs e)
+        {
+            ValidateDates();
+        }
+
+        private void dtpDueDate_ValueChanged(object sender, EventArgs e)
+        {
+            ValidateDates();
         }
 
         private void dgvAllOne_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -368,6 +401,18 @@ namespace Tax_Consultant_25.Frames
 
         #region FUNCTIONS
 
+        private bool ValidateDates()
+        {
+            if (dtpInputDate.Value.Date > dtpDueDate.Value.Date)
+            {
+                MessageBox.Show("START DATE CANNOT BE GREATER THAN DUE DATE !", "DATE VALIDATION", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                dtpInputDate.Focus();
+                return false;
+            }
+
+            return true;
+        }
         private void ShowQuery()
         {
             query = new cls_Query();

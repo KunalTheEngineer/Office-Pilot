@@ -215,6 +215,7 @@
             this.cmbRecurringTask.Name = "cmbRecurringTask";
             this.cmbRecurringTask.Size = new System.Drawing.Size(154, 29);
             this.cmbRecurringTask.TabIndex = 8;
+            this.cmbRecurringTask.SelectedIndexChanged += new System.EventHandler(this.cmbRecurringTask_SelectedIndexChanged);
             // 
             // lblFessStatus
             // 
@@ -276,6 +277,7 @@
             this.dtpDueDate.Name = "dtpDueDate";
             this.dtpDueDate.Size = new System.Drawing.Size(144, 29);
             this.dtpDueDate.TabIndex = 6;
+            this.dtpDueDate.ValueChanged += new System.EventHandler(this.dtpDueDate_ValueChanged);
             // 
             // cmbAllocatedTo
             // 
@@ -400,6 +402,7 @@
             this.dtpInputDate.Name = "dtpInputDate";
             this.dtpInputDate.Size = new System.Drawing.Size(144, 29);
             this.dtpInputDate.TabIndex = 0;
+            this.dtpInputDate.ValueChanged += new System.EventHandler(this.dtpInputDate_ValueChanged);
             // 
             // label17
             // 
