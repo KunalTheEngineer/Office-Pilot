@@ -264,6 +264,7 @@
             this.cmbRecurringTask.Name = "cmbRecurringTask";
             this.cmbRecurringTask.Size = new System.Drawing.Size(134, 29);
             this.cmbRecurringTask.TabIndex = 6;
+            this.cmbRecurringTask.SelectedIndexChanged += new System.EventHandler(this.cmbRecurringTask_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -344,6 +345,7 @@
             this.dtpDueDate.Name = "dtpDueDate";
             this.dtpDueDate.Size = new System.Drawing.Size(146, 29);
             this.dtpDueDate.TabIndex = 4;
+            this.dtpDueDate.ValueChanged += new System.EventHandler(this.dtpDueDate_ValueChanged);
             // 
             // label2
             // 
@@ -382,6 +384,7 @@
             this.dtpInputDate.Name = "dtpInputDate";
             this.dtpInputDate.Size = new System.Drawing.Size(149, 29);
             this.dtpInputDate.TabIndex = 0;
+            this.dtpInputDate.ValueChanged += new System.EventHandler(this.dtpInputDate_ValueChanged);
             // 
             // label17
             // 

@@ -159,6 +159,11 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
+                if(!ValidateDates())
+                {
+                    return;
+                }
+
 
                 objPro = new clsProperties();
 
@@ -214,6 +219,11 @@ namespace Tax_Consultant_25.Frames
                 if (txtFees.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Fess Amount", "PTEC / PTRC", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if(!ValidateDates())
+                {
                     return;
                 }
 
@@ -307,9 +317,31 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
+        private void cmbRecurringTask_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbRecurringTask.Text == "NO")
+            {
+                cmbPeriodicity.Enabled = false;
+            }
+            else
+            {
+                cmbPeriodicity.Enabled = true;
+            }
+        }
+
         private void dgvPTEC_SelectionChanged(object sender, EventArgs e)
         {
             dgvPTEC.ClearSelection();
+        }
+
+        private void dtpInputDate_ValueChanged(object sender, EventArgs e)
+        {
+            ValidateDates();
+        }
+
+        private void dtpDueDate_ValueChanged(object sender, EventArgs e)
+        {
+            ValidateDates();
         }
 
         private void dgvPTEC_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -417,6 +449,18 @@ namespace Tax_Consultant_25.Frames
 
         #region FUNCTIONS
 
+        private bool ValidateDates()
+        {
+            if (dtpInputDate.Value.Date > dtpDueDate.Value.Date)
+            {
+                MessageBox.Show("START DATE CANNOT BE GREATER THAN DUE DATE !", "DATE VALIDATION", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                dtpInputDate.Focus();
+                return false;
+            }
+
+            return true;
+        }
         private void GetClientAddress()
         {
             try

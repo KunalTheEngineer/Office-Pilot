@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -134,6 +135,11 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
+                if(!ValidateDates())
+                {
+                    return;
+                }
+
                 objPro = new clsProperties();
 
                 objPro.shopActId = tempShopActId;
@@ -220,6 +226,11 @@ namespace Tax_Consultant_25.Frames
                 if (txtFees.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Fess Amount", "SHOPACT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if(!ValidateDates())
+                {
                     return;
                 }
 
@@ -339,6 +350,16 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
+        private void dtpInputDate_ValueChanged(object sender, EventArgs e)
+        {
+            ValidateDates();
+        }
+
+        private void dtpDueDate_ValueChanged(object sender, EventArgs e)
+        {
+            ValidateDates();
+        }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Parent.Controls.Remove(this);
@@ -398,6 +419,19 @@ namespace Tax_Consultant_25.Frames
         #endregion
 
         #region FUNCTIONS
+
+        private bool ValidateDates()
+        {
+            if (dtpInputDate.Value.Date > dtpDueDate.Value.Date)
+            {
+                MessageBox.Show("START DATE CANNOT BE GREATER THAN DUE DATE !", "DATE VALIDATION", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                dtpInputDate.Focus();
+                return false;
+            }
+
+            return true;
+        }
 
         private void GetClientAddress()
         {
