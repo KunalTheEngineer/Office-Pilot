@@ -512,6 +512,7 @@ namespace Tax_Consultant_25.Frames
                 dgvPTEC.Columns["clientId"].Visible = false;
                 dgvPTEC.Columns["p_RecurringTask"].Visible = false;
                 dgvPTEC.Columns["p_Periodicity"].Visible = false;
+                dgvPTEC.Columns["serial"].Visible = false;
             }
 
 
@@ -550,7 +551,7 @@ namespace Tax_Consultant_25.Frames
                 }
 
                 string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
+                string client = row.Cells["ClName"].Value?.ToString();
                 string worktype = row.Cells["WorkType"].Value.ToString();
                 string service = "PTEC/PTRC";
 
@@ -584,7 +585,7 @@ namespace Tax_Consultant_25.Frames
                 }
 
                 string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
+                string client = row.Cells["ClName"].Value?.ToString();
                 string worktype = row.Cells["WorkType"].Value.ToString();
                 string service = "PTEC/PTRC";
 

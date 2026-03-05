@@ -516,6 +516,7 @@ namespace Tax_Consultant_25.Frames
                 dgvTDS.Columns["clientId"].Visible = false;
                 dgvTDS.Columns["t_RecurringTask"].Visible = false;
                 dgvTDS.Columns["t_Periodicity"].Visible = false;
+                dgvTDS.Columns["serial"].Visible = false;
             }
 
         }
@@ -535,7 +536,7 @@ namespace Tax_Consultant_25.Frames
                 }
 
                 string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
+                string client = row.Cells["ClName"].Value?.ToString();
                 string worktype = row.Cells["WorkType"].Value.ToString();
                 string service = "TDS";
 
@@ -569,7 +570,7 @@ namespace Tax_Consultant_25.Frames
                 }
 
                 string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
+                string client = row.Cells["ClName"].Value?.ToString();
                 string worktype = row.Cells["WorkType"].Value.ToString();
                 string service = "TDS";
 

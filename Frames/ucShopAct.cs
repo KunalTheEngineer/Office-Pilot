@@ -501,6 +501,7 @@ namespace Tax_Consultant_25.Frames
                 dgvShopAct.Columns["shopActId"].Visible = false;
                 dgvShopAct.Columns["s_Fees"].Visible = false;
                 dgvShopAct.Columns["clientId"].Visible = false;
+                dgvShopAct.Columns["serial"].Visible = false;
             }
 
                 
@@ -521,7 +522,7 @@ namespace Tax_Consultant_25.Frames
                 }
 
                 string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
+                string client = row.Cells["ClName"].Value?.ToString();
                 string worktype = row.Cells["WorkType"].Value.ToString();
                 string service = "SHOPACT";
 
@@ -555,7 +556,7 @@ namespace Tax_Consultant_25.Frames
                 }
 
                 string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
+                string client = row.Cells["ClName"].Value?.ToString();
                 string worktype = row.Cells["WorkType"].Value.ToString();
                 string service = "SHOPACT";
 
