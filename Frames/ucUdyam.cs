@@ -248,6 +248,7 @@ namespace Tax_Consultant_25.Frames
                 dgvUdyam.Columns["clientId"].Visible = false;
                 dgvUdyam.Columns["udyamId"].Visible = false;
                 dgvUdyam.Columns["u_Fees"].Visible = false;
+                dgvUdyam.Columns["serial"].Visible = false;
             }
         }
 
@@ -287,7 +288,7 @@ namespace Tax_Consultant_25.Frames
                 }
 
                 string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
+                string client = row.Cells["ClName"].Value?.ToString();
                 string worktype = row.Cells["WorkType"].Value.ToString();
                 string service = "UDYAM";
 
@@ -331,7 +332,7 @@ namespace Tax_Consultant_25.Frames
                 }
 
                 string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
+                string client = row.Cells["ClName"].Value?.ToString();
                 string worktype = row.Cells["WorkType"].Value.ToString();
                 string service = "UDYAM";
 

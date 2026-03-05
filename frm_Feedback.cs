@@ -93,6 +93,8 @@ namespace Tax_Consultant_25
             if (ds.Tables[0].Rows.Count > 0)
             {
                 dgvFeedback.DataSource = ds.Tables[0];
+
+                dgvFeedback.Columns["serial"].Visible = false;
             }
         }
 
