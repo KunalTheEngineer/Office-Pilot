@@ -82,12 +82,25 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dgvClients = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.pnlAddTxt.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -108,7 +121,7 @@
             this.panel2.Controls.Add(this.btnClose);
             this.panel2.Controls.Add(this.btnUpdate);
             this.panel2.Controls.Add(this.btnDelete);
-            this.panel2.Location = new System.Drawing.Point(3, 644);
+            this.panel2.Location = new System.Drawing.Point(8, 460);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1314, 52);
             this.panel2.TabIndex = 4;
@@ -217,18 +230,17 @@
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel3.Location = new System.Drawing.Point(3, 51);
+            this.panel3.Location = new System.Drawing.Point(8, 51);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1314, 587);
+            this.panel3.Size = new System.Drawing.Size(1314, 405);
             this.panel3.TabIndex = 0;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // btnAdd
             // 
             this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(1068, 167);
+            this.btnAdd.Location = new System.Drawing.Point(1061, 200);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(85, 34);
             this.btnAdd.TabIndex = 16;
@@ -241,7 +253,7 @@
             this.btnDel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDel.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDel.Location = new System.Drawing.Point(1159, 167);
+            this.btnDel.Location = new System.Drawing.Point(1152, 200);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(85, 34);
             this.btnDel.TabIndex = 17;
@@ -258,7 +270,7 @@
             this.pnlAddTxt.Controls.Add(this.label19);
             this.pnlAddTxt.Location = new System.Drawing.Point(30, 197);
             this.pnlAddTxt.Name = "pnlAddTxt";
-            this.pnlAddTxt.Size = new System.Drawing.Size(1010, 383);
+            this.pnlAddTxt.Size = new System.Drawing.Size(1010, 202);
             this.pnlAddTxt.TabIndex = 81;
             // 
             // label21
@@ -682,7 +694,7 @@
             // 
             this.txtSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtSearch.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(133, 13);
+            this.txtSearch.Location = new System.Drawing.Point(135, 13);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(202, 29);
             this.txtSearch.TabIndex = 81;
@@ -693,24 +705,135 @@
             this.label18.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(62, 16);
+            this.label18.Location = new System.Drawing.Point(64, 16);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(78, 21);
             this.label18.TabIndex = 82;
             this.label18.Text = "SEARCH:";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.dgvClients);
+            this.panel1.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel1.Location = new System.Drawing.Point(8, 518);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1314, 202);
+            this.panel1.TabIndex = 83;
+            // 
+            // dgvClients
+            // 
+            this.dgvClients.AllowUserToAddRows = false;
+            this.dgvClients.AllowUserToDeleteRows = false;
+            this.dgvClients.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dgvClients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column9,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column8,
+            this.Column7,
+            this.Column6});
+            this.dgvClients.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvClients.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvClients.Location = new System.Drawing.Point(0, 0);
+            this.dgvClients.Name = "dgvClients";
+            this.dgvClients.RowHeadersVisible = false;
+            this.dgvClients.RowHeadersWidth = 51;
+            this.dgvClients.RowTemplate.Height = 24;
+            this.dgvClients.Size = new System.Drawing.Size(1314, 202);
+            this.dgvClients.TabIndex = 0;
+            this.dgvClients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClients_CellClick);
+            this.dgvClients.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvClients_DataBindingComplete);
+            this.dgvClients.SelectionChanged += new System.EventHandler(this.dgvClients_SelectionChanged);
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "c_Name";
+            this.Column1.HeaderText = "NAME";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 180;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "c_BusinessName";
+            this.Column2.HeaderText = "TRADE NAME";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 220;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "c_Address";
+            this.Column9.HeaderText = "ADDRESS";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.Width = 200;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "c_DOB";
+            this.Column3.HeaderText = "DOB";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "c_Mobile";
+            this.Column4.HeaderText = "MOBILE";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "c_AdharNo";
+            this.Column5.HeaderText = "ADHAR CARD";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 120;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "c_PAN";
+            this.Column8.HeaderText = "PAN CARD";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "c_EmailId";
+            this.Column7.HeaderText = "EMAIL ID";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.Width = 180;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "c_Status";
+            this.Column6.HeaderText = "STATUS";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 130;
             // 
             // upAddClients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label1);
             this.Name = "upAddClients";
-            this.Size = new System.Drawing.Size(1320, 704);
+            this.Size = new System.Drawing.Size(1325, 723);
             this.Load += new System.EventHandler(this.upAddClients_Load);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -723,6 +846,8 @@
             this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -783,5 +908,16 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridView dgvClients;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
     }
 }

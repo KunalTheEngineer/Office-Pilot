@@ -19,11 +19,16 @@ namespace Tax_Consultant_25.Frames
             InitializeComponent();
         }
 
+        #region CLASS & OBJECTS
+
         clsProperties objPro;
         cls_ClientsDL client;
         cls_ClientUserPassDL clientUserPassDL;
-        DataSet ds;
+        DataSet ds, ds1;
 
+        #endregion
+
+        #region VARIABLES
         int flag = 0;
         int clID = 0;
 
@@ -41,6 +46,10 @@ namespace Tax_Consultant_25.Frames
 
         public int clId { get; set; }
 
+        #endregion
+
+        #region EVENTS
+
         private void upAddClients_Load(object sender, EventArgs e)
         {
             show();
@@ -54,56 +63,6 @@ namespace Tax_Consultant_25.Frames
             BindSearch();
 
             txtName.Focus();
-        }
-
-        private void clear()
-        {
-            txtName.Clear();
-            txtFatherName.Clear();
-            txtAddress.Clear();
-            dtpDOB.Text = string.Empty;
-            txtMobile.Clear();
-            txtPan.Clear();
-            rbtnMarried.Checked = false;
-            rbtnUnMarried.Checked = false;
-            rbtnIndian.Checked = false;
-            rbtnNonIndian.Checked = false;
-            rbtnMale.Checked = false;
-            rbtnFemale.Checked = false;
-            txtEmail.Clear();
-            txtAdharNo.Clear();
-            txtBusinessName.Clear();
-            cmbStatus.SelectedIndex = 0;
-            txtGSTNo.Clear();
-            cmbGSTType.SelectedIndex = 0;
-            txtSearch.Clear();
-
-            chkGST.Checked = false;
-
-            flag = 0;
-            clID = 0;
-
-            btnSave.Enabled = true;
-            show();
-        }
-
-        private void show()
-        {
-            try
-            {
-                client = new cls_ClientsDL();
-
-                ds = client.ClientsData();
-
-                //dgvClient.DataSource = ds.Tables[0];
-
-                //dgvClient.Columns["isGSTClient"].Visible = false;
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "UC_CLIENT_DATA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -196,6 +155,22 @@ namespace Tax_Consultant_25.Frames
                     clear();
                     show();
                     BindSearch();
+
+                    int removed = 0;
+
+                    for (int i = pnlAddTxt.Controls.Count - 1; i >= 0; i--)
+                    {
+
+                        if (pnlAddTxt.Controls[i] is TextBox txt)
+                        {
+                            pnlAddTxt.Controls.Remove(txt);
+                            txt.Dispose();
+                            removed++;
+                        }
+                    }
+
+                    ReflowTextboxes();
+
                     return;
                 }
 
@@ -295,8 +270,26 @@ namespace Tax_Consultant_25.Frames
 
                     clear();
                     show();
+
+                    int removed = 0;
+
+                    for (int i = pnlAddTxt.Controls.Count - 1; i >= 0; i--)
+                    {
+
+                        if (pnlAddTxt.Controls[i] is TextBox txt)
+                        {
+                            pnlAddTxt.Controls.Remove(txt);
+                            txt.Dispose();
+                            removed++;
+                        }
+                    }
+
+                    ReflowTextboxes();
+
                     return;
                 }
+
+                
             }
             catch (Exception ex)
             {
@@ -391,56 +384,6 @@ namespace Tax_Consultant_25.Frames
             ReflowTextboxes();
         }
 
-        private void ReflowTextboxes()
-        {
-            int index = 0;
-
-            var boxes = pnlAddTxt.Controls
-                .OfType<TextBox>()
-                .OrderBy(c => c.TabIndex)   // keep creation order
-                .ToList();
-
-            foreach (var txt in boxes)
-            {
-                int row = index / maxPerRow;
-                int col = index % maxPerRow;
-
-                txt.Left = startX + (col * (txtWidth + gapX));
-                txt.Top = startY + (row * (txtHeight + gapY));
-
-                index++;
-            }
-        }
-
-        private void BindSearch()
-        {
-            try
-            {
-                ds = new DataSet();
-                client = new cls_ClientsDL();
-                ds = client.bindClientsData();
-
-                AutoCompleteStringCollection autoList = new AutoCompleteStringCollection();
-
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                    {
-                        autoList.Add(ds.Tables[0].Rows[i]["c_Name"].ToString());
-                        autoList.Add(ds.Tables[0].Rows[i]["c_Mobile"].ToString());
-                    }
-
-                    this.txtSearch.AutoCompleteCustomSource = autoList;
-                    txtSearch.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                    txtSearch.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "UC_ALLINONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
         private void txtSearch_Leave(object sender, EventArgs e)
         {
             try
@@ -510,7 +453,7 @@ namespace Tax_Consultant_25.Frames
                     txtGSTNo.Text = ds.Tables[0].Rows[0]["c_GSTNo"].ToString();
                     cmbGSTType.Text = ds.Tables[0].Rows[0]["c_GSTType"].ToString();
 
-                    pnlAddTxt.Controls.Clear();
+                 //   pnlAddTxt.Controls.Clear();
 
                     objPro.clientID = clId;
                     objPro.clientName = txtName.Text;
@@ -520,7 +463,7 @@ namespace Tax_Consultant_25.Frames
 
                     ds = clientUserPassDL.getClientUsernamePasword(objPro);
 
-                    for(int i=0; i< ds.Tables[0].Rows.Count; i++)
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
                         string dService = ds.Tables[0].Rows[i]["clientWorkService"].ToString();
                         string dUsername = ds.Tables[0].Rows[i]["clientUsername"].ToString();
@@ -543,6 +486,216 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
+        private void dgvClients_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvClients.Columns["Column6"].DisplayIndex = dgvClients.Columns.Count - 1;
+        }
+
+        private void dgvClients_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnSave.Enabled = false;
+
+            objPro = new clsProperties();
+
+            objPro.rowID = e.RowIndex;
+
+            if (dgvClients.Rows.Count > 0)
+            {
+                objPro.clientID = Convert.ToInt32(dgvClients.Rows[objPro.rowID].Cells[0].Value.ToString());
+                clId = objPro.clientID;
+                txtName.Text = dgvClients.Rows[objPro.rowID].Cells[1].Value.ToString();
+                objPro.clientName = txtName.Text;
+                txtFatherName.Text = dgvClients.Rows[objPro.rowID].Cells[2].Value.ToString();
+                txtAddress.Text = dgvClients.Rows[objPro.rowID].Cells[3].Value.ToString();
+                dtpDOB.Text = dgvClients.Rows[objPro.rowID].Cells[4].Value.ToString();
+                txtMobile.Text = dgvClients.Rows[objPro.rowID].Cells[5].Value.ToString();
+                txtPan.Text = dgvClients.Rows[objPro.rowID].Cells[6].Value.ToString();
+
+                if (dgvClients.Rows[objPro.rowID].Cells[7].Value.ToString() == "Married")
+                {
+                    rbtnMarried.Checked = true;
+                }
+                else
+                {
+                    rbtnUnMarried.Checked = true;
+                }
+
+                if (dgvClients.Rows[objPro.rowID].Cells[8].Value.ToString() == "Male")
+                {
+                    rbtnMale.Checked = true;
+                }
+                else
+                {
+                    rbtnFemale.Checked = true;
+                }
+
+                if (dgvClients.Rows[objPro.rowID].Cells[9].Value.ToString() == "Indian")
+                {
+                    rbtnIndian.Checked = true;
+                }
+                else
+                {
+                    rbtnNonIndian.Checked = true;
+                }
+
+                txtEmail.Text = dgvClients.Rows[objPro.rowID].Cells[10].Value.ToString();
+                txtAdharNo.Text = dgvClients.Rows[objPro.rowID].Cells[11].Value.ToString();
+                txtBusinessName.Text = dgvClients.Rows[objPro.rowID].Cells[12].Value.ToString();
+                cmbStatus.Text = dgvClients.Rows[objPro.rowID].Cells[13].Value.ToString();
+                txtGSTNo.Text = dgvClients.Rows[objPro.rowID].Cells[14].Value.ToString();
+                cmbGSTType.Text = dgvClients.Rows[objPro.rowID].Cells[15].Value.ToString();
+
+                if (Convert.ToBoolean(dgvClients.Rows[objPro.rowID].Cells[16].Value.ToString()) == true)
+                {
+                    chkGST.Checked = true;
+                }
+                else
+                {
+                    chkGST.Checked = false;
+                }
+
+
+                clientUserPassDL = new cls_ClientUserPassDL();
+                ds1 = new DataSet();
+
+                ds1 = clientUserPassDL.getClientUsernamePasword(objPro);
+
+                for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
+                {
+                    string dService = ds1.Tables[0].Rows[i]["clientWorkService"].ToString();
+                    string dUsername = ds1.Tables[0].Rows[i]["clientUsername"].ToString();
+                    string dPassword = ds1.Tables[0].Rows[i]["clientPassword"].ToString();
+
+                    createTextbox(dService);
+                    createTextbox(dUsername);
+                    createTextbox(dPassword);
+                }
+            }
+
+            ReflowTextboxes();
+        }
+
+        private void dgvClients_SelectionChanged(object sender, EventArgs e)
+        {
+            dgvClients.ClearSelection();
+        }
+
+        #endregion
+
+        #region FUNCTIONS
+
+        private void clear()
+        {
+            txtName.Clear();
+            txtFatherName.Clear();
+            txtAddress.Clear();
+            dtpDOB.Text = string.Empty;
+            txtMobile.Clear();
+            txtPan.Clear();
+            rbtnMarried.Checked = false;
+            rbtnUnMarried.Checked = false;
+            rbtnIndian.Checked = false;
+            rbtnNonIndian.Checked = false;
+            rbtnMale.Checked = false;
+            rbtnFemale.Checked = false;
+            txtEmail.Clear();
+            txtAdharNo.Clear();
+            txtBusinessName.Clear();
+            cmbStatus.SelectedIndex = 0;
+            txtGSTNo.Clear();
+            cmbGSTType.SelectedIndex = 0;
+            txtSearch.Clear();
+
+            chkGST.Checked = false;
+
+            flag = 0;
+            clID = 0;
+
+            btnSave.Enabled = true;
+            show();
+        }
+
+        private void show()
+        {
+            try
+            {
+                client = new cls_ClientsDL();
+
+                ds = client.ClientsData();
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    dgvClients.DataSource = ds.Tables[0];
+
+                    dgvClients.Columns["isGSTClient"].Visible = false;
+                    dgvClients.Columns["c_FatherName"].Visible = false;
+                    dgvClients.Columns["c_MarritialStautus"].Visible = false;
+                    dgvClients.Columns["c_Gender"].Visible = false;
+                    dgvClients.Columns["c_Residencial"].Visible = false;
+                    dgvClients.Columns["c_GSTNo"].Visible = false;
+                    dgvClients.Columns["c_GSTType"].Visible = false;
+                    dgvClients.Columns["clientId"].Visible = false;
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_CLIENT_DATA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        
+        private void ReflowTextboxes()
+        {
+            int index = 0;
+
+            var boxes = pnlAddTxt.Controls
+                .OfType<TextBox>()
+                .OrderBy(c => c.TabIndex)   // keep creation order
+                .ToList();
+
+            foreach (var txt in boxes)
+            {
+                int row = index / maxPerRow;
+                int col = index % maxPerRow;
+
+                txt.Left = startX + (col * (txtWidth + gapX));
+                txt.Top = startY + (row * (txtHeight + gapY));
+
+                index++;
+            }
+        }
+
+        private void BindSearch()
+        {
+            try
+            {
+                ds = new DataSet();
+                client = new cls_ClientsDL();
+                ds = client.bindClientsData();
+
+                AutoCompleteStringCollection autoList = new AutoCompleteStringCollection();
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        autoList.Add(ds.Tables[0].Rows[i]["c_Name"].ToString());
+                        autoList.Add(ds.Tables[0].Rows[i]["c_Mobile"].ToString());
+                    }
+
+                    this.txtSearch.AutoCompleteCustomSource = autoList;
+                    txtSearch.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    txtSearch.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "UC_ALLINONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         private TextBox createTextbox(string value)
         {
             TextBox txt = new TextBox();
@@ -553,57 +706,7 @@ namespace Tax_Consultant_25.Frames
             return txt;
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            List<TextBox> group = new List<TextBox>();
-
-            for (int i = 0; i < 3; i++)
-            {
-                TextBox txt = new TextBox();
-
-                txt.Width = txtWidth;
-                txt.Height = txtHeight;
-
-                int index = textboxGroups.Count;      // how many exist already
-
-                int row = index / maxPerRow;          // row number
-                int col = index % maxPerRow;          // column number
-
-                txt.Left = startX + (col * (txtWidth + gapX));
-                txt.Top = startY + (row * (txtHeight + gapY));
-
-                pnlAddTxt.Controls.Add(txt);
-
-                textboxGroups.Add(group);               // store it
-            }
-
-            ReflowTextboxes();
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            int removed = 0;
-
-            for (int i = pnlAddTxt.Controls.Count - 1; i >= 0; i--)
-            {
-                if (removed == 3)
-                    break;
-
-                if (pnlAddTxt.Controls[i] is TextBox txt)
-                {
-                    pnlAddTxt.Controls.Remove(txt);
-                    txt.Dispose();
-                    removed++;
-                }
-            }
-
-            ReflowTextboxes();
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        #endregion
     }
 }
 
