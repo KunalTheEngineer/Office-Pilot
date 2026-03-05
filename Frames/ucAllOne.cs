@@ -413,6 +413,7 @@ namespace Tax_Consultant_25.Frames
 
             return true;
         }
+
         private void ShowQuery()
         {
             query = new cls_Query();
@@ -428,7 +429,7 @@ namespace Tax_Consultant_25.Frames
                 }
 
                 string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
+                string client = row.Cells["ClName"].Value?.ToString();
                 string worktype = row.Cells["WorkType"].Value.ToString();
                 string service = "ALL ONE";
 
@@ -508,6 +509,7 @@ namespace Tax_Consultant_25.Frames
                 dgvAllOne.Columns["a_TypeOfReturn"].Visible = false;
                 dgvAllOne.Columns["a_RecurringTask"].Visible = false;
                 dgvAllOne.Columns["a_Periodicity"].Visible = false;
+                dgvAllOne.Columns["serial"].Visible = false;
             }
         }
 

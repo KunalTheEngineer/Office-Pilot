@@ -59,9 +59,13 @@
             this.dtpInputDate = new System.Windows.Forms.DateTimePicker();
             this.label17 = new System.Windows.Forms.Label();
             this.dgvAllOne = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WorkType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,11 +74,6 @@
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllOne)).BeginInit();
             this.panel3.SuspendLayout();
@@ -423,9 +422,8 @@
             this.dgvAllOne.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvAllOne.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAllOne.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
             this.Column2,
-            this.ClientName,
+            this.ClName,
             this.Column3,
             this.WorkType,
             this.EmployeeName,
@@ -447,97 +445,6 @@
             this.dgvAllOne.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAllOne_CellFormatting);
             this.dgvAllOne.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvAllOne_DataBindingComplete);
             this.dgvAllOne.SelectionChanged += new System.EventHandler(this.dgvAllOne_SelectionChanged);
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "serial";
-            this.Column1.FillWeight = 52.19208F;
-            this.Column1.HeaderText = "SR.";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "a_InputDate";
-            this.Column2.FillWeight = 81.9797F;
-            this.Column2.HeaderText = "START DT.";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            // 
-            // ClientName
-            // 
-            this.ClientName.DataPropertyName = "clientName";
-            this.ClientName.FillWeight = 125.3269F;
-            this.ClientName.HeaderText = "NAME";
-            this.ClientName.MinimumWidth = 6;
-            this.ClientName.Name = "ClientName";
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "a_TradeName";
-            this.Column3.FillWeight = 124.8994F;
-            this.Column3.HeaderText = "TRADE NAME";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            // 
-            // WorkType
-            // 
-            this.WorkType.DataPropertyName = "a_TaskName";
-            this.WorkType.FillWeight = 124.9814F;
-            this.WorkType.HeaderText = "TASK NAME";
-            this.WorkType.MinimumWidth = 6;
-            this.WorkType.Name = "WorkType";
-            // 
-            // EmployeeName
-            // 
-            this.EmployeeName.DataPropertyName = "a_AllocatedTo";
-            this.EmployeeName.FillWeight = 122.3838F;
-            this.EmployeeName.HeaderText = "ASSIGNED TO";
-            this.EmployeeName.MinimumWidth = 6;
-            this.EmployeeName.Name = "EmployeeName";
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "a_DueDate";
-            this.Column6.FillWeight = 81.60051F;
-            this.Column6.HeaderText = "DUE DT.";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "a_FeeStatus";
-            this.Column7.FillWeight = 74.00842F;
-            this.Column7.HeaderText = "FEES ST.";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            // 
-            // Status
-            // 
-            this.Status.DataPropertyName = "a_Status";
-            this.Status.FillWeight = 127.243F;
-            this.Status.HeaderText = "STATUS";
-            this.Status.MinimumWidth = 6;
-            this.Status.Name = "Status";
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "a_Description";
-            this.Column4.FillWeight = 131.5508F;
-            this.Column4.HeaderText = "DESCRIPTION";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            // 
-            // btnReply
-            // 
-            this.btnReply.FillWeight = 72.01565F;
-            this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnReply.HeaderText = "REPLY";
-            this.btnReply.MinimumWidth = 6;
-            this.btnReply.Name = "btnReply";
-            this.btnReply.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.btnReply.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.btnReply.Text = "REPLY";
             // 
             // panel3
             // 
@@ -607,6 +514,88 @@
             this.panel1.Size = new System.Drawing.Size(1305, 404);
             this.panel1.TabIndex = 6;
             // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "a_InputDate";
+            this.Column2.FillWeight = 81.9797F;
+            this.Column2.HeaderText = "START DATE";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            // 
+            // ClName
+            // 
+            this.ClName.DataPropertyName = "clientName";
+            this.ClName.HeaderText = "NAME";
+            this.ClName.MinimumWidth = 6;
+            this.ClName.Name = "ClName";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "a_TradeName";
+            this.Column3.FillWeight = 124.8994F;
+            this.Column3.HeaderText = "TRADE NAME";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            // 
+            // WorkType
+            // 
+            this.WorkType.DataPropertyName = "a_TaskName";
+            this.WorkType.FillWeight = 124.9814F;
+            this.WorkType.HeaderText = "TASK NAME";
+            this.WorkType.MinimumWidth = 6;
+            this.WorkType.Name = "WorkType";
+            // 
+            // EmployeeName
+            // 
+            this.EmployeeName.DataPropertyName = "a_AllocatedTo";
+            this.EmployeeName.FillWeight = 122.3838F;
+            this.EmployeeName.HeaderText = "ASSIGNED TO";
+            this.EmployeeName.MinimumWidth = 6;
+            this.EmployeeName.Name = "EmployeeName";
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "a_DueDate";
+            this.Column6.FillWeight = 81.60051F;
+            this.Column6.HeaderText = "DUE DATE";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "a_FeeStatus";
+            this.Column7.FillWeight = 74.00842F;
+            this.Column7.HeaderText = "FEES STATUS";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "a_Status";
+            this.Status.FillWeight = 127.243F;
+            this.Status.HeaderText = "STATUS";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "a_Description";
+            this.Column4.FillWeight = 131.5508F;
+            this.Column4.HeaderText = "DESCRIPTION";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            // 
+            // btnReply
+            // 
+            this.btnReply.FillWeight = 72.01565F;
+            this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReply.HeaderText = "REPLY";
+            this.btnReply.MinimumWidth = 6;
+            this.btnReply.Name = "btnReply";
+            this.btnReply.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnReply.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.btnReply.Text = "REPLY";
+            // 
             // ucAllOne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -663,9 +652,8 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ClName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn WorkType;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeName;

@@ -145,7 +145,7 @@ namespace Tax_Consultant_25.Frames
                 }
 
                 string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
+                string client = row.Cells["ClName"].Value?.ToString();
                 string worktype = row.Cells["WorkType"].Value.ToString();
                 string service = "INCOME TAX";
 
@@ -237,6 +237,7 @@ namespace Tax_Consultant_25.Frames
                     dgvAllInOne.Columns["i_Fees"].Visible = false;
                     dgvAllInOne.Columns["clientId"].Visible = false;
                     dgvAllInOne.Columns["incomeId"].Visible = false;
+                    dgvAllInOne.Columns["serial"].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -304,7 +305,7 @@ namespace Tax_Consultant_25.Frames
                 }
 
                 string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
+                string client = row.Cells["ClName"].Value?.ToString();
                 string worktype = row.Cells["WorkType"].Value.ToString();
                 string service = "INCOME TAX";
 

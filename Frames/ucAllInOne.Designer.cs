@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucAllInOne));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -64,9 +64,9 @@
             this.txtYear = new System.Windows.Forms.TextBox();
             this.lblDynamic1 = new System.Windows.Forms.Label();
             this.dgvAllInOne = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WorkType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,7 +76,6 @@
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllInOne)).BeginInit();
@@ -485,9 +484,8 @@
             this.dgvAllInOne.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvAllInOne.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAllInOne.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
             this.Column2,
-            this.ClientName,
+            this.ClName,
             this.WorkType,
             this.Column3,
             this.Column4,
@@ -511,29 +509,32 @@
             this.dgvAllInOne.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvAllInOne_DataBindingComplete);
             this.dgvAllInOne.SelectionChanged += new System.EventHandler(this.dgvAllInOne_SelectionChanged);
             // 
-            // Column1
+            // panel1
             // 
-            this.Column1.DataPropertyName = "serial";
-            this.Column1.FillWeight = 39.67284F;
-            this.Column1.HeaderText = "SR.";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.dgvAllInOne);
+            this.panel1.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel1.Location = new System.Drawing.Point(3, 303);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1314, 410);
+            this.panel1.TabIndex = 5;
             // 
             // Column2
             // 
             this.Column2.DataPropertyName = "i_InputDate";
             this.Column2.FillWeight = 100.4521F;
-            this.Column2.HeaderText = "START DT.";
+            this.Column2.HeaderText = "START DATE";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
             // 
-            // ClientName
+            // ClName
             // 
-            this.ClientName.DataPropertyName = "clientName";
-            this.ClientName.FillWeight = 139.9576F;
-            this.ClientName.HeaderText = "CLIENT NAME";
-            this.ClientName.MinimumWidth = 6;
-            this.ClientName.Name = "ClientName";
+            this.ClName.DataPropertyName = "clientName";
+            this.ClName.HeaderText = "NAME";
+            this.ClName.MinimumWidth = 6;
+            this.ClName.Name = "ClName";
             // 
             // WorkType
             // 
@@ -547,7 +548,7 @@
             // 
             this.Column3.DataPropertyName = "i_TypeOfReturn";
             this.Column3.FillWeight = 103.2915F;
-            this.Column3.HeaderText = "TY. OF RETURN";
+            this.Column3.HeaderText = "TYPE OF RETURN";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             // 
@@ -563,7 +564,7 @@
             // 
             this.Column6.DataPropertyName = "i_DueDate";
             this.Column6.FillWeight = 97.91259F;
-            this.Column6.HeaderText = "DUE DT.";
+            this.Column6.HeaderText = "DUE DATE";
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
             // 
@@ -577,9 +578,9 @@
             // 
             // btnReply
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Red;
-            this.btnReply.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Red;
+            this.btnReply.DefaultCellStyle = dataGridViewCellStyle1;
             this.btnReply.FillWeight = 73.48939F;
             this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReply.HeaderText = "REPLY";
@@ -601,7 +602,7 @@
             // 
             this.Column7.DataPropertyName = "i_FeesStatus";
             this.Column7.FillWeight = 66.37547F;
-            this.Column7.HeaderText = "FEE ST.";
+            this.Column7.HeaderText = "FEE STATUS";
             this.Column7.MinimumWidth = 6;
             this.Column7.Name = "Column7";
             // 
@@ -612,18 +613,6 @@
             this.Column5.HeaderText = "DESCRIPTION";
             this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.dgvAllInOne);
-            this.panel1.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(3, 303);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1314, 410);
-            this.panel1.TabIndex = 5;
             // 
             // ucAllInOne
             // 
@@ -681,9 +670,8 @@
         private System.Windows.Forms.RichTextBox txtDescription;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ClName;
         private System.Windows.Forms.DataGridViewTextBoxColumn WorkType;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
