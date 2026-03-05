@@ -95,6 +95,7 @@ namespace Tax_Consultant_25.Frames
 
             return true;
         }
+
         private void BindEmployee()
         {
             try
@@ -260,6 +261,7 @@ namespace Tax_Consultant_25.Frames
                     dgvGST.Columns["g_RecurringTask"].Visible = false;
                     dgvGST.Columns["g_Periodicity"].Visible = false;
                     dgvGST.Columns["g_FinancialYear"].Visible = false;
+                    dgvGST.Columns["serial"].Visible = false;
                 }
             }
             catch (Exception ex)

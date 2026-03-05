@@ -208,6 +208,7 @@
             this.dgvEnquiry.Size = new System.Drawing.Size(582, 318);
             this.dgvEnquiry.TabIndex = 3;
             this.dgvEnquiry.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEnquiry_CellClick);
+            this.dgvEnquiry.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvEnquiry_DataBindingComplete);
             this.dgvEnquiry.SelectionChanged += new System.EventHandler(this.dgvEnquiry_SelectionChanged);
             // 
             // Column1

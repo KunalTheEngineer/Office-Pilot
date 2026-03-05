@@ -179,5 +179,10 @@ namespace Tax_Consultant_25.Frames
             this.Parent.Controls.Remove(this);
             this.Dispose();
         }
+
+        private void dgvEnquiry_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvEnquiry.Columns["btnFeedback"].DisplayIndex = dgvEnquiry.Columns.Count - 1;
+        }
     }
 }

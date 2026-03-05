@@ -32,7 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtFinancialYear = new System.Windows.Forms.TextBox();
             this.cmbTaskName = new System.Windows.Forms.ComboBox();
@@ -61,7 +60,6 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.dgvGST = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nm = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WorkType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,7 +67,6 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -436,7 +433,6 @@
             this.dgvGST.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvGST.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGST.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
             this.Nm,
             this.WorkType,
             this.Column12,
@@ -444,7 +440,6 @@
             this.Column3,
             this.EmployeeName,
             this.Status,
-            this.ClientName,
             this.btnReply});
             this.dgvGST.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvGST.Location = new System.Drawing.Point(3, 217);
@@ -460,21 +455,11 @@
             this.dgvGST.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvGST_DataBindingComplete);
             this.dgvGST.SelectionChanged += new System.EventHandler(this.dgvGST_SelectionChanged);
             // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "serial";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column1.FillWeight = 28.85779F;
-            this.Column1.HeaderText = "SR.";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            // 
             // Nm
             // 
             this.Nm.DataPropertyName = "g_TradeName";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Nm.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Nm.DefaultCellStyle = dataGridViewCellStyle2;
             this.Nm.FillWeight = 153.5922F;
             this.Nm.HeaderText = "TRADE NAME";
             this.Nm.MinimumWidth = 6;
@@ -500,7 +485,7 @@
             // 
             this.Column6.DataPropertyName = "g_InputDate";
             this.Column6.FillWeight = 91.9576F;
-            this.Column6.HeaderText = "START DT.";
+            this.Column6.HeaderText = "START DATE";
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
             // 
@@ -508,7 +493,7 @@
             // 
             this.Column3.DataPropertyName = "g_DueDate";
             this.Column3.FillWeight = 92.03167F;
-            this.Column3.HeaderText = "DUE DT.";
+            this.Column3.HeaderText = "DUE DATE";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             // 
@@ -528,19 +513,11 @@
             this.Status.MinimumWidth = 6;
             this.Status.Name = "Status";
             // 
-            // ClientName
-            // 
-            this.ClientName.DataPropertyName = "clientName";
-            this.ClientName.HeaderText = "NAME";
-            this.ClientName.MinimumWidth = 6;
-            this.ClientName.Name = "ClientName";
-            this.ClientName.Visible = false;
-            // 
             // btnReply
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Red;
-            this.btnReply.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Red;
+            this.btnReply.DefaultCellStyle = dataGridViewCellStyle3;
             this.btnReply.FillWeight = 64.9856F;
             this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReply.HeaderText = "REPLY";
@@ -598,7 +575,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtFinancialYear;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nm;
         private System.Windows.Forms.DataGridViewTextBoxColumn WorkType;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
@@ -606,7 +582,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
         private System.Windows.Forms.DataGridViewButtonColumn btnReply;
     }
 }
