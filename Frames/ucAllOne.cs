@@ -122,7 +122,15 @@ namespace Tax_Consultant_25.Frames
 
         private void txtClientName_Leave(object sender, EventArgs e)
         {
-            SearchClient();
+            if(txtClientName.Text == string.Empty)
+            {
+                return;
+            }
+            else
+            {
+                SearchClient();
+            }
+                
         }
 
         private void dgvAllOne_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -182,7 +190,14 @@ namespace Tax_Consultant_25.Frames
 
         private void txtTradeName_Leave(object sender, EventArgs e)
         {
-            SearchClient();
+            if (txtTradeName.Text == string.Empty)
+            {
+                return;
+            }
+            else
+            {
+                SearchClient();
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)

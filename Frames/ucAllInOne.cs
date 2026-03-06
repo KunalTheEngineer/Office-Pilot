@@ -742,12 +742,27 @@ namespace Tax_Consultant_25.Frames
 
         private void txtTradeName_Leave(object sender, EventArgs e)
         {
-            SearchClient();
+            if (txtTradeName.Text == string.Empty)
+            {
+                return;
+            }
+            else
+            {
+                SearchClient();
+            }
         }
 
         private void txtClientName_Leave(object sender, EventArgs e)
         {
-            SearchClient();
+            if (txtClientName.Text == string.Empty)
+            {
+                return;
+            }
+            else
+            {
+                SearchClient();
+            }
+       
         }
 
         #endregion
