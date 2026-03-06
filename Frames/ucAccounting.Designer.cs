@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucAccounting));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtDescription = new System.Windows.Forms.RichTextBox();
             this.cmbPeriodicity = new System.Windows.Forms.ComboBox();
@@ -62,7 +62,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Colum5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WorkType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -375,7 +375,7 @@
             this.dgvAllInOne.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAllInOne.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column2,
-            this.Colum5,
+            this.ClName,
             this.WorkType,
             this.Column7,
             this.Column3,
@@ -475,12 +475,12 @@
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
             // 
-            // Colum5
+            // ClName
             // 
-            this.Colum5.DataPropertyName = "clientName";
-            this.Colum5.HeaderText = "NAME";
-            this.Colum5.MinimumWidth = 6;
-            this.Colum5.Name = "Colum5";
+            this.ClName.DataPropertyName = "clientName";
+            this.ClName.HeaderText = "NAME";
+            this.ClName.MinimumWidth = 6;
+            this.ClName.Name = "ClName";
             // 
             // WorkType
             // 
@@ -539,9 +539,9 @@
             // 
             // btnReply
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Crimson;
-            this.btnReply.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Crimson;
+            this.btnReply.DefaultCellStyle = dataGridViewCellStyle1;
             this.btnReply.FillWeight = 54.44823F;
             this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReply.HeaderText = "REPLY";
@@ -604,7 +604,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Colum5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ClName;
         private System.Windows.Forms.DataGridViewTextBoxColumn WorkType;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

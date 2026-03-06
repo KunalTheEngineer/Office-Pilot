@@ -183,7 +183,17 @@ namespace Tax_Consultant_25.Frames
 
         private void txtClientName_Leave(object sender, EventArgs e)
         {
-            SearchClient();
+
+            if(txtClientName.Text == string.Empty)
+            {
+                return;
+            }
+            else
+            {
+                SearchClient();
+            }
+
+                
         }
 
         private void dgvAllInOne_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -234,7 +244,15 @@ namespace Tax_Consultant_25.Frames
 
         private void txtTradeName_Leave(object sender, EventArgs e)
         {
-            SearchClient();
+            if (txtTradeName.Text == string.Empty)
+            {
+                return;
+            }
+            else
+            {
+                SearchClient();
+            }
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -515,7 +533,7 @@ namespace Tax_Consultant_25.Frames
                 }
 
                 string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["Colum5"].Value?.ToString();
+                string client = row.Cells["ClName"].Value?.ToString();
                 string worktype = row.Cells["WorkType"].Value.ToString();
                 string service = "ACCOUNTING";
 
@@ -549,7 +567,7 @@ namespace Tax_Consultant_25.Frames
                 }
 
                 string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["Name"].Value?.ToString();
+                string client = row.Cells["ClName"].Value?.ToString();
                 string worktype = row.Cells["WorkType"].Value.ToString();
                 string service = "ACCOUNTING";
 
@@ -613,7 +631,7 @@ namespace Tax_Consultant_25.Frames
                     dgvAllInOne.Columns["a_TradeName"].Visible = false;
                     dgvAllInOne.Columns["a_RecurringTask"].Visible = false;
                     dgvAllInOne.Columns["a_Periodicity"].Visible = false;
-                   // dgvAllInOne.Columns["a_WorkPeriod"].Visible = false;
+                    dgvAllInOne.Columns["serial"].Visible = false;
                 }
             }
             catch (Exception ex)
