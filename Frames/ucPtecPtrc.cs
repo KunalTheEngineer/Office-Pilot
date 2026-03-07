@@ -122,7 +122,14 @@ namespace Tax_Consultant_25.Frames
 
         private void txtClientName_Leave(object sender, EventArgs e)
         {
-            SearchClient();
+            if (txtClientName.Text == string.Empty)
+            {
+                return;
+            }
+            else
+            {
+                SearchClient();
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -284,7 +291,14 @@ namespace Tax_Consultant_25.Frames
 
         private void txtTradeName_Leave(object sender, EventArgs e)
         {
-            SearchClient();
+            if (txtTradeName.Text == string.Empty)
+            {
+                return;
+            }
+            else
+            {
+                SearchClient();
+            }
         }
 
         private void dgvPTEC_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -461,6 +475,7 @@ namespace Tax_Consultant_25.Frames
 
             return true;
         }
+
         private void GetClientAddress()
         {
             try
