@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
+using Microsoft.ReportingServices.RdlExpressions.ExpressionHostObjectModel;
 using Tax_Consultant_25.Frames;
 namespace Tax_Consultant_25
 {
@@ -29,16 +30,16 @@ namespace Tax_Consultant_25
 
             lblTime.Text = "Time : " + DateTime.Now.ToString("hh:mm:ss tt");
             lblDate.Text = "Date : " + DateTime.Now.ToString("dd'/'MM'/'yyyy");
-            
+
             // ALL EMPLOYEE AND ADMIN ENABLE / DISABLE BUTTONS/TXTBOXES FROM HERE
 
-            if(role == "User")
+            if (role == "User")
             {
                 pnlMainForm.Controls.Clear();
                 ucShowEmployeeWork uc = new ucShowEmployeeWork();
                 uc.Dock = DockStyle.Fill;
-                uc.empName = empName;
-                uc.empRole = role;
+                uc.EMPLOYEENAME = empName;
+                uc.ROLE = role;
                 pnlMainForm.Controls.Add(uc);
             }
             else
@@ -74,6 +75,8 @@ namespace Tax_Consultant_25
             pnlMainForm.Controls.Clear();
             ucGST ucGST = new ucGST();
             ucGST.Dock = DockStyle.Fill;
+            ucGST.ROLE = role;
+            ucGST.EMPLOYEENAME = empName;
             pnlMainForm.Controls.Add(ucGST);
         }
 
@@ -81,8 +84,10 @@ namespace Tax_Consultant_25
         {
             pnlMainForm.Controls.Clear();
             ucAllInOne ucAllInOne = new ucAllInOne();
-            ucAllInOne.Dock= DockStyle.Fill;
-            pnlMainForm.Controls.Add(ucAllInOne); 
+            ucAllInOne.Dock = DockStyle.Fill;
+            ucAllInOne.ROLE = role;
+            ucAllInOne.EMPLOYEENAME = empName;
+            pnlMainForm.Controls.Add(ucAllInOne);
         }
 
         private void pctAccounting_Click(object sender, EventArgs e)
@@ -100,6 +105,8 @@ namespace Tax_Consultant_25
             pnlMainForm.Controls.Clear();
             ucShopAct sp = new ucShopAct();
             sp.Dock = DockStyle.Fill;
+            sp.ROLE = role;
+            sp.EMPLOYEENAME = empName; 
             pnlMainForm.Controls.Add(sp);
         }
 
@@ -108,6 +115,8 @@ namespace Tax_Consultant_25
             pnlMainForm.Controls.Clear();
             ucUdyam udyam = new ucUdyam();
             udyam.Dock = DockStyle.Fill;
+            udyam.ROLE = role;
+            udyam.EMPLOYEENAME = empName;
             pnlMainForm.Controls.Add(udyam);
         }
 
@@ -116,6 +125,8 @@ namespace Tax_Consultant_25
             pnlMainForm.Controls.Clear();
             ucTDS td = new ucTDS();
             td.Dock = DockStyle.Fill;
+            td.ROLE = role;
+            td.EMPLOYEENAME = empName;
             pnlMainForm.Controls.Add(td);
         }
 
@@ -124,15 +135,19 @@ namespace Tax_Consultant_25
             pnlMainForm.Controls.Clear();
             ucPAN pan = new ucPAN();
             pan.Dock = DockStyle.Fill;
-            pnlMainForm.Controls.Add(pan); 
+            pan.ROLE = role;
+            pan.EMPLOYEENAME = empName;
+            pnlMainForm.Controls.Add(pan);
         }
 
         private void pctPTEC_Click(object sender, EventArgs e)
         {
-             pnlMainForm.Controls.Clear();
-             ucPtecPtrc ptec = new ucPtecPtrc();
-             ptec.Dock = DockStyle.Fill;
-             pnlMainForm.Controls.Add(ptec); 
+            pnlMainForm.Controls.Clear();
+            ucPtecPtrc ptec = new ucPtecPtrc();
+            ptec.Dock = DockStyle.Fill;
+            ptec.ROLE = role;
+            ptec.EMPLOYEENAME = empName;
+            pnlMainForm.Controls.Add(ptec);
 
         }
 
@@ -141,15 +156,25 @@ namespace Tax_Consultant_25
             pnlMainForm.Controls.Clear();
             ucAllOne one = new ucAllOne();
             one.Dock = DockStyle.Fill;
+            one.ROLE = role;
+            one.EMPLOYEENAME = empName;
             pnlMainForm.Controls.Add(one);
         }
 
         private void pctReports_Click(object sender, EventArgs e)
         {
-            pnlMainForm.Controls.Clear();
-            ucReports reports = new ucReports();
-            reports.Dock = DockStyle.Fill;
-            pnlMainForm.Controls.Add(reports);
+            if(role == "User")
+            {
+
+            }
+            else
+            {
+                //pnlMainForm.Controls.Clear();
+                //ucReports reports = new ucReports();
+                //reports.Dock = DockStyle.Fill;
+                //pnlMainForm.Controls.Add(reports);
+            }
+
         }
 
         private void pctClientManager_Click(object sender, EventArgs e)
@@ -165,17 +190,27 @@ namespace Tax_Consultant_25
             pnlMainForm.Controls.Clear();
             ucShowEmployeeWork emp = new ucShowEmployeeWork();
             emp.Dock = DockStyle.Fill;
+            emp.ROLE = role;
+            emp.EMPLOYEENAME = empName;
             pnlMainForm.Controls.Add(emp);
         }
 
         private void pctAddEmployee_Click(object sender, EventArgs e)
         {
-            pnlMainForm.Controls.Clear();
-            ucAddEmployee uc = new ucAddEmployee();
-           // uc.Dock = DockStyle.Fill;
-           pnlMainForm.BackgroundImage = null;
-            pnlMainForm.Controls.Add(uc);
-            CenterUserForm(uc, pnlMainForm);
+
+            if(role == "User")
+            {
+
+            }
+            else
+            {
+                pnlMainForm.Controls.Clear();
+                ucAddEmployee uc = new ucAddEmployee();
+                pnlMainForm.BackgroundImage = null;
+                pnlMainForm.Controls.Add(uc);
+                CenterUserForm(uc, pnlMainForm);
+            }
+
         }
 
         private void CenterUserForm(UserControl uc1, Panel panel)
