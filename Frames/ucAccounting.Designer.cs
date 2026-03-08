@@ -169,6 +169,13 @@
             "Return Prepaired",
             "Cancelled",
             "Complete",
+            "Pending",
+            "In Process",
+            "On Hold",
+            "Tax Payable",
+            "Tax Amount Received",
+            "Return Filed",
+            "Refund",
             "Done"});
             this.cmbWorkStatus.Location = new System.Drawing.Point(740, 102);
             this.cmbWorkStatus.Name = "cmbWorkStatus";

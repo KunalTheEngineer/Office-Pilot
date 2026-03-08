@@ -24,12 +24,8 @@ namespace Tax_Consultant_25.Frames
 
         #region Variables
 
-        string tempEmployeeName;
-        string serviceName;
-        string tempClientName, CLIENTNAME;
-        string tempWorkType;
+        string tempEmployeeName, tempClientName, CLIENTNAME, businessName, clientAddress;
         int clientId, flag, tempAccId, tempClientId;
-        string service, businessName, clientAddress;
 
         public string ROLE { get; set; }
 
@@ -64,7 +60,14 @@ namespace Tax_Consultant_25.Frames
                 ColorTranslator.FromHtml("#00B0F0"), // Return Prepared
                 ColorTranslator.FromHtml("#FF0000"), // Cancelled
                 ColorTranslator.FromHtml("#FFC000"), // Complit
-                ColorTranslator.FromHtml("#FFFF00"), // DONE
+                ColorTranslator.FromHtml("#C9C9FF"), // Pending
+                ColorTranslator.FromHtml("#FFCCFF"), // In Process
+                ColorTranslator.FromHtml("#B4C6E7"), // On Hold
+                ColorTranslator.FromHtml("#FFD966"), // Tax Payable
+                ColorTranslator.FromHtml("#A2C4C9"), // Tax Amount Received
+                ColorTranslator.FromHtml("#EAD1DC"), // Return Filed
+                ColorTranslator.FromHtml("#D9EAD3"),  // Refund
+                ColorTranslator.FromHtml("#FFFF00") // DONE
             };
 
             Color backColor = bgColors[e.Index];
@@ -114,7 +117,7 @@ namespace Tax_Consultant_25.Frames
         private void dgvAllInOne_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
 
-            if(ROLE == "Admin")
+            if (ROLE == "Admin")
             {
                 ShowQuery();
             }
@@ -133,6 +136,13 @@ namespace Tax_Consultant_25.Frames
                 { "Return Prepaired", ColorTranslator.FromHtml("#00B0F0") },
                 { "Cancelled", ColorTranslator.FromHtml("#FF0000") },
                 { "Complete", ColorTranslator.FromHtml("#FFC000") },
+                { "Pending", ColorTranslator.FromHtml("#C9C9FF") },
+                { "In Process", ColorTranslator.FromHtml("#FFCCFF") },
+                { "On Hold", ColorTranslator.FromHtml("#B4C6E7") },
+                { "Tax Payable", ColorTranslator.FromHtml("#FFD966") },
+                { "Tax Amount Received", ColorTranslator.FromHtml("#A2C4C9") },
+                { "Return Filed", ColorTranslator.FromHtml("#EAD1DC") },
+                { "Refund", ColorTranslator.FromHtml("#D9EAD3") },
                 { "Done", ColorTranslator.FromHtml("#FFFF00") }
             };
 
@@ -156,7 +166,7 @@ namespace Tax_Consultant_25.Frames
             {
                 string text = dgvAllInOne.Rows[e.RowIndex].Cells["btnReply"].Value?.ToString();
 
-                if(text == "QUERY")
+                if (text == "QUERY")
                 {
                     e.CellStyle.ForeColor = Color.Blue;
                 }
@@ -184,7 +194,7 @@ namespace Tax_Consultant_25.Frames
         private void txtClientName_Leave(object sender, EventArgs e)
         {
 
-            if(txtClientName.Text == string.Empty)
+            if (txtClientName.Text == string.Empty)
             {
                 return;
             }
@@ -193,7 +203,7 @@ namespace Tax_Consultant_25.Frames
                 SearchClient();
             }
 
-                
+
         }
 
         private void dgvAllInOne_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -277,7 +287,7 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                if(!ValidateDates())
+                if (!ValidateDates())
                 {
                     return;
                 }
@@ -335,7 +345,7 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
-                if(!ValidateDates())
+                if (!ValidateDates())
                 {
                     return;
                 }
@@ -402,32 +412,52 @@ namespace Tax_Consultant_25.Frames
         {
             if (ROLE == "User")
             {
+                dgvAllInOne.Columns["btnReply"].HeaderText = "QUERY";
+
                 foreach (DataGridViewRow row in dgvAllInOne.Rows)
                 {
                     if (row.IsNewRow)
-                    {
                         continue;
-                    }
 
                     row.Cells["btnReply"].Value = "QUERY";
-                    dgvAllInOne.Columns["btnReply"].HeaderText = "QUERY";
                 }
             }
             else
             {
+                dgvAllInOne.Columns["btnReply"].HeaderText = "REPLY";
+
                 foreach (DataGridViewRow row in dgvAllInOne.Rows)
                 {
                     if (row.IsNewRow)
-                    {
                         continue;
-                    }
 
                     row.Cells["btnReply"].Value = "REPLY";
-                    dgvAllInOne.Columns["btnReply"].HeaderText = "REPLY";
                 }
             }
 
             dgvAllInOne.Columns["btnReply"].DisplayIndex = dgvAllInOne.Columns.Count - 1;
+        }
+
+        private void dtpDueDate_ValueChanged(object sender, EventArgs e)
+        {
+            ValidateDates();
+        }
+
+        private void dtpInputDate_ValueChanged(object sender, EventArgs e)
+        {
+            ValidateDates();
+        }
+
+        private void cmbRecurringTask_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbRecurringTask.Text == "NO")
+            {
+                cmbPeriodicity.Enabled = false;
+            }
+            else
+            {
+                cmbPeriodicity.Enabled = true;
+            }
         }
 
         #endregion
@@ -468,18 +498,6 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
-        private void cmbRecurringTask_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(cmbRecurringTask.Text == "NO")
-            {
-                cmbPeriodicity.Enabled = false;
-            }
-            else
-            {
-                cmbPeriodicity.Enabled = true;
-            }
-        }
-
         private void SearchClient()
         {
             try
@@ -497,8 +515,8 @@ namespace Tax_Consultant_25.Frames
                     txtClientName.Text = ds.Tables[0].Rows[0]["c_Name"].ToString();
                     txtTradeName.Text = ds.Tables[0].Rows[0]["c_BusinessName"].ToString();
                     clientId = Convert.ToInt32(ds.Tables[0].Rows[0]["clientId"].ToString());
-                   // businessName = txtTradeName.Text;
-                   // clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
+                    // businessName = txtTradeName.Text;
+                    // clientAddress = ds.Tables[0].Rows[0]["c_Address"].ToString();
                 }
 
             }
@@ -508,16 +526,6 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
-        private void dtpDueDate_ValueChanged(object sender, EventArgs e)
-        {
-            ValidateDates();
-        }
-
-        private void dtpInputDate_ValueChanged(object sender, EventArgs e)
-        {
-            ValidateDates();    
-        }
-
         private void ShowQuery()
         {
             query = new cls_Query();
@@ -525,9 +533,9 @@ namespace Tax_Consultant_25.Frames
 
             ds1 = query.QueryRaisedByEmp("ACCOUNTING");
 
-            foreach(DataGridViewRow row in dgvAllInOne.Rows)
+            foreach (DataGridViewRow row in dgvAllInOne.Rows)
             {
-                if(row.IsNewRow)
+                if (row.IsNewRow)
                 {
                     continue;
                 }
@@ -547,7 +555,7 @@ namespace Tax_Consultant_25.Frames
                  );
 
                 row.DefaultCellStyle.BackColor = hasQuery ? Color.LightCoral : dgvAllInOne.DefaultCellStyle.BackColor;
-   
+
             }
 
         }
@@ -594,15 +602,17 @@ namespace Tax_Consultant_25.Frames
             txtYear.Clear();
             txtDescription.Clear();
 
-            dtpInputDate.Text = DateTime.Now.ToString();
-            dtpDueDate.Text = DateTime.Now.ToString();
+            DateTime today = DateTime.Now.Date;
+
+            dtpInputDate.Value = today;
+            dtpDueDate.Value = today;
 
             cmbAllocatedTo.SelectedIndex = 0;
             cmbRecurringTask.SelectedIndex = 0;
             cmbPeriodicity.SelectedIndex = 0;
             cmbWorkStatus.SelectedIndex = 0;
 
-            if(ROLE == "Admin")
+            if (ROLE == "Admin")
             {
                 btnSave.Enabled = true;
             }
@@ -621,7 +631,7 @@ namespace Tax_Consultant_25.Frames
                 {
                     dgvAllInOne.DataSource = ds.Tables[0];
 
-                    if(ROLE == "User")
+                    if (ROLE == "User")
                     {
                         dgvAllInOne.Columns["EMPLOYEENAME"].Visible = false;
                     }
@@ -660,7 +670,7 @@ namespace Tax_Consultant_25.Frames
 
         private void ApplyEmployeePermissions()
         {
-            if(ROLE == "User")
+            if (ROLE == "User")
             {
                 dtpInputDate.Enabled = false;
                 dtpDueDate.Enabled = false;
@@ -679,7 +689,7 @@ namespace Tax_Consultant_25.Frames
 
                 btnSave.Enabled = false;
 
-                
+
             }
         }
 
@@ -710,9 +720,9 @@ namespace Tax_Consultant_25.Frames
 
         private bool ValidateDates()
         {
-            if(dtpInputDate.Value.Date > dtpDueDate.Value.Date)
+            if (dtpInputDate.Value.Date > dtpDueDate.Value.Date)
             {
-                MessageBox.Show("START DATE CANNOT BE GREATER THAN DUE DATE !" ,"DATE VALIDATION", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("START DATE CANNOT BE GREATER THAN DUE DATE !", "DATE VALIDATION", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 dtpInputDate.Focus();
                 return false;
