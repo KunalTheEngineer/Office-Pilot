@@ -102,7 +102,7 @@
             this.label5.Size = new System.Drawing.Size(58, 21);
             this.label5.TabIndex = 7;
             this.label5.Text = "ROLE:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+//            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // txtPassword
             // 
@@ -129,7 +129,7 @@
             this.label4.Size = new System.Drawing.Size(196, 21);
             this.label4.TabIndex = 2;
             this.label4.Text = "EMPLOYEE PASSWORD:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+         //   this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 

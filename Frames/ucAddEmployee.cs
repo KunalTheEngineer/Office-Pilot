@@ -61,8 +61,6 @@ namespace Tax_Consultant_25.Frames
             txtEmpName.Focus();
         }
 
-  
-
         private void dgvEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -108,16 +106,6 @@ namespace Tax_Consultant_25.Frames
         private void dgvEmployee_SelectionChanged(object sender, EventArgs e)
         {
             dgvEmployee.ClearSelection();
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnSave_Click_1(object sender, EventArgs e)
