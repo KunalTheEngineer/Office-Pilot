@@ -64,7 +64,6 @@
             this.txtYear = new System.Windows.Forms.TextBox();
             this.lblDynamic1 = new System.Windows.Forms.Label();
             this.dgvAllInOne = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WorkType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,6 +75,7 @@
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllInOne)).BeginInit();
@@ -243,6 +243,13 @@
             "Return Prepaired",
             "Cancelled",
             "Complete",
+            "Pending",
+            "In Process",
+            "On Hold",
+            "Tax Payable",
+            "Tax Amount Received",
+            "Return Filed",
+            "Refund",
             "Filed"});
             this.cmbWorkStatus.Location = new System.Drawing.Point(1075, 108);
             this.cmbWorkStatus.Name = "cmbWorkStatus";
@@ -509,18 +516,6 @@
             this.dgvAllInOne.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvAllInOne_DataBindingComplete);
             this.dgvAllInOne.SelectionChanged += new System.EventHandler(this.dgvAllInOne_SelectionChanged);
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.dgvAllInOne);
-            this.panel1.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(3, 303);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1314, 410);
-            this.panel1.TabIndex = 5;
-            // 
             // Column2
             // 
             this.Column2.DataPropertyName = "i_InputDate";
@@ -613,6 +608,18 @@
             this.Column5.HeaderText = "DESCRIPTION";
             this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.dgvAllInOne);
+            this.panel1.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel1.Location = new System.Drawing.Point(3, 303);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1314, 410);
+            this.panel1.TabIndex = 5;
             // 
             // ucAllInOne
             // 
