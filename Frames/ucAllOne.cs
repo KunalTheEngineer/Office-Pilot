@@ -36,7 +36,7 @@ namespace Tax_Consultant_25.Frames
         #region VARIABLES
 
         int clientId, flag, tempAllOneId, tempClientId;
-        string tempEmployeeName, tempClientName, tempWorkType, serviceName, businessName, clientAddress, CLIENTNAME;
+        string tempEmployeeName, businessName, clientAddress, CLIENTNAME;
 
         public string ROLE { get; set; }
 
@@ -59,7 +59,14 @@ namespace Tax_Consultant_25.Frames
                 ColorTranslator.FromHtml("#00B0F0"), // Return Prepared
                 ColorTranslator.FromHtml("#FF0000"), // Cancelled
                 ColorTranslator.FromHtml("#FFC000"), // Complit
-                ColorTranslator.FromHtml("#FFFF00"), // Filed
+                ColorTranslator.FromHtml("#C9C9FF"), // Pending
+                ColorTranslator.FromHtml("#FFCCFF"), // In Process
+                ColorTranslator.FromHtml("#B4C6E7"), // On Hold
+                ColorTranslator.FromHtml("#FFD966"), // Tax Payable
+                ColorTranslator.FromHtml("#A2C4C9"), // Tax Amount Received
+                ColorTranslator.FromHtml("#EAD1DC"), // Return Filed
+                ColorTranslator.FromHtml("#D9EAD3"),  // Refund
+                ColorTranslator.FromHtml("#FFFF00") // DONE
             };
 
             Color backColor = bgColors[e.Index];
@@ -114,7 +121,7 @@ namespace Tax_Consultant_25.Frames
 
         private void txtClientName_TextChanged(object sender, EventArgs e)
         {
-            if(txtClientName.Text == string.Empty)
+            if (txtClientName.Text == string.Empty)
             {
                 txtTradeName.Clear();
             }
@@ -122,7 +129,7 @@ namespace Tax_Consultant_25.Frames
 
         private void txtClientName_Leave(object sender, EventArgs e)
         {
-            if(txtClientName.Text == string.Empty)
+            if (txtClientName.Text == string.Empty)
             {
                 return;
             }
@@ -130,7 +137,7 @@ namespace Tax_Consultant_25.Frames
             {
                 SearchClient();
             }
-                
+
         }
 
         private void dgvAllOne_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -154,6 +161,13 @@ namespace Tax_Consultant_25.Frames
                 { "Return Prepaired", ColorTranslator.FromHtml("#00B0F0") },
                 { "Cancelled", ColorTranslator.FromHtml("#FF0000") },
                 { "Complete", ColorTranslator.FromHtml("#FFC000") },
+                { "Pending", ColorTranslator.FromHtml("#C9C9FF") },
+                { "In Process", ColorTranslator.FromHtml("#FFCCFF") },
+                { "On Hold", ColorTranslator.FromHtml("#B4C6E7") },
+                { "Tax Payable", ColorTranslator.FromHtml("#FFD966") },
+                { "Tax Amount Received", ColorTranslator.FromHtml("#A2C4C9") },
+                { "Return Filed", ColorTranslator.FromHtml("#EAD1DC") },
+                { "Refund", ColorTranslator.FromHtml("#D9EAD3") },
                 { "Done", ColorTranslator.FromHtml("#FFFF00") }
             };
 
@@ -202,7 +216,7 @@ namespace Tax_Consultant_25.Frames
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if(!ValidateDates())
+            if (!ValidateDates())
             {
                 return;
             }
@@ -266,7 +280,7 @@ namespace Tax_Consultant_25.Frames
         private void btnSave_Click(object sender, EventArgs e)
         {
 
-            if(!ValidateDates())
+            if (!ValidateDates())
             {
                 return;
             }
@@ -311,30 +325,30 @@ namespace Tax_Consultant_25.Frames
         {
             if (ROLE == "User")
             {
+                dgvAllOne.Columns["btnReply"].HeaderText = "QUERY";
+
                 foreach (DataGridViewRow row in dgvAllOne.Rows)
                 {
                     if (row.IsNewRow)
-                    {
                         continue;
-                    }
 
                     row.Cells["btnReply"].Value = "QUERY";
-                    dgvAllOne.Columns["btnReply"].HeaderText = "QUERY";
                 }
             }
             else
             {
+                dgvAllOne.Columns["btnReply"].HeaderText = "REPLY";
+
                 foreach (DataGridViewRow row in dgvAllOne.Rows)
                 {
                     if (row.IsNewRow)
-                    {
                         continue;
-                    }
 
                     row.Cells["btnReply"].Value = "REPLY";
-                    dgvAllOne.Columns["btnReply"].HeaderText = "REPLY";
                 }
             }
+
+            dgvAllOne.Columns["btnReply"].DisplayIndex = dgvAllOne.Columns.Count - 1;
         }
 
         private void cmbRecurringTask_SelectedIndexChanged(object sender, EventArgs e)
@@ -392,7 +406,7 @@ namespace Tax_Consultant_25.Frames
                 tempAllOneId = Convert.ToInt32(dgvAllOne.Rows[objPro.rowID].Cells[17].Value.ToString());
                 tempEmployeeName = dgvAllOne.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
                 CLIENTNAME = dgvAllOne.Rows[objPro.rowID].Cells[3].Value.ToString();
-                
+
 
                 GetClientAddress();
 
@@ -478,7 +492,7 @@ namespace Tax_Consultant_25.Frames
                 }
 
                 string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
+                string client = row.Cells["ClName"].Value?.ToString();
                 string worktype = row.Cells["WorkType"].Value.ToString();
                 string service = "ALL ONE";
 
@@ -608,10 +622,12 @@ namespace Tax_Consultant_25.Frames
 
         private void Clear()
         {
-            dtpInputDate.Text = DateTime.Now.ToString();
             txtClientName.Clear();
             cmbAllocatedTo.SelectedIndex = 0;
-            dtpDueDate.Text = DateTime.Now.ToString();
+            DateTime today = DateTime.Now.Date;
+
+            dtpInputDate.Value = today;
+            dtpDueDate.Value = today;
             txtYear.Clear();
             txtFessAmt.Clear();
             cmbFeesStatus.SelectedIndex = 0;
