@@ -35,7 +35,7 @@ namespace Tax_Consultant_25.Frames
             if (ds.Tables[0].Rows.Count > 0)
             {
                 dgvEnquiry.DataSource = ds.Tables[0];
-                dgvEnquiry.Columns["enquiryId"].Visible = false;
+               // dgvEnquiry.Columns["enquiryId"].Visible = false;
             }
         }
 
