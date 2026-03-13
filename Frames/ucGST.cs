@@ -33,19 +33,15 @@ namespace Tax_Consultant_25.Frames
         cls_EmployeeDL employeeDL;
         clsProperties objPro;
         cls_GstDL gstDL;
-        cls_ClientUserPassDL cls_ClientUserPassDL;
         cls_Query query;
-        cls_BusinessDL bus;
         cls_ClientsDL client;
 
         #endregion
 
         #region VARIABLES
 
-        string serviceName;
-        string prevMonthName;
-        string tempEmployeeName, tempClientName, tempClientType, tempReturn, tempTaskName;
-        string service, businessName, clientAddress, CLIENTNAME;
+        string tempEmployeeName, tempTaskName;
+        string businessName, clientAddress, CLIENTNAME;
 
         int flag, tempGSTId, tempClientId;
 
@@ -363,6 +359,13 @@ namespace Tax_Consultant_25.Frames
                 ColorTranslator.FromHtml("#FF0000"), // Cancelled
                 ColorTranslator.FromHtml("#FFC000"), // Nill
                 ColorTranslator.FromHtml("#FFC000"), // Complit
+                ColorTranslator.FromHtml("#C9C9FF"), // Pending
+                ColorTranslator.FromHtml("#FFCCFF"), // In Process
+                ColorTranslator.FromHtml("#B4C6E7"), // On Hold
+                ColorTranslator.FromHtml("#FFD966"), // Tax Payable
+                ColorTranslator.FromHtml("#A2C4C9"), // Tax Amount Received
+                ColorTranslator.FromHtml("#EAD1DC"), // Return Filed
+                ColorTranslator.FromHtml("#D9EAD3"),  // Refund
                 ColorTranslator.FromHtml("#FFFF00"), // Filed
                 ColorTranslator.FromHtml("#FCE4D6")  // Other
             };
@@ -480,30 +483,30 @@ namespace Tax_Consultant_25.Frames
         {
             if (ROLE == "User")
             {
+                dgvGST.Columns["btnReply"].HeaderText = "QUERY";
+
                 foreach (DataGridViewRow row in dgvGST.Rows)
                 {
                     if (row.IsNewRow)
-                    {
                         continue;
-                    }
 
                     row.Cells["btnReply"].Value = "QUERY";
-                    dgvGST.Columns["btnReply"].HeaderText = "QUERY";
                 }
             }
             else
             {
+                dgvGST.Columns["btnReply"].HeaderText = "REPLY";
+
                 foreach (DataGridViewRow row in dgvGST.Rows)
                 {
                     if (row.IsNewRow)
-                    {
                         continue;
-                    }
 
                     row.Cells["btnReply"].Value = "REPLY";
-                    dgvGST.Columns["btnReply"].HeaderText = "REPLY";
                 }
             }
+
+            dgvGST.Columns["btnReply"].DisplayIndex = dgvGST.Columns.Count - 1;
         }
 
         private void txtClientName_TextChanged(object sender, EventArgs e)
@@ -684,6 +687,13 @@ namespace Tax_Consultant_25.Frames
                 { "Cancelled", ColorTranslator.FromHtml("#FF0000") },
                 { "Nill", ColorTranslator.FromHtml("#FFC000") },
                 { "Complete", ColorTranslator.FromHtml("#FFC000") },
+                { "Pending", ColorTranslator.FromHtml("#C9C9FF") },
+                { "In Process", ColorTranslator.FromHtml("#FFCCFF") },
+                { "On Hold", ColorTranslator.FromHtml("#B4C6E7") },
+                { "Tax Payable", ColorTranslator.FromHtml("#FFD966") },
+                { "Tax Amount Received", ColorTranslator.FromHtml("#A2C4C9") },
+                { "Return Filed", ColorTranslator.FromHtml("#EAD1DC") },
+                { "Refund", ColorTranslator.FromHtml("#D9EAD3") },
                 { "Filed", ColorTranslator.FromHtml("#FFFF00") },
                 { "Other", ColorTranslator.FromHtml("#FCE4D6") }
             };

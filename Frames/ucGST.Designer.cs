@@ -300,6 +300,13 @@
             "Cancelled",
             "Nill",
             "Complete",
+            "Pending",
+            "In Process",
+            "On Hold",
+            "Tax Payable",
+            "Tax Amount Received",
+            "Return Filed",
+            "Refund",
             "Filed",
             "Other"});
             this.cmbWorkStatus.Location = new System.Drawing.Point(1046, 109);
