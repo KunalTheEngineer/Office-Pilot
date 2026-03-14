@@ -187,6 +187,13 @@
             "Return Prepaired",
             "Cancelled",
             "Complete",
+            "Pending",
+            "In Process",
+            "On Hold",
+            "Tax Payable",
+            "Tax Amount Received",
+            "Return Filed",
+            "Refund",
             "Done"});
             this.cmbWorkStatus.Location = new System.Drawing.Point(582, 90);
             this.cmbWorkStatus.Name = "cmbWorkStatus";
@@ -468,7 +475,6 @@
             this.btnReply.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.btnReply.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.btnReply.Text = "REPLY";
-            this.btnReply.UseColumnTextForButtonValue = true;
             // 
             // Column7
             // 

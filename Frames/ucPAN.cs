@@ -29,7 +29,6 @@ namespace Tax_Consultant_25.Frames
         cls_PanDL panDL;
         clsProperties objPro;
         cls_Query query;
-        cls_BusinessDL bus;
         cls_ClientsDL client;
 
         #endregion  
@@ -37,7 +36,7 @@ namespace Tax_Consultant_25.Frames
         #region VARIABLES
 
         int clientId, flag, tempPanId, tempClientId;
-        string tempEmployeeName, tempWorkType, serviceName, tempClientName, service, businessName, clientAddress, CLIENTNAME;
+        string tempEmployeeName, businessName, clientAddress, CLIENTNAME;
 
         public string ROLE { get; set; }
 
@@ -60,6 +59,13 @@ namespace Tax_Consultant_25.Frames
                 ColorTranslator.FromHtml("#00B0F0"), // Return Prepared
                 ColorTranslator.FromHtml("#FF0000"), // Cancelled
                 ColorTranslator.FromHtml("#FFC000"), // Complit
+                ColorTranslator.FromHtml("#C9C9FF"), // Pending
+                ColorTranslator.FromHtml("#FFCCFF"), // In Process
+                ColorTranslator.FromHtml("#B4C6E7"), // On Hold
+                ColorTranslator.FromHtml("#FFD966"), // Tax Payable
+                ColorTranslator.FromHtml("#A2C4C9"), // Tax Amount Received
+                ColorTranslator.FromHtml("#EAD1DC"), // Return Filed
+                ColorTranslator.FromHtml("#D9EAD3"),  // Refund
                 ColorTranslator.FromHtml("#FFFF00"), // Filed
             };
 
@@ -281,28 +287,26 @@ namespace Tax_Consultant_25.Frames
         {
             if (ROLE == "User")
             {
+                dgvAllInOne.Columns["btnReply"].HeaderText = "QUERY";
+
                 foreach (DataGridViewRow row in dgvAllInOne.Rows)
                 {
                     if (row.IsNewRow)
-                    {
                         continue;
-                    }
 
                     row.Cells["btnReply"].Value = "QUERY";
-                    dgvAllInOne.Columns["btnReply"].HeaderText = "QUERY";
                 }
             }
             else
             {
+                dgvAllInOne.Columns["btnReply"].HeaderText = "REPLY";
+
                 foreach (DataGridViewRow row in dgvAllInOne.Rows)
                 {
                     if (row.IsNewRow)
-                    {
                         continue;
-                    }
 
                     row.Cells["btnReply"].Value = "REPLY";
-                    dgvAllInOne.Columns["btnReply"].HeaderText = "REPLY";
                 }
             }
 
@@ -383,6 +387,13 @@ namespace Tax_Consultant_25.Frames
                 { "Return Prepaired", ColorTranslator.FromHtml("#00B0F0") },
                 { "Cancelled", ColorTranslator.FromHtml("#FF0000") },
                 { "Complete", ColorTranslator.FromHtml("#FFC000") },
+                { "Pending", ColorTranslator.FromHtml("#C9C9FF") },
+                { "In Process", ColorTranslator.FromHtml("#FFCCFF") },
+                { "On Hold", ColorTranslator.FromHtml("#B4C6E7") },
+                { "Tax Payable", ColorTranslator.FromHtml("#FFD966") },
+                { "Tax Amount Received", ColorTranslator.FromHtml("#A2C4C9") },
+                { "Return Filed", ColorTranslator.FromHtml("#EAD1DC") },
+                { "Refund", ColorTranslator.FromHtml("#D9EAD3") },
                 { "Done", ColorTranslator.FromHtml("#FFFF00") }
             };
 
@@ -502,11 +513,14 @@ namespace Tax_Consultant_25.Frames
 
         private void Clear()
         {
-            dtpInputDate.Text = DateTime.Now.ToString();
+            DateTime today = DateTime.Now.Date;
+
+            dtpInputDate.Value = today;
+            dtpDueDate.Value = today;
+
             txtClientName.Clear();
             txtTaskName.Clear();
             cmbAllocatedTo.SelectedIndex = 0;
-            dtpDueDate.Text = DateTime.Now.ToString();
             txtFees.Clear();
             cmbFeesStatus.SelectedIndex = 0;
             cmbWorkStatus.SelectedIndex = 0;
