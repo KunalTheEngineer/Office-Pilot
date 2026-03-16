@@ -75,11 +75,7 @@ namespace Tax_Consultant_25.Frames
             }
 
         }
-
-        private void dgvShowEmployeeWork_CellClick(object sender, DataGridViewCellEventArgs e)
-        {          
-        }
-        
+  
         // used to not show selection (.i.e blue color) on first row of datagrid
         private void dgvShowEmployeeWork_SelectionChanged(object sender, EventArgs e)
         {
@@ -99,7 +95,14 @@ namespace Tax_Consultant_25.Frames
                 { "Document Received", ColorTranslator.FromHtml("#A9D08E") },
                 { "Return Prepaired", ColorTranslator.FromHtml("#00B0F0") },
                 { "Cancelled", ColorTranslator.FromHtml("#FF0000") },
-                { "Complete", ColorTranslator.FromHtml("#FFC000") }
+                { "Complete", ColorTranslator.FromHtml("#FFC000") },
+                { "Pending", ColorTranslator.FromHtml("#C9C9FF") },
+                { "In Process", ColorTranslator.FromHtml("#FFCCFF") },
+                { "On Hold", ColorTranslator.FromHtml("#B4C6E7") },
+                { "Tax Payable", ColorTranslator.FromHtml("#FFD966") },
+                { "Tax Amount Received", ColorTranslator.FromHtml("#A2C4C9") },
+                { "Return Filed", ColorTranslator.FromHtml("#EAD1DC") },
+                { "Refund", ColorTranslator.FromHtml("#D9EAD3") }
                // { "Done", ColorTranslator.FromHtml("#FFFF00") }
             };
 

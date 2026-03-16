@@ -74,7 +74,7 @@
             this.dgvShowEmployeeWork.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvShowEmployeeWork.Size = new System.Drawing.Size(1320, 716);
             this.dgvShowEmployeeWork.TabIndex = 3;
-            this.dgvShowEmployeeWork.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvShowEmployeeWork_CellClick);
+//            this.dgvShowEmployeeWork.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvShowEmployeeWork_CellClick);
             this.dgvShowEmployeeWork.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvShowEmployeeWork_CellFormatting);
             this.dgvShowEmployeeWork.SelectionChanged += new System.EventHandler(this.dgvShowEmployeeWork_SelectionChanged);
             // 
