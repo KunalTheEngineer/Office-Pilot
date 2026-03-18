@@ -26,20 +26,17 @@ namespace Tax_Consultant_25.Frames
         DataTable dt;
         DataSet ds, ds1, ds2;
         cls_EmployeeDL employeeDL;
-        cls_ClientUserPassDL clientUserPassDL;
         cls_UdyamDL clsUdyamDL;
         clsProperties objPro;
         cls_Query query;
-        cls_BusinessDL bus;
         cls_ClientsDL client;
        
-
         #endregion
 
         #region VARIABLES
 
         int flag, clientId, tempUdyamId, tempClientId;
-        string tempEmployeeName, tempClientName, tempWorkType, serviceName, service, businessName, clientAddress, CLIENTNAME;
+        string tempEmployeeName, businessName, clientAddress, CLIENTNAME;
 
         public string ROLE { get; set; }
 
@@ -62,7 +59,14 @@ namespace Tax_Consultant_25.Frames
                 ColorTranslator.FromHtml("#00B0F0"), // Return Prepared
                 ColorTranslator.FromHtml("#FF0000"), // Cancelled
                 ColorTranslator.FromHtml("#FFC000"), // Complit
-                ColorTranslator.FromHtml("#FFFF00"), // Filed
+                ColorTranslator.FromHtml("#C9C9FF"), // Pending
+                ColorTranslator.FromHtml("#FFCCFF"), // In Process
+                ColorTranslator.FromHtml("#B4C6E7"), // On Hold
+                ColorTranslator.FromHtml("#FFD966"), // Tax Payable
+                ColorTranslator.FromHtml("#A2C4C9"), // Tax Amount Received
+                ColorTranslator.FromHtml("#EAD1DC"), // Return Filed
+                ColorTranslator.FromHtml("#D9EAD3"),  // Refund
+                ColorTranslator.FromHtml("#FFFF00") // Filed
             };
 
             Color backColor = bgColors[e.Index];
@@ -208,10 +212,12 @@ namespace Tax_Consultant_25.Frames
 
         private void Clear()
         {
-            dtpInputDate.Text = DateTime.Now.ToString();
+            DateTime today = DateTime.Now.Date;
+
+            dtpInputDate.Value = today;
+            dtpDueDate.Value = today;
             txtClientName.Clear();
             cmbAllocatedTo.SelectedIndex = 0;
-            dtpDueDate.Text = DateTime.Now.ToString();
             txtFees.Clear();
             cmbFeesStatus.SelectedIndex = 0;
             cmbWorkStatus.SelectedIndex = 0;
@@ -358,30 +364,30 @@ namespace Tax_Consultant_25.Frames
         {
             if (ROLE == "User")
             {
+                dgvUdyam.Columns["btnReply"].HeaderText = "QUERY";
+
                 foreach (DataGridViewRow row in dgvUdyam.Rows)
                 {
                     if (row.IsNewRow)
-                    {
                         continue;
-                    }
 
                     row.Cells["btnReply"].Value = "QUERY";
-                    dgvUdyam.Columns["btnReply"].HeaderText = "QUERY";
                 }
             }
             else
             {
+                dgvUdyam.Columns["btnReply"].HeaderText = "REPLY";
+
                 foreach (DataGridViewRow row in dgvUdyam.Rows)
                 {
                     if (row.IsNewRow)
-                    {
                         continue;
-                    }
 
                     row.Cells["btnReply"].Value = "REPLY";
-                    dgvUdyam.Columns["btnReply"].HeaderText = "REPLY";
                 }
             }
+
+            dgvUdyam.Columns["btnReply"].DisplayIndex = dgvUdyam.Columns.Count - 1;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -559,6 +565,13 @@ namespace Tax_Consultant_25.Frames
                 { "Return Prepaired", ColorTranslator.FromHtml("#00B0F0") },
                 { "Cancelled", ColorTranslator.FromHtml("#FF0000") },
                 { "Complete", ColorTranslator.FromHtml("#FFC000") },
+                { "Pending", ColorTranslator.FromHtml("#C9C9FF") },
+                { "In Process", ColorTranslator.FromHtml("#FFCCFF") },
+                { "On Hold", ColorTranslator.FromHtml("#B4C6E7") },
+                { "Tax Payable", ColorTranslator.FromHtml("#FFD966") },
+                { "Tax Amount Received", ColorTranslator.FromHtml("#A2C4C9") },
+                { "Return Filed", ColorTranslator.FromHtml("#EAD1DC") },
+                { "Refund", ColorTranslator.FromHtml("#D9EAD3") },
                 { "Done", ColorTranslator.FromHtml("#FFFF00") }
             };
 
