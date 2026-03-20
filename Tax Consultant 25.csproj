@@ -113,12 +113,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frames\CommonUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Frames\CommonUC.Designer.cs">
-      <DependentUpon>CommonUC.cs</DependentUpon>
-    </Compile>
     <Compile Include="Frames\ucAccounting.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -191,12 +185,6 @@
     <Compile Include="Frames\ucShowEmployeeWork.Designer.cs">
       <DependentUpon>ucShowEmployeeWork.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frames\ucShowGSTClients.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Frames\ucShowGSTClients.Designer.cs">
-      <DependentUpon>ucShowGSTClients.cs</DependentUpon>
-    </Compile>
     <Compile Include="Frames\ucShowReport.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -258,9 +246,6 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frames\CommonUC.resx">
-      <DependentUpon>CommonUC.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Frames\ucAccounting.resx">
       <DependentUpon>ucAccounting.cs</DependentUpon>
     </EmbeddedResource>
@@ -296,9 +281,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\ucShowEmployeeWork.resx">
       <DependentUpon>ucShowEmployeeWork.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Frames\ucShowGSTClients.resx">
-      <DependentUpon>ucShowGSTClients.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frames\ucShowReport.resx">
       <DependentUpon>ucShowReport.cs</DependentUpon>
