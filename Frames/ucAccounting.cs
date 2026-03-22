@@ -259,6 +259,11 @@ namespace Tax_Consultant_25.Frames
                     return;
                 }
 
+                if(!ValidateDates())
+                {
+                    return;
+                }
+
                 objPro = new clsProperties();
 
                 objPro.clientID = clientId;
@@ -309,6 +314,11 @@ namespace Tax_Consultant_25.Frames
                 if (txtWorkPeriod.Text == string.Empty)
                 {
                     MessageBox.Show("Enter Work Period", "ACCOUNTING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if(!ValidateDates())
+                {
                     return;
                 }
 
@@ -397,7 +407,9 @@ namespace Tax_Consultant_25.Frames
                     row.Cells["btnReply"].Value = "REPLY";
                     dgvAllInOne.Columns["btnReply"].HeaderText = "REPLY";
                 }
-            } 
+            }
+
+            dgvAllInOne.Columns["btnReply"].DisplayIndex = dgvAllInOne.Columns.Count - 1;
         }
 
         #endregion
@@ -438,6 +450,18 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
+        private void cmbRecurringTask_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cmbRecurringTask.Text == "NO")
+            {
+                cmbPeriodicity.Enabled = false;
+            }
+            else
+            {
+                cmbPeriodicity.Enabled = true;
+            }
+        }
+
         private void SearchClient()
         {
             try
@@ -466,6 +490,16 @@ namespace Tax_Consultant_25.Frames
             }
         }
 
+        private void dtpDueDate_ValueChanged(object sender, EventArgs e)
+        {
+            ValidateDates();
+        }
+
+        private void dtpInputDate_ValueChanged(object sender, EventArgs e)
+        {
+            ValidateDates();    
+        }
+
         private void ShowQuery()
         {
             query = new cls_Query();
@@ -481,7 +515,7 @@ namespace Tax_Consultant_25.Frames
                 }
 
                 string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
+                string client = row.Cells["Colum5"].Value?.ToString();
                 string worktype = row.Cells["WorkType"].Value.ToString();
                 string service = "ACCOUNTING";
 
@@ -515,7 +549,7 @@ namespace Tax_Consultant_25.Frames
                 }
 
                 string employee = row.Cells["EmployeeName"].Value?.ToString();
-                string client = row.Cells["ClientName"].Value?.ToString();
+                string client = row.Cells["Name"].Value?.ToString();
                 string worktype = row.Cells["WorkType"].Value.ToString();
                 string service = "ACCOUNTING";
 
@@ -579,7 +613,7 @@ namespace Tax_Consultant_25.Frames
                     dgvAllInOne.Columns["a_TradeName"].Visible = false;
                     dgvAllInOne.Columns["a_RecurringTask"].Visible = false;
                     dgvAllInOne.Columns["a_Periodicity"].Visible = false;
-                    dgvAllInOne.Columns["a_WorkPeriod"].Visible = false;
+                   // dgvAllInOne.Columns["a_WorkPeriod"].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -654,6 +688,19 @@ namespace Tax_Consultant_25.Frames
             {
                 MessageBox.Show(ex.Message.ToString(), "UC_INCOMETAX", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private bool ValidateDates()
+        {
+            if(dtpInputDate.Value.Date > dtpDueDate.Value.Date)
+            {
+                MessageBox.Show("START DATE CANNOT BE GREATER THAN DUE DATE !" ,"DATE VALIDATION", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                dtpInputDate.Focus();
+                return false;
+            }
+
+            return true;
         }
 
         #endregion

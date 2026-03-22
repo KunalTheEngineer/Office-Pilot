@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucAllInOne));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -159,6 +159,7 @@
             this.dtpInputDate.Name = "dtpInputDate";
             this.dtpInputDate.Size = new System.Drawing.Size(144, 29);
             this.dtpInputDate.TabIndex = 0;
+            this.dtpInputDate.ValueChanged += new System.EventHandler(this.dtpInputDate_ValueChanged);
             // 
             // txtTaskName
             // 
@@ -218,6 +219,7 @@
             this.dtpDueDate.Name = "dtpDueDate";
             this.dtpDueDate.Size = new System.Drawing.Size(144, 29);
             this.dtpDueDate.TabIndex = 6;
+            this.dtpDueDate.ValueChanged += new System.EventHandler(this.dtpDueDate_ValueChanged);
             // 
             // label24
             // 
@@ -363,6 +365,7 @@
             this.cmbRecurringTask.Name = "cmbRecurringTask";
             this.cmbRecurringTask.Size = new System.Drawing.Size(154, 29);
             this.cmbRecurringTask.TabIndex = 8;
+            this.cmbRecurringTask.SelectedIndexChanged += new System.EventHandler(this.cmbRecurringTask_SelectedIndexChanged);
             // 
             // lblFessStatus
             // 
@@ -574,9 +577,9 @@
             // 
             // btnReply
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Red;
-            this.btnReply.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Red;
+            this.btnReply.DefaultCellStyle = dataGridViewCellStyle2;
             this.btnReply.FillWeight = 73.48939F;
             this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReply.HeaderText = "REPLY";
