@@ -213,7 +213,8 @@
             "Tax Amount Received",
             "Return Filed",
             "Refund",
-            "Filed"});
+            "Filed",
+            "Task Completed"});
             this.cmbWorkStatus.Location = new System.Drawing.Point(754, 97);
             this.cmbWorkStatus.Name = "cmbWorkStatus";
             this.cmbWorkStatus.Size = new System.Drawing.Size(214, 28);
