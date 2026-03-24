@@ -30,6 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucPAN));
             this.dgvAllInOne = new System.Windows.Forms.DataGridView();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WorkType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cmbAllocatedTo = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -56,16 +66,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WorkType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnReply = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllInOne)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -104,6 +104,88 @@
             this.dgvAllInOne.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAllInOne_CellFormatting);
             this.dgvAllInOne.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvAllInOne_DataBindingComplete);
             this.dgvAllInOne.SelectionChanged += new System.EventHandler(this.dgvAllInOne_SelectionChanged);
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "p_InputDate";
+            this.Column2.FillWeight = 80.20885F;
+            this.Column2.HeaderText = "START DATE";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            // 
+            // ClName
+            // 
+            this.ClName.DataPropertyName = "clientName";
+            this.ClName.HeaderText = "NAME";
+            this.ClName.MinimumWidth = 6;
+            this.ClName.Name = "ClName";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "p_TradeName";
+            this.Column4.FillWeight = 132.9587F;
+            this.Column4.HeaderText = "TRADE NAME";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            // 
+            // WorkType
+            // 
+            this.WorkType.DataPropertyName = "p_TaskName";
+            this.WorkType.FillWeight = 135.721F;
+            this.WorkType.HeaderText = "TASK NAME";
+            this.WorkType.MinimumWidth = 6;
+            this.WorkType.Name = "WorkType";
+            // 
+            // EmployeeName
+            // 
+            this.EmployeeName.DataPropertyName = "p_AllocatedTo";
+            this.EmployeeName.FillWeight = 126.0884F;
+            this.EmployeeName.HeaderText = "ASSIGNED TO";
+            this.EmployeeName.MinimumWidth = 6;
+            this.EmployeeName.Name = "EmployeeName";
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "p_DueDate";
+            this.Column6.FillWeight = 73.38605F;
+            this.Column6.HeaderText = "DUE DATE";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            // 
+            // btnReply
+            // 
+            this.btnReply.FillWeight = 72.78397F;
+            this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReply.HeaderText = "REPLY";
+            this.btnReply.MinimumWidth = 6;
+            this.btnReply.Name = "btnReply";
+            this.btnReply.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnReply.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.btnReply.Text = "REPLY";
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "p_FeeStatus";
+            this.Column7.FillWeight = 81.62328F;
+            this.Column7.HeaderText = "FEES STATUS";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "p_Status";
+            this.Status.FillWeight = 118.4807F;
+            this.Status.HeaderText = "STATUS";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "p_Description";
+            this.Column3.FillWeight = 132.4815F;
+            this.Column3.HeaderText = "DESCRIPTION";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
             // 
             // panel2
             // 
@@ -194,7 +276,8 @@
             "Tax Amount Received",
             "Return Filed",
             "Refund",
-            "Done"});
+            "Done",
+            "Task Completed"});
             this.cmbWorkStatus.Location = new System.Drawing.Point(582, 90);
             this.cmbWorkStatus.Name = "cmbWorkStatus";
             this.cmbWorkStatus.Size = new System.Drawing.Size(229, 28);
@@ -417,88 +500,6 @@
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "p_InputDate";
-            this.Column2.FillWeight = 80.20885F;
-            this.Column2.HeaderText = "START DATE";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            // 
-            // ClName
-            // 
-            this.ClName.DataPropertyName = "clientName";
-            this.ClName.HeaderText = "NAME";
-            this.ClName.MinimumWidth = 6;
-            this.ClName.Name = "ClName";
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "p_TradeName";
-            this.Column4.FillWeight = 132.9587F;
-            this.Column4.HeaderText = "TRADE NAME";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            // 
-            // WorkType
-            // 
-            this.WorkType.DataPropertyName = "p_TaskName";
-            this.WorkType.FillWeight = 135.721F;
-            this.WorkType.HeaderText = "TASK NAME";
-            this.WorkType.MinimumWidth = 6;
-            this.WorkType.Name = "WorkType";
-            // 
-            // EmployeeName
-            // 
-            this.EmployeeName.DataPropertyName = "p_AllocatedTo";
-            this.EmployeeName.FillWeight = 126.0884F;
-            this.EmployeeName.HeaderText = "ASSIGNED TO";
-            this.EmployeeName.MinimumWidth = 6;
-            this.EmployeeName.Name = "EmployeeName";
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "p_DueDate";
-            this.Column6.FillWeight = 73.38605F;
-            this.Column6.HeaderText = "DUE DATE";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            // 
-            // btnReply
-            // 
-            this.btnReply.FillWeight = 72.78397F;
-            this.btnReply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnReply.HeaderText = "REPLY";
-            this.btnReply.MinimumWidth = 6;
-            this.btnReply.Name = "btnReply";
-            this.btnReply.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.btnReply.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.btnReply.Text = "REPLY";
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "p_FeeStatus";
-            this.Column7.FillWeight = 81.62328F;
-            this.Column7.HeaderText = "FEES STATUS";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            // 
-            // Status
-            // 
-            this.Status.DataPropertyName = "p_Status";
-            this.Status.FillWeight = 118.4807F;
-            this.Status.HeaderText = "STATUS";
-            this.Status.MinimumWidth = 6;
-            this.Status.Name = "Status";
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "p_Description";
-            this.Column3.FillWeight = 132.4815F;
-            this.Column3.HeaderText = "DESCRIPTION";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
             // 
             // ucPAN
             // 
