@@ -308,7 +308,8 @@
             "Return Filed",
             "Refund",
             "Filed",
-            "Other"});
+            "Other",
+            "Task Completed"});
             this.cmbWorkStatus.Location = new System.Drawing.Point(1046, 109);
             this.cmbWorkStatus.Name = "cmbWorkStatus";
             this.cmbWorkStatus.Size = new System.Drawing.Size(234, 29);

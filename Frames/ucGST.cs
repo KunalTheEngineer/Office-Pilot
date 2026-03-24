@@ -307,7 +307,7 @@ namespace Tax_Consultant_25.Frames
                 txtTradeName.ReadOnly = true;
                 txtFinancialYear.ReadOnly = true;
 
-                cmbWorkStatus.Items.Remove("Filed");
+                cmbWorkStatus.Items.Remove("Task Completed");
 
                 if (ROLE == "Admin")
                 {
@@ -367,7 +367,8 @@ namespace Tax_Consultant_25.Frames
                 ColorTranslator.FromHtml("#EAD1DC"), // Return Filed
                 ColorTranslator.FromHtml("#D9EAD3"),  // Refund
                 ColorTranslator.FromHtml("#FFFF00"), // Filed
-                ColorTranslator.FromHtml("#FCE4D6")  // Other
+                ColorTranslator.FromHtml("#FCE4D6"),  // Other
+                ColorTranslator.FromHtml("#93C47D")
             };
 
             Color backColor = bgColors[e.Index];
@@ -637,7 +638,7 @@ namespace Tax_Consultant_25.Frames
                 if (flag >= 1)
                 {
 
-                    if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "Filed")
+                    if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "Task Completed")
                     {
                         DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "GST", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -695,7 +696,8 @@ namespace Tax_Consultant_25.Frames
                 { "Return Filed", ColorTranslator.FromHtml("#EAD1DC") },
                 { "Refund", ColorTranslator.FromHtml("#D9EAD3") },
                 { "Filed", ColorTranslator.FromHtml("#FFFF00") },
-                { "Other", ColorTranslator.FromHtml("#FCE4D6") }
+                { "Other", ColorTranslator.FromHtml("#FCE4D6") },
+                { "Task Completed", ColorTranslator.FromHtml("#93C47D") }
             };
 
             if (dgvGST.Columns[e.ColumnIndex].Name == "Status")
