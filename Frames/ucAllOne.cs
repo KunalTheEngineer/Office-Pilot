@@ -66,7 +66,8 @@ namespace Tax_Consultant_25.Frames
                 ColorTranslator.FromHtml("#A2C4C9"), // Tax Amount Received
                 ColorTranslator.FromHtml("#EAD1DC"), // Return Filed
                 ColorTranslator.FromHtml("#D9EAD3"),  // Refund
-                ColorTranslator.FromHtml("#FFFF00") // DONE
+                ColorTranslator.FromHtml("#FFFF00"), // DONE
+                ColorTranslator.FromHtml("#93C47D")
             };
 
             Color backColor = bgColors[e.Index];
@@ -168,7 +169,8 @@ namespace Tax_Consultant_25.Frames
                 { "Tax Amount Received", ColorTranslator.FromHtml("#A2C4C9") },
                 { "Return Filed", ColorTranslator.FromHtml("#EAD1DC") },
                 { "Refund", ColorTranslator.FromHtml("#D9EAD3") },
-                { "Done", ColorTranslator.FromHtml("#FFFF00") }
+                { "Done", ColorTranslator.FromHtml("#FFFF00") },
+                { "Task Completed", ColorTranslator.FromHtml("#93C47D") }
             };
 
             if (dgvAllOne.Columns[e.ColumnIndex].Name == "Status")
@@ -248,7 +250,7 @@ namespace Tax_Consultant_25.Frames
                 if (flag >= 1)
                 {
 
-                    if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "Done")
+                    if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "Task Completed")
                     {
                         DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "ALL IN ONE", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -663,7 +665,7 @@ namespace Tax_Consultant_25.Frames
                 txtDescription.ReadOnly = true;
                 txtReturn.ReadOnly = true;
 
-                cmbWorkStatus.Items.Remove("Done");
+                cmbWorkStatus.Items.Remove("Task Completed");
 
                 btnSave.Enabled = false;
 
