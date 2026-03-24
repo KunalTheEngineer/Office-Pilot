@@ -66,7 +66,8 @@ namespace Tax_Consultant_25.Frames
                 ColorTranslator.FromHtml("#A2C4C9"), // Tax Amount Received
                 ColorTranslator.FromHtml("#EAD1DC"), // Return Filed
                 ColorTranslator.FromHtml("#D9EAD3"),  // Refund
-                ColorTranslator.FromHtml("#FFFF00") // DONE
+                ColorTranslator.FromHtml("#FFFF00"), // DONE
+                ColorTranslator.FromHtml("#93C47D")
             };
 
             Color backColor = bgColors[e.Index];
@@ -245,7 +246,7 @@ namespace Tax_Consultant_25.Frames
 
                 if (flag >= 1)
                 {
-                    if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "Filed")
+                    if (cmbWorkStatus.SelectedItem != null && cmbWorkStatus.SelectedItem.ToString() == "Task Completed")
                     {
                         DialogResult dial = MessageBox.Show("DO YOU WANT TO PRINT BILL ?", "TDS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -371,7 +372,8 @@ namespace Tax_Consultant_25.Frames
                 { "Tax Amount Received", ColorTranslator.FromHtml("#A2C4C9") },
                 { "Return Filed", ColorTranslator.FromHtml("#EAD1DC") },
                 { "Refund", ColorTranslator.FromHtml("#D9EAD3") },
-                { "Filed", ColorTranslator.FromHtml("#FFFF00") }
+                { "Filed", ColorTranslator.FromHtml("#FFFF00") },
+                { "Task Completed", ColorTranslator.FromHtml("#93C47D") }
             };
 
             if (dgvTDS.Columns[e.ColumnIndex].Name == "Status")
@@ -713,7 +715,7 @@ namespace Tax_Consultant_25.Frames
                 txtYear.ReadOnly = true;
                 txtDescription.ReadOnly = true;
 
-                cmbWorkStatus.Items.Remove("Filed");
+                cmbWorkStatus.Items.Remove("Task Completed");
 
                 btnSave.Enabled = false;
 
