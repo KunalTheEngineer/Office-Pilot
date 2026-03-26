@@ -31,34 +31,7 @@ namespace Tax_Consultant_25.Data_Layer
 
         #endregion
 
-        internal DataSet showIncomeTax(string service, string year)
-        {
-            objDs = new DataSet();
-
-            try
-            {
-                objCon = new clsConnection();
-                objCon.openConnection();
-                objCmd = new SqlCommand();
-                objCmd.Connection = objCon.con;
-                objCmd.CommandType = CommandType.StoredProcedure;
-                objCmd.CommandText = "usp_Reports";
-                objCmd.Parameters.AddWithValue("@intMode", 1);
-                objCmd.Parameters.AddWithValue("@workService", service);
-                objCmd.Parameters.AddWithValue("@incomeYear", year);
-                objDa = new SqlDataAdapter(objCmd);
-                objDa.Fill(objDs);
-                objCon.con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "DL_REPORTS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
-            return objDs;
-        }
-
-        internal DataSet showAccounting(string accyear)
+        internal DataSet showIncomeTax(string status, string year, string monthName)
         {
             objDs = new DataSet();
 
@@ -71,7 +44,36 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.CommandText = "usp_Reports";
                 objCmd.Parameters.AddWithValue("@intMode", 2);
-                objCmd.Parameters.AddWithValue("@accountYear", accyear);
+                objCmd.Parameters.AddWithValue("@year", year);
+                objCmd.Parameters.AddWithValue("@status", status);
+                objCmd.Parameters.AddWithValue("@monthName", monthName);
+                objDa = new SqlDataAdapter(objCmd);
+                objDa.Fill(objDs);
+                objCon.con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "DL_REPORTS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            return objDs;
+        }
+
+        internal DataSet showAccounting(string accyear, string status)
+        {
+            objDs = new DataSet();
+
+            try
+            {
+                objCon = new clsConnection();
+                objCon.openConnection();
+                objCmd = new SqlCommand();
+                objCmd.Connection = objCon.con;
+                objCmd.CommandType = CommandType.StoredProcedure;
+                objCmd.CommandText = "usp_Reports";
+                objCmd.Parameters.AddWithValue("@intMode", 3);
+                objCmd.Parameters.AddWithValue("@year", accyear);
+                objCmd.Parameters.AddWithValue("@status", status);
                 objDa = new SqlDataAdapter(objCmd);
                 objDa.Fill(objDs);
                 objCon.con.Close();
@@ -136,7 +138,33 @@ namespace Tax_Consultant_25.Data_Layer
             return objDs;
         }
 
-        internal DataSet showShopAct(string service)
+        internal DataSet showShopAct(string status)
+        {
+            objDs = new DataSet();
+
+            try
+            {
+                objCon = new clsConnection();
+                objCon.openConnection();
+                objCmd = new SqlCommand();
+                objCmd.Connection = objCon.con;
+                objCmd.CommandType = CommandType.StoredProcedure;
+                objCmd.CommandText = "usp_Reports";
+                objCmd.Parameters.AddWithValue("@intMode", 4);
+                objCmd.Parameters.AddWithValue("@status", status);
+                objDa = new SqlDataAdapter(objCmd);
+                objDa.Fill(objDs);
+                objCon.con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "DL_REPORTS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            return objDs;
+        }
+
+        internal DataSet showUdyam(string status)
         {
             objDs = new DataSet();
 
@@ -149,7 +177,7 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.CommandText = "usp_Reports";
                 objCmd.Parameters.AddWithValue("@intMode", 5);
-                objCmd.Parameters.AddWithValue("@workService", service);
+                objCmd.Parameters.AddWithValue("@status", status);
                 objDa = new SqlDataAdapter(objCmd);
                 objDa.Fill(objDs);
                 objCon.con.Close();
@@ -162,7 +190,7 @@ namespace Tax_Consultant_25.Data_Layer
             return objDs;
         }
 
-        internal DataSet showUdyam(string service)
+        internal DataSet showTDS(string status, string monthName, string year)
         {
             objDs = new DataSet();
 
@@ -175,33 +203,9 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.CommandText = "usp_Reports";
                 objCmd.Parameters.AddWithValue("@intMode", 6);
-                objCmd.Parameters.AddWithValue("@workService", service);
-                objDa = new SqlDataAdapter(objCmd);
-                objDa.Fill(objDs);
-                objCon.con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "DL_REPORTS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
-            return objDs;
-        }
-
-        internal DataSet showTDS(string service)
-        {
-            objDs = new DataSet();
-
-            try
-            {
-                objCon = new clsConnection();
-                objCon.openConnection();
-                objCmd = new SqlCommand();
-                objCmd.Connection = objCon.con;
-                objCmd.CommandType = CommandType.StoredProcedure;
-                objCmd.CommandText = "usp_Reports";
-                objCmd.Parameters.AddWithValue("@intMode", 7);
-                objCmd.Parameters.AddWithValue("@workService", service);
+                objCmd.Parameters.AddWithValue("@status", status);
+                objCmd.Parameters.AddWithValue("@year", year);
+                objCmd.Parameters.AddWithValue("@monthName", monthName);
                 objDa = new SqlDataAdapter(objCmd);
                 objDa.Fill(objDs);
                 objCon.con.Close();
