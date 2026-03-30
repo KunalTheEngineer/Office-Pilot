@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using Microsoft.ReportingServices.RdlExpressions.ExpressionHostObjectModel;
+using Tax_Consultant_25.Data_Layer;
 using Tax_Consultant_25.Frames;
 namespace Tax_Consultant_25
 {
@@ -23,8 +26,12 @@ namespace Tax_Consultant_25
 
         public string empName { get; set; }
 
+        clsConnection con;
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+
             timer1.Interval = 1000;
             timer1.Start();
 
@@ -67,6 +74,13 @@ namespace Tax_Consultant_25
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            DialogResult result = MessageBox.Show("DO YOU WANT TO TAKE BACKUP ?","BACKUP",MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+            if(result == DialogResult.Yes)
+            {
+                TakeDatabaseBackUp();
+            }
+
             Application.Exit();
         }
 
@@ -169,10 +183,10 @@ namespace Tax_Consultant_25
             }
             else
             {
-                //pnlMainForm.Controls.Clear();
-                //ucReports reports = new ucReports();
-                //reports.Dock = DockStyle.Fill;
-                //pnlMainForm.Controls.Add(reports);
+                pnlMainForm.Controls.Clear();
+                ucShowReport reports = new ucShowReport();
+                reports.Dock = DockStyle.Fill;
+                pnlMainForm.Controls.Add(reports);
             }
 
         }
@@ -234,6 +248,35 @@ namespace Tax_Consultant_25
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void TakeDatabaseBackUp()
+        {
+            try
+            {
+                string backupPath = @"E:\Desktop Softwares\BackupOfficePilot\";
+
+                if(!Directory.Exists(backupPath))
+                {
+                    Directory.CreateDirectory(backupPath);
+                }
+
+                string fileName = "DB_BACKUP" + DateTime.Now.ToString("ddMMyyyy_HHmmss") + ".bak";
+                string fullPath = Path.Combine(backupPath, fileName);
+
+                con = new clsConnection();
+
+                con.openConnection();
+                string sqlQuery = $@"BACKUP DATABASE [TC SOFTWARE] TO DISK = '{fullPath}' WITH FORMAT, INIT";
+                SqlCommand cmd = new SqlCommand(sqlQuery, con.con);
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("BACKUP CREATED SUCCESSFULLY !");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
     }
 }
