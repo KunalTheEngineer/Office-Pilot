@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -86,7 +87,7 @@ namespace Tax_Consultant_25.Data_Layer
             return objDs;
         }
 
-        internal DataSet showPanTan()
+        internal DataSet showPanTan(string status)
         {
             objDs = new DataSet();
 
@@ -98,7 +99,8 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Connection = objCon.con;
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.CommandText = "usp_Reports";
-                objCmd.Parameters.AddWithValue("@intMode", 3);
+                objCmd.Parameters.AddWithValue("@intMode", 7);
+                objCmd.Parameters.AddWithValue("@status", status);
                 objDa = new SqlDataAdapter(objCmd);
                 objDa.Fill(objDs);
                 objCon.con.Close();
@@ -111,7 +113,7 @@ namespace Tax_Consultant_25.Data_Layer
             return objDs;
         }
 
-        internal DataSet showPtecPtrc(string service, string year)
+        internal DataSet showPtecPtrc(string status, string year)
         {
             objDs = new DataSet();
 
@@ -123,9 +125,9 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Connection = objCon.con;
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.CommandText = "usp_Reports";
-                objCmd.Parameters.AddWithValue("@intMode", 4);
-                objCmd.Parameters.AddWithValue("@workService", service);
-                objCmd.Parameters.AddWithValue("@ptecYear", year);
+                objCmd.Parameters.AddWithValue("@intMode", 8);
+                objCmd.Parameters.AddWithValue("@status", status);
+                objCmd.Parameters.AddWithValue("@year", year);
                 objDa = new SqlDataAdapter(objCmd);
                 objDa.Fill(objDs);
                 objCon.con.Close();
@@ -218,7 +220,7 @@ namespace Tax_Consultant_25.Data_Layer
             return objDs;
         }
 
-        internal DataSet showGST(string service, string month)
+        internal DataSet showGST(string status, string year, string gstType, string monthName)
         {
             objDs = new DataSet();
 
@@ -230,9 +232,11 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Connection = objCon.con;
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.CommandText = "usp_Reports";
-                objCmd.Parameters.AddWithValue("@intMode", 8);
-                objCmd.Parameters.AddWithValue("@workService", service);
-                objCmd.Parameters.AddWithValue("@monthName", month);
+                objCmd.Parameters.AddWithValue("@intMode", 1);
+                objCmd.Parameters.AddWithValue("@status", status);
+                objCmd.Parameters.AddWithValue("@monthName", monthName);
+                objCmd.Parameters.AddWithValue("@gstType", gstType);
+                objCmd.Parameters.AddWithValue("@year", year);
                 objDa = new SqlDataAdapter(objCmd);
                 objDa.Fill(objDs);
                 objCon.con.Close();
@@ -244,8 +248,8 @@ namespace Tax_Consultant_25.Data_Layer
 
             return objDs;
         }
-
-        internal DataSet showAllInOne(string service)
+         
+        internal DataSet showAllInOne(string status, string year)
         {
             objDs = new DataSet();
 
@@ -258,7 +262,8 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.CommandText = "usp_Reports";
                 objCmd.Parameters.AddWithValue("@intMode", 9);
-                objCmd.Parameters.AddWithValue("@workService", service);
+                objCmd.Parameters.AddWithValue("@status", status);
+                objCmd.Parameters.AddWithValue("@year", year);
                 objDa = new SqlDataAdapter(objCmd);
                 objDa.Fill(objDs);
                 objCon.con.Close();
@@ -308,7 +313,7 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Connection = objCon.con;
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.CommandText = "usp_Reports";
-                objCmd.Parameters.AddWithValue("@intMode", 11);
+                objCmd.Parameters.AddWithValue("@intMode", 10);
                 objDa = new SqlDataAdapter(objCmd);
                 objDa.Fill(objDs);
                 objCon.con.Close();
@@ -321,7 +326,7 @@ namespace Tax_Consultant_25.Data_Layer
             return objDs;
         }
 
-        internal DataSet showEmployee()
+        internal DataSet showEmployee(string empType)
         {
             objDs = new DataSet();
 
@@ -333,7 +338,50 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Connection = objCon.con;
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.CommandText = "usp_Reports";
+                objCmd.Parameters.AddWithValue("@intMode", 11);
+                objCmd.Parameters.AddWithValue("@empType", empType);
+                objDa = new SqlDataAdapter(objCmd);
+                objDa.Fill(objDs);
+                objCon.con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "DL_REPORTS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            return objDs;
+        }
+
+        internal DataSet AllClientReport(string status, string month, int year, string clientName, int clientId)
+        {
+            objDs = new DataSet();
+
+            try
+            {
+               
+                objCon = new clsConnection();
+                objCon.openConnection();
+                objCmd = new SqlCommand();
+                objCmd.Connection = objCon.con;
+                objCmd.CommandType = CommandType.StoredProcedure;
+                objCmd.CommandText = "usp_Reports";
                 objCmd.Parameters.AddWithValue("@intMode", 12);
+                objCmd.Parameters.AddWithValue("@status", status);
+                objCmd.Parameters.AddWithValue("@monthName", month);
+                objCmd.Parameters.AddWithValue("@intYear", year);
+                //objCmd.Parameters.AddWithValue("@clientID", clientId);
+                //objCmd.Parameters.AddWithValue("@clientName", clientName);
+                // ClientId
+                if (clientId == 0)
+                    objCmd.Parameters.AddWithValue("@clientId", DBNull.Value);
+                else
+                    objCmd.Parameters.AddWithValue("@clientId", clientId);
+
+                // ClientName
+                if (string.IsNullOrWhiteSpace(clientName))
+                    objCmd.Parameters.AddWithValue("@clientName", DBNull.Value);
+                else
+                    objCmd.Parameters.AddWithValue("@clientName", clientName);
                 objDa = new SqlDataAdapter(objCmd);
                 objDa.Fill(objDs);
                 objCon.con.Close();
