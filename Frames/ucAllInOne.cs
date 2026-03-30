@@ -175,9 +175,10 @@ namespace Tax_Consultant_25.Frames
             txtYear.Clear();
 
             DateTime today = DateTime.Now.Date;
-
-            dtpInputDate.Value = today;
+            
             dtpDueDate.Value = today;
+            dtpInputDate.Value = today;
+            
 
             cmbAllocatedTo.SelectedIndex = 0;
             cmbRecurringTask.SelectedIndex = 0;
@@ -627,7 +628,7 @@ namespace Tax_Consultant_25.Frames
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString(), "UC_ALLINONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+             //   MessageBox.Show(ex.Message.ToString(), "UC_ALLINONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
