@@ -517,8 +517,9 @@ namespace Tax_Consultant_25.Frames
         {
             DateTime today = DateTime.Now.Date;
 
-            dtpInputDate.Value = today;
             dtpDueDate.Value = today;
+            dtpInputDate.Value = today;
+            
 
             txtClientName.Clear();
             txtTaskName.Clear();
