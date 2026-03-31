@@ -42,6 +42,10 @@
             this.cmbMonth = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.lblEmployee = new System.Windows.Forms.Label();
+            this.cmbEmployee = new System.Windows.Forms.ComboBox();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +72,7 @@
             // 
             this.btnShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnShow.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnShow.Location = new System.Drawing.Point(1222, 4);
+            this.btnShow.Location = new System.Drawing.Point(413, 39);
             this.btnShow.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(132, 42);
@@ -91,7 +95,10 @@
             "TDS",
             "PAN/TAN",
             "PTEC/PTRC",
-            "OTHER SERVICES"});
+            "OTHER SERVICES",
+            "CLIENTS",
+            "EMPLOYEES",
+            "SPECIFIC CLIENT"});
             this.cmbReportType.Location = new System.Drawing.Point(101, 3);
             this.cmbReportType.Name = "cmbReportType";
             this.cmbReportType.Size = new System.Drawing.Size(142, 29);
@@ -112,11 +119,15 @@
             this.flowLayoutPanel1.Controls.Add(this.cmbGSTType);
             this.flowLayoutPanel1.Controls.Add(this.lblMonth);
             this.flowLayoutPanel1.Controls.Add(this.cmbMonth);
+            this.flowLayoutPanel1.Controls.Add(this.lblEmployee);
+            this.flowLayoutPanel1.Controls.Add(this.cmbEmployee);
+            this.flowLayoutPanel1.Controls.Add(this.lblSearch);
+            this.flowLayoutPanel1.Controls.Add(this.txtSearch);
             this.flowLayoutPanel1.Controls.Add(this.btnShow);
             this.flowLayoutPanel1.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1372, 59);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1322, 116);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -221,9 +232,9 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.reportViewer1);
-            this.panel1.Location = new System.Drawing.Point(4, 69);
+            this.panel1.Location = new System.Drawing.Point(4, 125);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1318, 651);
+            this.panel1.Size = new System.Drawing.Size(1318, 595);
             this.panel1.TabIndex = 5;
             // 
             // reportViewer1
@@ -232,8 +243,50 @@
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(1318, 651);
+            this.reportViewer1.Size = new System.Drawing.Size(1318, 595);
             this.reportViewer1.TabIndex = 1;
+            // 
+            // lblEmployee
+            // 
+            this.lblEmployee.AutoSize = true;
+            this.lblEmployee.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployee.Location = new System.Drawing.Point(1220, 0);
+            this.lblEmployee.Name = "lblEmployee";
+            this.lblEmployee.Size = new System.Drawing.Size(56, 21);
+            this.lblEmployee.TabIndex = 22;
+            this.lblEmployee.Text = "TYPE:";
+            // 
+            // cmbEmployee
+            // 
+            this.cmbEmployee.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEmployee.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEmployee.FormattingEnabled = true;
+            this.cmbEmployee.Items.AddRange(new object[] {
+            "User",
+            "Admin"});
+            this.cmbEmployee.Location = new System.Drawing.Point(3, 38);
+            this.cmbEmployee.Name = "cmbEmployee";
+            this.cmbEmployee.Size = new System.Drawing.Size(170, 29);
+            this.cmbEmployee.TabIndex = 23;
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Font = new System.Drawing.Font("Cambria", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearch.Location = new System.Drawing.Point(179, 35);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(78, 21);
+            this.lblSearch.TabIndex = 24;
+            this.lblSearch.Text = "SEARCH:";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(263, 38);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(142, 27);
+            this.txtSearch.TabIndex = 25;
+            this.txtSearch.Leave += new System.EventHandler(this.txtSearch_Leave);
             // 
             // ucShowReport
             // 
@@ -266,5 +319,9 @@
         private System.Windows.Forms.ComboBox cmbMonth;
         private System.Windows.Forms.Panel panel1;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.Windows.Forms.Label lblEmployee;
+        private System.Windows.Forms.ComboBox cmbEmployee;
+        private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }
