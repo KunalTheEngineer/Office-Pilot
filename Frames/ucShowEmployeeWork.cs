@@ -131,7 +131,7 @@ namespace Tax_Consultant_25.Frames
 
                 string status = row.Cells["status"].Value.ToString();
 
-                if(status == "Complete")
+                if(status == "Filed" || status == "Done")
                 {
                     row.DefaultCellStyle.BackColor = Color.LightGreen;
                 }
