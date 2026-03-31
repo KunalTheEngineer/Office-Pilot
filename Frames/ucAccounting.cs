@@ -218,26 +218,35 @@ namespace Tax_Consultant_25.Frames
 
             if (dgvAllInOne.Rows.Count > 0)
             {
-                dtpInputDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[2].Value.ToString();
-                txtClientName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[3].Value.ToString();
-                txtTaskName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[4].Value.ToString();
-                txtYear.Text = dgvAllInOne.Rows[objPro.rowID].Cells[5].Value.ToString();
-                dtpDueDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[6].Value.ToString();
-                cmbAllocatedTo.Text = dgvAllInOne.Rows[objPro.rowID].Cells[7].Value.ToString().Trim();
-                cmbWorkStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
-                txtDescription.Text = dgvAllInOne.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
-                txtTradeName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[10].Value.ToString().Trim();
-                txtWorkPeriod.Text = dgvAllInOne.Rows[objPro.rowID].Cells[11].Value.ToString();
-                cmbRecurringTask.Text = dgvAllInOne.Rows[objPro.rowID].Cells[12].Value.ToString();
-                cmbPeriodicity.Text = dgvAllInOne.Rows[objPro.rowID].Cells[13].Value.ToString();
-                tempAccId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[14].Value.ToString());
-                tempClientId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[15].Value.ToString());
-                tempClientName = dgvAllInOne.Rows[objPro.rowID].Cells[7].Value.ToString().Trim();
+                try
+                {
+                    dtpInputDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[2].Value.ToString();
+                    txtClientName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[3].Value.ToString();
+                    txtTaskName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[4].Value.ToString();
+                    txtYear.Text = dgvAllInOne.Rows[objPro.rowID].Cells[5].Value.ToString();
+                    dtpDueDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[6].Value.ToString();
+                    cmbAllocatedTo.Text = dgvAllInOne.Rows[objPro.rowID].Cells[7].Value.ToString().Trim();
+                    cmbWorkStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
+                    txtDescription.Text = dgvAllInOne.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
+                    txtTradeName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[10].Value.ToString().Trim();
+                    txtWorkPeriod.Text = dgvAllInOne.Rows[objPro.rowID].Cells[11].Value.ToString();
+                    cmbRecurringTask.Text = dgvAllInOne.Rows[objPro.rowID].Cells[12].Value.ToString();
+                    cmbPeriodicity.Text = dgvAllInOne.Rows[objPro.rowID].Cells[13].Value.ToString();
+                    tempAccId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[14].Value.ToString());
+                    tempClientId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[15].Value.ToString());
+                    tempClientName = dgvAllInOne.Rows[objPro.rowID].Cells[7].Value.ToString().Trim();
 
-                CLIENTNAME = dgvAllInOne.Rows[objPro.rowID].Cells[3].Value.ToString();
+                    CLIENTNAME = dgvAllInOne.Rows[objPro.rowID].Cells[3].Value.ToString();
 
-                GetClientAddress();
+                    GetClientAddress();
 
+                }
+                catch (Exception)
+                {
+
+                }
+
+                
             }
 
             if (e.ColumnIndex == dgvAllInOne.Columns["btnReply"].Index)
@@ -606,8 +615,9 @@ namespace Tax_Consultant_25.Frames
 
             DateTime today = DateTime.Now.Date;
 
-            dtpInputDate.Value = today;
             dtpDueDate.Value = today;
+            dtpInputDate.Value = today;
+            
 
             cmbAllocatedTo.SelectedIndex = 0;
             cmbRecurringTask.SelectedIndex = 0;
