@@ -123,6 +123,10 @@ namespace Tax_Consultant_25.Frames
             txtPeriod.Clear();
             txtFinancialYear.Clear();
 
+            DateTime today = DateTime.Now.Date;
+            dtpDueDate.Value = today;
+            dtpInputDate.Value = today;
+
             if (ROLE == "Admin")
             {
                 btnSave.Enabled = true;
