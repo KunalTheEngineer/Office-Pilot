@@ -627,9 +627,9 @@ namespace Tax_Consultant_25.Frames
             txtClientName.Clear();
             cmbAllocatedTo.SelectedIndex = 0;
             DateTime today = DateTime.Now.Date;
-
-            dtpInputDate.Value = today;
             dtpDueDate.Value = today;
+            dtpInputDate.Value = today;
+            
             txtYear.Clear();
             txtFessAmt.Clear();
             cmbFeesStatus.SelectedIndex = 0;
