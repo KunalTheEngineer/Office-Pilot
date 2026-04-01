@@ -276,7 +276,7 @@ namespace Tax_Consultant_25.Data_Layer
             return objDs;
         }
 
-        internal DataSet showInvoices()
+        internal DataSet showInvoices(string monthName, int year)
         {
             objDs = new DataSet();
 
@@ -288,7 +288,9 @@ namespace Tax_Consultant_25.Data_Layer
                 objCmd.Connection = objCon.con;
                 objCmd.CommandType = CommandType.StoredProcedure;
                 objCmd.CommandText = "usp_Reports";
-                objCmd.Parameters.AddWithValue("@intMode", 10);
+                objCmd.Parameters.AddWithValue("@intMode", 13);
+                objCmd.Parameters.AddWithValue("@monthName", monthName);
+                objCmd.Parameters.AddWithValue("@intYear", year);
                 objDa = new SqlDataAdapter(objCmd);
                 objDa.Fill(objDs);
                 objCon.con.Close();
