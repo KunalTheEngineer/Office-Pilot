@@ -98,7 +98,6 @@
     <Compile Include="Data Layer\cls_TdsDL.cs" />
     <Compile Include="Data Layer\cls_UdyamDL.cs" />
     <Compile Include="Data Layer\cls_WorkTypeDL.cs" />
-    <Compile Include="Data Layer\FormDataInfoEventArgs.cs" />
     <Compile Include="DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
@@ -355,10 +354,8 @@
     <Content Include="Image\icons8-delete-30.png" />
     <Content Include="Image\icons8-delete-60.png" />
     <Content Include="Image\icons8-save-30.png" />
-    <Content Include="Image\icons8-save-48.png" />
     <Content Include="Image\icons8-update-30.png" />
     <Content Include="Image\ic_accounting.png" />
-    <Content Include="Image\ic_all_in_one %281%29.png" />
     <Content Include="Image\ic_assigned_to.png" />
     <Content Include="Image\ic_client_registration.png" />
     <Content Include="Image\ic_employee.png" />
