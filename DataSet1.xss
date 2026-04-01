@@ -13,13 +13,13 @@
     <Shape ID="DesignTable:dtShopAct" ZOrder="10" X="749" Y="45" Height="194" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="190" />
     <Shape ID="DesignTable:dtUdyam" ZOrder="9" X="912" Y="51" Height="194" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="190" />
     <Shape ID="DesignTable:dtTDS" ZOrder="8" X="1077" Y="53" Height="171" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="167" />
-    <Shape ID="DesignTable:dtBills" ZOrder="7" X="578" Y="332" Height="217" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="213" />
+    <Shape ID="DesignTable:dtBills" ZOrder="7" X="399" Y="328" Height="217" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="213" />
     <Shape ID="DesignTable:dtGST" ZOrder="6" X="1408" Y="57" Height="194" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="190" />
     <Shape ID="DesignTable:dtAllInOne" ZOrder="5" X="1237" Y="53" Height="217" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="213" />
     <Shape ID="DesignTable:dtInvoice" ZOrder="4" X="59" Y="322" Height="217" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="213" />
     <Shape ID="DesignTable:dtClients" ZOrder="3" X="1582" Y="62" Height="309" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="305" />
-    <Shape ID="DesignTable:dtEmployee" ZOrder="2" X="405" Y="329" Height="171" Width="153" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="167" />
-    <Shape ID="DesignTable:dtSpecificClient" ZOrder="1" X="746" Y="332" Height="194" Width="180" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="190" />
+    <Shape ID="DesignTable:dtEmployee" ZOrder="2" X="230" Y="327" Height="171" Width="153" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="167" />
+    <Shape ID="DesignTable:dtSpecificClient" ZOrder="1" X="558" Y="329" Height="194" Width="180" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="190" />
   </Shapes>
   <Connectors />
 </DiagramLayout>
