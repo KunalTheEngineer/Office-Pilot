@@ -167,12 +167,6 @@
     <Compile Include="Frames\ucPtecPtrc.Designer.cs">
       <DependentUpon>ucPtecPtrc.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frames\ucReports.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Frames\ucReports.Designer.cs">
-      <DependentUpon>ucReports.cs</DependentUpon>
-    </Compile>
     <Compile Include="Frames\ucShopAct.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -273,9 +267,6 @@
     <EmbeddedResource Include="Frames\ucPtecPtrc.resx">
       <DependentUpon>ucPtecPtrc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frames\ucReports.resx">
-      <DependentUpon>ucReports.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Frames\ucShopAct.resx">
       <DependentUpon>ucShopAct.cs</DependentUpon>
     </EmbeddedResource>
@@ -317,6 +308,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Reports\rptAccounting.rdlc" />
     <EmbeddedResource Include="Reports\rptAllInOne.rdlc" />
@@ -328,6 +320,7 @@
     <EmbeddedResource Include="Reports\rptPanTan.rdlc" />
     <EmbeddedResource Include="Reports\rptPtecPtrc.rdlc" />
     <EmbeddedResource Include="Reports\rptShopAct.rdlc" />
+    <EmbeddedResource Include="Reports\rptSpecificClient.rdlc" />
     <EmbeddedResource Include="Reports\rptTDS.rdlc" />
     <EmbeddedResource Include="Reports\rptUdyam.rdlc" />
     <None Include="DataSet1.xsc">
@@ -378,6 +371,8 @@
     <Content Include="Image\ic_shopact.png" />
     <Content Include="Image\ic_tds.png" />
     <Content Include="Image\ic_udyam.png" />
+    <Content Include="Image\Other Serives.png" />
+    <Content Include="Image\sunriselogo.jpg" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
