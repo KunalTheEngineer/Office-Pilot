@@ -30,8 +30,6 @@ namespace Tax_Consultant_25
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-
             timer1.Interval = 1000;
             timer1.Start();
 
@@ -74,14 +72,13 @@ namespace Tax_Consultant_25
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult result = MessageBox.Show("DO YOU WANT TO TAKE BACKUP ?","BACKUP",MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("DO YOU WANT TO TAKE BACKUP ?","BACKUP",MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if(result == DialogResult.Yes)
             {
                 TakeDatabaseBackUp();
             }
 
-            Application.Exit();
         }
 
         private void pctGST_Click(object sender, EventArgs e)
