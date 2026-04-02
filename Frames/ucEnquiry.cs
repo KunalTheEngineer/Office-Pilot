@@ -65,31 +65,40 @@ namespace Tax_Consultant_25.Frames
 
         private void dgvEnquiry_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            btnSave.Enabled = false;
-
-            objPro = new clsProperties();
-
-            objPro.rowID = e.RowIndex;  
-
-            if(dgvEnquiry.Rows.Count > 0)
+            try
             {
-                txtName.Text = dgvEnquiry.Rows[objPro.rowID].Cells[2].Value.ToString();
-                txtService.Text = dgvEnquiry.Rows[objPro.rowID].Cells[3].Value.ToString();
-                txtMobile.Text = dgvEnquiry.Rows[objPro.rowID].Cells[4].Value.ToString();
-                dtpTime.Text = dgvEnquiry.Rows[objPro.rowID].Cells[5].Value.ToString();
-                enqId = Convert.ToInt32(dgvEnquiry.Rows[objPro.rowID].Cells[6].Value.ToString());
-                txtEmailId.Text = dgvEnquiry.Rows[objPro.rowID].Cells[7].Value.ToString();
+                btnSave.Enabled = false;
+
+                objPro = new clsProperties();
+
+                objPro.rowID = e.RowIndex;
+
+                if (dgvEnquiry.Rows.Count > 0)
+                {
+                    txtName.Text = dgvEnquiry.Rows[objPro.rowID].Cells[2].Value.ToString();
+                    txtService.Text = dgvEnquiry.Rows[objPro.rowID].Cells[3].Value.ToString();
+                    txtMobile.Text = dgvEnquiry.Rows[objPro.rowID].Cells[4].Value.ToString();
+                    dtpTime.Text = dgvEnquiry.Rows[objPro.rowID].Cells[5].Value.ToString();
+                    enqId = Convert.ToInt32(dgvEnquiry.Rows[objPro.rowID].Cells[6].Value.ToString());
+                    txtEmailId.Text = dgvEnquiry.Rows[objPro.rowID].Cells[7].Value.ToString();
+                }
+
+                if (e.ColumnIndex == dgvEnquiry.Columns["btnFeedback"].Index)
+                {
+                    frm_Feedback feed = new frm_Feedback();
+                    feed.name = txtName.Text;
+                    feed.service = txtService.Text;
+                    feed.mobile = txtMobile.Text;
+                    feed.enqId = enqId;
+                    feed.ShowDialog();
+                }
+            }
+            catch (Exception)
+            {
+                
             }
 
-            if(e.ColumnIndex == dgvEnquiry.Columns["btnFeedback"].Index)
-            {
-                frm_Feedback feed = new frm_Feedback();
-                feed.name = txtName.Text;
-                feed.service = txtService.Text;
-                feed.mobile = txtMobile.Text;
-                feed.enqId = enqId;
-                feed.ShowDialog();
-            }
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
