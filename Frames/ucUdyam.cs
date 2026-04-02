@@ -610,32 +610,34 @@ namespace Tax_Consultant_25.Frames
 
         private void dgvUdyam_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            btnSave.Enabled = false;
-
-            objPro = new clsProperties();
-
-            objPro.rowID = e.RowIndex;
-
-            if (dgvUdyam.Rows.Count > 0)
+            try
             {
-                dtpInputDate.Text = dgvUdyam.Rows[objPro.rowID].Cells[2].Value.ToString();
-                txtClientName.Text = dgvUdyam.Rows[objPro.rowID].Cells[3].Value.ToString();
-                txtTradeName.Text = dgvUdyam.Rows[objPro.rowID].Cells[4].Value.ToString();
-                txtTaskName.Text = dgvUdyam.Rows[objPro.rowID].Cells[5].Value.ToString();
-                cmbAllocatedTo.Text = dgvUdyam.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
-                dtpDueDate.Text = dgvUdyam.Rows[objPro.rowID].Cells[7].Value.ToString();
-                cmbWorkStatus.Text = dgvUdyam.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
-                cmbFeesStatus.Text = dgvUdyam.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
-                txtDescription.Text = dgvUdyam.Rows[objPro.rowID].Cells[10].Value.ToString();
-                txtFees.Text = dgvUdyam.Rows[objPro.rowID].Cells[11].Value.ToString();
-                tempUdyamId = Convert.ToInt32(dgvUdyam.Rows[objPro.rowID].Cells[12].Value.ToString());
-                clientId = Convert.ToInt32(dgvUdyam.Rows[objPro.rowID].Cells[13].Value.ToString());
-                tempEmployeeName = dgvUdyam.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
+                btnSave.Enabled = false;
 
-                CLIENTNAME = dgvUdyam.Rows[objPro.rowID].Cells[3].Value.ToString();
+                objPro = new clsProperties();
 
-                GetClientAddress();
-            }
+                objPro.rowID = e.RowIndex;
+
+                if (dgvUdyam.Rows.Count > 0)
+                {
+                    dtpInputDate.Text = dgvUdyam.Rows[objPro.rowID].Cells[2].Value.ToString();
+                    txtClientName.Text = dgvUdyam.Rows[objPro.rowID].Cells[3].Value.ToString();
+                    txtTradeName.Text = dgvUdyam.Rows[objPro.rowID].Cells[4].Value.ToString();
+                    txtTaskName.Text = dgvUdyam.Rows[objPro.rowID].Cells[5].Value.ToString();
+                    cmbAllocatedTo.Text = dgvUdyam.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
+                    dtpDueDate.Text = dgvUdyam.Rows[objPro.rowID].Cells[7].Value.ToString();
+                    cmbWorkStatus.Text = dgvUdyam.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
+                    cmbFeesStatus.Text = dgvUdyam.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
+                    txtDescription.Text = dgvUdyam.Rows[objPro.rowID].Cells[10].Value.ToString();
+                    txtFees.Text = dgvUdyam.Rows[objPro.rowID].Cells[11].Value.ToString();
+                    tempUdyamId = Convert.ToInt32(dgvUdyam.Rows[objPro.rowID].Cells[12].Value.ToString());
+                    clientId = Convert.ToInt32(dgvUdyam.Rows[objPro.rowID].Cells[13].Value.ToString());
+                    tempEmployeeName = dgvUdyam.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
+
+                    CLIENTNAME = dgvUdyam.Rows[objPro.rowID].Cells[3].Value.ToString();
+
+                    GetClientAddress();
+                }
 
                 if (e.ColumnIndex == dgvUdyam.Columns["btnReply"].Index)
                 {
@@ -649,6 +651,12 @@ namespace Tax_Consultant_25.Frames
                     query.taskName = txtTaskName.Text;
                     query.ShowDialog();
                 }
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         private void txtClientName_TextChanged(object sender, EventArgs e)
