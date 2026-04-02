@@ -830,9 +830,9 @@ namespace Tax_Consultant_25.Frames
                     query.ShowDialog();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message.ToString(), "UC_GST", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                
             }
         }
 
