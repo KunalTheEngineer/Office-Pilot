@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvShowEmployeeWork = new System.Windows.Forms.DataGridView();
             this.Service = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,7 +48,6 @@
             // 
             this.dgvShowEmployeeWork.AllowUserToAddRows = false;
             this.dgvShowEmployeeWork.AllowUserToDeleteRows = false;
-            this.dgvShowEmployeeWork.AllowUserToResizeColumns = false;
             this.dgvShowEmployeeWork.AllowUserToResizeRows = false;
             this.dgvShowEmployeeWork.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvShowEmployeeWork.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -74,7 +73,6 @@
             this.dgvShowEmployeeWork.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvShowEmployeeWork.Size = new System.Drawing.Size(1320, 716);
             this.dgvShowEmployeeWork.TabIndex = 3;
-//            this.dgvShowEmployeeWork.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvShowEmployeeWork_CellClick);
             this.dgvShowEmployeeWork.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvShowEmployeeWork_CellFormatting);
             this.dgvShowEmployeeWork.SelectionChanged += new System.EventHandler(this.dgvShowEmployeeWork_SelectionChanged);
             // 
@@ -120,10 +118,10 @@
             // 
             // btnQuery
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnQuery.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnQuery.DefaultCellStyle = dataGridViewCellStyle1;
             this.btnQuery.FillWeight = 53.70379F;
             this.btnQuery.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnQuery.HeaderText = "QUERY";
