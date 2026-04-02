@@ -73,9 +73,9 @@ namespace Tax_Consultant_25.Frames
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message.ToString(), "UC_EMPLOYEE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                
             }
         }
     }
