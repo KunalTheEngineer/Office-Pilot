@@ -428,48 +428,56 @@ namespace Tax_Consultant_25.Frames
 
         private void dgvPTEC_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            btnSave.Enabled = false;
-
-            objPro = new clsProperties();
-
-            objPro.rowID = e.RowIndex;
-
-            if (dgvPTEC.Rows.Count > 0)
+            try
             {
-                dtpInputDate.Text = dgvPTEC.Rows[objPro.rowID].Cells[2].Value.ToString();
-                txtClientName.Text = dgvPTEC.Rows[objPro.rowID].Cells[3].Value.ToString();
-                txtTradeName.Text = dgvPTEC.Rows[objPro.rowID].Cells[4].Value.ToString();
-                txtTaskName.Text = dgvPTEC.Rows[objPro.rowID].Cells[5].Value.ToString();
-                cmbAllocatedTo.Text = dgvPTEC.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
-                dtpDueDate.Text = dgvPTEC.Rows[objPro.rowID].Cells[7].Value.ToString();
-                cmbFeesStatus.Text = dgvPTEC.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
-                cmbWorkStatus.Text = dgvPTEC.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
-                 txtDescription.Text = dgvPTEC.Rows[objPro.rowID].Cells[10].Value.ToString().Trim();
-                cmbRecurringTask.Text = dgvPTEC.Rows[objPro.rowID].Cells[11].Value.ToString().Trim();
-                cmbPeriodicity.Text = dgvPTEC.Rows[objPro.rowID].Cells[12].Value.ToString().Trim();
-                txtYear.Text = dgvPTEC.Rows[objPro.rowID].Cells[13].Value.ToString().Trim();
-                txtFees.Text = dgvPTEC.Rows[objPro.rowID].Cells[14].Value.ToString();
-                clientId = Convert.ToInt32(dgvPTEC.Rows[objPro.rowID].Cells[15].Value.ToString());
-                tempPtecId = Convert.ToInt32(dgvPTEC.Rows[objPro.rowID].Cells[16].Value.ToString());
-                tempEmployeeName = dgvPTEC.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
+                btnSave.Enabled = false;
 
-                CLIENTNAME = dgvPTEC.Rows[objPro.rowID].Cells[3].Value.ToString();
+                objPro = new clsProperties();
 
-                GetClientAddress();
+                objPro.rowID = e.RowIndex;
+
+                if (dgvPTEC.Rows.Count > 0)
+                {
+                    dtpInputDate.Text = dgvPTEC.Rows[objPro.rowID].Cells[2].Value.ToString();
+                    txtClientName.Text = dgvPTEC.Rows[objPro.rowID].Cells[3].Value.ToString();
+                    txtTradeName.Text = dgvPTEC.Rows[objPro.rowID].Cells[4].Value.ToString();
+                    txtTaskName.Text = dgvPTEC.Rows[objPro.rowID].Cells[5].Value.ToString();
+                    cmbAllocatedTo.Text = dgvPTEC.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
+                    dtpDueDate.Text = dgvPTEC.Rows[objPro.rowID].Cells[7].Value.ToString();
+                    cmbFeesStatus.Text = dgvPTEC.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
+                    cmbWorkStatus.Text = dgvPTEC.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
+                    txtDescription.Text = dgvPTEC.Rows[objPro.rowID].Cells[10].Value.ToString().Trim();
+                    cmbRecurringTask.Text = dgvPTEC.Rows[objPro.rowID].Cells[11].Value.ToString().Trim();
+                    cmbPeriodicity.Text = dgvPTEC.Rows[objPro.rowID].Cells[12].Value.ToString().Trim();
+                    txtYear.Text = dgvPTEC.Rows[objPro.rowID].Cells[13].Value.ToString().Trim();
+                    txtFees.Text = dgvPTEC.Rows[objPro.rowID].Cells[14].Value.ToString();
+                    clientId = Convert.ToInt32(dgvPTEC.Rows[objPro.rowID].Cells[15].Value.ToString());
+                    tempPtecId = Convert.ToInt32(dgvPTEC.Rows[objPro.rowID].Cells[16].Value.ToString());
+                    tempEmployeeName = dgvPTEC.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
+
+                    CLIENTNAME = dgvPTEC.Rows[objPro.rowID].Cells[3].Value.ToString();
+
+                    GetClientAddress();
+                }
+
+                if (e.ColumnIndex == dgvPTEC.Columns["btnReply"].Index)
+                {
+                    frm_Query query = new frm_Query(tempEmployeeName);
+
+                    query.workId = tempPtecId;
+                    query.role = ROLE;
+                    query.employeeName = tempEmployeeName;
+                    query.serviceName = "PTEC/PTRC";
+                    query.clientName = txtClientName.Text;
+                    query.taskName = txtTaskName.Text;
+                    query.ShowDialog();
+                }
+            }
+            catch (Exception)
+            {
+
             }
 
-            if (e.ColumnIndex == dgvPTEC.Columns["btnReply"].Index)
-            {
-                frm_Query query = new frm_Query(tempEmployeeName);
-
-                query.workId = tempPtecId;
-                query.role = ROLE;
-                query.employeeName = tempEmployeeName;
-                query.serviceName = "PTEC/PTRC";
-                query.clientName = txtClientName.Text;
-                query.taskName = txtTaskName.Text;
-                query.ShowDialog();
-            }
         }
 
         #endregion
