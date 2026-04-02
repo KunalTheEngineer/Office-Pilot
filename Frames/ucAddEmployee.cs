@@ -81,10 +81,9 @@ namespace Tax_Consultant_25.Frames
                     cmbRole.Text = dgvEmployee.Rows[objPro.rowID].Cells[6].Value.ToString();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message.ToString(), "UC_EMPLOYEE_DATA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                
             }
         }
 
