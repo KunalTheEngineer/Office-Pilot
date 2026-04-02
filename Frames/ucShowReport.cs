@@ -429,36 +429,36 @@ namespace Tax_Consultant_25.Frames
                     }
                 }
 
+                // INVOICES REPORT
+                if(rptID == 13)
+                {
+                    this.reportViewer1.Refresh();
 
-                ////INVOICES REPORT
-                //if(rptId == 11)
-                //{
-                //    this.reportViewer1.Refresh();
-                //    month = cmbMonth.Text;
+                    MONTHNAME = cmbMonth.Text;
+                    INTYEAR = DateTime.Now.Year;
 
-                //    report = new cls_ReportsDL();
-                //    ds = report.showInvoices();
+                    report = new cls_ReportsDL();
+                    ds = report.showInvoices(MONTHNAME, INTYEAR);
 
-                //    if (ds.Tables[0].Rows.Count > 0)
-                //    {
-                //        dt = new DataTable();
-                //        dt = ds.Tables[0];
-                //        reportViewer1.LocalReport.ReportEmbeddedResource = "Tax_Consultant_25.Reports.rptInvoices.rdlc";
-                //        reportViewer1.LocalReport.DataSources.Clear();
-                //        ReportDataSource rds = new ReportDataSource("DataSet1", dt);
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        dt = new DataTable();
+                        dt = ds.Tables[0];
+                        reportViewer1.LocalReport.ReportEmbeddedResource = "Tax_Consultant_25.Reports.rptInvoices.rdlc";
+                        reportViewer1.LocalReport.DataSources.Clear();
+                        ReportDataSource rds = new ReportDataSource("DataSet1", dt);
 
-                //        reportViewer1.LocalReport.DataSources.Add(rds);
-                //        rds.Value = dt;
+                        reportViewer1.LocalReport.DataSources.Add(rds);
+                        rds.Value = dt;
 
-                //        this.reportViewer1.LocalReport.Refresh();
-                //        reportViewer1.RefreshReport();
-                //    }
-                //    else
-                //    {
-                //        MessageBox.Show("No Records Found...");
-                //    }
-                //}
-
+                        this.reportViewer1.LocalReport.Refresh();
+                        reportViewer1.RefreshReport();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No Records Found...");
+                    }
+                }
 
             }
             catch (Exception ex)
@@ -686,6 +686,24 @@ namespace Tax_Consultant_25.Frames
                 cmbMonth.Visible = true;
 
                 rptID = 12;
+            }
+            else
+            {
+                cmbGSTType.Visible = false;
+                lblGSTType.Visible = false;
+                lblIncomeYear.Visible = false;
+                txtIncomeYear.Visible = false;
+                lblEmployee.Visible = false;
+                cmbEmployee.Visible = false;
+                lblSearch.Visible = false;
+                txtSearch.Visible = false;
+                lblStatus.Visible = false;
+                cmbStatus.Visible = false;
+               
+                lblMonth.Visible = true;
+                cmbMonth.Visible = true;
+
+                rptID = 13;
             }
         }
 

@@ -40,12 +40,12 @@
             this.cmbGSTType = new System.Windows.Forms.ComboBox();
             this.lblMonth = new System.Windows.Forms.Label();
             this.cmbMonth = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.lblEmployee = new System.Windows.Forms.Label();
             this.cmbEmployee = new System.Windows.Forms.ComboBox();
             this.lblSearch = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -98,7 +98,8 @@
             "OTHER SERVICES",
             "CLIENTS",
             "EMPLOYEES",
-            "SPECIFIC CLIENT"});
+            "SPECIFIC CLIENT",
+            "INVOICES"});
             this.cmbReportType.Location = new System.Drawing.Point(101, 3);
             this.cmbReportType.Name = "cmbReportType";
             this.cmbReportType.Size = new System.Drawing.Size(142, 29);
@@ -229,23 +230,6 @@
             this.cmbMonth.Size = new System.Drawing.Size(153, 29);
             this.cmbMonth.TabIndex = 4;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.reportViewer1);
-            this.panel1.Location = new System.Drawing.Point(4, 125);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1318, 595);
-            this.panel1.TabIndex = 5;
-            // 
-            // reportViewer1
-            // 
-            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(1318, 595);
-            this.reportViewer1.TabIndex = 1;
-            // 
             // lblEmployee
             // 
             this.lblEmployee.AutoSize = true;
@@ -287,6 +271,23 @@
             this.txtSearch.Size = new System.Drawing.Size(142, 27);
             this.txtSearch.TabIndex = 25;
             this.txtSearch.Leave += new System.EventHandler(this.txtSearch_Leave);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.reportViewer1);
+            this.panel1.Location = new System.Drawing.Point(4, 125);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1318, 595);
+            this.panel1.TabIndex = 5;
+            // 
+            // reportViewer1
+            // 
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(1318, 595);
+            this.reportViewer1.TabIndex = 1;
             // 
             // ucShowReport
             // 
