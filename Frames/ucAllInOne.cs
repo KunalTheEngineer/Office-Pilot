@@ -687,6 +687,7 @@ namespace Tax_Consultant_25.Frames
             }
 
             dgvAllInOne.Columns["btnReply"].DisplayIndex = dgvAllInOne.Columns.Count - 1;
+
         }
 
         private void dgvAllInOne_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
