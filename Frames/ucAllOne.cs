@@ -382,50 +382,59 @@ namespace Tax_Consultant_25.Frames
 
         private void dgvAllOne_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            btnSave.Enabled = false;
-
-            objPro = new clsProperties();
-
-            objPro.rowID = e.RowIndex;
-
-            if (dgvAllOne.Rows.Count >= 0)
+            try
             {
-                dtpInputDate.Text = dgvAllOne.Rows[objPro.rowID].Cells[2].Value.ToString();
-                txtClientName.Text = dgvAllOne.Rows[objPro.rowID].Cells[3].Value.ToString();
-                txtTradeName.Text = dgvAllOne.Rows[objPro.rowID].Cells[4].Value.ToString();
-                txtTaskName.Text = dgvAllOne.Rows[objPro.rowID].Cells[5].Value.ToString();
-                cmbAllocatedTo.Text = dgvAllOne.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
-                dtpDueDate.Text = dgvAllOne.Rows[objPro.rowID].Cells[7].Value.ToString();
-                cmbFeesStatus.Text = dgvAllOne.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
-                cmbWorkStatus.Text = dgvAllOne.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
-                txtDescription.Text = dgvAllOne.Rows[objPro.rowID].Cells[10].Value.ToString().Trim();
-                txtFessAmt.Text = dgvAllOne.Rows[objPro.rowID].Cells[11].Value.ToString();
-                txtReturn.Text = dgvAllOne.Rows[objPro.rowID].Cells[12].Value.ToString().Trim();
-                txtYear.Text = dgvAllOne.Rows[objPro.rowID].Cells[13].Value.ToString().Trim();
-                cmbRecurringTask.Text = dgvAllOne.Rows[objPro.rowID].Cells[14].Value.ToString().Trim();
-                cmbPeriodicity.Text = dgvAllOne.Rows[objPro.rowID].Cells[15].Value.ToString().Trim();
-                clientId = Convert.ToInt32(dgvAllOne.Rows[objPro.rowID].Cells[16].Value.ToString());
-                tempAllOneId = Convert.ToInt32(dgvAllOne.Rows[objPro.rowID].Cells[17].Value.ToString());
-                tempEmployeeName = dgvAllOne.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
-                CLIENTNAME = dgvAllOne.Rows[objPro.rowID].Cells[3].Value.ToString();
+                btnSave.Enabled = false;
+
+                objPro = new clsProperties();
+
+                objPro.rowID = e.RowIndex;
+
+                if (dgvAllOne.Rows.Count >= 0)
+                {
+                    dtpInputDate.Text = dgvAllOne.Rows[objPro.rowID].Cells[2].Value.ToString();
+                    txtClientName.Text = dgvAllOne.Rows[objPro.rowID].Cells[3].Value.ToString();
+                    txtTradeName.Text = dgvAllOne.Rows[objPro.rowID].Cells[4].Value.ToString();
+                    txtTaskName.Text = dgvAllOne.Rows[objPro.rowID].Cells[5].Value.ToString();
+                    cmbAllocatedTo.Text = dgvAllOne.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
+                    dtpDueDate.Text = dgvAllOne.Rows[objPro.rowID].Cells[7].Value.ToString();
+                    cmbFeesStatus.Text = dgvAllOne.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
+                    cmbWorkStatus.Text = dgvAllOne.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
+                    txtDescription.Text = dgvAllOne.Rows[objPro.rowID].Cells[10].Value.ToString().Trim();
+                    txtFessAmt.Text = dgvAllOne.Rows[objPro.rowID].Cells[11].Value.ToString();
+                    txtReturn.Text = dgvAllOne.Rows[objPro.rowID].Cells[12].Value.ToString().Trim();
+                    txtYear.Text = dgvAllOne.Rows[objPro.rowID].Cells[13].Value.ToString().Trim();
+                    cmbRecurringTask.Text = dgvAllOne.Rows[objPro.rowID].Cells[14].Value.ToString().Trim();
+                    cmbPeriodicity.Text = dgvAllOne.Rows[objPro.rowID].Cells[15].Value.ToString().Trim();
+                    clientId = Convert.ToInt32(dgvAllOne.Rows[objPro.rowID].Cells[16].Value.ToString());
+                    tempAllOneId = Convert.ToInt32(dgvAllOne.Rows[objPro.rowID].Cells[17].Value.ToString());
+                    tempEmployeeName = dgvAllOne.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
+                    CLIENTNAME = dgvAllOne.Rows[objPro.rowID].Cells[3].Value.ToString();
 
 
-                GetClientAddress();
+                    GetClientAddress();
+
+                }
+
+                if (e.ColumnIndex == dgvAllOne.Columns["btnReply"].Index)
+                {
+                    frm_Query query = new frm_Query(tempEmployeeName);
+
+                    query.workId = tempAllOneId;
+                    query.role = ROLE;
+                    query.employeeName = tempEmployeeName;
+                    query.serviceName = "ALL ONE";
+                    query.clientName = txtClientName.Text;
+                    query.taskName = txtTaskName.Text;
+                    query.ShowDialog();
+                }
+            }
+            catch (Exception)
+            {
 
             }
 
-            if (e.ColumnIndex == dgvAllOne.Columns["btnReply"].Index)
-            {
-                frm_Query query = new frm_Query(tempEmployeeName);
-
-                query.workId = tempAllOneId;
-                query.role = ROLE;
-                query.employeeName = tempEmployeeName;
-                query.serviceName = "ALL ONE";
-                query.clientName = txtClientName.Text;
-                query.taskName = txtTaskName.Text;
-                query.ShowDialog();
-            }
+            
         }
 
         #endregion
