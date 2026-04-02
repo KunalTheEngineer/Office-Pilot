@@ -316,45 +316,54 @@ namespace Tax_Consultant_25.Frames
 
         private void dgvAllInOne_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            btnSave.Enabled = false;
 
-            objPro = new clsProperties();
-
-            objPro.rowID = e.RowIndex;
-
-            if (dgvAllInOne.Rows.Count > 0)
+            try
             {
-                dtpInputDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[2].Value.ToString();
-                txtClientName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[3].Value.ToString();
-                txtTradeName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[4].Value.ToString();
-                txtTaskName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[5].Value.ToString();
-                cmbAllocatedTo.Text = dgvAllInOne.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
-                dtpDueDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[7].Value.ToString();
-                cmbWorkStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
-                txtDescription.Text = dgvAllInOne.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
-                cmbFeesStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[10].Value.ToString().Trim();
-                txtFees.Text = dgvAllInOne.Rows[objPro.rowID].Cells[11].Value.ToString();
-                clientId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[12].Value.ToString());
-                tempPanId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[13].Value.ToString());
-                tempEmployeeName = dgvAllInOne.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
+                btnSave.Enabled = false;
 
-                CLIENTNAME = dgvAllInOne.Rows[objPro.rowID].Cells[3].Value.ToString();
+                objPro = new clsProperties();
 
-                GetClientAddress();
+                objPro.rowID = e.RowIndex;
+
+                if (dgvAllInOne.Rows.Count > 0)
+                {
+                    dtpInputDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[2].Value.ToString();
+                    txtClientName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[3].Value.ToString();
+                    txtTradeName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[4].Value.ToString();
+                    txtTaskName.Text = dgvAllInOne.Rows[objPro.rowID].Cells[5].Value.ToString();
+                    cmbAllocatedTo.Text = dgvAllInOne.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
+                    dtpDueDate.Text = dgvAllInOne.Rows[objPro.rowID].Cells[7].Value.ToString();
+                    cmbWorkStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[8].Value.ToString().Trim();
+                    txtDescription.Text = dgvAllInOne.Rows[objPro.rowID].Cells[9].Value.ToString().Trim();
+                    cmbFeesStatus.Text = dgvAllInOne.Rows[objPro.rowID].Cells[10].Value.ToString().Trim();
+                    txtFees.Text = dgvAllInOne.Rows[objPro.rowID].Cells[11].Value.ToString();
+                    clientId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[12].Value.ToString());
+                    tempPanId = Convert.ToInt32(dgvAllInOne.Rows[objPro.rowID].Cells[13].Value.ToString());
+                    tempEmployeeName = dgvAllInOne.Rows[objPro.rowID].Cells[6].Value.ToString().Trim();
+
+                    CLIENTNAME = dgvAllInOne.Rows[objPro.rowID].Cells[3].Value.ToString();
+
+                    GetClientAddress();
+                }
+
+                if (e.ColumnIndex == dgvAllInOne.Columns["btnReply"].Index)
+                {
+                    frm_Query query = new frm_Query(tempEmployeeName);
+
+                    query.workId = tempPanId;
+                    query.role = ROLE;
+                    query.employeeName = tempEmployeeName;
+                    query.serviceName = "PAN/TAN";
+                    query.clientName = txtClientName.Text;
+                    query.taskName = txtTaskName.Text;
+                    query.ShowDialog();
+                }
+            }
+            catch (Exception)
+            {
+
             }
 
-            if (e.ColumnIndex == dgvAllInOne.Columns["btnReply"].Index)
-            {
-                frm_Query query = new frm_Query(tempEmployeeName);
-
-                query.workId = tempPanId;
-                query.role = ROLE;
-                query.employeeName = tempEmployeeName;
-                query.serviceName = "PAN/TAN";
-                query.clientName = txtClientName.Text;
-                query.taskName = txtTaskName.Text;
-                query.ShowDialog();
-            }
         }
 
         private void dtpInputDate_ValueChanged(object sender, EventArgs e)
