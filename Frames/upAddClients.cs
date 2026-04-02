@@ -493,86 +493,94 @@ namespace Tax_Consultant_25.Frames
 
         private void dgvClients_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            btnSave.Enabled = false;
-
-            objPro = new clsProperties();
-
-            objPro.rowID = e.RowIndex;
-
-            if (dgvClients.Rows.Count > 0)
+            try
             {
-                objPro.clientID = Convert.ToInt32(dgvClients.Rows[objPro.rowID].Cells[0].Value.ToString());
-                clId = objPro.clientID;
-                txtName.Text = dgvClients.Rows[objPro.rowID].Cells[1].Value.ToString();
-                objPro.clientName = txtName.Text;
-                txtFatherName.Text = dgvClients.Rows[objPro.rowID].Cells[2].Value.ToString();
-                txtAddress.Text = dgvClients.Rows[objPro.rowID].Cells[3].Value.ToString();
-                dtpDOB.Text = dgvClients.Rows[objPro.rowID].Cells[4].Value.ToString();
-                txtMobile.Text = dgvClients.Rows[objPro.rowID].Cells[5].Value.ToString();
-                txtPan.Text = dgvClients.Rows[objPro.rowID].Cells[6].Value.ToString();
+                btnSave.Enabled = false;
 
-                if (dgvClients.Rows[objPro.rowID].Cells[7].Value.ToString() == "Married")
+                objPro = new clsProperties();
+
+                objPro.rowID = e.RowIndex;
+
+                if (dgvClients.Rows.Count > 0)
                 {
-                    rbtnMarried.Checked = true;
-                }
-                else
-                {
-                    rbtnUnMarried.Checked = true;
+                    objPro.clientID = Convert.ToInt32(dgvClients.Rows[objPro.rowID].Cells[0].Value.ToString());
+                    clId = objPro.clientID;
+                    txtName.Text = dgvClients.Rows[objPro.rowID].Cells[1].Value.ToString();
+                    objPro.clientName = txtName.Text;
+                    txtFatherName.Text = dgvClients.Rows[objPro.rowID].Cells[2].Value.ToString();
+                    txtAddress.Text = dgvClients.Rows[objPro.rowID].Cells[3].Value.ToString();
+                    dtpDOB.Text = dgvClients.Rows[objPro.rowID].Cells[4].Value.ToString();
+                    txtMobile.Text = dgvClients.Rows[objPro.rowID].Cells[5].Value.ToString();
+                    txtPan.Text = dgvClients.Rows[objPro.rowID].Cells[6].Value.ToString();
+
+                    if (dgvClients.Rows[objPro.rowID].Cells[7].Value.ToString() == "Married")
+                    {
+                        rbtnMarried.Checked = true;
+                    }
+                    else
+                    {
+                        rbtnUnMarried.Checked = true;
+                    }
+
+                    if (dgvClients.Rows[objPro.rowID].Cells[8].Value.ToString() == "Male")
+                    {
+                        rbtnMale.Checked = true;
+                    }
+                    else
+                    {
+                        rbtnFemale.Checked = true;
+                    }
+
+                    if (dgvClients.Rows[objPro.rowID].Cells[9].Value.ToString() == "Indian")
+                    {
+                        rbtnIndian.Checked = true;
+                    }
+                    else
+                    {
+                        rbtnNonIndian.Checked = true;
+                    }
+
+                    txtEmail.Text = dgvClients.Rows[objPro.rowID].Cells[10].Value.ToString();
+                    txtAdharNo.Text = dgvClients.Rows[objPro.rowID].Cells[11].Value.ToString();
+                    txtBusinessName.Text = dgvClients.Rows[objPro.rowID].Cells[12].Value.ToString();
+                    cmbStatus.Text = dgvClients.Rows[objPro.rowID].Cells[13].Value.ToString();
+                    txtGSTNo.Text = dgvClients.Rows[objPro.rowID].Cells[14].Value.ToString();
+                    cmbGSTType.Text = dgvClients.Rows[objPro.rowID].Cells[15].Value.ToString();
+
+                    if (Convert.ToBoolean(dgvClients.Rows[objPro.rowID].Cells[16].Value.ToString()) == true)
+                    {
+                        chkGST.Checked = true;
+                    }
+                    else
+                    {
+                        chkGST.Checked = false;
+                    }
+
+
+                    clientUserPassDL = new cls_ClientUserPassDL();
+                    ds1 = new DataSet();
+
+                    ds1 = clientUserPassDL.getClientUsernamePasword(objPro);
+
+                    for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
+                    {
+                        string dService = ds1.Tables[0].Rows[i]["clientWorkService"].ToString();
+                        string dUsername = ds1.Tables[0].Rows[i]["clientUsername"].ToString();
+                        string dPassword = ds1.Tables[0].Rows[i]["clientPassword"].ToString();
+
+                        createTextbox(dService);
+                        createTextbox(dUsername);
+                        createTextbox(dPassword);
+                    }
                 }
 
-                if (dgvClients.Rows[objPro.rowID].Cells[8].Value.ToString() == "Male")
-                {
-                    rbtnMale.Checked = true;
-                }
-                else
-                {
-                    rbtnFemale.Checked = true;
-                }
+                ReflowTextboxes();
+            }
+            catch (Exception)
+            {
 
-                if (dgvClients.Rows[objPro.rowID].Cells[9].Value.ToString() == "Indian")
-                {
-                    rbtnIndian.Checked = true;
-                }
-                else
-                {
-                    rbtnNonIndian.Checked = true;
-                }
-
-                txtEmail.Text = dgvClients.Rows[objPro.rowID].Cells[10].Value.ToString();
-                txtAdharNo.Text = dgvClients.Rows[objPro.rowID].Cells[11].Value.ToString();
-                txtBusinessName.Text = dgvClients.Rows[objPro.rowID].Cells[12].Value.ToString();
-                cmbStatus.Text = dgvClients.Rows[objPro.rowID].Cells[13].Value.ToString();
-                txtGSTNo.Text = dgvClients.Rows[objPro.rowID].Cells[14].Value.ToString();
-                cmbGSTType.Text = dgvClients.Rows[objPro.rowID].Cells[15].Value.ToString();
-
-                if (Convert.ToBoolean(dgvClients.Rows[objPro.rowID].Cells[16].Value.ToString()) == true)
-                {
-                    chkGST.Checked = true;
-                }
-                else
-                {
-                    chkGST.Checked = false;
-                }
-
-
-                clientUserPassDL = new cls_ClientUserPassDL();
-                ds1 = new DataSet();
-
-                ds1 = clientUserPassDL.getClientUsernamePasword(objPro);
-
-                for (int i = 0; i < ds1.Tables[0].Rows.Count; i++)
-                {
-                    string dService = ds1.Tables[0].Rows[i]["clientWorkService"].ToString();
-                    string dUsername = ds1.Tables[0].Rows[i]["clientUsername"].ToString();
-                    string dPassword = ds1.Tables[0].Rows[i]["clientPassword"].ToString();
-
-                    createTextbox(dService);
-                    createTextbox(dUsername);
-                    createTextbox(dPassword);
-                }
             }
 
-            ReflowTextboxes();
         }
 
         private void dgvClients_SelectionChanged(object sender, EventArgs e)
